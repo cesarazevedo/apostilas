@@ -74,4 +74,46 @@
     M.forEach(function(m,i){var b=document.createElement('button');b.type='button';b.textContent=m.k;b.onclick=function(){pick(i)};modes.appendChild(b);btns.push(b);});
     pick(0);
   }
+  // --- Capítulo 2: GPO, permissões e escopo DHCP ---
+  (function(){
+    var gp=document.getElementById('gpOu');
+    if(gp){
+      var enf=document.getElementById('gpEnf'),out=document.getElementById('gpOut');
+      var G={dom:{n:'Política do Domínio',s:{fundo:'logo da escola',usb:'⛔ bloqueado'}},alu:{n:'Política dos Alunos',s:{painel:'⛔ bloqueado'}},lab:{n:'Política do Laboratório',s:{usb:'✅ permitido'}}};
+      var chain={prof:['dom'],alu:['dom','alu'],lab:['dom','alu','lab']};
+      var names={fundo:'Fundo de tela',usb:'Uso de USB',painel:'Painel de Controle'};
+      function gpRun(){
+        var ids=chain[gp.value],val={},src={};
+        ids.forEach(function(id){for(var k in G[id].s){val[k]=G[id].s[k];src[k]=G[id].n;}});
+        if(enf.checked){for(var k in G.dom.s){val[k]=G.dom.s[k];src[k]=G.dom.n+' (imposta)';}}
+        var h='<b>Políticas aplicadas, na ordem:</b> '+ids.map(function(i){return G[i].n}).join(' → ')+'.<br><b>Resultado final:</b><ul style="margin:6px 0 0">';
+        ['fundo','usb','painel'].forEach(function(k){h+='<li>'+names[k]+': <b>'+(val[k]||'não configurado (padrão do Windows)')+'</b>'+(src[k]?' <span style="color:var(--suave)">← '+src[k]+'</span>':'')+'</li>';});
+        out.innerHTML=h+'</ul>';
+      }
+      gp.onchange=enf.onchange=gpRun;gpRun();
+    }
+    var pS=document.getElementById('pmS');
+    if(pS){
+      var pA=document.getElementById('pmA'),pB=document.getElementById('pmB'),pO=document.getElementById('pmOut');
+      var NM=['Sem acesso','Leitura','Alteração (modificar)','Controle total'];
+      var WH=['não consegue nem abrir','pode apenas <b>ler</b> os arquivos','pode <b>ler, criar, alterar e apagar</b> arquivos','pode <b>tudo</b>, inclusive mudar permissões'];
+      function pm(){
+        var ntfs=Math.max(+pA.value,+pB.value),sh=+pS.value,net=Math.min(ntfs,sh);
+        pO.innerHTML='NTFS somado dos grupos: <b>'+NM[ntfs]+'</b> · Compartilhamento: <b>'+NM[sh]+'</b>.<br>🌐 <b>Pela rede</b> (a mais restritiva): <b>'+NM[net]+'</b>, o usuário '+WH[net]+'.<br>🖥️ <b>No próprio servidor</b> (só NTFS): <b>'+NM[ntfs]+'</b>.';
+      }
+      pS.onchange=pA.onchange=pB.onchange=pm;pm();
+    }
+    var dP=document.getElementById('dhP');
+    if(dP){
+      var dF=document.getElementById('dhF'),dD=document.getElementById('dhD'),dO=document.getElementById('dhOut');
+      function dh(){
+        var p=+dP.value,tot=Math.pow(2,32-p)-2,f=Math.max(1,Math.min(+dF.value||1,tot-1)),dev=Math.max(1,+dD.value||1);
+        var scope=tot-f,from=f+1,to=tot,clients=Math.max(0,dev-f);
+        var ok=clients<=scope,tight=clients>scope*0.8;
+        dO.innerHTML='Rede <code>192.168.50.0/'+p+'</code>: <b>'+tot+'</b> endereços utilizáveis (do .1 ao .'+tot+').<br>IPs fixos: <b>.1 a .'+f+'</b>. Escopo DHCP sugerido: <b>192.168.50.'+from+' a 192.168.50.'+to+'</b> ('+scope+' endereços).<br>'+
+          (ok?(tight?'⚠️ <b>Apertado:</b> ':'✅ <b>Suficiente:</b> ')+'cerca de '+clients+' clientes para '+scope+' endereços.':'⛔ <b>Faltam '+(clients-scope)+' endereços.</b> Use uma rede maior (prefixo menor) ou divida os dispositivos em sub-redes.');
+      }
+      dP.onchange=dF.oninput=dD.oninput=dh;dh();
+    }
+  })();
 })();

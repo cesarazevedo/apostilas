@@ -42,7 +42,17 @@ html[data-theme=dark]{--verde-claro:#10263a}
       <a href="#c1-lab">Atividade e laboratórios</a>
       <a href="#c1-quiz">Quiz e exercícios</a>
     </div>
-    <a href="#cap2" class="soon"><span class="n" style="background:var(--c2)">2</span>Windows Server</a>
+    <a href="#cap2"><span class="n" style="background:var(--c2)">2</span>Windows Server</a>
+    <div class="sub">
+      <a href="#c2-visao">Visão geral</a>
+      <a href="#c2-inst">Instalação e configuração</a>
+      <a href="#c2-adm">Ferramentas administrativas</a>
+      <a href="#c2-backup">Backup</a>
+      <a href="#c2-ad">Active Directory</a>
+      <a href="#c2-dns">DNS e DHCP</a>
+      <a href="#c2-lab">Atividade e laboratórios</a>
+      <a href="#c2-quiz">Quiz e exercícios</a>
+    </div>
     <a href="#cap3" class="soon"><span class="n" style="background:var(--c3)">3</span>Linux</a>
     <a href="#cap4" class="soon"><span class="n" style="background:var(--c4)">4</span>Computação em nuvem</a>
     <a href="#refs"><span class="n" style="background:#455a64">📚</span>Referências</a>
@@ -71,7 +81,7 @@ html[data-theme=dark]{--verde-claro:#10263a}
   <p>Cada capítulo segue o mesmo caminho: <b>objetivos → explicação com analogias → prática → resumo → quiz</b>. Aqui a prática é central: você vai <b>instalar e administrar servidores</b>, e tudo será feito em <b>máquinas virtuais</b>, sem risco para o seu computador. Para guardar uma cópia, use o botão <b>Salvar em PDF</b> no menu.</p>
   <div class="map">
     <div class="card" style="--cc:var(--c1)"><b>1 · Virtualização</b><span>Máquinas virtuais, hipervisores, redes virtuais e containers.</span><div class="st">✅ Disponível</div></div>
-    <div class="card" style="--cc:var(--c2)"><b>2 · Windows Server</b><span>Instalação, Active Directory, políticas de grupo, DNS e DHCP.</span><div class="st">⏳ Em breve</div></div>
+    <div class="card" style="--cc:var(--c2)"><b>2 · Windows Server</b><span>Instalação, Active Directory, políticas de grupo, DNS e DHCP.</span><div class="st">✅ Disponível</div></div>
     <div class="card" style="--cc:var(--c3)"><b>3 · Linux</b><span>Comandos, usuários, permissões, pacotes e serviços (DNS, DHCP, SSH, SMB, web).</span><div class="st">⏳ Em breve</div></div>
     <div class="card" style="--cc:var(--c4)"><b>4 · Computação em nuvem</b><span>IaaS, PaaS, SaaS, tipos de nuvem e provedores.</span><div class="st">⏳ Em breve</div></div>
   </div>
@@ -292,9 +302,324 @@ exit</code></pre>
 </section>
 
 <!-- ================= CAPÍTULOS EM CONSTRUÇÃO ================= -->
-<section class="chapter soon-ch" id="cap2" style="--cc:var(--c2)">
+<section class="chapter" id="cap2" style="--cc:var(--c2)">
   <div class="chap-head"><div class="chap-num" style="background:var(--c2)">2</div><div><small>Capítulo 2</small><h2>Sistema operacional Windows Server</h2></div></div>
-  <div class="soon-card">⏳ Em construção. Conteúdo: visão geral do Windows Server e desktop, instalação e configurações iniciais, ferramentas administrativas (área de trabalho remota, RSAT), políticas de backup, Active Directory (usuários, grupos, unidades organizacionais, políticas de grupo, permissões e compartilhamento de arquivos), DNS e DHCP.</div>
+
+  <div class="obj"><h4>🎯 Ao final deste capítulo, você será capaz de:</h4>
+    <ul>
+      <li>Diferenciar o Windows Server do Windows desktop e escolher uma edição e um tipo de instalação.</li>
+      <li>Instalar e fazer as configurações iniciais de um servidor (nome, IP fixo, fuso horário).</li>
+      <li>Usar as ferramentas administrativas: área de trabalho remota, RSAT, Gerenciador do Servidor e PowerShell.</li>
+      <li>Explicar políticas de backup e escolher entre backup completo, incremental e diferencial.</li>
+      <li>Criar um domínio com Active Directory, organizar usuários, grupos e OUs, aplicar políticas de grupo e compartilhar arquivos com permissões.</li>
+      <li>Instalar e configurar os serviços de DNS e DHCP.</li>
+    </ul>
+  </div>
+
+  <h3 id="c2-visao">2.1 Visão geral: Windows Server e Windows desktop</h3>
+  <p>O <b>Windows Server</b> é o sistema da Microsoft feito para rodar <b>serviços</b> para outros computadores: contas de usuários, arquivos compartilhados, nomes (DNS), endereços (DHCP), sites e muito mais. O <b>Windows desktop</b> (10 ou 11) é feito para uma pessoa usar no dia a dia.</p>
+  <div class="box analogia"><div class="ic">💡</div><div><h5>Pense assim...</h5><p>O desktop é como um <b>carro de passeio</b>: confortável, para uma pessoa. O servidor é como um <b>ônibus ou caminhão</b>: foi pensado para carregar muita gente e muita carga, funcionar por muito tempo sem parar e ser controlado por um profissional.</p></div></div>
+  <table>
+    <tr><th></th><th>Windows desktop (10/11)</th><th>Windows Server</th></tr>
+    <tr><td><b>Objetivo</b></td><td>Uso pessoal e de estação de trabalho</td><td>Oferecer serviços à rede</td></tr>
+    <tr><td><b>Funções (roles)</b></td><td>Poucas</td><td>Muitas: AD, DNS, DHCP, arquivos, web, virtualização...</td></tr>
+    <tr><td><b>Usuários simultâneos</b></td><td>Em geral, um</td><td>Muitos, por rede e por área de trabalho remota</td></tr>
+    <tr><td><b>Interface</b></td><td>Sempre gráfica</td><td>Gráfica ou apenas linha de comando (Server Core)</td></tr>
+    <tr><td><b>Licença</b></td><td>Por equipamento</td><td>Por servidor e por acessos de clientes (CALs)</td></tr>
+  </table>
+
+  <h3 style="font-size:18px;margin-top:14px">Versões e edições</h3>
+  <ul>
+    <li><b>Versões:</b> as mais usadas hoje são o Windows Server <b>2019</b>, <b>2022</b> e <b>2025</b>.</li>
+    <li><b>Standard:</b> para a maioria das empresas e escolas, com poucas máquinas virtuais incluídas na licença.</li>
+    <li><b>Datacenter:</b> para ambientes muito virtualizados, com virtualização ilimitada.</li>
+    <li><b>Avaliação gratuita:</b> a Microsoft oferece, no Evaluation Center, uma versão de teste (por cerca de 180 dias), perfeita para os laboratórios.</li>
+  </ul>
+  <h3 style="font-size:18px;margin-top:14px">Dois jeitos de instalar</h3>
+  <table>
+    <tr><th>Opção</th><th>O que é</th><th>Quando usar</th></tr>
+    <tr><td><b>Desktop Experience</b></td><td>Com interface gráfica, parecida com o Windows desktop.</td><td>Aprendizado, laboratórios e quem está começando.</td></tr>
+    <tr><td><b>Server Core</b></td><td>Sem interface gráfica: tudo por comandos (PowerShell) ou por outro computador.</td><td>Produção. Usa menos recursos e tem menos pontos de ataque.</td></tr>
+  </table>
+
+  <h3 id="c2-inst">2.2 Instalação e configurações iniciais</h3>
+  <p>Instalar um servidor é parecido com instalar o Windows comum, mas o <b>depois</b> é o que importa: um servidor recém-instalado precisa de algumas configurações antes de ser útil.</p>
+  <div class="box exemplo"><div class="ic">📌</div><div><h5>Requisitos para os nossos laboratórios (máquina virtual)</h5><p><b>4 GB</b> de memória, <b>2 CPUs</b> e disco de <b>50 GB</b>, com a edição <b>Standard (Desktop Experience)</b>. Use a ISO de avaliação. O mínimo oficial é menor, mas esse tamanho deixa tudo fluido.</p></div></div>
+  <p><b>Configurações iniciais (checklist):</b></p>
+  <ol class="steps">
+    <li><b>Dar um nome</b> ao servidor, como <code>SRV-DC1</code>. O nome padrão sorteado é difícil de lembrar.</li>
+    <li><b>Configurar IP fixo.</b> Servidor não pode mudar de endereço, senão os clientes não o encontram. (Lembra de máscara e gateway? Veja a apostila de Redes.)</li>
+    <li><b>Acertar data, hora e fuso horário.</b> A autenticação no domínio depende de relógios sincronizados.</li>
+    <li><b>Atualizar o sistema</b> (Windows Update).</li>
+    <li><b>Habilitar o acesso remoto</b>, se for administrar de outro lugar.</li>
+  </ol>
+  <p><b>Windows desktop como cliente da rede:</b> para ingressar em um domínio, o computador precisa ter o Windows <b>Pro</b>, <b>Enterprise</b> ou <b>Education</b>. A edição <b>Home</b> <b>não</b> ingressa em domínio.</p>
+
+  <h3 id="c2-adm">2.3 Ferramentas administrativas</h3>
+  <table>
+    <tr><th>Ferramenta</th><th>Para que serve</th></tr>
+    <tr><td><b>Gerenciador do Servidor</b> (<i>Server Manager</i>)</td><td>Painel central: instala funções, mostra o estado dos serviços e abre as demais ferramentas.</td></tr>
+    <tr><td><b>Configurações de rede</b></td><td>IP, máscara, gateway e DNS do servidor (<code>ncpa.cpl</code> abre a lista de adaptadores).</td></tr>
+    <tr><td><b>Área de trabalho remota</b> (RDP)</td><td>Controlar o servidor pela rede, como se estivesse na frente dele. Usa a porta <b>TCP 3389</b>.</td></tr>
+    <tr><td><b>RSAT</b> (<i>Remote Server Administration Tools</i>)</td><td>Pacote de ferramentas que você instala em um Windows desktop para administrar servidores sem ir até eles.</td></tr>
+    <tr><td><b>PowerShell</b></td><td>Linha de comando poderosa: tudo que se faz com cliques também se faz (e se repete) com comandos.</td></tr>
+  </table>
+  <div class="box atencao"><div class="ic">⚠️</div><div><h5>Cuidado com o RDP</h5><p>Nunca deixe a porta 3389 aberta diretamente para a Internet: é alvo constante de ataques de força bruta (veja o capítulo de segurança da apostila de Redes). Use <b>VPN</b>, senhas fortes e só quem precisa deve ter acesso (grupo <i>Usuários da Área de Trabalho Remota</i>).</p></div></div>
+  <div class="box dica"><div class="ic">✅</div><div><h5>Por que aprender PowerShell?</h5><p>Imagine criar <b>200 contas de alunos</b>. Com cliques, levaria horas. Com um script, minutos. Nos laboratórios, você verá o caminho gráfico e o comando equivalente.</p></div></div>
+
+  <h3 id="c2-backup">2.4 Políticas e ferramentas de backup</h3>
+  <p><b>Backup</b> é uma cópia dos dados guardada em outro lugar, para recuperar tudo se o original for perdido: falha de disco, erro humano, ransomware, incêndio. Uma <b>política de backup</b> define <b>o quê</b>, <b>quando</b>, <b>onde</b> e <b>por quanto tempo</b> guardar.</p>
+  <table>
+    <tr><th>Tipo</th><th>O que copia</th><th>Vantagem</th><th>Desvantagem</th></tr>
+    <tr><td><b>Completo</b></td><td>Tudo.</td><td>Restaurar é simples (uma cópia só).</td><td>Demora e ocupa muito espaço.</td></tr>
+    <tr><td><b>Incremental</b></td><td>O que mudou desde o <b>último backup</b> (de qualquer tipo).</td><td>Rápido e pequeno.</td><td>Restaurar exige o completo + todos os incrementais, em ordem.</td></tr>
+    <tr><td><b>Diferencial</b></td><td>O que mudou desde o <b>último completo</b>.</td><td>Restaurar exige só o completo + o último diferencial.</td><td>Cresce a cada dia até o próximo completo.</td></tr>
+  </table>
+  <div class="box analogia"><div class="ic">💡</div><div><h5>Pense assim...</h5><p>Você faz um caderno novo (<b>completo</b>) na segunda. Na terça, anota só as <b>novidades desde ontem</b> (incremental), e na quarta, só as novidades desde ontem de novo. Para reconstituir o caderno de quinta, você precisa de todos os papeizinhos. No <b>diferencial</b>, cada dia anota <b>tudo o que mudou desde segunda</b>: o último papel já contém o resumo.</p></div></div>
+  <div class="box dica"><div class="ic">✅</div><div><h5>Regra 3-2-1</h5><p><b>3</b> cópias dos dados, em <b>2</b> tipos de mídia, com <b>1</b> cópia fora do local. E o mais importante: <b>teste a restauração</b>. Backup que nunca foi restaurado é só uma esperança.</p></div></div>
+  <p>No Windows Server, a ferramenta nativa é o <b>Windows Server Backup</b> (função instalável), com agendamento e restauração de arquivos, volumes e do estado do sistema. Em ambientes maiores, usam-se soluções dedicadas ou nuvem.</p>
+
+  <!-- 2.5 AD -->
+  <h3 id="c2-ad">2.5 Active Directory (AD DS)</h3>
+  <p>Imagine uma escola com 800 alunos e 15 laboratórios. Criar um usuário em <b>cada computador</b> seria inviável. O <b>Active Directory Domain Services (AD DS)</b> resolve isso: é um <b>cadastro central</b> de usuários, grupos e computadores, onde o login vale em <b>qualquer</b> máquina do domínio.</p>
+  <div class="box analogia"><div class="ic">💡</div><div><h5>Pense assim...</h5><p>O domínio é como uma <b>prefeitura</b>. Os cidadãos são os <b>usuários</b>, os imóveis são os <b>computadores</b>, as secretarias são as <b>unidades organizacionais (OUs)</b> e as leis municipais são as <b>políticas de grupo (GPOs)</b>. O <b>controlador de domínio</b> é o prédio da prefeitura, onde tudo é registrado e decidido.</p></div></div>
+  <table>
+    <tr><th>Conceito</th><th>O que é</th></tr>
+    <tr><td><b>Domínio</b></td><td>O grupo de usuários e computadores sob a mesma administração (ex.: <code>escola.local</code>).</td></tr>
+    <tr><td><b>Controlador de domínio (DC)</b></td><td>O servidor que guarda o AD e valida os logins. Em produção, usam-se ao menos dois.</td></tr>
+    <tr><td><b>Objetos</b></td><td>Usuários, grupos, computadores, impressoras...</td></tr>
+    <tr><td><b>Unidade organizacional (OU)</b></td><td>“Pasta” para organizar objetos e aplicar políticas (ex.: Alunos, Professores).</td></tr>
+    <tr><td><b>Grupo</b></td><td>Conjunto de usuários, para dar permissões de uma vez.</td></tr>
+    <tr><td><b>Floresta</b></td><td>O conjunto de um ou mais domínios que compartilham a mesma estrutura.</td></tr>
+  </table>
+  <div class="box atencao"><div class="ic">⚠️</div><div><h5>Nome do domínio</h5><p>Nos laboratórios usaremos <code>escola.local</code>. Em produção, a Microsoft recomenda usar um <b>subdomínio de um nome que a instituição possui</b> (por exemplo, <code>ad.escola.edu.br</code>), e não <code>.local</code>.</p></div></div>
+
+  <h3 style="font-size:18px;margin-top:14px">Usuários, grupos e OUs</h3>
+  <ul>
+    <li><b>Usuário:</b> uma conta de pessoa (ou serviço) com nome de login e senha.</li>
+    <li><b>Grupo:</b> reúne usuários. <b>Boa prática:</b> dê permissões ao <b>grupo</b>, não a cada pessoa. Quando alguém entra ou sai da turma, basta mudar o grupo.</li>
+    <li><b>OU:</b> organiza o que existe e define <b>onde</b> as políticas se aplicam. <b>Atenção:</b> OU organiza e recebe políticas; grupo dá permissões. Não são a mesma coisa.</li>
+  </ul>
+
+  <h3 style="font-size:18px;margin-top:14px">Políticas de grupo (GPO)</h3>
+  <p>Uma <b>GPO</b> é um conjunto de regras (ex.: fundo de tela da escola, bloquear USB, mapear a unidade de rede) que o AD aplica <b>automaticamente</b> a usuários e computadores. Você <b>vincula</b> a GPO a um domínio ou a uma OU.</p>
+  <ul>
+    <li><b>Ordem de aplicação:</b> local → site → <b>domínio</b> → <b>OU</b> (e sub-OUs). Quando duas políticas discordam, <b>vence a mais próxima do objeto</b> (a última aplicada).</li>
+    <li><b>Impor (<i>Enforced</i>):</b> faz a política de cima <b>vencer</b>, mesmo contra as de baixo.</li>
+    <li><b>Bloquear herança:</b> uma OU deixa de receber as políticas de cima (exceto as impostas).</li>
+    <li>Os clientes atualizam as políticas a cada cerca de 90 minutos. Para forçar: <code>gpupdate /force</code>. Para ver o que foi aplicado: <code>gpresult /r</code>.</li>
+  </ul>
+  <p>Teste a herança. Escolha onde o usuário está e veja o resultado final:</p>
+  <div class="tool" id="gp" style="--cc:var(--c2)">
+    <table class="tool-tab" style="max-width:none">
+      <tr><th>GPO</th><th>Vinculada a</th><th>O que configura</th></tr>
+      <tr><td>Política do Domínio</td><td>escola.local</td><td>Fundo de tela = logo da escola · USB = <b>bloqueado</b></td></tr>
+      <tr><td>Política dos Alunos</td><td>OU Alunos</td><td>Painel de Controle = <b>bloqueado</b></td></tr>
+      <tr><td>Política do Laboratório</td><td>OU Alunos \ Lab-Info</td><td>USB = <b>permitido</b></td></tr>
+    </table>
+    <div class="tool-ctl" style="margin-top:12px">
+      Usuário na OU: <select id="gpOu" aria-label="OU do usuário"><option value="prof">Professores</option><option value="alu">Alunos</option><option value="lab" selected>Alunos \ Lab-Info</option></select>
+      <label><input type="checkbox" id="gpEnf"> Impor (Enforced) a Política do Domínio</label>
+    </div>
+    <p class="enc-txt" id="gpOut"></p>
+  </div>
+
+  <h3 style="font-size:18px;margin-top:14px">Compartilhamento de arquivos e permissões</h3>
+  <p>Um servidor de arquivos oferece <b>pastas compartilhadas</b> na rede. Elas têm <b>dois filtros</b> de permissão, e o aluno só passa se passar pelos dois:</p>
+  <ul>
+    <li><b>Permissão de compartilhamento:</b> vale só para quem acessa <b>pela rede</b> (Leitura, Alteração, Controle total).</li>
+    <li><b>Permissão NTFS:</b> vale <b>sempre</b>, na rede ou no próprio servidor, e é mais detalhada.</li>
+  </ul>
+  <p><b>Regra:</b> pela rede, vale a <b>mais restritiva</b> entre as duas. E as permissões NTFS de vários grupos <b>se somam</b>, a não ser que haja uma negação explícita.</p>
+  <div class="box analogia"><div class="ic">💡</div><div><h5>Pense assim...</h5><p>Para entrar em uma sala dentro de um prédio, você passa pela <b>portaria</b> (permissão de compartilhamento) e depois pela <b>porta da sala</b> (permissão NTFS). Se a portaria só deixa você <i>olhar</i>, não adianta a sala ser liberada: você só olha.</p></div></div>
+  <div class="tool" id="pm" style="--cc:var(--c2)">
+    <div class="tool-ctl">
+      Compartilhamento: <select id="pmS" aria-label="Permissão de compartilhamento"><option value="1">Leitura</option><option value="2">Alteração</option><option value="3" selected>Controle total</option></select>
+      NTFS do grupo A: <select id="pmA" aria-label="Permissão NTFS do grupo A"><option value="0">Sem acesso</option><option value="1" selected>Leitura</option><option value="2">Modificar</option><option value="3">Controle total</option></select>
+      NTFS do grupo B: <select id="pmB" aria-label="Permissão NTFS do grupo B"><option value="0" selected>Sem acesso</option><option value="1">Leitura</option><option value="2">Modificar</option><option value="3">Controle total</option></select>
+    </div>
+    <p class="enc-txt" id="pmOut"></p>
+  </div>
+  <p style="font-size:14px;color:var(--suave)">Na simulação, o usuário pertence aos grupos A e B. As permissões NTFS dos grupos somam; o resultado pela rede é limitado pelo compartilhamento.</p>
+
+  <!-- 2.6 DNS e DHCP -->
+  <h3 id="c2-dns">2.6 Serviços de DNS e DHCP no Windows Server</h3>
+  <p>Você já viu <b>DNS</b> (nomes → IPs) e <b>DHCP</b> (entrega automática de IPs) na apostila de Redes. Agora vamos <b>instalar</b> os dois no servidor.</p>
+  <h3 style="font-size:18px;margin-top:14px">DNS</h3>
+  <ul>
+    <li>O AD <b>depende do DNS</b>: é pelo DNS que os computadores descobrem onde está o controlador de domínio (por registros especiais chamados <i>SRV</i>).</li>
+    <li>Por isso, <b>todos os clientes do domínio devem usar o DNS do servidor</b> (e não o 8.8.8.8). O DNS do servidor repassa o que não conhece para a Internet.</li>
+    <li>Você cria <b>zonas</b> e <b>registros</b>: <b>A</b> (nome → IPv4), <b>CNAME</b> (apelido), <b>MX</b> (e-mail), <b>PTR</b> (IP → nome).</li>
+  </ul>
+  <div class="box atencao"><div class="ic">⚠️</div><div><h5>Erro número 1 em laboratório</h5><p>Se o cliente não entra no domínio, quase sempre é porque o <b>DNS dele não aponta para o servidor</b>. Confira antes de procurar outro problema.</p></div></div>
+  <h3 style="font-size:18px;margin-top:14px">DHCP</h3>
+  <ul>
+    <li><b>Escopo:</b> a faixa de endereços que o servidor pode emprestar (ex.: 192.168.50.100 a 192.168.50.200).</li>
+    <li><b>Exclusões:</b> endereços da faixa que o servidor <b>não</b> deve emprestar.</li>
+    <li><b>Reservas:</b> o mesmo IP sempre para o mesmo dispositivo (identificado pelo MAC), como uma impressora.</li>
+    <li><b>Opções:</b> informações entregues junto com o IP: gateway, servidor DNS, nome do domínio.</li>
+    <li><b>Concessão (<i>lease</i>):</b> por quanto tempo o IP fica emprestado.</li>
+    <li><b>Autorização:</b> um DHCP em um domínio precisa ser <b>autorizado no AD</b>, para impedir servidores DHCP “piratas”.</li>
+  </ul>
+  <div class="box atencao"><div class="ic">⚠️</div><div><h5>Cuidado!</h5><p>Dois servidores DHCP na mesma rede causam bagunça (clientes pegam endereços errados). Ao testar, use <b>rede interna</b> no VirtualBox, e <b>nunca</b> o modo ponte na rede da escola.</p></div></div>
+  <p>Planeje um escopo. Escolha o tamanho da rede e veja quantos endereços sobram:</p>
+  <div class="tool" id="dh" style="--cc:var(--c2)">
+    <div class="tool-ctl">
+      Rede 192.168.50.0 / <select id="dhP" aria-label="Prefixo da rede"><option>24</option><option>25</option><option>26</option><option>27</option></select>
+      IPs fixos (servidores, gateway, impressoras): <input id="dhF" type="number" min="1" max="60" value="10" style="width:70px" aria-label="Quantidade de IPs fixos">
+      Dispositivos na rede: <input id="dhD" type="number" min="1" max="500" value="60" style="width:80px" aria-label="Quantidade de dispositivos">
+    </div>
+    <p class="enc-txt" id="dhOut"></p>
+  </div>
+
+  <!-- ATIVIDADES / LABS -->
+  <div class="lab" id="c2-lab">
+    <h3>🧑‍🤝‍🧑 Atividade desplugada – A prefeitura do domínio</h3>
+    <p><b>Objetivo:</b> entender usuários, grupos, OUs e políticas com um jogo de papéis. <b>Preparação:</b> cartões com nomes de “cidadãos”, “secretarias” e “leis”.</p>
+    <ol class="steps">
+      <li>A turma monta o organograma de uma escola fictícia: <b>OUs</b> (Alunos, Professores, Secretaria) e os <b>usuários</b> dentro delas.</li>
+      <li>Cada equipe cria dois <b>grupos</b> (ex.: “Pasta-Notas: leitura” e “Pasta-Notas: edição”) e decide quem entra em cada um.</li>
+      <li>O professor sorteia “leis” (GPOs): o que vale para todos? O que vale só para os alunos? E se houver conflito, quem vence?</li>
+      <li>Fechamento: simulem a chegada de um aluno novo e a saída de um professor. O que muda no cadastro?</li>
+    </ol>
+
+    <h3>🧪 Laboratório 4 – Instalando o Windows Server e configurando o básico</h3>
+    <ol class="steps">
+      <li><b>Crie a VM.</b> No VirtualBox, <b>Nova</b>: nome <code>SRV-DC1</code>, ISO do Windows Server (avaliação), <b>4 GB</b>, <b>2 CPUs</b>, disco <b>50 GB</b>. Marque <b>Skip Unattended Installation</b> para instalar manualmente.</li>
+      <li><b>Rede.</b> Adaptador 1 em <b>NAT</b> (Internet) e Adaptador 2 em <b>Rede interna</b> chamada <code>lab</code> (a mesma do capítulo 1).</li>
+      <li><b>Instale</b> escolhendo <b>Standard (Desktop Experience)</b>, instalação personalizada. Defina a senha do Administrador (use uma senha forte e anote).</li>
+      <li><b>Dê o nome e acerte o fuso</b>, no PowerShell como administrador (o servidor reinicia):
+<pre><button class="cp">Copiar</button><code>Rename-Computer -NewName "SRV-DC1" -Restart
+# depois do reinício:
+Set-TimeZone -Id "E. South America Standard Time"</code></pre></li>
+      <li><b>Configure o IP fixo</b> na placa da rede interna (veja o nome certo com <code>Get-NetAdapter</code>; costuma ser “Ethernet 2”):
+<pre><button class="cp">Copiar</button><code>Get-NetAdapter
+New-NetIPAddress -InterfaceAlias "Ethernet 2" -IPAddress 192.168.50.10 -PrefixLength 24
+Set-DnsClientServerAddress -InterfaceAlias "Ethernet 2" -ServerAddresses 192.168.50.10</code></pre>
+        O DNS aponta para o <b>próprio servidor</b>, porque ele será o DNS do domínio.</li>
+      <li><b>Habilite a área de trabalho remota</b> (Gerenciador do Servidor → Servidor Local → Área de Trabalho Remota → Habilitar) e crie um <b>snapshot</b> chamado <code>servidor-basico</code>.</li>
+    </ol>
+
+    <h3>🧪 Laboratório 5 – Criando o domínio, as OUs, os grupos e os usuários</h3>
+    <ol class="steps">
+      <li><b>Instale a função AD DS.</b>
+<pre><button class="cp">Copiar</button><code>Install-WindowsFeature AD-Domain-Services -IncludeManagementTools</code></pre></li>
+      <li><b>Promova o servidor a controlador de domínio</b> (cria o domínio <code>escola.local</code>). O comando pede a senha do modo de restauração; o servidor reinicia no final:
+<pre><button class="cp">Copiar</button><code>Install-ADDSForest -DomainName "escola.local" -DomainNetbiosName "ESCOLA" -InstallDns</code></pre></li>
+      <li><b>Abra “Usuários e Computadores do Active Directory”</b> (<code>dsa.msc</code>) e veja a estrutura criada.</li>
+      <li><b>Crie OUs, grupo e usuário</b> (pelo gráfico ou pelos comandos):
+<pre><button class="cp">Copiar</button><code>New-ADOrganizationalUnit -Name "Alunos" -Path "DC=escola,DC=local"
+New-ADOrganizationalUnit -Name "Professores" -Path "DC=escola,DC=local"
+New-ADGroup -Name "G_Alunos" -GroupScope Global -Path "OU=Alunos,DC=escola,DC=local"
+New-ADUser -Name "Maria Silva" -SamAccountName maria -UserPrincipalName maria@escola.local `
+  -Path "OU=Alunos,DC=escola,DC=local" -AccountPassword (Read-Host -AsSecureString "Senha") -Enabled $true
+Add-ADGroupMember -Identity "G_Alunos" -Members maria</code></pre>
+        A senha precisa atender à complexidade padrão (maiúsculas, minúsculas, números e símbolos).</li>
+      <li><b>Desafio:</b> crie mais 3 alunos usando um laço (<code>foreach</code>) do PowerShell e coloque todos no grupo.</li>
+    </ol>
+
+    <h3>🧪 Laboratório 6 – Ligando um cliente ao domínio</h3>
+    <ol class="steps">
+      <li><b>Crie a VM do cliente</b> com Windows 10 ou 11 <b>Pro</b> (edição de avaliação ou licenciada pela escola), <b>rede interna</b> <code>lab</code>. Para ter IP antes do DHCP existir, configure um IP fixo, por exemplo <code>192.168.50.20</code>, DNS <code>192.168.50.10</code>.</li>
+      <li><b>Teste o DNS:</b>
+<pre><button class="cp">Copiar</button><code>ping 192.168.50.10
+nslookup escola.local</code></pre></li>
+      <li><b>Ingresse no domínio:</b> Configurações → Sistema → Sobre → Domínio ou grupo de trabalho. Ou, no PowerShell:
+<pre><button class="cp">Copiar</button><code>Add-Computer -DomainName escola.local -Credential ESCOLA\Administrator -Restart</code></pre></li>
+      <li><b>Entre com a conta de aluno</b> (<code>ESCOLA\maria</code>) e confirme que o login funciona neste computador, que nunca teve esse usuário.</li>
+      <li><b>Instale o RSAT</b> no cliente (conta de administrador) para gerenciar o AD sem ir ao servidor:
+<pre><button class="cp">Copiar</button><code>Add-WindowsCapability -Online -Name Rsat.ActiveDirectory.DS-LDS.Tools~~~~0.0.1.0</code></pre></li>
+      <li><b>Teste a área de trabalho remota</b> a partir do cliente (<code>mstsc</code>) para o servidor <code>192.168.50.10</code>.</li>
+    </ol>
+
+    <h3>🧪 Laboratório 7 – Política de grupo e pasta compartilhada</h3>
+    <ol class="steps">
+      <li><b>Crie uma GPO.</b> No servidor, abra o <b>Gerenciamento de Política de Grupo</b> (<code>gpmc.msc</code>), clique com o botão direito na OU <b>Alunos</b> → <b>Criar um GPO neste domínio e vinculá-lo aqui</b>. Nome: <code>Politica-Alunos</code>.</li>
+      <li><b>Edite a política:</b> Configuração do Usuário → Modelos Administrativos → Painel de Controle → <b>Proibir o acesso ao Painel de Controle e às configurações do PC</b> → Habilitado.</li>
+      <li><b>Aplique no cliente</b> e confira com a conta de aluno:
+<pre><button class="cp">Copiar</button><code>gpupdate /force
+gpresult /r</code></pre>
+        Saia e entre de novo. Tente abrir o Painel de Controle. E com o Administrador? Por que o resultado muda?</li>
+      <li><b>Crie a pasta compartilhada</b> no servidor:
+<pre><button class="cp">Copiar</button><code>New-Item -Path C:\Compartilhado\Turma -ItemType Directory -Force
+New-SmbShare -Name "Turma" -Path "C:\Compartilhado\Turma" -ChangeAccess "ESCOLA\G_Alunos"</code></pre></li>
+      <li><b>Ajuste a permissão NTFS:</b> propriedades da pasta → Segurança → dê <b>Leitura</b> ao grupo <code>G_Alunos</code>.</li>
+      <li><b>Teste do cliente</b> acessando <code>\\SRV-DC1\Turma</code>. Consegue criar um arquivo? Use a ferramenta de permissões acima para explicar o resultado. Depois mude o NTFS para <b>Modificar</b> e teste de novo.</li>
+    </ol>
+
+    <h3>🧪 Laboratório 8 – DHCP e DNS no servidor</h3>
+    <ol class="steps">
+      <li><b>Instale a função DHCP e autorize no AD.</b>
+<pre><button class="cp">Copiar</button><code>Install-WindowsFeature DHCP -IncludeManagementTools
+Add-DhcpServerInDC -DnsName "SRV-DC1.escola.local" -IPAddress 192.168.50.10</code></pre></li>
+      <li><b>Crie o escopo e as opções:</b>
+<pre><button class="cp">Copiar</button><code>Add-DhcpServerv4Scope -Name "LAN" -StartRange 192.168.50.100 -EndRange 192.168.50.200 -SubnetMask 255.255.255.0
+Set-DhcpServerv4OptionValue -ScopeId 192.168.50.0 -DnsServer 192.168.50.10 -DnsDomain escola.local</code></pre></li>
+      <li><b>Cliente por DHCP.</b> No cliente, volte a placa para <b>obter IP automaticamente</b> e rode:
+<pre><button class="cp">Copiar</button><code>ipconfig /renew
+ipconfig /all</code></pre>
+        Qual IP veio? Veja a concessão na console do DHCP (<code>dhcpmgmt.msc</code>).</li>
+      <li><b>Reserva:</b> na console, crie uma reserva para o MAC do cliente, com o IP <code>192.168.50.50</code>, e renove de novo.</li>
+      <li><b>Registro no DNS:</b>
+<pre><button class="cp">Copiar</button><code>Add-DnsServerResourceRecordA -Name "arquivos" -ZoneName "escola.local" -IPv4Address 192.168.50.10
+nslookup arquivos.escola.local</code></pre></li>
+      <li><b>Desafio:</b> abra o Wireshark no hospedeiro, capture na rede interna e observe as mensagens <b>DORA</b> do DHCP (Discover, Offer, Request, Ack).</li>
+    </ol>
+  </div>
+
+  <div class="resumo">
+    <h3>📝 Resumo do capítulo</h3>
+    <ul>
+      <li>O <b>Windows Server</b> oferece serviços à rede. Pode ser instalado com interface gráfica (Desktop Experience) ou sem ela (Server Core).</li>
+      <li>Configurações iniciais: <b>nome, IP fixo, fuso horário e atualizações</b>. Clientes só entram em domínio com Windows Pro, Enterprise ou Education.</li>
+      <li>Ferramentas: Gerenciador do Servidor, área de trabalho remota (porta 3389), RSAT e PowerShell.</li>
+      <li>Backup: <b>completo</b>, <b>incremental</b> e <b>diferencial</b>; regra <b>3-2-1</b>; sempre teste a restauração.</li>
+      <li><b>Active Directory</b> centraliza usuários, grupos e computadores. As <b>OUs</b> organizam e recebem <b>GPOs</b>; a política mais próxima vence, salvo se a de cima for imposta.</li>
+      <li>Em pastas compartilhadas, vale a <b>mais restritiva</b> entre permissão de compartilhamento e NTFS.</li>
+      <li>O AD depende do <b>DNS</b>. O <b>DHCP</b> entrega IPs por escopo, exclusões, reservas e opções, e precisa ser autorizado no AD.</li>
+    </ul>
+  </div>
+
+  <h3 id="c2-quiz">🧠 Quiz do capítulo 2</h3>
+  <div class="quiz">
+    <div class="q"><p>1. Qual tipo de instalação do Windows Server não tem interface gráfica e é mais comum em produção?</p>
+      <button class="opt">a) Desktop Experience</button><button class="opt" data-ok="1">b) Server Core</button><button class="opt">c) Home</button><button class="opt">d) Datacenter</button>
+      <div class="fb">O <b>Server Core</b> é administrado por comandos ou remotamente. Usa menos recursos e expõe menos pontos de ataque.</div></div>
+    <div class="q"><p>2. Por que um servidor deve ter IP fixo?</p>
+      <button class="opt">a) Para ficar mais rápido</button><button class="opt" data-ok="1">b) Para que os clientes sempre o encontrem no mesmo endereço</button><button class="opt">c) Porque o Windows exige</button><button class="opt">d) Para economizar energia</button>
+      <div class="fb">Se o endereço do servidor mudasse, clientes e serviços (como o DNS) não o encontrariam mais.</div></div>
+    <div class="q"><p>3. Um backup que copia apenas o que mudou desde o último backup completo é o:</p>
+      <button class="opt">a) Incremental</button><button class="opt" data-ok="1">b) Diferencial</button><button class="opt">c) Completo</button><button class="opt">d) Espelhado</button>
+      <div class="fb">O <b>diferencial</b> copia tudo o que mudou desde o último completo. O incremental copia só o que mudou desde o último backup de qualquer tipo.</div></div>
+    <div class="q"><p>4. O que é uma OU no Active Directory?</p>
+      <button class="opt">a) Um tipo de senha</button><button class="opt" data-ok="1">b) Uma “pasta” para organizar objetos e aplicar políticas</button><button class="opt">c) Um servidor DNS</button><button class="opt">d) Uma permissão de arquivo</button>
+      <div class="fb">A <b>unidade organizacional</b> organiza usuários, grupos e computadores, e é onde as GPOs costumam ser vinculadas.</div></div>
+    <div class="q"><p>5. Duas GPOs discordam sobre a mesma configuração: uma no domínio e outra na OU do usuário, sem “Impor”. Qual vence?</p>
+      <button class="opt">a) A do domínio</button><button class="opt" data-ok="1">b) A da OU, a mais próxima do usuário</button><button class="opt">c) Nenhuma, dá erro</button><button class="opt">d) A mais antiga</button>
+      <div class="fb">Vence a política <b>mais próxima</b> do objeto (a última a ser aplicada). Com “Impor”, a de cima prevaleceria.</div></div>
+    <div class="q"><p>6. A permissão de compartilhamento é “Controle total” e a NTFS do usuário é “Leitura”. Pela rede, o usuário pode:</p>
+      <button class="opt">a) Apagar arquivos</button><button class="opt">b) Alterar arquivos</button><button class="opt" data-ok="1">c) Apenas ler</button><button class="opt">d) Nada</button>
+      <div class="fb">Vale a <b>mais restritiva</b>: Leitura.</div></div>
+    <div class="q"><p>7. Um computador não consegue ingressar no domínio. Qual é a primeira coisa a conferir?</p>
+      <button class="opt">a) A cor do cabo</button><button class="opt" data-ok="1">b) Se o DNS do cliente aponta para o servidor do domínio</button><button class="opt">c) Se o monitor está ligado</button><button class="opt">d) A versão do navegador</button>
+      <div class="fb">O cliente localiza o controlador de domínio pelo <b>DNS</b>. Se ele usar outro DNS, não encontra o domínio.</div></div>
+    <div class="q"><p>8. Por que um servidor DHCP em um domínio precisa ser “autorizado” no Active Directory?</p>
+      <button class="opt">a) Para ficar mais rápido</button><button class="opt" data-ok="1">b) Para impedir que servidores DHCP não autorizados distribuam endereços na rede</button><button class="opt">c) Para criar usuários</button><button class="opt">d) Para ter Internet</button>
+      <div class="fb">A autorização evita <b>servidores DHCP “piratas”</b> que bagunçam a rede.</div></div>
+  </div>
+  <div class="score"></div>
+
+  <h3>✍️ Questões abertas</h3>
+  <div class="open"><p><b>1.</b> Explique, com suas palavras, para que serve o Active Directory e dê um exemplo prático em uma escola.</p>
+    <button>Ver resposta</button><div class="answer">O Active Directory é um cadastro central de usuários, grupos e computadores. Em uma escola, o aluno usa a mesma conta em qualquer computador dos laboratórios, e o administrador cria, bloqueia ou muda permissões em um só lugar.</div></div>
+  <div class="open"><p><b>2.</b> Diferencie backup completo, incremental e diferencial e diga qual dá a restauração mais simples.</p>
+    <button>Ver resposta</button><div class="answer">Completo: copia tudo. Incremental: copia o que mudou desde o último backup de qualquer tipo. Diferencial: copia o que mudou desde o último completo. A restauração mais simples é a do backup completo (uma cópia só). Entre incremental e diferencial, o diferencial restaura com menos peças: o completo e o último diferencial.</div></div>
+  <div class="open"><p><b>3.</b> Por que se aplicam permissões a grupos e não diretamente a usuários?</p>
+    <button>Ver resposta</button><div class="answer">Porque facilita a manutenção: quando alguém entra, sai ou muda de função, basta mudar o grupo do usuário. As permissões das pastas continuam as mesmas, e há menos chance de erros e permissões esquecidas.</div></div>
+  <div class="open"><p><b>4.</b> Um cliente pega um IP errado, de uma faixa que o seu servidor DHCP não distribui. Que hipótese você levantaria e como confirmaria?</p>
+    <button>Ver resposta</button><div class="answer">Há outro servidor DHCP na rede (por exemplo, um roteador). Para confirmar, usa-se <code>ipconfig /all</code> no cliente e confere-se o campo “Servidor DHCP”, ou captura-se o tráfego (mensagens Offer) no Wireshark. Para resolver, desliga-se o DHCP indevido e usa-se a autorização no AD.</div></div>
+
+  <div class="box dica" style="margin-top:28px"><div class="ic">📚</div><div><h5>Para saber mais</h5><p>A <b>documentação do Windows Server</b>, no Microsoft Learn (learn.microsoft.com/pt-br/windows-server), tem guias passo a passo para cada função, em português.</p></div></div>
 </section>
 <section class="chapter soon-ch" id="cap3" style="--cc:var(--c3)">
   <div class="chap-head"><div class="chap-num" style="background:var(--c3)">3</div><div><small>Capítulo 3</small><h2>Sistema operacional Linux</h2></div></div>
@@ -311,6 +636,7 @@ exit</code></pre>
   <p class="ref">Debian. (s.d.). <i>Documentação do Projeto Debian</i>. https://www.debian.org/doc/</p>
   <p class="ref">Hertzog, R., &amp; Mas, R. (s.d.). <i>Manual do administrador Debian</i>. https://www.debian.org/doc/user-manuals.pt.html</p>
   <p class="ref">Microsoft. (s.d.). <i>Documentação do Windows</i>. https://learn.microsoft.com/pt-br/windows</p>
+  <p class="ref">Microsoft. (s.d.). <i>Documentação do Windows Server</i>. https://learn.microsoft.com/pt-br/windows-server/</p>
   <p class="ref">Oracle. (s.d.). <i>Oracle VM VirtualBox: user manual</i>. https://www.virtualbox.org/manual/</p>
   <footer>Apostila de Sistemas Operacionais de Redes · IFRN – Campus João Câmara</footer>
 </section>
