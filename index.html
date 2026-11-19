@@ -3,6 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#2e7d32">
 <title>Apostilas – Prof. César Azevedo</title>
 <style>
 *{box-sizing:border-box}
@@ -35,5 +37,6 @@ footer{text-align:center;color:#6b7280;font-size:14px;padding-bottom:30px}
   </div>
 </main>
 <footer>Material didático de uso livre para os alunos.</footer>
+<script>if('serviceWorker' in navigator&&/^https?:$/.test(location.protocol))addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){})});</script>
 </body>
 </html>
