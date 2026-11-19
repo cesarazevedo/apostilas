@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Apostila de Redes de Computadores – IFRN</title>
+<script>try{var t=localStorage.getItem("tema");if(!t)t=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";document.documentElement.dataset.theme=t}catch(e){}</script>
 <style>
 :root{
   --verde:#2e7d32; --verde-claro:#e8f5e9; --texto:#1f2937; --suave:#6b7280; --borda:#e5e7eb; --fundo:#f8faf8;
@@ -189,6 +190,44 @@ footer{text-align:center;color:var(--suave);font-size:14px;padding:30px 0 0}
   body{font-size:16.5px}
   .topo-panel .pc{grid-template-columns:1fr}
 }
+/* ===== MODO ESCURO ===== */
+@media screen{
+html[data-theme=dark]{--texto:#e5e7eb;--suave:#9ca3af;--borda:#2f3b3a;--fundo:#0f1514;--verde-claro:#1b2e1f;color-scheme:dark}
+html[data-theme=dark] .topbar,html[data-theme=dark] .menu-btn,html[data-theme=dark] .sidebar,html[data-theme=dark] .card,html[data-theme=dark] .obj,html[data-theme=dark] table,html[data-theme=dark] .tabs button,html[data-theme=dark] .topo-panel,html[data-theme=dark] .lab,html[data-theme=dark] .q,html[data-theme=dark] .open,html[data-theme=dark] .open button,html[data-theme=dark] .layer,html[data-theme=dark] .enc,html[data-theme=dark] .eb,html[data-theme=dark] .pins>div,html[data-theme=dark] .sw,html[data-theme=dark] .tool,html[data-theme=dark] .mail,html[data-theme=dark] .soon-card,html[data-theme=dark] .enc button.alt,html[data-theme=dark] .sw button.alt{background:#17201f}
+html[data-theme=dark] .menu-btn,html[data-theme=dark] .tabs button,html[data-theme=dark] .open button{color:var(--texto)}
+html[data-theme=dark] .open button{color:#81c784}
+html[data-theme=dark] .tabs button.on{background:var(--verde);color:#fff}
+html[data-theme=dark] .nav a:hover,html[data-theme=dark] .opt:hover,html[data-theme=dark] .lh:hover{background:#223130}
+html[data-theme=dark] .lh{color:var(--texto)}
+html[data-theme=dark] .nav a.on{background:#1f3a25}
+html[data-theme=dark] th{background:#1f3a25;color:#a5d6a7}
+html[data-theme=dark] .opt,html[data-theme=dark] .pcx{background:#1c2827;color:var(--texto)}
+html[data-theme=dark] .opt.ok{background:#1b3a22;border-color:#43a047}
+html[data-theme=dark] .opt.no{background:#3d1f22;border-color:#e57373}
+html[data-theme=dark] .fb{background:#1f2a33}
+html[data-theme=dark] .answer{background:#1b2e1f}
+html[data-theme=dark] .resumo{background:linear-gradient(135deg,#1b2e1f,#17201f);border-color:#2e4a33}
+html[data-theme=dark] .box.analogia{background:#2e2610;border-color:#6b5514}html[data-theme=dark] .box.analogia h5{color:#ffca28}
+html[data-theme=dark] .box.exemplo{background:#10263a;border-color:#1e4f7a}html[data-theme=dark] .box.exemplo h5{color:#64b5f6}
+html[data-theme=dark] .box.atencao{background:#38181a;border-color:#7a2a2e}html[data-theme=dark] .box.atencao h5{color:#ef9a9a}
+html[data-theme=dark] .box.dica{background:#14301a;border-color:#2e6b38}html[data-theme=dark] .box.dica h5{color:#81c784}
+html[data-theme=dark] p code,html[data-theme=dark] li code,html[data-theme=dark] td code{background:#243130}
+html[data-theme=dark] .tool input,html[data-theme=dark] .tool select,html[data-theme=dark] .sw select{background:#1c2827;color:var(--texto);border-color:#3b4a49}
+html[data-theme=dark] .pcx.tx,html[data-theme=dark] tr.hit td,html[data-theme=dark] .hot:hover{background:#3a2a10}
+html[data-theme=dark] .pcx.rx,html[data-theme=dark] .hot.found{background:#1b3a22}
+html[data-theme=dark] .pcx.dr{background:#222}
+html[data-theme=dark] tr.hit td:first-child{background:#ef6c00}
+html[data-theme=dark] .mail-tip{background:#2e2a10;border-color:#6b5f14}
+html[data-theme=dark] .meter{background:#2a3534}
+html[data-theme=dark] .timeline{border-color:#2e4a33}
+html[data-theme=dark] .tl::before{border-color:#0f1514}
+html[data-theme=dark] .tl b{color:#81c784}
+html[data-theme=dark] .bits .n{color:#64b5f6}
+html[data-theme=dark] .topo-panel svg{background:#e8eeee;border-radius:12px}
+html[data-theme=dark] h2,html[data-theme=dark] h3,html[data-theme=dark] h4{color:#f3f4f6}
+html[data-theme=dark] .obj h4,html[data-theme=dark] .chap-head h2{color:inherit}
+}
+.theme-btn{border:1px solid var(--borda);background:transparent;color:var(--texto);border-radius:10px;padding:8px;font-size:14px;cursor:pointer;width:100%;margin-bottom:8px}
 /* ===== IMPRESSÃO / PDF ===== */
 @page{size:A4;margin:16mm 14mm 18mm;@bottom-center{content:"Redes de Computadores – IFRN · página " counter(page);font-size:9pt;color:#777}}
 @media print{
@@ -298,6 +337,7 @@ footer{text-align:center;color:var(--suave);font-size:14px;padding:30px 0 0}
     <a href="#refs"><span class="n" style="background:#455a64">📚</span>Referências</a>
   </nav>
   <div class="tools">
+    <button class="theme-btn" id="themeBtn">🌙 Modo escuro</button>
     <button onclick="window.print()">🖨️ Salvar em PDF</button>
     <label><input type="checkbox" id="ans"> Incluir gabarito no PDF</label>
   </div>
@@ -1926,6 +1966,7 @@ ss -tuln</code></pre></li>
 
 <section id="refs">
   <h2>📚 Referências</h2>
+  <p class="ref">CERT.br. (2012). <i>Cartilha de segurança para Internet</i> (2. ed.). Comitê Gestor da Internet no Brasil. https://cartilha.cert.br/</p>
   <p class="ref">Kurose, J. F., &amp; Ross, K. W. (2021). <i>Redes de computadores e a Internet: uma abordagem top-down</i> (8. ed.). Bookman.</p>
   <p class="ref">Tanenbaum, A. S., Feamster, N., &amp; Wetherall, D. J. (2021). <i>Redes de computadores</i> (6. ed.). Bookman.</p>
   <footer>Apostila de Redes de Computadores · IFRN – Campus João Câmara</footer>
@@ -2316,6 +2357,14 @@ ss -tuln</code></pre></li>
       }
       document.getElementById('fwGo').onclick=fw;fwS.onchange=fw;D.onchange=fw;V.onchange=fw;fw();
     }
+  })();
+
+  // --- Modo escuro ---
+  (function(){
+    var b=document.getElementById('themeBtn'),h=document.documentElement;
+    function lab(){b.textContent=h.dataset.theme==='dark'?'☀️ Modo claro':'🌙 Modo escuro';}
+    b.onclick=function(){h.dataset.theme=h.dataset.theme==='dark'?'light':'dark';try{localStorage.setItem('tema',h.dataset.theme)}catch(e){}lab();};
+    lab();
   })();
 
   // --- Gabarito no PDF ---
