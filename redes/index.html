@@ -189,7 +189,7 @@ footer{text-align:center;color:var(--suave);font-size:14px;padding:30px 0 0}
   .hero{padding:26px 0;border-radius:12px;margin-bottom:10px}
   .hero .wrap{padding:0 22px}
   section{padding:14px 0 0;break-before:auto}
-  #cap1,#cap2,#cap3,#cap4,#cap5{break-before:page}
+  #cap1,#cap2,#cap3,#cap4,#cap5,#cap6{break-before:page}
   .tool-ctl{display:none!important}
   .tool{break-inside:avoid}
   .sw button{display:none!important}
@@ -266,7 +266,15 @@ footer{text-align:center;color:var(--suave);font-size:14px;padding:30px 0 0}
       <a href="#c5-lab">Atividade e laboratórios</a>
       <a href="#c5-quiz">Quiz e exercícios</a>
     </div>
-    <a href="#cap6" class="soon"><span class="n" style="background:var(--c6)">6</span>Camada de aplicação</a>
+    <a href="#cap6"><span class="n" style="background:var(--c6)">6</span>Camada de aplicação</a>
+    <div class="sub">
+      <a href="#c6-web">Web e e-mail</a>
+      <a href="#c6-dns">DNS e DHCP</a>
+      <a href="#c6-ftp">FTP</a>
+      <a href="#c6-ssh">Telnet e SSH</a>
+      <a href="#c6-lab">Atividade e laboratórios</a>
+      <a href="#c6-quiz">Quiz e exercícios</a>
+    </div>
     <a href="#cap7" class="soon"><span class="n" style="background:var(--c7)">7</span>Segurança de redes</a>
     <a href="#refs"><span class="n" style="background:#455a64">📚</span>Referências</a>
   </nav>
@@ -297,7 +305,7 @@ footer{text-align:center;color:var(--suave);font-size:14px;padding:30px 0 0}
     <div class="card" style="--cc:var(--c3)"><b>3 · Acesso à rede</b><span>Ethernet (802.3) e redes sem fio (802.11).</span><div class="st">✅ Disponível</div></div>
     <div class="card" style="--cc:var(--c4)"><b>4 · Camada de internet</b><span>IPv4, IPv6, roteamento, ARP e ICMP.</span><div class="st">✅ Disponível</div></div>
     <div class="card" style="--cc:var(--c5)"><b>5 · Camada de transporte</b><span>Protocolos TCP e UDP.</span><div class="st">✅ Disponível</div></div>
-    <div class="card" style="--cc:var(--c6)"><b>6 · Camada de aplicação</b><span>Web, e-mail, DNS, DHCP, FTP e SSH.</span><div class="st">⏳ Em breve</div></div>
+    <div class="card" style="--cc:var(--c6)"><b>6 · Camada de aplicação</b><span>Web, e-mail, DNS, DHCP, FTP e SSH.</span><div class="st">✅ Disponível</div></div>
     <div class="card" style="--cc:var(--c7)"><b>7 · Segurança de redes</b><span>Ameaças, ataques e soluções de proteção.</span><div class="st">⏳ Em breve</div></div>
   </div>
 </section>
@@ -1335,8 +1343,265 @@ ss -tn</code></pre></li>
   <div class="open"><p><b>3.</b> Um jogo online e o download de um arquivo grande: qual protocolo de transporte cada um tende a usar e por quê?</p>
     <button>Ver resposta</button><div class="answer">O jogo online tende a usar UDP, pois precisa de baixa latência e uma informação atrasada perde o valor. O download de arquivo usa TCP, porque o arquivo precisa chegar completo e sem erros, mesmo que leve um pouco mais de tempo.</div></div>
 </section>
-<section class="chapter" id="cap6"><div class="chap-head"><div class="chap-num" style="background:var(--c6)">6</div><div><small>Capítulo 6</small><h2>Camada de aplicação TCP/IP</h2></div></div>
-  <div class="soon-card">⏳ Em construção. Conteúdo: SMTP, POP, IMAP, HTTP, DNS, DHCP, FTP, TELNET e SSH.</div></section>
+<section class="chapter" id="cap6" style="--cc:var(--c6)">
+  <div class="chap-head"><div class="chap-num" style="background:var(--c6)">6</div><div><small>Capítulo 6</small><h2>Camada de aplicação TCP/IP</h2></div></div>
+
+  <div class="obj"><h4>🎯 Ao final deste capítulo, você será capaz de:</h4>
+    <ul>
+      <li>Explicar o papel da camada de aplicação e a ideia de cliente e servidor.</li>
+      <li>Descrever como funcionam a Web (HTTP) e o e-mail (SMTP, POP3 e IMAP).</li>
+      <li>Explicar como o DNS traduz nomes em endereços IP e como o DHCP configura os computadores automaticamente.</li>
+      <li>Comparar FTP com alternativas seguras e Telnet com SSH.</li>
+      <li>Usar ferramentas como <code>nslookup</code>, <code>curl</code> e <code>ssh</code> para investigar e acessar serviços.</li>
+    </ul>
+  </div>
+
+  <h3>O que faz a camada de aplicação?</h3>
+  <p>É a camada mais próxima de <b>você</b>. Aqui estão os <b>protocolos usados pelos programas</b>: o navegador, o programa de e-mail, o aplicativo de transferência de arquivos. Ela define o “idioma” que um programa usa para conversar com o outro e se apoia na camada de transporte (TCP ou UDP) para levar as mensagens. No OSI, reúne as camadas 5, 6 e 7.</p>
+  <p>A maioria dos serviços funciona no modelo <b>cliente-servidor</b>: o <b>cliente</b> (seu navegador) faz pedidos e o <b>servidor</b> (o computador do site) responde.</p>
+  <div class="box analogia"><div class="ic">💡</div><div><h5>Pense assim...</h5><p>É como ir a um <b>restaurante</b>. Você (cliente) faz o pedido ao garçom e a cozinha (servidor) prepara. Cada serviço tem o seu “cardápio” e as suas “regras de etiqueta”: são os protocolos.</p></div></div>
+
+  <!-- 6.1 WEB e E-MAIL -->
+  <h3 id="c6-web">6.1 Protocolos de Web e e-mail (HTTP, SMTP, POP, IMAP)</h3>
+  <h3 style="font-size:18px;margin-top:14px">HTTP e HTTPS: a Web</h3>
+  <p>O <b>HTTP</b> (<i>HyperText Transfer Protocol</i>) é o protocolo da Web. O navegador faz uma <b>requisição</b> e o servidor devolve uma <b>resposta</b>. Usa a porta <b>80</b> sobre TCP. O <b>HTTPS</b> é o HTTP com criptografia (TLS), na porta <b>443</b>: o cadeado do navegador.</p>
+  <p><b>Anatomia de um endereço (URL):</b></p>
+  <pre><button class="cp">Copiar</button><code>https://www.exemplo.com.br:443/noticias/lista?pagina=2
+└─┬─┘   └────────┬────────┘└┬─┘└──────┬──────┘└───┬────┘
+esquema     servidor     porta  caminho        parâmetros</code></pre>
+  <p>Exemplo de requisição e de resposta (ilustrativos):</p>
+  <pre><button class="cp">Copiar</button><code>GET /noticias/lista?pagina=2 HTTP/1.1
+Host: www.exemplo.com.br
+User-Agent: Mozilla/5.0
+Accept: text/html
+
+HTTP/1.1 200 OK
+Content-Type: text/html; charset=UTF-8
+Content-Length: 18453
+
+&lt;html&gt; ...conteúdo da página... &lt;/html&gt;</code></pre>
+  <table>
+    <tr><th>Método</th><th>Para que serve</th></tr>
+    <tr><td><b>GET</b></td><td>Pedir um recurso (abrir uma página, baixar uma imagem).</td></tr>
+    <tr><td><b>POST</b></td><td>Enviar dados ao servidor (enviar um formulário, fazer login).</td></tr>
+    <tr><td><b>PUT</b></td><td>Criar ou substituir um recurso.</td></tr>
+    <tr><td><b>DELETE</b></td><td>Remover um recurso.</td></tr>
+    <tr><td><b>HEAD</b></td><td>Pedir só os cabeçalhos, sem o conteúdo.</td></tr>
+  </table>
+  <table>
+    <tr><th>Código de status</th><th>Significado</th></tr>
+    <tr><td><b>200</b> OK</td><td>Deu certo. Aqui está o que você pediu.</td></tr>
+    <tr><td><b>301 / 302</b></td><td>O recurso mudou de lugar (permanente / temporário). O navegador é redirecionado.</td></tr>
+    <tr><td><b>400</b> Bad Request</td><td>O pedido veio com erro.</td></tr>
+    <tr><td><b>401 / 403</b></td><td>Exige login (401) ou acesso proibido (403).</td></tr>
+    <tr><td><b>404</b> Not Found</td><td>Página não encontrada.</td></tr>
+    <tr><td><b>500 / 503</b></td><td>Erro no servidor / servidor indisponível.</td></tr>
+  </table>
+  <div class="box dica"><div class="ic">✅</div><div><h5>Dica para decorar</h5><p>O primeiro número do código diz a família: <b>2xx</b> = sucesso, <b>3xx</b> = redirecionamento, <b>4xx</b> = erro do <b>cliente</b>, <b>5xx</b> = erro do <b>servidor</b>.</p></div></div>
+  <div class="box atencao"><div class="ic">⚠️</div><div><h5>Atenção</h5><p>O HTTP é <b>sem estado</b>: o servidor não “lembra” de você entre um pedido e outro. Para manter você logado, os sites usam <b>cookies</b>, pequenos arquivos guardados no navegador.</p></div></div>
+
+  <h3 style="font-size:18px;margin-top:14px">E-mail: SMTP, POP3 e IMAP</h3>
+  <p>O e-mail usa protocolos diferentes para <b>enviar</b> e para <b>receber</b>:</p>
+  <table>
+    <tr><th>Protocolo</th><th>Função</th><th>Portas comuns</th></tr>
+    <tr><td><b>SMTP</b></td><td><b>Enviar</b> mensagens (do seu programa para o servidor, e entre servidores).</td><td>587 (envio do usuário), 465 (com TLS), 25 (entre servidores)</td></tr>
+    <tr><td><b>POP3</b></td><td><b>Baixar</b> mensagens do servidor para o seu computador. Em geral, remove-as do servidor.</td><td>110 (995 com TLS)</td></tr>
+    <tr><td><b>IMAP</b></td><td><b>Acessar</b> as mensagens que <b>ficam no servidor</b>, sincronizadas entre vários dispositivos.</td><td>143 (993 com TLS)</td></tr>
+  </table>
+  <div class="box analogia"><div class="ic">💡</div><div><h5>Pense assim...</h5><p>O SMTP é o <b>carteiro que leva</b> a carta. O servidor de e-mail é a <b>caixa postal</b>. Com o <b>POP3</b>, você leva as cartas para casa e a caixa fica vazia. Com o <b>IMAP</b>, você lê as cartas ali mesmo, e o celular e o computador enxergam a mesma caixa.</p></div></div>
+  <p><b>Veja o caminho de um e-mail</b> (clique em “Próximo passo”):</p>
+  <div class="tool stp" data-steps="mail">
+    <div class="hs-head"><span>Pedido / envio ➡️</span><span>⬅️ Resposta / entrega</span></div>
+    <div class="stp-rows"></div><p class="enc-txt stp-txt"></p>
+    <div class="tool-ctl"><button class="stp-next">Próximo passo ▶</button><button class="alt stp-reset">Reiniciar</button></div>
+  </div>
+
+  <!-- 6.2 DNS e DHCP -->
+  <h3 id="c6-dns">6.2 Protocolos de infraestrutura: DNS e DHCP</h3>
+  <h3 style="font-size:18px;margin-top:14px">DNS: a “lista telefônica” da Internet</h3>
+  <p>Os computadores se encontram por <b>IP</b>, mas as pessoas lembram melhor de <b>nomes</b>. O <b>DNS</b> (<i>Domain Name System</i>) traduz um nome como <code>www.ifrn.edu.br</code> em um endereço IP. Usa a porta <b>53</b>, normalmente sobre UDP.</p>
+  <div class="box analogia"><div class="ic">💡</div><div><h5>Pense assim...</h5><p>O DNS é como a <b>agenda de contatos do seu celular</b>: você toca em “Maria” e o aparelho descobre o número. Sem ela, você teria que decorar todos os números.</p></div></div>
+  <p>Os nomes têm uma <b>hierarquia</b>, lida da direita para a esquerda: raiz (<code>.</code>) → domínio de topo (<code>.br</code>) → domínio (<code>edu.br</code>, <code>ifrn.edu.br</code>) → máquina (<code>www</code>). Cada nível é gerenciado por servidores diferentes.</p>
+  <table>
+    <tr><th>Registro DNS</th><th>O que guarda</th></tr>
+    <tr><td><b>A</b></td><td>Nome → endereço IPv4.</td></tr>
+    <tr><td><b>AAAA</b></td><td>Nome → endereço IPv6.</td></tr>
+    <tr><td><b>CNAME</b></td><td>Um apelido que aponta para outro nome.</td></tr>
+    <tr><td><b>MX</b></td><td>Qual servidor recebe os e-mails do domínio.</td></tr>
+    <tr><td><b>NS</b></td><td>Quais servidores respondem por aquele domínio.</td></tr>
+    <tr><td><b>PTR</b></td><td>Faz o contrário: IP → nome (consulta reversa).</td></tr>
+  </table>
+  <p><b>Como uma consulta é resolvida</b> (a conta usa um IP de exemplo, 203.0.113.10, reservado para documentação):</p>
+  <div class="tool stp" data-steps="dns">
+    <div class="hs-head"><span>Pedido / pergunta ➡️</span><span>⬅️ Resposta</span></div>
+    <div class="stp-rows"></div><p class="enc-txt stp-txt"></p>
+    <div class="tool-ctl"><button class="stp-next">Próximo passo ▶</button><button class="alt stp-reset">Reiniciar</button></div>
+  </div>
+  <div class="box exemplo"><div class="ic">📌</div><div><h5>Cache e TTL</h5><p>Cada resposta vem com um <b>TTL</b> (tempo de validade). Durante esse tempo, o resolvedor e o seu computador <b>guardam a resposta em cache</b>, então a segunda visita ao mesmo site é bem mais rápida, sem repetir a viagem pelos servidores.</p></div></div>
+  <div class="box atencao"><div class="ic">⚠️</div><div><h5>Atenção</h5><p>Se o ping para <code>8.8.8.8</code> funciona mas o navegador não abre sites <b>pelo nome</b>, o problema quase sempre é o <b>DNS</b> (servidor DNS errado ou fora do ar), e não a conexão. Servidores DNS públicos conhecidos: <code>8.8.8.8</code> (Google) e <code>1.1.1.1</code> (Cloudflare).</p></div></div>
+
+  <h3 style="font-size:18px;margin-top:14px">DHCP: configuração automática da rede</h3>
+  <p>Configurar IP, máscara, gateway e DNS à mão em cada aparelho seria um trabalho enorme. O <b>DHCP</b> (<i>Dynamic Host Configuration Protocol</i>) faz isso <b>automaticamente</b>. Quando você conecta o celular ao Wi-Fi, é ele quem entrega: <b>endereço IP, máscara, gateway padrão, servidores DNS</b> e o <b>tempo de concessão</b> (<i>lease</i>), ou seja, por quanto tempo o endereço é seu. Usa UDP, portas <b>67</b> (servidor) e <b>68</b> (cliente).</p>
+  <div class="box analogia"><div class="ic">💡</div><div><h5>Pense assim...</h5><p>O DHCP é como a <b>recepção de um hotel</b>. Ao chegar, você recebe um quarto (IP) e as informações do hotel (gateway, DNS). Quando vai embora ou o tempo acaba, o quarto volta para o hotel e pode ser dado a outra pessoa.</p></div></div>
+  <p>O processo tem 4 etapas, conhecido pela sigla <b>DORA</b>:</p>
+  <div class="tool stp" data-steps="dhcp">
+    <div class="hs-head"><span>Cliente ➡️</span><span>⬅️ Servidor DHCP</span></div>
+    <div class="stp-rows"></div><p class="enc-txt stp-txt"></p>
+    <div class="tool-ctl"><button class="stp-next">Próximo passo ▶</button><button class="alt stp-reset">Reiniciar</button></div>
+  </div>
+  <ul>
+    <li><b>Renovação:</b> perto da metade do tempo de concessão, o cliente pede para renovar o endereço.</li>
+    <li><b>Reserva:</b> o administrador pode reservar sempre o mesmo IP para um aparelho (como uma impressora), usando o endereço MAC.</li>
+    <li><b>Servidores e equipamentos de rede</b> costumam usar IP <b>fixo</b> (estático), para não mudarem de endereço.</li>
+    <li>Se o DHCP falha, o computador se dá um endereço <code>169.254.x.x</code> (APIPA), que só funciona na rede local.</li>
+  </ul>
+
+  <!-- 6.3 FTP -->
+  <h3 id="c6-ftp">6.3 Serviços de compartilhamento de arquivos: FTP</h3>
+  <p>O <b>FTP</b> (<i>File Transfer Protocol</i>) serve para <b>enviar e baixar arquivos</b> entre um cliente e um servidor. Usa o TCP e <b>duas conexões</b>: a porta <b>21</b> para os comandos (controle) e a porta <b>20</b> (no modo ativo) para os dados.</p>
+  <div class="box analogia"><div class="ic">💡</div><div><h5>Pense assim...</h5><p>É como um <b>depósito de arquivos com portaria</b>: você se identifica na portaria (usuário e senha, porta 21) e os volumes são levados por outra entrada (dados).</p></div></div>
+  <div class="box atencao"><div class="ic">⚠️</div><div><h5>Atenção: o FTP não é seguro</h5><p>No FTP tradicional, o <b>usuário, a senha e os arquivos viajam sem criptografia</b>. Quem estiver “escutando” a rede consegue ler tudo. Prefira as versões seguras: o <b>SFTP</b> (transferência de arquivos sobre SSH, porta 22) ou o <b>FTPS</b> (FTP com TLS).</p></div></div>
+  <p>Comandos básicos do cliente FTP:</p>
+  <table>
+    <tr><th>Comando</th><th>Para que serve</th></tr>
+    <tr><td><code>ls</code> ou <code>dir</code></td><td>Lista os arquivos do servidor.</td></tr>
+    <tr><td><code>cd pasta</code></td><td>Entra em uma pasta do servidor.</td></tr>
+    <tr><td><code>get arquivo</code></td><td>Baixa um arquivo do servidor.</td></tr>
+    <tr><td><code>put arquivo</code></td><td>Envia um arquivo para o servidor.</td></tr>
+    <tr><td><code>quit</code></td><td>Encerra a sessão.</td></tr>
+  </table>
+
+  <!-- 6.4 TELNET e SSH -->
+  <h3 id="c6-ssh">6.4 Protocolos de terminal remoto: Telnet e SSH</h3>
+  <p>Eles permitem <b>controlar outro computador pela linha de comando</b>, como se você estivesse sentado diante dele. É assim que os administradores configuram servidores, roteadores e switches à distância.</p>
+  <table>
+    <tr><th></th><th>Telnet</th><th>SSH</th></tr>
+    <tr><td><b>Porta</b></td><td>23</td><td>22</td></tr>
+    <tr><td><b>Criptografia</b></td><td><b>Não.</b> Tudo viaja em texto puro, até a senha.</td><td><b>Sim.</b> Toda a conversa é criptografada.</td></tr>
+    <tr><td><b>Autenticação</b></td><td>Usuário e senha</td><td>Usuário e senha ou <b>chaves</b> (mais seguro)</td></tr>
+    <tr><td><b>Situação hoje</b></td><td>Obsoleto e inseguro. Só em testes ou equipamentos muito antigos.</td><td>Padrão para administração remota.</td></tr>
+  </table>
+  <div class="box analogia"><div class="ic">💡</div><div><h5>Pense assim...</h5><p>O Telnet é como <b>conversar em voz alta no meio de uma praça</b>: qualquer um ouve a sua senha. O SSH é como uma <b>ligação por uma linha blindada e embaralhada</b>: mesmo que alguém intercepte, não entende nada.</p></div></div>
+  <pre><button class="cp">Copiar</button><code># Entrar em um servidor remoto
+ssh usuario@192.168.0.10
+
+# Usar uma porta diferente da 22
+ssh -p 2222 usuario@192.168.0.10
+
+# Copiar um arquivo para o servidor (usa SSH)
+scp relatorio.pdf usuario@192.168.0.10:/home/usuario/
+
+# Gerar um par de chaves (autenticação sem senha)
+ssh-keygen -t ed25519</code></pre>
+  <div class="box dica"><div class="ic">✅</div><div><h5>Dica</h5><p>Na autenticação por chaves, você guarda a <b>chave privada</b> (nunca a compartilhe) e coloca a <b>chave pública</b> no servidor. É como um cadeado (público) que só abre com a sua chave (privada).</p></div></div>
+
+  <!-- ATIVIDADE / LABS -->
+  <div class="lab" id="c6-lab">
+    <h3>🧑‍🤝‍🧑 Atividade desplugada – O jogo do DNS</h3>
+    <p><b>Objetivo:</b> entender a cadeia de consultas do DNS. <b>Papéis:</b> um “navegador”, um “resolvedor” (com um caderno de cache), um “servidor raiz”, um “servidor .br” e um “servidor do IFRN” (cada um com uma folha com o que sabe).</p>
+    <ol class="steps">
+      <li>O navegador pergunta ao resolvedor: “Qual o IP de <b>www.ifrn.edu.br</b>?”. O resolvedor consulta o caderno (vazio).</li>
+      <li>O resolvedor vai ao <b>raiz</b>, depois ao <b>.br</b>, depois ao <b>servidor do IFRN</b>, e anota cada resposta. Só o último sabe o IP.</li>
+      <li>O resolvedor responde ao navegador e <b>anota no caderno</b> (cache).</li>
+      <li>O navegador pergunta de novo. Desta vez a resposta é <b>imediata</b>. Cronometrem as duas rodadas e discutam o papel do cache.</li>
+    </ol>
+  </div>
+
+  <div class="lab" id="c6-lab2">
+    <h3>🧪 Laboratório 10 – DHCP, DNS e Web no Packet Tracer</h3>
+    <p><b>Objetivo:</b> montar uma pequena rede com serviços. <b>Topologia:</b> 1 switch, 1 servidor (Server-PT) e 2 PCs, todos ligados ao switch.</p>
+    <ol class="steps">
+      <li><b>Configure o servidor com IP fixo.</b> Em <b>Desktop → IP Configuration</b>: IP <code>192.168.0.10</code>, máscara <code>255.255.255.0</code>, gateway <code>192.168.0.1</code>, DNS <code>192.168.0.10</code>.</li>
+      <li><b>Ative o DHCP.</b> No servidor, aba <b>Services → DHCP</b>: ligue o serviço (On) e preencha gateway <code>192.168.0.1</code>, servidor DNS <code>192.168.0.10</code>, IP inicial <code>192.168.0.100</code>, máscara <code>255.255.255.0</code> e máximo de usuários <code>50</code>. Clique em <b>Save</b>.</li>
+      <li><b>Ative o DNS.</b> Em <b>Services → DNS</b>, ligue (On) e adicione: nome <code>www.escola.local</code>, tipo <b>A Record</b>, endereço <code>192.168.0.10</code>. Clique em <b>Add</b>.</li>
+      <li><b>Ative o HTTP.</b> Em <b>Services → HTTP</b>, deixe o serviço ligado (On). Você pode editar a página <code>index.html</code>.</li>
+      <li><b>Configure os PCs por DHCP.</b> Em <b>Desktop → IP Configuration</b>, marque <b>DHCP</b>. Eles devem receber IPs a partir de <code>192.168.0.100</code>.</li>
+      <li><b>Teste.</b> No Command Prompt de um PC: <code>ping www.escola.local</code> e <code>nslookup www.escola.local</code>. Depois, no <b>Web Browser</b> do PC, acesse <code>http://www.escola.local</code>.</li>
+      <li><b>Desafio:</b> troque o DNS do servidor DHCP por um endereço errado, renove o DHCP no PC e repita o teste. O que acontece? O ping ao IP do servidor ainda funciona?</li>
+    </ol>
+
+    <h3>🧪 Laboratório 11 – DNS, HTTP e DHCP no seu computador</h3>
+    <ol class="steps">
+      <li><b>Consulte o DNS.</b>
+<pre><button class="cp">Copiar</button><code>nslookup www.ifrn.edu.br
+nslookup -type=MX ifrn.edu.br
+
+# Linux ou macOS (se tiver o dig)
+dig www.ifrn.edu.br
+dig MX ifrn.edu.br</code></pre>
+        Anote o IP e o servidor que respondeu. O MX mostra quem recebe os e-mails do domínio.</li>
+      <li><b>Compare servidores DNS.</b>
+<pre><button class="cp">Copiar</button><code>nslookup www.ifrn.edu.br 8.8.8.8
+nslookup www.ifrn.edu.br 1.1.1.1</code></pre>
+        As respostas são iguais?</li>
+      <li><b>Veja o HTTP “por dentro”.</b>
+<pre><button class="cp">Copiar</button><code>curl -I https://www.ifrn.edu.br
+curl -v http://example.com</code></pre>
+        A primeira linha mostra a versão e o <b>código de status</b>. Veja também os cabeçalhos. O <code>-v</code> mostra a requisição enviada (as linhas com <code>&gt;</code>) e a resposta (as linhas com <code>&lt;</code>). Ou use o navegador: tecle <b>F12</b> e abra a aba <b>Rede (Network)</b>.</li>
+      <li><b>Veja o que o DHCP te entregou.</b>
+<pre><button class="cp">Copiar</button><code># Windows
+ipconfig /all
+
+# Linux
+nmcli dev show | grep -E "IP4|DNS"</code></pre>
+        No Windows, procure <i>Servidor DHCP</i>, <i>Concessão Obtida</i>, <i>Concessão Expira</i> e <i>Servidores DNS</i>.</li>
+      <li><b>(Opcional) Acesse outra máquina por SSH.</b> Se houver um servidor Linux no laboratório:
+<pre><button class="cp">Copiar</button><code>ssh usuario@IP_DO_SERVIDOR</code></pre>
+        Aceite a chave do servidor na primeira vez e digite a senha. Para sair, digite <code>exit</code>.</li>
+    </ol>
+    <div class="box atencao"><div class="ic">⚠️</div><div><h5>Cuidado</h5><p>Evite rodar <code>ipconfig /release</code> em computadores do laboratório sem avisar o professor: você perde a conexão até renovar o endereço (<code>ipconfig /renew</code>).</p></div></div>
+  </div>
+
+  <div class="resumo">
+    <h3>📝 Resumo do capítulo</h3>
+    <ul>
+      <li>A camada de aplicação traz os protocolos usados pelos programas, no modelo cliente-servidor.</li>
+      <li><b>HTTP/HTTPS</b>: a Web (portas 80 e 443). Métodos GET/POST e códigos de status (2xx sucesso, 3xx redirecionamento, 4xx erro do cliente, 5xx erro do servidor).</li>
+      <li><b>E-mail</b>: SMTP envia. POP3 baixa. IMAP sincroniza as mensagens que ficam no servidor.</li>
+      <li><b>DNS</b>: traduz nomes em IPs, com hierarquia e cache. <b>DHCP</b>: entrega IP, máscara, gateway e DNS (Discover, Offer, Request, Ack).</li>
+      <li><b>FTP</b> transfere arquivos, mas sem criptografia (use SFTP ou FTPS). <b>SSH</b> substitui o <b>Telnet</b> com criptografia.</li>
+    </ul>
+  </div>
+
+  <h3 id="c6-quiz">🧠 Quiz do capítulo 6</h3>
+  <div class="quiz">
+    <div class="q"><p>1. Qual protocolo traduz nomes de sites (como www.ifrn.edu.br) em endereços IP?</p>
+      <button class="opt">a) DHCP</button><button class="opt" data-ok="1">b) DNS</button><button class="opt">c) ARP</button><button class="opt">d) FTP</button>
+      <div class="fb">O <b>DNS</b> é a “lista telefônica” da Internet. O ARP traduz IP em MAC, e o DHCP entrega endereços.</div></div>
+    <div class="q"><p>2. Qual é a ordem correta das etapas do DHCP?</p>
+      <button class="opt">a) Request, Offer, Discover, Ack</button><button class="opt" data-ok="1">b) Discover, Offer, Request, Ack</button><button class="opt">c) Offer, Discover, Ack, Request</button><button class="opt">d) Discover, Request, Offer, Ack</button>
+      <div class="fb">DORA: <b>D</b>iscover, <b>O</b>ffer, <b>R</b>equest, <b>A</b>ck.</div></div>
+    <div class="q"><p>3. Qual é a principal diferença entre POP3 e IMAP?</p>
+      <button class="opt">a) O POP3 envia e o IMAP recebe</button><button class="opt" data-ok="1">b) O IMAP mantém as mensagens no servidor, sincronizadas entre dispositivos; o POP3 em geral baixa e remove do servidor</button><button class="opt">c) O IMAP é criptografado e o POP3 não</button><button class="opt">d) Não há diferença</button>
+      <div class="fb">Com o IMAP, o celular e o computador enxergam a mesma caixa. Quem <b>envia</b> é o SMTP.</div></div>
+    <div class="q"><p>4. Um site retornou o código HTTP 404. O que significa?</p>
+      <button class="opt">a) Deu tudo certo</button><button class="opt">b) Erro interno do servidor</button><button class="opt" data-ok="1">c) Página ou recurso não encontrado</button><button class="opt">d) Acesso proibido</button>
+      <div class="fb">404 = <b>Not Found</b>. O 500 é erro do servidor e o 403 é acesso proibido.</div></div>
+    <div class="q"><p>5. Qual protocolo de acesso remoto usa criptografia e deve ser preferido ao Telnet?</p>
+      <button class="opt">a) FTP</button><button class="opt" data-ok="1">b) SSH</button><button class="opt">c) HTTP</button><button class="opt">d) SMTP</button>
+      <div class="fb">O <b>SSH</b> (porta 22) criptografa toda a sessão. O Telnet (porta 23) manda tudo em texto puro.</div></div>
+    <div class="q"><p>6. Qual protocolo é usado para ENVIAR e-mails?</p>
+      <button class="opt">a) IMAP</button><button class="opt">b) POP3</button><button class="opt" data-ok="1">c) SMTP</button><button class="opt">d) HTTP</button>
+      <div class="fb">O <b>SMTP</b> envia. IMAP e POP3 servem para ler.</div></div>
+    <div class="q"><p>7. O ping para 8.8.8.8 funciona, mas o navegador não abre sites pelo nome. Qual é a causa mais provável?</p>
+      <button class="opt">a) Cabo de rede desconectado</button><button class="opt" data-ok="1">b) Problema no servidor DNS configurado</button><button class="opt">c) Máscara de sub-rede errada</button><button class="opt">d) Falta de Wi-Fi</button>
+      <div class="fb">Se o ping por IP funciona, há conectividade. O que falha é a <b>tradução de nomes</b> (DNS).</div></div>
+    <div class="q"><p>8. Qual é o problema do FTP tradicional?</p>
+      <button class="opt">a) Só transfere arquivos pequenos</button><button class="opt">b) Só funciona em redes locais</button><button class="opt" data-ok="1">c) Usuário, senha e arquivos viajam sem criptografia</button><button class="opt">d) Usa UDP</button>
+      <div class="fb">Por isso se usa o <b>SFTP</b> ou o <b>FTPS</b>, que protegem o tráfego.</div></div>
+  </div>
+  <div class="score"></div>
+
+  <h3>✍️ Questões abertas</h3>
+  <div class="open"><p><b>1.</b> Descreva o que acontece desde o momento em que você digita www.ifrn.edu.br no navegador até a página aparecer. Cite DNS, TCP e HTTP.</p>
+    <button>Ver resposta</button><div class="answer">O navegador pede ao DNS o IP do nome. Com o IP, abre uma conexão TCP com o servidor (handshake, porta 443 se for HTTPS). Em seguida, envia uma requisição HTTP (GET) e o servidor devolve a resposta com o código de status e o conteúdo da página, que o navegador exibe.</div></div>
+  <div class="open"><p><b>2.</b> Por que o SSH substituiu o Telnet?</p>
+    <button>Ver resposta</button><div class="answer">Porque o Telnet envia tudo em texto puro, inclusive o usuário e a senha, que podem ser lidos por quem estiver capturando o tráfego. O SSH criptografa toda a sessão e ainda permite autenticação por chaves.</div></div>
+  <div class="open"><p><b>3.</b> Qual a diferença entre POP3 e IMAP? Em que caso você usaria cada um?</p>
+    <button>Ver resposta</button><div class="answer">O POP3 baixa as mensagens para o computador (e normalmente as apaga do servidor), indicado para quem usa um único aparelho. O IMAP mantém as mensagens no servidor e sincroniza vários dispositivos, indicado para quem lê o e-mail no celular e no computador.</div></div>
+  <div class="open"><p><b>4.</b> O que o servidor DHCP entrega a um computador, além do endereço IP?</p>
+    <button>Ver resposta</button><div class="answer">A máscara de sub-rede, o gateway padrão, os servidores DNS e o tempo de concessão (lease) do endereço.</div></div>
+</section>
 <section class="chapter" id="cap7"><div class="chap-head"><div class="chap-num" style="background:var(--c7)">7</div><div><small>Capítulo 7</small><h2>Segurança de redes</h2></div></div>
   <div class="soon-card">⏳ Em construção. Conteúdo: segurança da informação, ameaças, ataques, vulnerabilidades, anti-malware, firewall, IPS/IDS e VPN.</div></section>
 
@@ -1577,6 +1842,47 @@ ss -tn</code></pre></li>
     document.getElementById('hsReset').onclick=function(){k=0;draw();};
     window.addEventListener('beforeprint',function(){k=S.length-1;draw();});
     draw();
+  })();
+
+  // --- Passo a passo genérico (e-mail, DNS, DHCP) ---
+  (function(){
+    var Q='dat',A='ack',B='syn';
+    var D={
+      mail:[
+        {r:[['l',Q,'Maria → servidor de e-mail dela · SMTP (porta 587)','“Entregue esta mensagem para joao@escola.com.”']],x:'<b>1. Enviar.</b> Maria escreve a mensagem e clica em Enviar. O programa de e-mail entrega a mensagem ao <b>servidor SMTP</b> dela.'},
+        {r:[['l',Q,'Servidor da Maria → DNS','Qual é o servidor de e-mail (registro MX) de escola.com?'],['r',A,'DNS → servidor da Maria','É mail.escola.com']],x:'<b>2. Descobrir o destino.</b> O servidor da Maria consulta o <b>DNS</b> (registro <b>MX</b>) para saber qual servidor recebe os e-mails de <code>escola.com</code>.'},
+        {r:[['l',Q,'Servidor da Maria → mail.escola.com · SMTP (porta 25)','Entrega da mensagem entre servidores']],x:'<b>3. Entrega entre servidores.</b> Os dois servidores conversam por <b>SMTP</b> e a mensagem é transferida.'},
+        {r:[['r',A,'mail.escola.com','Mensagem guardada na caixa postal de João']],x:'<b>4. Caixa postal.</b> A mensagem fica armazenada no servidor, esperando João. Ele nem precisa estar online.'},
+        {r:[['l',Q,'João → mail.escola.com · IMAP (porta 993) ou POP3 (995)','“Tenho mensagens novas?”'],['r',A,'mail.escola.com → João','Sim, aqui está a mensagem da Maria']],x:'<b>5. Leitura.</b> João abre o programa de e-mail, que usa <b>IMAP</b> ou <b>POP3</b> para buscar a mensagem. O SMTP só serve para <b>enviar</b>.'}
+      ],
+      dns:[
+        {r:[['l',Q,'Navegador → resolvedor DNS','Qual é o IP de www.ifrn.edu.br?']],x:'<b>1. A pergunta.</b> O navegador não sabe o IP e pergunta ao <b>resolvedor DNS</b> (normalmente o do seu provedor ou o 8.8.8.8). O cache está vazio.'},
+        {r:[['l',Q,'Resolvedor → servidor raiz (.)','Quem cuida do .br?'],['r',A,'Raiz → resolvedor','Pergunte aos servidores do .br']],x:'<b>2. Servidor raiz.</b> O raiz não sabe o IP, mas sabe indicar quem cuida do <b>.br</b>.'},
+        {r:[['l',Q,'Resolvedor → servidor do .br','Quem cuida de ifrn.edu.br?'],['r',A,'Servidor .br → resolvedor','Pergunte ao servidor de nomes do IFRN']],x:'<b>3. Domínio de topo.</b> Os servidores do .br indicam quem responde por <b>ifrn.edu.br</b>. (Na prática, pode haver mais um nível de indicação, como o <code>edu.br</code>.)'},
+        {r:[['l',Q,'Resolvedor → servidor autoritativo do IFRN','Qual é o IP de www.ifrn.edu.br?'],['r',A,'Autoritativo → resolvedor','É 203.0.113.10 (TTL: 3600 s)']],x:'<b>4. Quem sabe de verdade.</b> O servidor <b>autoritativo</b> do domínio conhece o IP e responde, informando por quanto tempo a resposta vale (<b>TTL</b>).'},
+        {r:[['r',A,'Resolvedor → navegador','203.0.113.10']],x:'<b>5. Resposta final.</b> O resolvedor devolve o IP ao navegador e o guarda em <b>cache</b>. Agora o navegador abre uma conexão TCP com esse IP (porta 443) e faz o pedido HTTP.'}
+      ],
+      dhcp:[
+        {r:[['l',B,'DISCOVER · broadcast (255.255.255.255)','“Tem algum servidor DHCP aí? Preciso de um endereço.”']],x:'<b>1. Discover.</b> O cliente ainda não tem IP (usa 0.0.0.0), então <b>grita em broadcast</b> (UDP, porta 67 do servidor).'},
+        {r:[['r',A,'OFFER · servidor → cliente','Ofereço 192.168.1.50 /24 · gateway 192.168.1.1 · DNS 192.168.1.1 · 24 h']],x:'<b>2. Offer.</b> O servidor DHCP oferece um endereço livre e as demais configurações, com o tempo de concessão.'},
+        {r:[['l',B,'REQUEST · broadcast','“Aceito o endereço 192.168.1.50 oferecido por você.”']],x:'<b>3. Request.</b> O cliente aceita a oferta. Ele usa broadcast para que outros servidores DHCP, caso existam, saibam que suas ofertas foram recusadas.'},
+        {r:[['r',A,'ACK · servidor → cliente','Confirmado! O 192.168.1.50 é seu por 24 horas.']],x:'<b>4. Ack.</b> O servidor confirma. O cliente configura a placa de rede e já pode navegar. Perto da metade do tempo, ele pedirá a <b>renovação</b>.'}
+      ]
+    };
+    [].forEach.call(document.querySelectorAll('.stp'),function(el){
+      var S=D[el.dataset.steps],rows=el.querySelector('.stp-rows'),txt=el.querySelector('.stp-txt'),nx=el.querySelector('.stp-next'),k=0;
+      function draw(){
+        var h='';
+        S.slice(0,k+1).forEach(function(st){st.r.forEach(function(r){
+          h+='<div class="hsr '+r[0]+'"><div class="hsb '+r[1]+'">'+(r[0]==='l'?'➡️ ':'⬅️ ')+r[2]+'<small>'+r[3]+'</small></div></div>';
+        });});
+        rows.innerHTML=h;txt.innerHTML=S[k].x;nx.disabled=k===S.length-1;
+      }
+      nx.onclick=function(){if(k<S.length-1){k++;draw();}};
+      el.querySelector('.stp-reset').onclick=function(){k=0;draw();};
+      window.addEventListener('beforeprint',function(){k=S.length-1;draw();});
+      draw();
+    });
   })();
 
   // --- Simulador TCP x UDP com perdas ---
