@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Apostila de Redes de Computadores – IFRN</title>
+<style>
+:root{
+  --verde:#2e7d32; --verde-claro:#e8f5e9; --texto:#1f2937; --suave:#6b7280; --borda:#e5e7eb; --fundo:#f8faf8;
+  --c1:#2e7d32; --c2:#1565c0; --c3:#6a1b9a; --c4:#ef6c00; --c5:#c62828; --c6:#00838f; --c7:#37474f;
+  --side:288px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{margin:0;font-family:"Segoe UI",system-ui,-apple-system,Roboto,Helvetica,Arial,sans-serif;color:var(--texto);background:var(--fundo);line-height:1.7;font-size:17px}
+.progress{position:fixed;top:0;left:0;height:4px;width:0;background:linear-gradient(90deg,#43a047,#1565c0);z-index:100}
+.topbar{display:none;position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid var(--borda);padding:10px 14px;align-items:center;gap:12px}
+.topbar b{font-size:15px}
+.menu-btn{border:1px solid var(--borda);background:#fff;border-radius:8px;padding:6px 10px;font-size:18px;cursor:pointer}
+.sidebar{position:fixed;inset:0 auto 0 0;width:var(--side);background:#fff;border-right:1px solid var(--borda);overflow-y:auto;padding:22px 18px;z-index:60}
+.brand{display:flex;gap:10px;align-items:center;margin-bottom:18px}
+.logo{width:42px;height:42px;border-radius:10px;background:var(--verde);display:grid;place-items:center;color:#fff;font-size:22px}
+.brand small{display:block;color:var(--suave);font-size:12px;line-height:1.2}
+.brand strong{font-size:15px;line-height:1.2}
+.nav a{display:flex;gap:10px;align-items:center;text-decoration:none;color:var(--texto);padding:8px 10px;border-radius:10px;font-size:14.5px;line-height:1.3}
+.nav a:hover{background:#f1f5f1}
+.nav a.on{background:var(--verde-claro);font-weight:600}
+.nav .n{flex:0 0 26px;height:26px;border-radius:8px;color:#fff;display:grid;place-items:center;font-size:13px;font-weight:700}
+.nav .sub{margin:2px 0 8px 46px;font-size:13px;color:var(--suave)}
+.nav .sub a{padding:3px 8px;font-size:13px;color:var(--suave)}
+.nav .soon{opacity:.55}
+.tools{margin-top:18px;padding-top:14px;border-top:1px solid var(--borda);font-size:14px}
+.tools button{width:100%;border:0;background:var(--verde);color:#fff;border-radius:10px;padding:10px;font-size:15px;font-weight:600;cursor:pointer;margin-bottom:8px}
+.tools button:hover{filter:brightness(1.08)}
+.tools label{display:flex;gap:8px;align-items:center;color:var(--suave);cursor:pointer}
+main{margin-left:var(--side);padding:0 0 60px}
+.wrap{max-width:860px;margin:0 auto;padding:0 28px}
+.hero{background:linear-gradient(135deg,#1b5e20,#2e7d32 55%,#1565c0);color:#fff;padding:54px 0 44px}
+.hero .tag{display:inline-block;background:rgba(255,255,255,.18);border-radius:999px;padding:4px 14px;font-size:13px;margin-bottom:14px}
+.hero h1{margin:0 0 8px;font-size:clamp(30px,5vw,46px);line-height:1.15}
+.hero p{margin:4px 0;opacity:.92}
+.meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.meta span{background:rgba(255,255,255,.15);padding:6px 12px;border-radius:10px;font-size:14px}
+h2{font-size:28px;margin:0 0 6px;line-height:1.25}
+h3{font-size:21px;margin:30px 0 8px}
+section{padding:36px 0 8px}
+.chap-head{display:flex;gap:16px;align-items:center;margin-bottom:16px}
+.chap-num{width:58px;height:58px;border-radius:16px;color:#fff;display:grid;place-items:center;font-size:28px;font-weight:800;flex:0 0 58px}
+.chap-head small{color:var(--suave);text-transform:uppercase;letter-spacing:.06em;font-size:12px}
+.map{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px;margin:18px 0}
+.card{background:#fff;border:1px solid var(--borda);border-radius:16px;padding:16px;box-shadow:0 1px 2px rgba(0,0,0,.04);border-top:5px solid var(--cc,var(--verde))}
+.card b{display:block;margin-bottom:4px}
+.card span{font-size:14px;color:var(--suave);line-height:1.4;display:block}
+.card .st{margin-top:8px;font-size:12px;font-weight:700;color:var(--cc,var(--verde))}
+.obj{background:#fff;border:1px solid var(--borda);border-left:6px solid var(--cc);border-radius:14px;padding:16px 20px;margin:16px 0}
+.obj h4{margin:0 0 6px;color:var(--cc)}
+.obj ul{margin:0;padding-left:20px}
+.box{border-radius:14px;padding:14px 18px;margin:18px 0;border:1px solid;display:flex;gap:14px}
+.box .ic{font-size:26px;line-height:1.2}
+.box h5{margin:0 0 4px;font-size:15px;text-transform:uppercase;letter-spacing:.05em}
+.box p{margin:0}
+.box.analogia{background:#fff8e1;border-color:#ffe082}.box.analogia h5{color:#b26a00}
+.box.exemplo{background:#e3f2fd;border-color:#90caf9}.box.exemplo h5{color:#0d47a1}
+.box.atencao{background:#ffebee;border-color:#ef9a9a}.box.atencao h5{color:#b71c1c}
+.box.dica{background:#e8f5e9;border-color:#a5d6a7}.box.dica h5{color:#1b5e20}
+table{width:100%;border-collapse:collapse;margin:16px 0;background:#fff;border-radius:12px;overflow:hidden;font-size:15px}
+th,td{padding:10px 12px;border-bottom:1px solid var(--borda);text-align:left;vertical-align:top}
+th{background:var(--verde-claro);color:#1b5e20}
+.timeline{border-left:3px solid #c8e6c9;margin:18px 0 18px 10px;padding-left:22px}
+.tl{position:relative;margin-bottom:18px}
+.tl::before{content:"";position:absolute;left:-31px;top:6px;width:14px;height:14px;border-radius:50%;background:var(--verde);border:3px solid #fff;box-shadow:0 0 0 2px #c8e6c9}
+.tl b{color:var(--verde)}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.tabs button{border:1px solid var(--borda);background:#fff;border-radius:999px;padding:7px 16px;font-size:15px;cursor:pointer}
+.tabs button.on{background:var(--verde);color:#fff;border-color:var(--verde)}
+.topo-panel{display:none;background:#fff;border:1px solid var(--borda);border-radius:16px;padding:16px;margin-bottom:14px}
+.topo-panel.on{display:block}
+.topo-panel svg{width:100%;max-width:340px;height:auto;display:block;margin:0 auto}
+.topo-panel .pc{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px;font-size:15px}
+.pro{color:#2e7d32}.con{color:#c62828}
+pre{position:relative;background:#0f172a;color:#e2e8f0;border-radius:12px;padding:14px 16px;overflow-x:auto;font-size:14.5px;line-height:1.55;margin:14px 0}
+code{font-family:Consolas,"Courier New",monospace}
+p code,li code,td code{background:#eef2ee;padding:1px 6px;border-radius:5px;font-size:.92em}
+pre .cp{position:absolute;top:8px;right:8px;border:0;background:#334155;color:#fff;border-radius:8px;padding:4px 10px;font-size:12px;cursor:pointer}
+.lab{background:#fff;border:2px dashed #90a4ae;border-radius:18px;padding:6px 22px 14px;margin:22px 0}
+.lab h3{margin-top:16px}
+ol.steps{counter-reset:s;list-style:none;padding:0}
+ol.steps>li{counter-increment:s;position:relative;padding:4px 0 10px 46px}
+ol.steps>li::before{content:counter(s);position:absolute;left:0;top:2px;width:32px;height:32px;border-radius:50%;background:var(--cc);color:#fff;display:grid;place-items:center;font-weight:700;font-size:15px}
+.resumo{background:linear-gradient(135deg,var(--verde-claro),#fff);border:1px solid #c8e6c9;border-radius:16px;padding:6px 22px 12px;margin:24px 0}
+.q{background:#fff;border:1px solid var(--borda);border-radius:14px;padding:16px 18px;margin:14px 0}
+.q p{margin:0 0 10px;font-weight:600}
+.opt{display:block;width:100%;text-align:left;border:1px solid var(--borda);background:#fafafa;border-radius:10px;padding:9px 12px;margin:6px 0;font-size:16px;cursor:pointer;font-family:inherit}
+.opt:hover{background:#f1f5f1}
+.opt.ok{background:#e8f5e9;border-color:#43a047}
+.opt.no{background:#ffebee;border-color:#e57373}
+.fb{display:none;margin-top:8px;font-size:15px;padding:8px 12px;border-radius:10px;background:#f1f5f9}
+.fb.show{display:block}
+.score{font-weight:700;padding:10px 0}
+.open{background:#fff;border:1px solid var(--borda);border-radius:14px;padding:14px 18px;margin:12px 0}
+.open button{border:1px solid var(--verde);color:var(--verde);background:#fff;border-radius:8px;padding:5px 12px;cursor:pointer;font-size:14px}
+.answer{display:none;margin-top:10px;padding:10px 14px;background:#f1f8e9;border-radius:10px}
+.answer.show{display:block}
+.ref{font-size:15px;padding-left:2em;text-indent:-2em;margin:8px 0}
+.osi{margin:16px 0}
+.layer{background:#fff;border:1px solid var(--borda);border-left:8px solid var(--lc);border-radius:12px;margin:8px 0;overflow:hidden}
+.lh{display:flex;gap:12px;align-items:center;width:100%;border:0;background:none;padding:12px 14px;font-size:16px;cursor:pointer;text-align:left;font-family:inherit}
+.lh:hover{background:#fafafa}
+.ln{flex:0 0 32px;height:32px;border-radius:50%;background:var(--lc);color:#fff;display:grid;place-items:center;font-weight:700}
+.lh small{color:var(--suave);margin-left:auto;text-align:right;font-size:13px;max-width:45%}
+.ld{display:none;padding:4px 18px 14px 58px;font-size:15.5px}
+.layer.exp .ld{display:block}
+.enc{background:#fff;border:1px solid var(--borda);border-radius:16px;padding:16px;margin:12px 0}
+.enc-view{display:flex;justify-content:center;padding:10px 0;overflow-x:auto}
+.eb{border:3px solid;border-radius:12px;padding:8px;display:flex;align-items:stretch;gap:6px;font-size:14px;font-weight:600;background:#fff}
+.eb>span{display:grid;place-items:center;padding:4px 8px;border-radius:8px;color:#fff;white-space:nowrap}
+.eb.dados{border-color:#6a1b9a}.eb.seg{border-color:#2e7d32}.eb.pac{border-color:#ef6c00}.eb.qua{border-color:#c62828}
+.eb .data{background:#6a1b9a}.eb .h4{background:#2e7d32}.eb .h3{background:#ef6c00}.eb .h2{background:#c62828}
+.eb .bits{background:#37474f;font-family:Consolas,monospace;letter-spacing:2px}
+.enc-txt{min-height:48px;margin:8px 0 12px;font-size:15.5px}
+.enc button{border:0;background:var(--cc);color:#fff;border-radius:10px;padding:8px 16px;font-size:15px;cursor:pointer;font-weight:600}
+.enc button.alt{background:#fff;color:var(--suave);border:1px solid var(--borda)}
+.soon-card{background:#fff;border:1px dashed #b0bec5;border-radius:16px;padding:18px 22px;margin:14px 0;color:var(--suave)}
+footer{text-align:center;color:var(--suave);font-size:14px;padding:30px 0 0}
+.back-top{position:fixed;right:20px;bottom:20px;width:44px;height:44px;border-radius:50%;border:0;background:var(--verde);color:#fff;font-size:20px;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.2);display:none;z-index:70}
+@media (max-width:900px){
+  .topbar{display:flex}
+  .sidebar{transform:translateX(-100%);transition:transform .25s;box-shadow:0 0 30px rgba(0,0,0,.2)}
+  .sidebar.open{transform:none}
+  main{margin-left:0}
+  body{font-size:16.5px}
+  .topo-panel .pc{grid-template-columns:1fr}
+}
+/* ===== IMPRESSÃO / PDF ===== */
+@page{size:A4;margin:16mm 14mm 18mm;@bottom-center{content:"Redes de Computadores – IFRN · página " counter(page);font-size:9pt;color:#777}}
+@media print{
+  body{background:#fff;font-size:11.5pt;line-height:1.55;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .sidebar,.topbar,.progress,.back-top,.tabs,.cp,.open button,.tools{display:none!important}
+  main{margin:0}
+  .wrap{max-width:none;padding:0}
+  .hero{padding:26px 0;border-radius:12px;margin-bottom:10px}
+  .hero .wrap{padding:0 22px}
+  section{padding:14px 0 0;break-before:auto}
+  #cap1,#cap2{break-before:page}
+  .layer .ld{display:block!important}
+  .lh small{max-width:none}
+  .layer,.enc{break-inside:avoid}
+  .enc button{display:none!important}
+  h2,h3{break-after:avoid}
+  .box,.card,.q,.open,.obj,.tl,.resumo,pre,table,.topo-panel{break-inside:avoid}
+  #topoPanels{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .topo-panel{display:block!important;margin-bottom:0;padding:8px}
+  .topo-panel svg{max-width:150px}
+  .topo-panel .pc{grid-template-columns:1fr;font-size:9.5pt;gap:4px}
+  pre{background:#f3f4f6!important;color:#111!important;border:1px solid #ccc;white-space:pre-wrap}
+  .fb{display:none!important}
+  .q .opt{display:block!important;background:#fff;border:1px solid #bbb;padding:4px 10px;margin:3px 0;font-size:11pt}
+  .answer{display:none!important}
+  body.print-answers .answer{display:block!important}
+  body.print-answers .q .opt[data-ok="1"]{background:#e8f5e9!important;border-color:#2e7d32!important;font-weight:700}
+  body.print-answers .q .fb{display:block!important}
+  .soon-card{border-style:solid}
+}
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<div class="topbar"><button class="menu-btn" id="menuBtn" aria-label="Abrir menu">☰</button><b>Redes de Computadores</b></div>
+
+<aside class="sidebar" id="sidebar">
+  <div class="brand"><div class="logo">🌐</div><div><strong>Redes de Computadores</strong><small>Informática Integrado · IFRN</small></div></div>
+  <nav class="nav" id="nav">
+    <a href="#inicio"><span class="n" style="background:#455a64">★</span>Início e mapa</a>
+    <a href="#cap1" style="--c:var(--c1)"><span class="n" style="background:var(--c1)">1</span>Introdução a redes</a>
+    <div class="sub">
+      <a href="#c1-hist">História</a>
+      <a href="#c1-topo">Topologias</a>
+      <a href="#c1-comp">Componentes</a>
+      <a href="#c1-class">Classificação</a>
+      <a href="#c1-lab">Laboratório</a>
+      <a href="#c1-quiz">Quiz e exercícios</a>
+    </div>
+    <a href="#cap2"><span class="n" style="background:var(--c2)">2</span>Padrões e modelos</a>
+    <div class="sub">
+      <a href="#c2-osi">Modelo OSI</a>
+      <a href="#c2-enc">Encapsulamento</a>
+      <a href="#c2-tcp">Arquitetura TCP/IP</a>
+      <a href="#c2-lab">Atividade e laboratório</a>
+      <a href="#c2-quiz">Quiz e exercícios</a>
+    </div>
+    <a href="#cap3" class="soon"><span class="n" style="background:var(--c3)">3</span>Acesso à rede</a>
+    <a href="#cap4" class="soon"><span class="n" style="background:var(--c4)">4</span>Camada de internet</a>
+    <a href="#cap5" class="soon"><span class="n" style="background:var(--c5)">5</span>Camada de transporte</a>
+    <a href="#cap6" class="soon"><span class="n" style="background:var(--c6)">6</span>Camada de aplicação</a>
+    <a href="#cap7" class="soon"><span class="n" style="background:var(--c7)">7</span>Segurança de redes</a>
+    <a href="#refs"><span class="n" style="background:#455a64">📚</span>Referências</a>
+  </nav>
+  <div class="tools">
+    <button onclick="window.print()">🖨️ Salvar em PDF</button>
+    <label><input type="checkbox" id="ans"> Incluir gabarito no PDF</label>
+  </div>
+</aside>
+
+<main>
+<header class="hero" id="inicio">
+  <div class="wrap">
+    <span class="tag">Apostila digital</span>
+    <h1>Redes de Computadores</h1>
+    <p>Curso Técnico de Nível Médio em Informática, na Forma Integrada</p>
+    <p>Prof. César Azevedo · IFRN – Campus João Câmara</p>
+    <div class="meta"><span>⏱️ 90 h</span><span>📖 7 capítulos</span><span>🧪 Práticas em laboratório</span></div>
+  </div>
+</header>
+
+<div class="wrap">
+<section>
+  <h2>Como usar esta apostila</h2>
+  <p>Cada capítulo segue o mesmo caminho: <b>objetivos → explicação com analogias → prática → resumo → quiz</b>. Leia, teste no laboratório e confira o que aprendeu. Para guardar uma cópia, use o botão <b>Salvar em PDF</b> no menu.</p>
+  <div class="map">
+    <div class="card" style="--cc:var(--c1)"><b>1 · Introdução a redes</b><span>História, topologias, componentes e classificação.</span><div class="st">✅ Disponível</div></div>
+    <div class="card" style="--cc:var(--c2)"><b>2 · Padrões e modelos</b><span>Modelo OSI e arquitetura TCP/IP.</span><div class="st">✅ Disponível</div></div>
+    <div class="card" style="--cc:var(--c3)"><b>3 · Acesso à rede</b><span>Ethernet (802.3) e redes sem fio (802.11).</span><div class="st">⏳ Em breve</div></div>
+    <div class="card" style="--cc:var(--c4)"><b>4 · Camada de internet</b><span>IPv4, IPv6, roteamento, ARP e ICMP.</span><div class="st">⏳ Em breve</div></div>
+    <div class="card" style="--cc:var(--c5)"><b>5 · Camada de transporte</b><span>Protocolos TCP e UDP.</span><div class="st">⏳ Em breve</div></div>
+    <div class="card" style="--cc:var(--c6)"><b>6 · Camada de aplicação</b><span>Web, e-mail, DNS, DHCP, FTP e SSH.</span><div class="st">⏳ Em breve</div></div>
+    <div class="card" style="--cc:var(--c7)"><b>7 · Segurança de redes</b><span>Ameaças, ataques e soluções de proteção.</span><div class="st">⏳ Em breve</div></div>
+  </div>
+</section>
+
+<!-- ================= CAPÍTULO 1 ================= -->
+<section class="chapter" id="cap1" style="--cc:var(--c1)">
+  <div class="chap-head"><div class="chap-num" style="background:var(--c1)">1</div><div><small>Capítulo 1</small><h2>Introdução a redes de computadores</h2></div></div>
+
+  <div class="obj"><h4>🎯 Ao final deste capítulo, você será capaz de:</h4>
+    <ul>
+      <li>Explicar, com suas palavras, o que é uma rede de computadores e para que ela serve.</li>
+      <li>Contar de forma resumida como as redes evoluíram até a Internet.</li>
+      <li>Reconhecer e desenhar as principais topologias de rede.</li>
+      <li>Identificar os componentes de uma rede (dispositivos, meios e protocolos).</li>
+      <li>Classificar redes em PAN, LAN, MAN e WAN conforme a área de cobertura.</li>
+    </ul>
+  </div>
+
+  <h3>O que é uma rede de computadores?</h3>
+  <p>Uma <b>rede de computadores</b> é um conjunto de dispositivos ligados entre si para <b>trocar informações e compartilhar recursos</b>, como arquivos, impressoras e acesso à Internet.</p>
+  <div class="box analogia"><div class="ic">💡</div><div><h5>Pense assim...</h5><p>Uma rede é como o <b>sistema de ruas e correios de uma cidade</b>. Os computadores são as casas, os cabos e o Wi-Fi são as ruas, e os dados são as cartas. Para a carta chegar, é preciso ter endereço, ruas funcionando e regras que todos seguem. Essas regras são os <b>protocolos</b>.</p></div></div>
+
+  <!-- 1.1 -->
+  <h3 id="c1-hist">1.1 História e evolução das redes</h3>
+  <p>As redes nasceram da necessidade de fazer computadores caros e distantes conversarem entre si. Veja os marcos principais:</p>
+  <div class="timeline">
+    <div class="tl"><b>Década de 1960</b> – Surge a ideia de dividir mensagens em pequenos pacotes. Computadores eram enormes e ficavam isolados.</div>
+    <div class="tl"><b>1969 – ARPANET</b> – Rede financiada pelo Departamento de Defesa dos EUA liga as primeiras universidades. É a “avó” da Internet.</div>
+    <div class="tl"><b>Década de 1970 – Ethernet</b> – Criada no centro de pesquisa Xerox PARC, torna possível ligar computadores de um mesmo prédio.</div>
+    <div class="tl"><b>1983 – TCP/IP</b> – A ARPANET adota o conjunto de protocolos TCP/IP. Redes diferentes passam a se conectar em uma “rede de redes”: a Internet.</div>
+    <div class="tl"><b>Final dos anos 1980 e início dos 1990 – World Wide Web</b> – Tim Berners-Lee cria a Web, e a Internet fica fácil de usar com navegadores.</div>
+    <div class="tl"><b>1995 – Internet comercial no Brasil</b> – A Internet passa a ser oferecida ao público em geral no país.</div>
+    <div class="tl"><b>Anos 2000 até hoje – Wi-Fi, celular e nuvem</b> – Redes sem fio, smartphones, computação em nuvem e Internet das Coisas (IoT) conectam bilhões de dispositivos.</div>
+  </div>
+  <div class="box exemplo"><div class="ic">📌</div><div><h5>Exemplo</h5><p>Quando você manda uma mensagem no celular, ela usa tecnologias de várias épocas ao mesmo tempo: Wi-Fi (anos 2000), Ethernet nos equipamentos do provedor (anos 1970) e TCP/IP (anos 1980).</p></div></div>
+
+  <!-- 1.2 -->
+  <h3 id="c1-topo">1.2 Representação e topologias de redes</h3>
+  <p><b>Topologia</b> é o desenho que mostra <b>como os dispositivos estão ligados</b>. Existem dois tipos:</p>
+  <ul>
+    <li><b>Topologia física:</b> como os cabos e equipamentos estão realmente instalados.</li>
+    <li><b>Topologia lógica:</b> como os dados circulam pela rede, independentemente do desenho dos cabos.</li>
+  </ul>
+  <div class="box analogia"><div class="ic">💡</div><div><h5>Pense assim...</h5><p>A topologia física é o <b>mapa das ruas</b>. A topologia lógica é o <b>caminho que o carteiro faz</b> para entregar as cartas.</p></div></div>
+  <p>Clique nas abas para ver cada topologia:</p>
+  <div class="tabs" id="topoTabs"></div>
+  <div id="topoPanels"></div>
+  <div class="box atencao"><div class="ic">⚠️</div><div><h5>Atenção</h5><p>Hoje, nas redes locais cabeadas, quase tudo é <b>estrela</b>: cada computador tem um cabo até um switch. Barramento e anel ficaram na história, mas continuam caindo em prova.</p></div></div>
+
+  <!-- 1.3 -->
+  <h3 id="c1-comp">1.3 Componentes de redes de computadores</h3>
+  <p>Toda rede é formada por quatro grupos de componentes:</p>
+  <table>
+    <tr><th>Componente</th><th>O que faz</th><th>Exemplos</th></tr>
+    <tr><td><b>Dispositivos finais (hosts)</b></td><td>Origem e destino das informações. É onde o usuário “mexe”.</td><td>Computador, notebook, celular, impressora de rede, servidor</td></tr>
+    <tr><td><b>Dispositivos intermediários</b></td><td>Ligam os dispositivos finais e levam os dados até o destino.</td><td>Switch, roteador, ponto de acesso (access point), modem</td></tr>
+    <tr><td><b>Meios de transmissão</b></td><td>Caminho físico (ou o ar) por onde os sinais passam.</td><td>Cabo de par trançado (UTP), fibra óptica, ondas de rádio (Wi-Fi)</td></tr>
+    <tr><td><b>Protocolos e serviços</b></td><td>Regras que definem como a comunicação acontece.</td><td>IP, TCP, HTTP, DNS</td></tr>
+  </table>
+  <div class="box analogia"><div class="ic">💡</div><div><h5>Pense assim...</h5><p>Switch é como a <b>portaria de um condomínio</b>: sabe em qual apartamento cada pessoa mora e leva a encomenda só até a porta certa. O roteador é como a <b>agência dos Correios</b>: liga o seu bairro a outras cidades.</p></div></div>
+  <div class="box dica"><div class="ic">✅</div><div><h5>Dica</h5><p>Em casa, o aparelho que o provedor entrega costuma juntar várias funções em uma caixinha só: modem, roteador, switch e ponto de acesso Wi-Fi.</p></div></div>
+
+  <!-- 1.4 -->
+  <h3 id="c1-class">1.4 Classificação das redes quanto à área de cobertura</h3>
+  <table>
+    <tr><th>Sigla</th><th>Nome</th><th>Alcance</th><th>Exemplo</th></tr>
+    <tr><td><b>PAN</b></td><td>Rede pessoal</td><td>Poucos metros</td><td>Fone Bluetooth ligado ao celular</td></tr>
+    <tr><td><b>LAN</b></td><td>Rede local</td><td>Sala, casa, prédio, escola</td><td>Laboratório de informática do campus</td></tr>
+    <tr><td><b>MAN</b></td><td>Rede metropolitana</td><td>Uma cidade ou região</td><td>Rede que liga prefeitura, escolas e postos de saúde</td></tr>
+    <tr><td><b>WAN</b></td><td>Rede de longa distância</td><td>Países e continentes</td><td>A Internet; a rede de um banco com agências no país todo</td></tr>
+  </table>
+  <div class="box analogia"><div class="ic">💡</div><div><h5>Pense assim...</h5><p>PAN é a <b>sua mochila</b>, LAN é a <b>sua casa</b>, MAN é a <b>sua cidade</b> e WAN é o <b>mundo todo</b>.</p></div></div>
+  <div class="box atencao"><div class="ic">⚠️</div><div><h5>Atenção</h5><p>A <b>Internet</b> não é uma WAN única. É uma “rede de redes”: milhares de LANs, MANs e WANs conectadas usando o mesmo conjunto de regras (TCP/IP).</p></div></div>
+
+  <!-- LAB -->
+  <div class="lab" id="c1-lab">
+    <h3>🧪 Laboratório 1 – Descobrindo a sua rede</h3>
+    <p><b>Objetivo:</b> descobrir qual é o seu endereço na rede e testar a comunicação com outros dispositivos.</p>
+    <p><b>Materiais:</b> computador do laboratório com acesso à Internet.</p>
+    <ol class="steps">
+      <li><b>Abra o terminal.</b> No Windows, pesquise por <code>cmd</code>. No Linux, abra o Terminal.</li>
+      <li><b>Veja a configuração da rede.</b>
+<pre><button class="cp">Copiar</button><code># Windows
+ipconfig
+
+# Linux
+ip a</code></pre>
+        Anote o <b>endereço IPv4</b> e o <b>gateway padrão</b> (o endereço do roteador).</li>
+      <li><b>Teste a sua própria placa de rede.</b>
+<pre><button class="cp">Copiar</button><code>ping 127.0.0.1</code></pre>
+        Se respondeu, a parte de rede do seu computador está funcionando.</li>
+      <li><b>Teste o roteador.</b> Faça ping no gateway que você anotou:
+<pre><button class="cp">Copiar</button><code>ping SEU_GATEWAY</code></pre></li>
+      <li><b>Teste a Internet.</b>
+<pre><button class="cp">Copiar</button><code>ping 8.8.8.8</code></pre></li>
+      <li><b>Veja o caminho percorrido.</b>
+<pre><button class="cp">Copiar</button><code># Windows
+tracert www.ifrn.edu.br
+
+# Linux
+traceroute www.ifrn.edu.br</code></pre>
+        Cada linha é um “salto”, ou seja, um equipamento intermediário no caminho.</li>
+    </ol>
+    <div class="box dica"><div class="ic">✅</div><div><h5>Dica</h5><p>O <code>ping</code> funciona como um “alô, tem alguém aí?”. Se ele responde, o caminho até aquele equipamento está funcionando. Se o ping para o gateway funciona e para <code>8.8.8.8</code> não, o problema está depois do roteador.</p></div></div>
+
+    <h3>🧪 Laboratório 2 – Montando uma rede estrela no Cisco Packet Tracer</h3>
+    <ol class="steps">
+      <li>Adicione <b>1 switch</b> e <b>3 PCs</b> à área de trabalho.</li>
+      <li>Ligue cada PC ao switch com <b>cabo de par trançado direto</b> (Copper Straight-Through).</li>
+      <li>Em cada PC, abra <b>Desktop → IP Configuration</b> e configure:
+<pre><button class="cp">Copiar</button><code>PC1: 192.168.0.1  máscara 255.255.255.0
+PC2: 192.168.0.2  máscara 255.255.255.0
+PC3: 192.168.0.3  máscara 255.255.255.0</code></pre></li>
+      <li>No PC1, abra <b>Command Prompt</b> e execute <code>ping 192.168.0.2</code> e <code>ping 192.168.0.3</code>.</li>
+      <li><b>Desafio:</b> desconecte o cabo do PC2. O PC1 ainda consegue falar com o PC3? O que isso mostra sobre a topologia estrela?</li>
+    </ol>
+  </div>
+
+  <!-- RESUMO -->
+  <div class="resumo">
+    <h3>📝 Resumo do capítulo</h3>
+    <ul>
+      <li>Rede de computadores é um conjunto de dispositivos ligados para trocar dados e compartilhar recursos.</li>
+      <li>A Internet nasceu da ARPANET (1969) e ganhou forma com o TCP/IP (1983).</li>
+      <li>Topologia física é o desenho dos cabos. Topologia lógica é o caminho dos dados.</li>
+      <li>Os componentes são: dispositivos finais, dispositivos intermediários, meios de transmissão e protocolos.</li>
+      <li>Por área de cobertura, as redes são PAN, LAN, MAN e WAN.</li>
+    </ul>
+  </div>
+
+  <!-- QUIZ -->
+  <h3 id="c1-quiz">🧠 Quiz do capítulo 1</h3>
+  <p>Clique na alternativa que você acha correta. O feedback aparece na hora.</p>
+  <div class="quiz">
+    <div class="q"><p>1. Qual dispositivo liga vários computadores de uma mesma rede local e entrega os dados só para o destinatário certo?</p>
+      <button class="opt">a) Hub</button><button class="opt" data-ok="1">b) Switch</button><button class="opt">c) Cabo coaxial</button><button class="opt">d) Antena</button>
+      <div class="fb">O <b>switch</b> aprende o endereço de cada dispositivo e envia o quadro só para a porta certa. Como a portaria do condomínio.</div></div>
+    <div class="q"><p>2. Uma rede que cobre o laboratório de informática de uma escola é classificada como:</p>
+      <button class="opt">a) PAN</button><button class="opt" data-ok="1">b) LAN</button><button class="opt">c) MAN</button><button class="opt">d) WAN</button>
+      <div class="fb">Um prédio ou campus é o território típico de uma <b>LAN</b> (rede local).</div></div>
+    <div class="q"><p>3. Em uma topologia em estrela, o cabo de um computador se rompe. O que acontece?</p>
+      <button class="opt">a) A rede inteira para</button><button class="opt" data-ok="1">b) Só esse computador perde a conexão</button><button class="opt">c) Os dados passam a circular em anel</button><button class="opt">d) O switch desliga</button>
+      <div class="fb">Cada computador tem seu próprio cabo até o switch, então a falha fica isolada. Esta é uma das vantagens da estrela.</div></div>
+    <div class="q"><p>4. A Internet é melhor descrita como:</p>
+      <button class="opt">a) Uma única WAN</button><button class="opt">b) Uma LAN muito grande</button><button class="opt" data-ok="1">c) Uma rede de redes interligadas pelo TCP/IP</button><button class="opt">d) Um servidor gigante</button>
+      <div class="fb">A Internet conecta milhares de redes diferentes que falam a mesma “língua”: o TCP/IP.</div></div>
+    <div class="q"><p>5. Qual é a função do meio de transmissão?</p>
+      <button class="opt">a) Definir as regras de comunicação</button><button class="opt">b) Armazenar arquivos</button><button class="opt" data-ok="1">c) Levar os sinais de um dispositivo ao outro (cabo, fibra ou ondas de rádio)</button><button class="opt">d) Traduzir nomes em endereços</button>
+      <div class="fb">O meio é a “rua” por onde os sinais passam. Regras são os protocolos.</div></div>
+    <div class="q"><p>6. Qual rede é considerada a precursora da Internet?</p>
+      <button class="opt" data-ok="1">a) ARPANET</button><button class="opt">b) Wi-Fi</button><button class="opt">c) Bluetooth</button><button class="opt">d) Intranet</button>
+      <div class="fb">A <b>ARPANET</b>, de 1969, foi a rede que originou a Internet.</div></div>
+  </div>
+  <div class="score"></div>
+
+  <h3>✍️ Questões abertas</h3>
+  <div class="open"><p><b>1.</b> Explique a diferença entre topologia física e topologia lógica, usando uma analogia.</p>
+    <button>Ver resposta</button><div class="answer">A topologia física é o desenho real dos cabos e equipamentos (o mapa das ruas). A topologia lógica é o caminho que os dados seguem (a rota do carteiro). Uma rede pode ter forma física de estrela e funcionar logicamente de outro modo.</div></div>
+  <div class="open"><p><b>2.</b> Por que a topologia em estrela é a mais usada nas redes locais cabeadas atuais?</p>
+    <button>Ver resposta</button><div class="answer">Porque é fácil de instalar e de dar manutenção, e uma falha em um cabo afeta apenas um computador. A desvantagem é que o switch central é um ponto único de falha.</div></div>
+  <div class="open"><p><b>3.</b> Cite 3 dispositivos finais e 3 dispositivos intermediários que existem na sua casa ou na escola.</p>
+    <button>Ver resposta</button><div class="answer">Resposta pessoal. Exemplos de finais: celular, notebook, smart TV. Exemplos de intermediários: roteador Wi-Fi, switch, ponto de acesso.</div></div>
+</section>
+
+<!-- ============ CAPÍTULOS 2 a 7 (em construção) ============ -->
+<section class="chapter" id="cap2" style="--cc:var(--c2)">
+  <div class="chap-head"><div class="chap-num" style="background:var(--c2)">2</div><div><small>Capítulo 2</small><h2>Padrões e modelos de redes</h2></div></div>
+
+  <div class="obj"><h4>🎯 Ao final deste capítulo, você será capaz de:</h4>
+    <ul>
+      <li>Explicar por que as redes precisam de padrões e de modelos em camadas.</li>
+      <li>Nomear as 7 camadas do modelo OSI e dizer a função de cada uma.</li>
+      <li>Descrever as 4 camadas da arquitetura TCP/IP e compará-las com o OSI.</li>
+      <li>Explicar o encapsulamento e o desencapsulamento dos dados.</li>
+      <li>Usar o modelo de camadas para localizar a origem de um problema de rede.</li>
+    </ul>
+  </div>
+
+  <h3>Por que precisamos de padrões?</h3>
+  <p>Imagine se cada fabricante criasse seu próprio jeito de ligar computadores. Um notebook de uma marca não falaria com o roteador de outra. Um <b>padrão</b> é um acordo público que todos seguem, para que equipamentos diferentes conversem entre si.</p>
+  <p>Alguns órgãos que criam padrões: <b>IEEE</b> (Ethernet e Wi-Fi), <b>IETF</b> (protocolos da Internet, publicados como RFCs), <b>ISO</b> (modelo OSI) e <b>ITU</b> (telecomunicações).</p>
+  <div class="box analogia"><div class="ic">💡</div><div><h5>Pense assim...</h5><p>Padrão é como o <b>formato da tomada</b>. Se todas as tomadas e plugues seguem a mesma norma, qualquer aparelho funciona em qualquer parede. Sem norma, cada casa precisaria de um adaptador diferente.</p></div></div>
+
+  <h3>Para que servem as camadas?</h3>
+  <p>Comunicar pela rede é uma tarefa muito grande. Para não virar uma bagunça, ela é dividida em <b>camadas</b>. Cada camada cuida de uma parte do trabalho e só conversa com a camada de cima e a de baixo.</p>
+  <div class="box analogia"><div class="ic">💡</div><div><h5>Pense assim...</h5><p>Enviar uma carta é um trabalho em camadas: você escreve (conteúdo), o envelope leva o endereço, os Correios escolhem o caminho e o caminhão faz o transporte. Quem escreve não precisa saber qual estrada o caminhão usa. Se o caminhão mudar de rota, a carta continua a mesma.</p></div></div>
+  <p><b>Vantagens do modelo em camadas:</b> facilita aprender, permite trocar uma tecnologia sem mexer nas outras (por exemplo, trocar cabo por Wi-Fi) e ajuda a achar defeitos.</p>
+
+  <!-- 2.1 -->
+  <h3 id="c2-osi">2.1 Visão geral do modelo OSI</h3>
+  <p>O <b>OSI</b> (<i>Open Systems Interconnection</i>) foi criado pela ISO como um <b>modelo de referência</b> com <b>7 camadas</b>. Ele é muito usado para estudar e para explicar onde cada coisa acontece. Clique em cada camada para ver os detalhes:</p>
+  <div class="osi" id="osi">
+    <div class="layer" style="--lc:#6a1b9a"><button class="lh"><span class="ln">7</span><b>Aplicação</b><small>Onde o usuário e os programas entram na rede</small></button>
+      <div class="ld"><b>Função:</b> oferece serviços de rede aos programas (navegar, enviar e-mail, baixar arquivo).<br><b>Unidade de dados:</b> dados/mensagem.<br><b>Exemplos:</b> HTTP, DNS, SMTP, FTP.</div></div>
+    <div class="layer" style="--lc:#1565c0"><button class="lh"><span class="ln">6</span><b>Apresentação</b><small>Formato, compressão e criptografia</small></button>
+      <div class="ld"><b>Função:</b> garante que os dois lados “entendam” o formato dos dados (texto, imagem), além de compressão e criptografia.<br><b>Exemplos:</b> codificação de texto (UTF-8), formatos JPEG e MP3, TLS (cifra).</div></div>
+    <div class="layer" style="--lc:#00838f"><button class="lh"><span class="ln">5</span><b>Sessão</b><small>Abre, mantém e encerra conversas</small></button>
+      <div class="ld"><b>Função:</b> controla o “diálogo” entre dois programas: iniciar, manter e finalizar a sessão.<br><b>Exemplo:</b> manter você logado enquanto usa um sistema.</div></div>
+    <div class="layer" style="--lc:#2e7d32"><button class="lh"><span class="ln">4</span><b>Transporte</b><small>Entrega entre programas (portas)</small></button>
+      <div class="ld"><b>Função:</b> leva os dados de um programa até outro programa, usando <b>portas</b>. Pode dividir a mensagem em partes e, no caso do TCP, confirmar o recebimento.<br><b>Unidade de dados:</b> segmento (TCP) ou datagrama (UDP).<br><b>Protocolos:</b> TCP, UDP.</div></div>
+    <div class="layer" style="--lc:#ef6c00"><button class="lh"><span class="ln">3</span><b>Rede</b><small>Endereços IP e escolha do caminho</small></button>
+      <div class="ld"><b>Função:</b> usa o endereço lógico (IP) para levar os dados entre redes diferentes e escolhe a melhor rota.<br><b>Unidade de dados:</b> pacote.<br><b>Protocolos:</b> IP, ICMP. <b>Dispositivo:</b> roteador.</div></div>
+    <div class="layer" style="--lc:#c62828"><button class="lh"><span class="ln">2</span><b>Enlace de dados</b><small>Entrega dentro da mesma rede (MAC)</small></button>
+      <div class="ld"><b>Função:</b> leva os dados de um equipamento ao vizinho direto, usando o endereço físico (<b>MAC</b>) e verificando erros.<br><b>Unidade de dados:</b> quadro (<i>frame</i>).<br><b>Exemplos:</b> Ethernet, Wi-Fi. <b>Dispositivos:</b> switch, placa de rede, ponto de acesso.</div></div>
+    <div class="layer" style="--lc:#37474f"><button class="lh"><span class="ln">1</span><b>Física</b><small>Cabos, sinais elétricos, luz e ondas de rádio</small></button>
+      <div class="ld"><b>Função:</b> transmite os <b>bits</b> (0 e 1) pelo meio físico como sinais elétricos, luz ou ondas de rádio.<br><b>Exemplos:</b> cabo UTP, fibra óptica, conectores, hub.</div></div>
+  </div>
+  <div class="box dica"><div class="ic">✅</div><div><h5>Dica para decorar</h5><p>Do <b>7 ao 1</b>: <b>A</b>luno <b>P</b>ergunta <b>S</b>e <b>T</b>erá <b>R</b>esultado <b>E</b>m <b>F</b>evereiro. (Aplicação, Apresentação, Sessão, Transporte, Rede, Enlace, Física.) Invente a sua frase se preferir.</p></div></div>
+
+  <h3 id="c2-enc">Encapsulamento: o “embrulho” dos dados</h3>
+  <p>Quando você envia uma mensagem, ela <b>desce</b> pelas camadas do emissor. Em cada camada, o sistema coloca um <b>cabeçalho</b> com informações de controle. Isso se chama <b>encapsulamento</b>. No receptor acontece o contrário: o <b>desencapsulamento</b>, em que cada camada tira o seu cabeçalho e entrega o conteúdo para a de cima.</p>
+  <div class="box analogia"><div class="ic">💡</div><div><h5>Pense assim...</h5><p>É como embrulhar um presente em várias caixas, uma dentro da outra. Cada caixa tem uma etiqueta com informações diferentes. Quem recebe abre uma caixa de cada vez.</p></div></div>
+  <p><b>Veja passo a passo</b> (clique em “Próximo passo”):</p>
+  <div class="enc" id="enc">
+    <div class="enc-view" id="encView"></div>
+    <p class="enc-txt" id="encTxt"></p>
+    <button id="encNext">Próximo passo ▶</button> <button id="encReset" class="alt">Reiniciar</button>
+  </div>
+
+  <!-- 2.2 -->
+  <h3 id="c2-tcp">2.2 Visão geral da arquitetura TCP/IP</h3>
+  <p>O <b>TCP/IP</b> é o conjunto de protocolos que realmente faz a Internet funcionar. Ele é mais simples que o OSI e tem <b>4 camadas</b>:</p>
+  <table>
+    <tr><th>Camada TCP/IP</th><th>Função em uma frase</th><th>Exemplos</th><th>Equivale no OSI</th></tr>
+    <tr><td><b>Aplicação</b></td><td>Serviços usados pelos programas.</td><td>HTTP, DNS, SMTP, SSH</td><td>7, 6 e 5</td></tr>
+    <tr><td><b>Transporte</b></td><td>Entrega entre programas, por portas.</td><td>TCP, UDP</td><td>4</td></tr>
+    <tr><td><b>Internet</b></td><td>Endereçamento IP e roteamento entre redes.</td><td>IP, ICMP, ARP*</td><td>3</td></tr>
+    <tr><td><b>Acesso à rede</b></td><td>Entrega no mesmo enlace e transmissão dos bits.</td><td>Ethernet, Wi-Fi</td><td>2 e 1</td></tr>
+  </table>
+  <p style="font-size:14px;color:var(--suave)">* O ARP liga endereços IP a endereços MAC. Por isso é visto na fronteira entre as camadas de Internet e de Acesso à rede. Estudaremos isso no capítulo 4.</p>
+  <div class="box atencao"><div class="ic">⚠️</div><div><h5>Atenção</h5><p>Alguns livros, como o de Kurose e Ross, dividem o TCP/IP em <b>5 camadas</b> (separando Enlace e Física). Nesta disciplina usamos as <b>4 camadas</b> do plano de ensino, mas é bom reconhecer as duas formas nas provas e nos livros.</p></div></div>
+
+  <h3>OSI ou TCP/IP: qual é o certo?</h3>
+  <p>Os dois! O <b>OSI</b> é um <b>modelo de referência</b>: serve para estudar, comparar e conversar sobre redes. O <b>TCP/IP</b> é a <b>pilha de protocolos realmente usada</b> na Internet. Na prática, os técnicos usam o TCP/IP para entender a Internet e a numeração do OSI para dizer “o problema está na camada 3”.</p>
+  <div class="box exemplo"><div class="ic">📌</div><div><h5>Exemplo: onde está o problema?</h5><p>• Cabo de rede solto → <b>camada 1 (Física)</b>.<br>• Computador sem IP ou com IP errado → <b>camada 3 (Rede)</b>.<br>• O ping funciona, mas o site não abre → olhe a <b>camada 7 (Aplicação)</b>, por exemplo o DNS.</p></div></div>
+
+  <!-- ATIVIDADE DESPLUGADA -->
+  <div class="lab" id="c2-lab">
+    <h3>🧑‍🤝‍🧑 Atividade desplugada – O correio em camadas</h3>
+    <p><b>Objetivo:</b> viver o encapsulamento sem computador. <b>Materiais:</b> papel, 3 envelopes por equipe e caneta. <b>Equipes:</b> grupos de 5 alunos, divididos em “emissor” e “receptor”.</p>
+    <ol class="steps">
+      <li><b>Aplicação:</b> o aluno 1 escreve uma mensagem curta para a outra equipe.</li>
+      <li><b>Transporte:</b> o aluno 2 numera as partes da mensagem (1/2, 2/2) e escreve o “programa de destino” (porta), por exemplo “Chat”.</li>
+      <li><b>Rede:</b> o aluno 3 coloca em um envelope o endereço do destinatário final (como o IP).</li>
+      <li><b>Enlace:</b> o aluno 4 coloca esse envelope em outro envelope, com o nome do “vizinho” que vai receber primeiro (como o MAC).</li>
+      <li><b>Física:</b> o aluno 5 leva o envelope até a outra equipe.</li>
+      <li><b>Receptor:</b> a outra equipe desfaz tudo na ordem inversa e lê a mensagem.</li>
+    </ol>
+    <p><b>Para discutir:</b> o que acontece se o aluno 4 errar o nome do vizinho? E se o aluno 3 errar o endereço final? Em que camada está cada erro?</p>
+  </div>
+
+  <div class="lab" id="c2-lab2">
+    <h3>🧪 Laboratório 3 – Vendo as camadas no Wireshark</h3>
+    <p><b>Objetivo:</b> ver na prática os cabeçalhos de cada camada em pacotes reais. <b>Materiais:</b> computador com Wireshark instalado e acesso à rede.</p>
+    <ol class="steps">
+      <li><b>Abra o Wireshark</b> e escolha a interface de rede ativa (a que mostra tráfego, normalmente Wi-Fi ou Ethernet). Clique para iniciar a captura.</li>
+      <li><b>Filtre o ping.</b> Na barra de filtro digite <code>icmp</code> e aperte Enter. Em seguida, no terminal, rode:
+<pre><button class="cp">Copiar</button><code>ping -c 4 8.8.8.8      # Linux
+ping -n 4 8.8.8.8      # Windows</code></pre></li>
+      <li><b>Abra um pacote</b> e expanda as linhas do painel central. Anote quais camadas aparecem: <code>Frame</code> (bits), <code>Ethernet II</code> (enlace), <code>Internet Protocol</code> (rede) e <code>ICMP</code>. Repare que o ICMP <b>não tem</b> camada de transporte.</li>
+      <li><b>Filtre o DNS.</b> Troque o filtro para <code>dns</code>, abra um site no navegador e observe um pacote. Agora aparece também <code>User Datagram Protocol</code> (transporte) e <code>Domain Name System</code> (aplicação).</li>
+      <li><b>Complete a tabela</b> no caderno: para cada protocolo visto, escreva a camada do TCP/IP e a camada do OSI.</li>
+    </ol>
+    <div class="box dica"><div class="ic">✅</div><div><h5>Alternativa sem Wireshark</h5><p>No <b>Cisco Packet Tracer</b>, entre no <b>modo Simulação</b>, envie um ping entre dois PCs e clique em um pacote. A janela mostra as camadas do OSI sendo percorridas, uma por uma.</p></div></div>
+  </div>
+
+  <div class="resumo">
+    <h3>📝 Resumo do capítulo</h3>
+    <ul>
+      <li>Padrões permitem que equipamentos de fabricantes diferentes conversem entre si.</li>
+      <li>Dividir a rede em camadas facilita o aprendizado, a troca de tecnologias e a busca por defeitos.</li>
+      <li>O OSI tem 7 camadas (Aplicação, Apresentação, Sessão, Transporte, Rede, Enlace, Física) e é um modelo de referência.</li>
+      <li>O TCP/IP tem 4 camadas (Aplicação, Transporte, Internet, Acesso à rede) e é o que a Internet usa.</li>
+      <li>Encapsulamento: cada camada adiciona seu cabeçalho ao descer. Desencapsulamento: cada camada remove o seu ao subir.</li>
+      <li>Unidades de dados: mensagem, segmento, pacote, quadro e bits.</li>
+    </ul>
+  </div>
+
+  <h3 id="c2-quiz">🧠 Quiz do capítulo 2</h3>
+  <div class="quiz">
+    <div class="q"><p>1. Qual camada do modelo OSI cuida dos endereços IP e da escolha do caminho entre redes?</p>
+      <button class="opt">a) Física</button><button class="opt">b) Enlace</button><button class="opt" data-ok="1">c) Rede</button><button class="opt">d) Transporte</button>
+      <div class="fb">A camada de <b>Rede</b> (3) usa o IP para levar pacotes entre redes diferentes. O roteador trabalha aqui.</div></div>
+    <div class="q"><p>2. Como se chama a unidade de dados da camada de Enlace?</p>
+      <button class="opt">a) Bit</button><button class="opt" data-ok="1">b) Quadro</button><button class="opt">c) Pacote</button><button class="opt">d) Segmento</button>
+      <div class="fb">Enlace → <b>quadro</b>. Rede → pacote. Transporte → segmento. Física → bits.</div></div>
+    <div class="q"><p>3. O processo de adicionar um cabeçalho a cada camada, enquanto os dados descem, chama-se:</p>
+      <button class="opt">a) Desencapsulamento</button><button class="opt">b) Roteamento</button><button class="opt" data-ok="1">c) Encapsulamento</button><button class="opt">d) Comutação</button>
+      <div class="fb">É o <b>encapsulamento</b>, o “embrulho” do presente. O contrário (ao receber) é o desencapsulamento.</div></div>
+    <div class="q"><p>4. Qual camada do TCP/IP reúne as camadas 7, 6 e 5 do OSI?</p>
+      <button class="opt">a) Transporte</button><button class="opt">b) Internet</button><button class="opt" data-ok="1">c) Aplicação</button><button class="opt">d) Acesso à rede</button>
+      <div class="fb">No TCP/IP, Aplicação, Apresentação e Sessão do OSI ficam juntas na camada de <b>Aplicação</b>.</div></div>
+    <div class="q"><p>5. O cabo de rede de um computador foi arrancado da tomada. Em qual camada do OSI está o problema?</p>
+      <button class="opt" data-ok="1">a) Camada 1 (Física)</button><button class="opt">b) Camada 3 (Rede)</button><button class="opt">c) Camada 4 (Transporte)</button><button class="opt">d) Camada 7 (Aplicação)</button>
+      <div class="fb">Cabo e sinal são assunto da camada <b>Física</b>. Sempre comece a investigar por ela.</div></div>
+    <div class="q"><p>6. Qual afirmação descreve melhor a diferença entre OSI e TCP/IP?</p>
+      <button class="opt">a) O OSI é mais usado na Internet que o TCP/IP</button><button class="opt" data-ok="1">b) O OSI é um modelo de referência; o TCP/IP é a pilha de protocolos usada na Internet</button><button class="opt">c) O TCP/IP tem 7 camadas e o OSI tem 4</button><button class="opt">d) Não há diferença</button>
+      <div class="fb">O OSI serve para estudar e comparar. O TCP/IP é o que está de fato implementado em computadores e roteadores.</div></div>
+  </div>
+  <div class="score"></div>
+
+  <h3>✍️ Questões abertas</h3>
+  <div class="open"><p><b>1.</b> Explique o encapsulamento usando a analogia da carta ou do presente embrulhado.</p>
+    <button>Ver resposta</button><div class="answer">Ao descer pelas camadas, cada uma coloca seu “envelope” (cabeçalho) em volta dos dados: transporte (portas), rede (endereço IP) e enlace (endereço MAC). O receptor abre um envelope por camada, na ordem inversa, até chegar à mensagem original.</div></div>
+  <div class="open"><p><b>2.</b> Em qual camada do OSI atuam o switch e o roteador? Por quê?</p>
+    <button>Ver resposta</button><div class="answer">O switch atua na camada 2 (Enlace), pois decide pelo endereço MAC. O roteador atua na camada 3 (Rede), pois decide pelo endereço IP e liga redes diferentes.</div></div>
+  <div class="open"><p><b>3.</b> O ping para o roteador funciona, mas o navegador não abre nenhum site pelo nome. Em qual camada você investigaria primeiro e por quê?</p>
+    <button>Ver resposta</button><div class="answer">Na camada de Aplicação (7), no serviço DNS, que traduz nomes em endereços IP. Como o ping responde, as camadas de baixo (física, enlace e rede) estão funcionando.</div></div>
+</section>
+<section class="chapter" id="cap3"><div class="chap-head"><div class="chap-num" style="background:var(--c3)">3</div><div><small>Capítulo 3</small><h2>Camada de acesso à rede</h2></div></div>
+  <div class="soon-card">⏳ Em construção. Conteúdo: família Ethernet (IEEE 802.3) e introdução às redes sem fio (IEEE 802.11).</div></section>
+<section class="chapter" id="cap4"><div class="chap-head"><div class="chap-num" style="background:var(--c4)">4</div><div><small>Capítulo 4</small><h2>Camada de internet TCP/IP</h2></div></div>
+  <div class="soon-card">⏳ Em construção. Conteúdo: IP (IPv4 e IPv6), endereçamento, roteamento estático e dinâmico, ARP e ICMP.</div></section>
+<section class="chapter" id="cap5"><div class="chap-head"><div class="chap-num" style="background:var(--c5)">5</div><div><small>Capítulo 5</small><h2>Camada de transporte TCP/IP</h2></div></div>
+  <div class="soon-card">⏳ Em construção. Conteúdo: protocolos TCP e UDP.</div></section>
+<section class="chapter" id="cap6"><div class="chap-head"><div class="chap-num" style="background:var(--c6)">6</div><div><small>Capítulo 6</small><h2>Camada de aplicação TCP/IP</h2></div></div>
+  <div class="soon-card">⏳ Em construção. Conteúdo: SMTP, POP, IMAP, HTTP, DNS, DHCP, FTP, TELNET e SSH.</div></section>
+<section class="chapter" id="cap7"><div class="chap-head"><div class="chap-num" style="background:var(--c7)">7</div><div><small>Capítulo 7</small><h2>Segurança de redes</h2></div></div>
+  <div class="soon-card">⏳ Em construção. Conteúdo: segurança da informação, ameaças, ataques, vulnerabilidades, anti-malware, firewall, IPS/IDS e VPN.</div></section>
+
+<section id="refs">
+  <h2>📚 Referências</h2>
+  <p class="ref">Kurose, J. F., &amp; Ross, K. W. (2021). <i>Redes de computadores e a Internet: uma abordagem top-down</i> (8. ed.). Bookman.</p>
+  <p class="ref">Tanenbaum, A. S., Feamster, N., &amp; Wetherall, D. J. (2021). <i>Redes de computadores</i> (6. ed.). Bookman.</p>
+  <footer>Apostila de Redes de Computadores · IFRN – Campus João Câmara</footer>
+</section>
+</div>
+</main>
+<button class="back-top" id="top" aria-label="Voltar ao topo">↑</button>
+
+<script>
+(function(){
+  // --- Topologias interativas ---
+  var T=[
+    {k:'Estrela',n:[[150,150,'SW'],[150,35],[255,95],[255,205],[150,265],[45,205],[45,95]],e:[[0,1],[0,2],[0,3],[0,4],[0,5],[0,6]],
+      p:'Fácil de instalar; falha em um cabo afeta só um computador.',c:'O switch central é ponto único de falha; gasta mais cabo.'},
+    {k:'Barramento',n:[[40,150],[110,150],[180,150],[250,150]],e:[[0,1],[1,2],[2,3]],bus:true,
+      p:'Barato e simples, usava pouco cabo.',c:'Se o cabo principal rompe, toda a rede cai; difícil achar defeitos.'},
+    {k:'Anel',n:[[150,40],[255,115],[215,235],[85,235],[45,115]],e:[[0,1],[1,2],[2,3],[3,4],[4,0]],
+      p:'Acesso organizado: cada dispositivo passa o dado ao próximo.',c:'Uma quebra pode interromper o anel inteiro (no anel simples).'},
+    {k:'Malha',n:[[150,40],[255,115],[215,235],[85,235],[45,115]],e:[[0,1],[0,2],[0,3],[0,4],[1,2],[1,3],[1,4],[2,3],[2,4],[3,4]],
+      p:'Muito resistente: se um caminho cai, existem outros.',c:'Caro e complexo: muitos cabos e conexões.'},
+    {k:'Árvore',n:[[150,40,'SW'],[75,125,'SW'],[225,125,'SW'],[35,225],[115,225],[185,225],[265,225]],e:[[0,1],[0,2],[1,3],[1,4],[2,5],[2,6]],
+      p:'Organiza bem redes grandes em níveis (como em prédios).',c:'Se o nó de cima falha, os de baixo ficam isolados.'}
+  ];
+  var tabs=document.getElementById('topoTabs'),panels=document.getElementById('topoPanels');
+  T.forEach(function(t,i){
+    var b=document.createElement('button');b.textContent=t.k;if(!i)b.className='on';tabs.appendChild(b);
+    var svg='<svg viewBox="0 0 300 300" role="img" aria-label="Topologia '+t.k+'">';
+    if(t.bus)svg+='<line x1="20" y1="150" x2="280" y2="150" stroke="#546e7a" stroke-width="5"/>';
+    t.e.forEach(function(e){var a=t.n[e[0]],c=t.n[e[1]];if(!t.bus)svg+='<line x1="'+a[0]+'" y1="'+a[1]+'" x2="'+c[0]+'" y2="'+c[1]+'" stroke="#90a4ae" stroke-width="3"/>';});
+    t.n.forEach(function(n,j){
+      var sw=n[2]==='SW';
+      if(t.bus)svg+='<line x1="'+n[0]+'" y1="150" x2="'+n[0]+'" y2="'+(j%2?200:100)+'" stroke="#90a4ae" stroke-width="3"/>';
+      var y=t.bus?(j%2?215:85):n[1],x=n[0];
+      svg+= sw? '<rect x="'+(x-20)+'" y="'+(y-14)+'" width="40" height="28" rx="6" fill="#2e7d32"/><text x="'+x+'" y="'+(y+5)+'" text-anchor="middle" font-size="12" fill="#fff" font-weight="700">SW</text>'
+              : '<circle cx="'+x+'" cy="'+y+'" r="17" fill="#e3f2fd" stroke="#1565c0" stroke-width="3"/><text x="'+x+'" y="'+(y+5)+'" text-anchor="middle" font-size="13">💻</text>';
+    });
+    svg+='</svg>';
+    var d=document.createElement('div');d.className='topo-panel'+(i?'':' on');
+    d.innerHTML='<h4 style="margin:0 0 6px">'+t.k+'</h4>'+svg+'<div class="pc"><div class="pro"><b>👍 Vantagens</b><br>'+t.p+'</div><div class="con"><b>👎 Desvantagens</b><br>'+t.c+'</div></div>';
+    panels.appendChild(d);
+    b.onclick=function(){[].forEach.call(tabs.children,function(x){x.classList.remove('on')});[].forEach.call(panels.children,function(x){x.classList.remove('on')});b.classList.add('on');d.classList.add('on');};
+  });
+
+  // --- Quiz ---
+  [].forEach.call(document.querySelectorAll('.quiz'),function(quiz){
+    var qs=quiz.querySelectorAll('.q'),total=qs.length,score=quiz.nextElementSibling,done=0,hits=0;
+    [].forEach.call(qs,function(q){
+      var answered=false;
+      [].forEach.call(q.querySelectorAll('.opt'),function(o){
+        o.onclick=function(){
+          if(answered)return;answered=true;done++;
+          var ok=o.dataset.ok==='1';if(ok)hits++;
+          o.classList.add(ok?'ok':'no');
+          if(!ok){q.querySelector('[data-ok="1"]').classList.add('ok');}
+          q.querySelector('.fb').classList.add('show');
+          if(done===total)score.textContent='Você acertou '+hits+' de '+total+(hits===total?' 🎉 Excelente!':hits>=total*0.6?' 👏 Muito bem!':' 📖 Releia o capítulo e tente de novo.');
+        };
+      });
+    });
+  });
+
+  // --- Camadas OSI (sanfona) ---
+  [].forEach.call(document.querySelectorAll('.lh'),function(b){
+    b.onclick=function(){b.parentNode.classList.toggle("exp")};
+  });
+
+  // --- Encapsulamento passo a passo ---
+  var encView=document.getElementById('encView'),encTxt=document.getElementById('encTxt'),step=0;
+  var steps=[
+    ['<div class="eb dados"><span class="data">Dados</span></div>','<b>Camada de Aplicação.</b> Tudo começa com a mensagem do programa, por exemplo, o pedido de uma página web.'],
+    ['<div class="eb seg"><span class="h4">Cab. Transporte</span><div class="eb dados"><span class="data">Dados</span></div></div>','<b>Camada de Transporte.</b> Adiciona o cabeçalho com as <b>portas</b> de origem e destino. O resultado é o <b>segmento</b>.'],
+    ['<div class="eb pac"><span class="h3">Cab. IP</span><div class="eb seg"><span class="h4">Cab. Transp.</span><div class="eb dados"><span class="data">Dados</span></div></div></div>','<b>Camada de Internet (Rede).</b> Adiciona o cabeçalho com os <b>endereços IP</b>. O resultado é o <b>pacote</b>.'],
+    ['<div class="eb qua"><span class="h2">Cab. Enlace</span><div class="eb pac"><span class="h3">Cab. IP</span><div class="eb seg"><span class="h4">Cab. Transp.</span><div class="eb dados"><span class="data">Dados</span></div></div></div><span class="h2">Final</span></div>','<b>Camada de Acesso à rede.</b> Adiciona o cabeçalho com os <b>endereços MAC</b> e um final para checar erros. O resultado é o <b>quadro</b>.'],
+    ['<div class="eb dados"><span class="bits">0101 1100 1010 0111 …</span></div>','<b>Meio físico.</b> O quadro vira <b>bits</b> (sinais elétricos, luz ou ondas de rádio) e viaja até o destino. Lá, o caminho é refeito ao contrário: é o desencapsulamento.']
+  ];
+  function drawEnc(){encView.innerHTML=steps[step][0];encTxt.innerHTML=steps[step][1];document.getElementById('encNext').disabled=step===steps.length-1;}
+  document.getElementById('encNext').onclick=function(){if(step<steps.length-1){step++;drawEnc();}};
+  document.getElementById('encReset').onclick=function(){step=0;drawEnc();};
+  drawEnc();
+  window.addEventListener('beforeprint',function(){step=3;drawEnc();});
+
+  // --- Respostas abertas ---
+  [].forEach.call(document.querySelectorAll('.open button'),function(b){
+    b.onclick=function(){var a=b.nextElementSibling;a.classList.toggle('show');b.textContent=a.classList.contains('show')?'Ocultar resposta':'Ver resposta';};
+  });
+
+  // --- Copiar código ---
+  [].forEach.call(document.querySelectorAll('pre .cp'),function(b){
+    b.onclick=function(){
+      var t=b.parentNode.querySelector('code').innerText;
+      var ok=function(){b.textContent='Copiado!';setTimeout(function(){b.textContent='Copiar'},1400)};
+      if(navigator.clipboard)navigator.clipboard.writeText(t).then(ok,ok);else ok();
+    };
+  });
+
+  // --- Menu, progresso, voltar ao topo, item ativo ---
+  var sb=document.getElementById('sidebar');
+  document.getElementById('menuBtn').onclick=function(){sb.classList.toggle('open')};
+  [].forEach.call(sb.querySelectorAll('a'),function(a){a.addEventListener('click',function(){sb.classList.remove('open')})});
+  var prog=document.getElementById('progress'),topb=document.getElementById('top');
+  window.addEventListener('scroll',function(){
+    var h=document.documentElement,p=h.scrollTop/(h.scrollHeight-h.clientHeight)*100;
+    prog.style.width=p+'%';topb.style.display=h.scrollTop>600?'block':'none';
+  });
+  topb.onclick=function(){window.scrollTo({top:0})};
+  var links=[].slice.call(sb.querySelectorAll('.nav > a'));
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){links.forEach(function(l){l.classList.toggle('on',l.getAttribute('href')==='#'+e.target.id)})}})},{rootMargin:'-20% 0px -70% 0px'});
+  document.querySelectorAll('header.hero, section[id]').forEach(function(s){io.observe(s)});
+
+  // --- Gabarito no PDF ---
+  var ans=document.getElementById('ans');
+  ans.onchange=function(){document.body.classList.toggle('print-answers',ans.checked)};
+  window.addEventListener('beforeprint',function(){document.body.classList.toggle('print-answers',ans.checked)});
+})();
+</script>
+</body>
+</html>
