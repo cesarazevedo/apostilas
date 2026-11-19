@@ -3,6 +3,7 @@
 Apostilas digitais das disciplinas do Prof. César Azevedo (IFRN – Campus João Câmara).
 
 - [Redes de Computadores](redes/) · [plano de aula (professor)](redes/professor.html)
+- [Sistemas Operacionais de Redes](so/) (capítulo 1 pronto)
 
 ## Estrutura
 
@@ -12,7 +13,7 @@ assets/apostila.css   estilo compartilhado por todas as apostilas
 assets/apostila.js    recursos compartilhados: tema escuro, quiz, progresso, glossário, acessibilidade
 sw.js, manifest...    modo offline e instalação como aplicativo
 redes/                index.html (conteúdo), redes.js (simuladores), glossario.js
-so/                   Sistemas Operacionais (em construção)
+so/                   Sistemas Operacionais de Redes (index.html, so.js, glossario.js)
 ```
 
 ## Nova disciplina

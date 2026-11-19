@@ -4,7 +4,7 @@
   var KEY='ap:'+CURSO,state={done:{},quiz:{}};
   try{var s=JSON.parse(localStorage.getItem(KEY));if(s&&s.done&&s.quiz)state=s;}catch(e){}
   function save(){try{localStorage.setItem(KEY,JSON.stringify(state))}catch(e){}}
-  var chapters=[].slice.call(document.querySelectorAll('section.chapter'));
+  var chapters=[].slice.call(document.querySelectorAll('section.chapter:not(.soon-ch)'));
   function chNum(id){return id.replace(/\D/g,'')}
 
   // --- Acessibilidade básica ---

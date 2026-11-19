@@ -1,5 +1,325 @@
 <!DOCTYPE html>
-<html lang="pt-BR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Sistemas Operacionais – em construção</title>
-<style>body{margin:0;font-family:"Segoe UI",system-ui,Arial,sans-serif;display:grid;place-items:center;min-height:100vh;background:#f8faf8;color:#1f2937;text-align:center}a{color:#1565c0}@media(prefers-color-scheme:dark){body{background:#0f1514;color:#e5e7eb}a{color:#64b5f6}}</style></head>
-<body><div><h1>🖥️ Sistemas Operacionais</h1><p>Apostila em construção.</p><p><a href="../">← Voltar às apostilas</a></p></div></body></html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Apostila de Sistemas Operacionais de Redes – IFRN</title>
+<script>try{var t=localStorage.getItem("tema");if(!t)t=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";document.documentElement.dataset.theme=t}catch(e){}</script>
+<link rel="stylesheet" href="../assets/apostila.css">
+<link rel="manifest" href="../manifest.webmanifest">
+<meta name="theme-color" content="#1565c0">
+<style>
+:root{
+  --c1:#1565c0; --c2:#6a1b9a; --c3:#ef6c00; --c4:#00838f;
+  --verde:#1565c0; --verde-claro:#e3f2fd;
+}
+html[data-theme=dark]{--verde-claro:#10263a}
+.hero{background:linear-gradient(135deg,#0d47a1,#1565c0 55%,#00838f)}
+.nm-modes{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 12px}
+.nm-modes button{border:1px solid var(--borda);background:transparent;color:var(--texto);border-radius:999px;padding:7px 14px;font-size:15px;cursor:pointer;font-family:inherit}
+.nm-modes button.on{background:var(--cc);color:#fff;border-color:var(--cc)}
+#nmSvg{width:100%;max-width:520px;height:auto;display:block;margin:6px auto}
+#nmSvg text{font-family:inherit;fill:#1f2937}
+.nm-tab td:first-child{width:38%}
+.ok-y{color:#2e7d32;font-weight:700}.ok-n{color:#c62828;font-weight:700}.ok-w{color:#b26a00;font-weight:700}
+@page{@bottom-center{content:"Sistemas Operacionais de Redes – IFRN · página " counter(page);font-size:9pt;color:#777}}
+</style>
+</head>
+<body data-curso="so" data-root="../">
+<div class="progress" id="progress"></div>
+<div class="topbar"><button class="menu-btn" id="menuBtn" aria-label="Abrir menu">☰</button><b>Sistemas Operacionais de Redes</b></div>
+
+<aside class="sidebar" id="sidebar">
+  <div class="brand"><div class="logo">🖥️</div><div><strong>Sistemas Operacionais de Redes</strong><small>IFRN · Campus João Câmara</small></div></div>
+  <nav class="nav" id="nav">
+    <a href="#inicio"><span class="n" style="background:#455a64">★</span>Início e mapa</a>
+    <a href="#cap1"><span class="n" style="background:var(--c1)">1</span>Virtualização</a>
+    <div class="sub">
+      <a href="#c1-intro">O que é virtualizar</a>
+      <a href="#c1-soft">Softwares de virtualização</a>
+      <a href="#c1-redes">Redes virtualizadas</a>
+      <a href="#c1-cont">Virtualização × containers</a>
+      <a href="#c1-lab">Atividade e laboratórios</a>
+      <a href="#c1-quiz">Quiz e exercícios</a>
+    </div>
+    <a href="#cap2" class="soon"><span class="n" style="background:var(--c2)">2</span>Windows Server</a>
+    <a href="#cap3" class="soon"><span class="n" style="background:var(--c3)">3</span>Linux</a>
+    <a href="#cap4" class="soon"><span class="n" style="background:var(--c4)">4</span>Computação em nuvem</a>
+    <a href="#refs"><span class="n" style="background:#455a64">📚</span>Referências</a>
+  </nav>
+  <div class="tools">
+    <button class="theme-btn" id="themeBtn">🌙 Modo escuro</button>
+    <button onclick="window.print()">🖨️ Salvar em PDF</button>
+    <label><input type="checkbox" id="ans"> Incluir gabarito no PDF</label>
+  </div>
+</aside>
+
+<main>
+<header class="hero" id="inicio">
+  <div class="wrap">
+    <span class="tag">Apostila digital</span>
+    <h1>Sistemas Operacionais de Redes</h1>
+    <p>Serviços de rede, Windows Server, Linux, virtualização e computação em nuvem</p>
+    <p>Prof. César Azevedo · IFRN – Campus João Câmara</p>
+    <div class="meta"><span>⏱️ 90 h</span><span>📖 4 capítulos</span><span>🧪 Práticas em laboratório</span></div>
+  </div>
+</header>
+
+<div class="wrap">
+<section>
+  <h2>Como usar esta apostila</h2>
+  <p>Cada capítulo segue o mesmo caminho: <b>objetivos → explicação com analogias → prática → resumo → quiz</b>. Aqui a prática é central: você vai <b>instalar e administrar servidores</b>, e tudo será feito em <b>máquinas virtuais</b>, sem risco para o seu computador. Para guardar uma cópia, use o botão <b>Salvar em PDF</b> no menu.</p>
+  <div class="map">
+    <div class="card" style="--cc:var(--c1)"><b>1 · Virtualização</b><span>Máquinas virtuais, hipervisores, redes virtuais e containers.</span><div class="st">✅ Disponível</div></div>
+    <div class="card" style="--cc:var(--c2)"><b>2 · Windows Server</b><span>Instalação, Active Directory, políticas de grupo, DNS e DHCP.</span><div class="st">⏳ Em breve</div></div>
+    <div class="card" style="--cc:var(--c3)"><b>3 · Linux</b><span>Comandos, usuários, permissões, pacotes e serviços (DNS, DHCP, SSH, SMB, web).</span><div class="st">⏳ Em breve</div></div>
+    <div class="card" style="--cc:var(--c4)"><b>4 · Computação em nuvem</b><span>IaaS, PaaS, SaaS, tipos de nuvem e provedores.</span><div class="st">⏳ Em breve</div></div>
+  </div>
+</section>
+
+<!-- ================= CAPÍTULO 1 ================= -->
+<section class="chapter" id="cap1" style="--cc:var(--c1)">
+  <div class="chap-head"><div class="chap-num" style="background:var(--c1)">1</div><div><small>Capítulo 1</small><h2>Virtualização</h2></div></div>
+
+  <div class="obj"><h4>🎯 Ao final deste capítulo, você será capaz de:</h4>
+    <ul>
+      <li>Explicar o que é virtualização e quais são suas vantagens.</li>
+      <li>Diferenciar hipervisor tipo 1 e tipo 2 e citar os principais softwares de virtualização.</li>
+      <li>Escolher o modo de rede de uma máquina virtual (NAT, ponte, rede interna, somente hospedeiro).</li>
+      <li>Diferenciar máquinas virtuais de containers.</li>
+      <li>Criar uma máquina virtual e ligar duas delas em uma rede interna.</li>
+    </ul>
+  </div>
+
+  <h3 id="c1-intro">1.1 O que é virtualizar?</h3>
+  <p><b>Virtualização</b> é usar um único computador físico para executar <b>vários computadores “de mentira”</b>, chamados <b>máquinas virtuais</b> (VMs). Cada VM tem o seu próprio sistema operacional, disco, memória e placa de rede, e acha que é um computador de verdade.</p>
+  <div class="box analogia"><div class="ic">💡</div><div><h5>Pense assim...</h5><p>É como um <b>prédio de apartamentos</b>. O prédio (o computador físico) é um só, mas cada apartamento (VM) tem sua porta, sua cozinha e seus moradores, que não mexem nos vizinhos. Quem administra a divisão do prédio (água, luz, andares) é o <b>hipervisor</b>.</p></div></div>
+
+  <table>
+    <tr><th>Termo</th><th>Significado</th></tr>
+    <tr><td><b>Hospedeiro</b> (<i>host</i>)</td><td>O computador físico, onde a virtualização acontece.</td></tr>
+    <tr><td><b>Convidado</b> (<i>guest</i>)</td><td>A máquina virtual que roda dentro do hospedeiro.</td></tr>
+    <tr><td><b>Hipervisor</b></td><td>O programa que cria as VMs e reparte entre elas os recursos reais (processador, memória, disco, rede).</td></tr>
+    <tr><td><b>Imagem ISO</b></td><td>Um arquivo que é a “cópia do DVD” de instalação do sistema operacional.</td></tr>
+    <tr><td><b>Snapshot</b></td><td>Uma “foto” do estado da VM. Dá para voltar a ela se algo der errado.</td></tr>
+  </table>
+
+  <h3 style="font-size:18px;margin-top:14px">Para que serve? (vantagens)</h3>
+  <ul>
+    <li><b>Aproveitar melhor o hardware:</b> um servidor potente faz o trabalho de vários.</li>
+    <li><b>Testar sem medo:</b> errou? Restaure o snapshot ou apague a VM.</li>
+    <li><b>Isolamento:</b> se uma VM é invadida ou trava, as outras seguem funcionando.</li>
+    <li><b>Praticidade:</b> copiar, clonar e mover uma VM é copiar arquivos.</li>
+    <li><b>Economia:</b> menos máquinas físicas, menos energia e menos espaço.</li>
+  </ul>
+  <div class="box atencao"><div class="ic">⚠️</div><div><h5>Atenção</h5><p>As VMs <b>dividem</b> os recursos do hospedeiro. Se você dá memória demais às VMs, o seu próprio computador fica lento. Use a calculadora abaixo.</p></div></div>
+
+  <h3 style="font-size:18px;margin-top:14px">Hipervisor tipo 1 e tipo 2</h3>
+  <table>
+    <tr><th></th><th>Tipo 1 (<i>bare metal</i>)</th><th>Tipo 2 (<i>hosted</i>)</th></tr>
+    <tr><td><b>Onde roda</b></td><td>Direto sobre o hardware, no lugar de um sistema comum.</td><td>Como um programa dentro de um sistema operacional (Windows, Linux, macOS).</td></tr>
+    <tr><td><b>Desempenho</b></td><td>Melhor: menos camadas.</td><td>Um pouco menor: há o sistema do hospedeiro no meio.</td></tr>
+    <tr><td><b>Uso típico</b></td><td>Servidores e data centers.</td><td>Estudo, testes e desktops.</td></tr>
+    <tr><td><b>Exemplos</b></td><td>VMware ESXi, Proxmox VE, Hyper-V, KVM</td><td>VirtualBox, VMware Workstation</td></tr>
+  </table>
+
+  <div class="tool" id="rc" style="--cc:var(--c1)">
+    <h4 style="margin:0 0 8px">🧮 Quantas VMs cabem no meu computador?</h4>
+    <div class="tool-ctl">
+      Memória do computador: <select id="rcHost" aria-label="Memória do computador em GB"><option>4</option><option selected>8</option><option>16</option><option>32</option><option>64</option></select> GB
+      Memória por VM: <select id="rcVm" aria-label="Memória de cada VM em GB"><option>1</option><option selected>2</option><option>4</option><option>8</option></select> GB
+      Quantidade de VMs: <input id="rcN" type="number" min="1" max="20" value="3" style="width:70px" aria-label="Quantidade de VMs">
+    </div>
+    <div class="meter"><i id="rcBar"></i></div>
+    <p class="enc-txt" id="rcMsg" style="margin-bottom:0"></p>
+  </div>
+  <p style="font-size:14px;color:var(--suave)">Regra prática: reserve para o hospedeiro pelo menos <b>4 GB</b> ou <b>25%</b> da memória, o que for maior.</p>
+
+  <!-- 1.2 -->
+  <h3 id="c1-soft">1.2 Principais softwares de virtualização</h3>
+  <table>
+    <tr><th>Software</th><th>Tipo</th><th>Característica</th></tr>
+    <tr><td><b>VirtualBox</b> (Oracle)</td><td>2</td><td>Gratuito e de código aberto, roda em Windows, Linux e macOS. É o que usaremos nos laboratórios.</td></tr>
+    <tr><td><b>VMware Workstation</b></td><td>2</td><td>Muito usado em desktops. Confira a licença atual antes de usar.</td></tr>
+    <tr><td><b>Hyper-V</b> (Microsoft)</td><td>1</td><td>Vem no Windows (edições Pro, Enterprise e Education) e no Windows Server.</td></tr>
+    <tr><td><b>KVM / QEMU</b></td><td>1</td><td>Já faz parte do kernel do Linux. Base de muitas nuvens.</td></tr>
+    <tr><td><b>Proxmox VE</b></td><td>1</td><td>Plataforma gratuita, baseada em Debian, que gerencia VMs (KVM) e containers pelo navegador.</td></tr>
+    <tr><td><b>VMware ESXi</b></td><td>1</td><td>Hipervisor de data centers, de uso comercial.</td></tr>
+  </table>
+  <div class="box dica"><div class="ic">✅</div><div><h5>Antes de começar</h5><p>A virtualização precisa de suporte do processador (<b>Intel VT-x</b> ou <b>AMD-V</b>), que às vezes vem desligado na BIOS/UEFI. No Windows, abra o Gerenciador de Tarefas → Desempenho → CPU e veja se “Virtualização” está <b>Habilitado</b>.</p></div></div>
+
+  <!-- 1.3 -->
+  <h3 id="c1-redes">1.3 Redes virtualizadas</h3>
+  <p>Toda VM tem uma <b>placa de rede virtual</b>. O hipervisor também cria <b>switches virtuais</b> (que funcionam como o switch que você viu em Redes) para ligar as VMs entre si e ao mundo exterior. O que muda é <b>como</b> a placa da VM é conectada. Estes são os modos do VirtualBox:</p>
+  <div class="box analogia"><div class="ic">💡</div><div><h5>Pense assim...</h5><p>Imagine que cada VM é um morador do prédio. <b>NAT</b> é o morador sair para a rua pela portaria, usando o endereço do prédio (ele vê a rua, mas a rua não o vê). <b>Ponte</b> é ter um endereço próprio na rua, como qualquer casa. <b>Rede interna</b> é um interfone só entre os apartamentos. <b>Somente hospedeiro</b> é um interfone entre os apartamentos e a administração do prédio.</p></div></div>
+  <p>Escolha um modo e veja o que funciona:</p>
+  <div class="tool" id="nm" style="--cc:var(--c1)">
+    <div class="nm-modes" id="nmModes" role="group" aria-label="Modo de rede"></div>
+    <svg id="nmSvg" viewBox="0 0 520 330" role="img" aria-label="Diagrama do modo de rede escolhido"></svg>
+    <p class="enc-txt" id="nmTxt"></p>
+    <table class="tool-tab nm-tab" style="max-width:none"><tbody id="nmTab"></tbody></table>
+  </div>
+  <table>
+    <tr><th>VirtualBox</th><th>Hyper-V (nome parecido)</th><th>Observação</th></tr>
+    <tr><td>NAT</td><td>Default Switch</td><td>A VM sai pela rede do hospedeiro.</td></tr>
+    <tr><td>Placa em ponte (<i>bridge</i>)</td><td>Comutador externo</td><td>A VM entra direto na rede física.</td></tr>
+    <tr><td>Rede interna</td><td>Comutador privado</td><td>Só as VMs conversam entre si.</td></tr>
+    <tr><td>Somente hospedeiro</td><td>Comutador interno</td><td>VMs e hospedeiro conversam, sem Internet.</td></tr>
+  </table>
+  <div class="box dica"><div class="ic">✅</div><div><h5>Como escolher?</h5><p>Precisa só de Internet? <b>NAT</b>. Vai montar um servidor que outros computadores vão acessar? <b>Ponte</b>. Quer um laboratório isolado (ex.: um domínio de teste)? <b>Rede interna</b>. Combinar adaptadores é comum: um em NAT (Internet) e outro em rede interna (laboratório).</p></div></div>
+
+  <!-- 1.4 -->
+  <h3 id="c1-cont">1.4 Virtualização × containers</h3>
+  <p>Uma VM simula <b>um computador inteiro</b>, com sistema operacional próprio. Um <b>container</b> (como os do <b>Docker</b>) isola apenas um <b>programa e suas dependências</b>, <b>compartilhando o kernel</b> do sistema hospedeiro.</p>
+  <div class="box analogia"><div class="ic">💡</div><div><h5>Pense assim...</h5><p>A <b>VM</b> é uma <b>casa inteira</b>, com fundação, encanamento e telhado próprios. O <b>container</b> é um <b>quarto dentro de uma mesma casa</b>: tem sua porta e seus móveis, mas divide o encanamento e o telhado com os outros quartos. Por isso é mais leve e rápido de montar.</p></div></div>
+  <table>
+    <tr><th></th><th>Máquina virtual</th><th>Container</th></tr>
+    <tr><td><b>Sistema operacional</b></td><td>Completo, um por VM</td><td>Compartilha o kernel do hospedeiro</td></tr>
+    <tr><td><b>Tamanho</b></td><td>Gigabytes</td><td>Megabytes</td></tr>
+    <tr><td><b>Inicialização</b></td><td>Minutos (ou dezenas de segundos)</td><td>Segundos</td></tr>
+    <tr><td><b>Isolamento</b></td><td>Forte</td><td>Menor (mesmo kernel)</td></tr>
+    <tr><td><b>Exemplo de uso</b></td><td>Rodar Windows e Linux no mesmo PC; servidores completos</td><td>Empacotar um site ou serviço para rodar igual em qualquer lugar</td></tr>
+  </table>
+  <p>Na prática, os dois se completam: muitos containers rodam <b>dentro</b> de máquinas virtuais.</p>
+
+  <!-- ATIVIDADES / LABS -->
+  <div class="lab" id="c1-lab">
+    <h3>🧑‍🤝‍🧑 Atividade desplugada – O condomínio de máquinas</h3>
+    <p><b>Objetivo:</b> entender o limite de recursos de um hospedeiro. <b>Preparação:</b> o professor desenha no quadro um “servidor” com 16 fichas de memória e 8 fichas de processador.</p>
+    <ol class="steps">
+      <li>Cada equipe recebe pedidos de serviços (site: 2 de memória, banco de dados: 6, e-mail: 4, backup: 2...).</li>
+      <li>As equipes decidem quais “VMs” criar e quantas fichas dar a cada uma, deixando uma reserva para o hospedeiro.</li>
+      <li>O professor sorteia um imprevisto (uma VM pede o dobro de memória; o servidor precisa de manutenção). O que fazer?</li>
+      <li>Fechamento: discutam as vantagens (isolamento, economia) e os riscos (ponto único de falha: se o servidor físico cair, todas caem).</li>
+    </ol>
+
+    <h3>🧪 Laboratório 1 – Instalando o VirtualBox e criando a primeira VM</h3>
+    <ol class="steps">
+      <li><b>Confira a virtualização.</b> No Windows, veja no Gerenciador de Tarefas se ela está habilitada. Se não estiver, ative <b>Intel VT-x</b> ou <b>AMD-V</b> na BIOS/UEFI.</li>
+      <li><b>Instale o VirtualBox</b> (virtualbox.org) e baixe a imagem <b>ISO “netinst”</b> do Debian (debian.org).</li>
+      <li><b>Crie a VM.</b> Clique em <b>Nova</b> e use: nome <code>debian1</code>; tipo <b>Linux / Debian (64-bit)</b>; <b>2 GB</b> de memória; <b>2 CPUs</b>; disco virtual de <b>20 GB</b> (alocado dinamicamente).</li>
+      <li><b>Inicie a VM</b> com a ISO e avance até o menu do instalador. A instalação completa será feita no capítulo 3. Aqui, o objetivo é ver o “computador” ligar.</li>
+      <li><b>Crie um snapshot.</b> No menu da VM, escolha <b>Instantâneos → Tirar</b> e dê o nome <code>inicio</code>.</li>
+      <li><b>Desafio:</b> altere uma configuração da VM, depois <b>restaure o snapshot</b>. O que voltou ao que era? Experimente também <b>clonar</b> a VM (clone completo × vinculado).</li>
+    </ol>
+
+    <h3>🧪 Laboratório 2 – Uma rede interna entre duas VMs</h3>
+    <p><b>Objetivo:</b> ligar duas VMs por um switch virtual e testar a conexão. Use duas VMs com Debian (por exemplo, a <code>debian1</code> e um clone dela).</p>
+    <ol class="steps">
+      <li><b>Configure a rede.</b> Com as VMs desligadas, abra <b>Configurações → Rede → Adaptador 2</b>, ative-o, escolha <b>Rede interna</b> e dê o nome <code>lab</code>, nas duas VMs. Deixe o Adaptador 1 em <b>NAT</b> (para ter Internet).</li>
+      <li><b>Descubra o nome da interface.</b> Dentro de cada VM, rode o comando abaixo. O Adaptador 2 costuma ser <code>enp0s8</code>.
+<pre><button class="cp">Copiar</button><code>ip -br a</code></pre></li>
+      <li><b>Dê IPs às VMs.</b> Na VM 1:
+<pre><button class="cp">Copiar</button><code>sudo ip addr add 192.168.50.1/24 dev enp0s8
+sudo ip link set enp0s8 up</code></pre>
+        Na VM 2, use <code>192.168.50.2/24</code> no lugar do IP acima.</li>
+      <li><b>Teste.</b> Da VM 1:
+<pre><button class="cp">Copiar</button><code>ping 192.168.50.2</code></pre>
+        Deve responder. Esses IPs <b>somem ao reiniciar</b> (a configuração permanente fica para o capítulo 3).</li>
+      <li><b>Desafio 1:</b> pelo Adaptador 2 dá para chegar à Internet? Por quê? (Dica: pense no que é uma rede interna.)</li>
+      <li><b>Desafio 2:</b> troque o Adaptador 2 para <b>Somente hospedeiro</b>, repita os IPs e tente dar ping da <b>VM para o seu computador</b>. O que mudou em relação à rede interna?</li>
+    </ol>
+
+    <h3>🧪 Laboratório 3 (opcional) – Conhecendo containers</h3>
+    <p>Se houver tempo, em uma VM Debian com Internet (adaptador em NAT):</p>
+    <ol class="steps">
+      <li><b>Instale o Docker.</b>
+<pre><button class="cp">Copiar</button><code>sudo apt update
+sudo apt install -y docker.io</code></pre></li>
+      <li><b>Rode o primeiro container.</b>
+<pre><button class="cp">Copiar</button><code>sudo docker run hello-world</code></pre></li>
+      <li><b>Entre em um container Debian</b> e veja o kernel:
+<pre><button class="cp">Copiar</button><code>sudo docker run -it debian:stable bash
+cat /etc/os-release
+uname -r
+exit</code></pre>
+        Compare o <code>uname -r</code> com o da VM (rode também fora do container). O kernel é o <b>mesmo</b>, porque o container não tem kernel próprio.</li>
+      <li><b>Compare.</b> Quanto tempo o container levou para iniciar, em comparação com ligar uma VM?</li>
+    </ol>
+  </div>
+
+  <div class="resumo">
+    <h3>📝 Resumo do capítulo</h3>
+    <ul>
+      <li><b>Virtualização</b> permite rodar várias máquinas virtuais em um só computador físico. O <b>hipervisor</b> reparte os recursos entre elas.</li>
+      <li>Tipo 1 roda direto no hardware (servidores); tipo 2 roda sobre um sistema operacional (estudo e testes).</li>
+      <li>Principais softwares: VirtualBox, VMware, Hyper-V, KVM/QEMU, Proxmox.</li>
+      <li>Modos de rede: <b>NAT</b> (sai para a Internet), <b>ponte</b> (entra na rede física), <b>rede interna</b> (só entre VMs) e <b>somente hospedeiro</b> (VMs e seu computador, sem Internet).</li>
+      <li>Containers compartilham o kernel do hospedeiro: são mais leves e rápidos, mas isolam menos que as VMs.</li>
+    </ul>
+  </div>
+
+  <h3 id="c1-quiz">🧠 Quiz do capítulo 1</h3>
+  <div class="quiz">
+    <div class="q"><p>1. Qual é a função do hipervisor?</p>
+      <button class="opt">a) Proteger a rede contra ataques</button><button class="opt" data-ok="1">b) Criar as máquinas virtuais e repartir entre elas os recursos do hospedeiro</button><button class="opt">c) Traduzir nomes em endereços IP</button><button class="opt">d) Fazer backup dos arquivos</button>
+      <div class="fb">O <b>hipervisor</b> é o “administrador do prédio”: cria as VMs e divide processador, memória, disco e rede entre elas.</div></div>
+    <div class="q"><p>2. O VirtualBox, que usamos nos laboratórios, é um hipervisor de qual tipo?</p>
+      <button class="opt">a) Tipo 1, roda direto no hardware</button><button class="opt" data-ok="1">b) Tipo 2, roda como programa dentro de um sistema operacional</button><button class="opt">c) Nenhum dos dois</button><button class="opt">d) É um container</button>
+      <div class="fb">VirtualBox é <b>tipo 2</b> (<i>hosted</i>): instalamos como um programa comum no Windows, Linux ou macOS.</div></div>
+    <div class="q"><p>3. Qual modo de rede permite que outros computadores da rede física acessem um servidor que roda na VM?</p>
+      <button class="opt">a) NAT, sem redirecionamento de portas</button><button class="opt">b) Rede interna</button><button class="opt" data-ok="1">c) Placa em ponte (bridge)</button><button class="opt">d) Nenhum modo permite</button>
+      <div class="fb">Na <b>ponte</b>, a VM recebe um endereço da rede física e aparece como mais um computador nela.</div></div>
+    <div class="q"><p>4. Duas VMs em uma “rede interna” de mesmo nome conseguem acessar a Internet por essa rede?</p>
+      <button class="opt">a) Sim, sempre</button><button class="opt" data-ok="1">b) Não, a rede interna é isolada e só liga as VMs entre si</button><button class="opt">c) Só se estiverem desligadas</button><button class="opt">d) Só se forem do mesmo tamanho</button>
+      <div class="fb">A rede interna é um <b>interfone</b> só entre as VMs. Para ter Internet, usa-se outro adaptador em NAT ou ponte.</div></div>
+    <div class="q"><p>5. Uma diferença importante entre VM e container é que o container:</p>
+      <button class="opt">a) Tem um sistema operacional completo próprio</button><button class="opt" data-ok="1">b) Compartilha o kernel do sistema hospedeiro</button><button class="opt">c) Só roda em Windows</button><button class="opt">d) É sempre mais seguro que uma VM</button>
+      <div class="fb">Compartilhar o <b>kernel</b> torna o container mais leve e rápido, mas com isolamento menor que o de uma VM.</div></div>
+    <div class="q"><p>6. Para que serve um snapshot?</p>
+      <button class="opt">a) Para aumentar a velocidade da VM</button><button class="opt" data-ok="1">b) Para guardar o estado da VM e poder voltar a ele depois</button><button class="opt">c) Para ligar a VM à Internet</button><button class="opt">d) Para instalar programas</button>
+      <div class="fb">O snapshot é uma <b>foto</b> do estado da VM. Se algo der errado, você restaura.</div></div>
+    <div class="q"><p>7. Um computador com 16 GB de memória vai rodar VMs de 4 GB cada. Seguindo a regra de reservar 4 GB (ou 25%) para o hospedeiro, quantas VMs cabem?</p>
+      <button class="opt">a) 4</button><button class="opt">b) 5</button><button class="opt" data-ok="1">c) 3</button><button class="opt">d) 2</button>
+      <div class="fb">Reserva = 4 GB (que é igual a 25% de 16). Sobram <b>12 GB</b>, e 12 ÷ 4 = <b>3 VMs</b>.</div></div>
+    <div class="q"><p>8. Qual é o requisito de hardware mais comum para virtualizar com bom desempenho?</p>
+      <button class="opt">a) Placa de vídeo dedicada</button><button class="opt" data-ok="1">b) Suporte à virtualização do processador (Intel VT-x ou AMD-V) habilitado</button><button class="opt">c) Dois monitores</button><button class="opt">d) Conexão com a Internet</button>
+      <div class="fb">O processador precisa oferecer <b>VT-x ou AMD-V</b>, e às vezes é preciso ativá-los na BIOS/UEFI.</div></div>
+  </div>
+  <div class="score"></div>
+
+  <h3>✍️ Questões abertas</h3>
+  <div class="open"><p><b>1.</b> Explique o que é virtualização e cite três vantagens.</p>
+    <button>Ver resposta</button><div class="answer">Virtualização é executar várias máquinas virtuais, cada uma com seu sistema operacional, em um só computador físico, com um hipervisor repartindo os recursos. Vantagens: melhor aproveitamento do hardware, isolamento entre sistemas, facilidade para testar (snapshots e clones) e economia de espaço e energia.</div></div>
+  <div class="open"><p><b>2.</b> Diferencie hipervisor tipo 1 e tipo 2 e dê um exemplo de cada.</p>
+    <button>Ver resposta</button><div class="answer">O tipo 1 roda direto sobre o hardware e é usado em servidores (exemplos: VMware ESXi, Proxmox, Hyper-V). O tipo 2 roda como um programa dentro de um sistema operacional e é usado em estudo e testes (exemplos: VirtualBox, VMware Workstation).</div></div>
+  <div class="open"><p><b>3.</b> Você precisa de um servidor web em uma VM que seja acessado por colegas da mesma rede. Qual modo de rede escolheria e por quê?</p>
+    <button>Ver resposta</button><div class="answer">A placa em ponte (bridge), porque a VM recebe um IP da própria rede física e fica acessível aos outros computadores. No NAT, ela ficaria escondida atrás do hospedeiro, a menos que se configure o redirecionamento de portas.</div></div>
+  <div class="open"><p><b>4.</b> Quando é melhor usar um container em vez de uma VM, e quando é melhor usar uma VM?</p>
+    <button>Ver resposta</button><div class="answer">O container é melhor para empacotar e rodar rapidamente um serviço ou aplicação, com pouco uso de recursos. A VM é melhor quando se precisa de um sistema operacional completo e diferente do hospedeiro (ex.: Windows em um host Linux) ou de isolamento mais forte.</div></div>
+
+  <div class="box dica" style="margin-top:28px"><div class="ic">📚</div><div><h5>Para saber mais</h5><p>O <b>Manual do Usuário do VirtualBox</b> (virtualbox.org/manual) tem um capítulo completo sobre redes virtuais, e a <b>documentação do Debian</b> (debian.org/doc) ajuda na instalação dos laboratórios.</p></div></div>
+</section>
+
+<!-- ================= CAPÍTULOS EM CONSTRUÇÃO ================= -->
+<section class="chapter soon-ch" id="cap2" style="--cc:var(--c2)">
+  <div class="chap-head"><div class="chap-num" style="background:var(--c2)">2</div><div><small>Capítulo 2</small><h2>Sistema operacional Windows Server</h2></div></div>
+  <div class="soon-card">⏳ Em construção. Conteúdo: visão geral do Windows Server e desktop, instalação e configurações iniciais, ferramentas administrativas (área de trabalho remota, RSAT), políticas de backup, Active Directory (usuários, grupos, unidades organizacionais, políticas de grupo, permissões e compartilhamento de arquivos), DNS e DHCP.</div>
+</section>
+<section class="chapter soon-ch" id="cap3" style="--cc:var(--c3)">
+  <div class="chap-head"><div class="chap-num" style="background:var(--c3)">3</div><div><small>Capítulo 3</small><h2>Sistema operacional Linux</h2></div></div>
+  <div class="soon-card">⏳ Em construção. Conteúdo: Linux para servidores, instalação, principais comandos, usuários e grupos, arquivos e permissões, configuração de rede, processos, pacotes e serviços de DNS, DHCP, SSH, SMB e servidor web.</div>
+</section>
+<section class="chapter soon-ch" id="cap4" style="--cc:var(--c4)">
+  <div class="chap-head"><div class="chap-num" style="background:var(--c4)">4</div><div><small>Capítulo 4</small><h2>Introdução à computação em nuvem</h2></div></div>
+  <div class="soon-card">⏳ Em construção. Conteúdo: conceitos de nuvem, modelos de serviço (IaaS, PaaS, SaaS), modelos de implantação (privada, pública e híbrida) e principais provedores.</div>
+</section>
+
+<section id="refs">
+  <h2>📚 Referências</h2>
+  <p class="ref">Alves, A. R. (2013). <i>Administração de servidores Linux</i>. Editora Ciência Moderna.</p>
+  <p class="ref">Debian. (s.d.). <i>Documentação do Projeto Debian</i>. https://www.debian.org/doc/</p>
+  <p class="ref">Hertzog, R., &amp; Mas, R. (s.d.). <i>Manual do administrador Debian</i>. https://www.debian.org/doc/user-manuals.pt.html</p>
+  <p class="ref">Microsoft. (s.d.). <i>Documentação do Windows</i>. https://learn.microsoft.com/pt-br/windows</p>
+  <p class="ref">Oracle. (s.d.). <i>Oracle VM VirtualBox: user manual</i>. https://www.virtualbox.org/manual/</p>
+  <footer>Apostila de Sistemas Operacionais de Redes · IFRN – Campus João Câmara</footer>
+</section>
+</div>
+</main>
+<button class="back-top" id="top" aria-label="Voltar ao topo">↑</button>
+
+<script src="glossario.js"></script>
+<script src="so.js"></script>
+<script src="../assets/apostila.js"></script>
+</body>
+</html>
