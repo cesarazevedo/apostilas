@@ -142,6 +142,20 @@ ol.steps>li::before{content:counter(s);position:absolute;left:0;top:2px;width:32
 .pcx.dr{background:#f5f5f5;border-color:#bdbdbd;opacity:.6}
 .sw-tab{max-width:360px;font-size:14px}
 @media (max-width:600px){.sw-pcs{grid-template-columns:repeat(2,1fr)}}
+.tool{background:#fff;border:1px solid var(--borda);border-radius:16px;padding:16px;margin:12px 0}
+.tool-ctl{display:flex;flex-wrap:wrap;gap:10px;align-items:center;font-size:15px}
+.tool input{font-size:16px;padding:7px 10px;border-radius:8px;border:1px solid #b0bec5;font-family:Consolas,monospace}
+.tool select{font-size:15px;padding:7px 8px;border-radius:8px;border:1px solid #b0bec5}
+.tool button{border:0;background:var(--cc);color:#fff;border-radius:10px;padding:8px 14px;font-size:15px;cursor:pointer;font-weight:600}
+.tool button.alt{background:#fff;color:var(--suave);border:1px solid var(--borda);font-family:Consolas,monospace;font-weight:400;font-size:13.5px;padding:6px 10px}
+.tool-tab{max-width:560px;font-size:15px;margin:10px 0 0}
+.tool-tab td:first-child{color:var(--suave);width:44%}
+.tool .bad{color:#c62828;font-weight:600}
+.bits{font-family:Consolas,monospace;font-size:clamp(11px,2.6vw,17px);margin:14px 0 4px;overflow-x:auto;white-space:nowrap;letter-spacing:.5px}
+.bits .n{color:#1565c0;font-weight:700}.bits .h{color:#ef6c00;font-weight:700}.bits .d{color:#90a4ae;padding:0 3px}
+#rt .tool-tab td:first-child,#rt .tool-tab th:first-child{width:36px;color:var(--suave)}
+tr.hit td{background:#fff3e0;font-weight:600}
+#rt tr.hit td:first-child,tr.hit td:first-child{background:#ef6c00;color:#fff}
 .soon-card{background:#fff;border:1px dashed #b0bec5;border-radius:16px;padding:18px 22px;margin:14px 0;color:var(--suave)}
 footer{text-align:center;color:var(--suave);font-size:14px;padding:30px 0 0}
 .back-top{position:fixed;right:20px;bottom:20px;width:44px;height:44px;border-radius:50%;border:0;background:var(--verde);color:#fff;font-size:20px;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.2);display:none;z-index:70}
@@ -163,7 +177,9 @@ footer{text-align:center;color:var(--suave);font-size:14px;padding:30px 0 0}
   .hero{padding:26px 0;border-radius:12px;margin-bottom:10px}
   .hero .wrap{padding:0 22px}
   section{padding:14px 0 0;break-before:auto}
-  #cap1,#cap2,#cap3{break-before:page}
+  #cap1,#cap2,#cap3,#cap4{break-before:page}
+  .tool-ctl{display:none!important}
+  .tool{break-inside:avoid}
   .sw button{display:none!important}
   .sw-ctl{display:none}
   .frame,.pins,.sw{break-inside:avoid}
@@ -220,7 +236,15 @@ footer{text-align:center;color:var(--suave);font-size:14px;padding:30px 0 0}
       <a href="#c3-lab">Laboratórios</a>
       <a href="#c3-quiz">Quiz e exercícios</a>
     </div>
-    <a href="#cap4" class="soon"><span class="n" style="background:var(--c4)">4</span>Camada de internet</a>
+    <a href="#cap4"><span class="n" style="background:var(--c4)">4</span>Camada de internet</a>
+    <div class="sub">
+      <a href="#c4-ip">Protocolo IP</a>
+      <a href="#c4-end">Endereçamento</a>
+      <a href="#c4-rot">Roteamento</a>
+      <a href="#c4-arp">ARP e ICMP</a>
+      <a href="#c4-lab">Laboratórios</a>
+      <a href="#c4-quiz">Quiz e exercícios</a>
+    </div>
     <a href="#cap5" class="soon"><span class="n" style="background:var(--c5)">5</span>Camada de transporte</a>
     <a href="#cap6" class="soon"><span class="n" style="background:var(--c6)">6</span>Camada de aplicação</a>
     <a href="#cap7" class="soon"><span class="n" style="background:var(--c7)">7</span>Segurança de redes</a>
@@ -251,7 +275,7 @@ footer{text-align:center;color:var(--suave);font-size:14px;padding:30px 0 0}
     <div class="card" style="--cc:var(--c1)"><b>1 · Introdução a redes</b><span>História, topologias, componentes e classificação.</span><div class="st">✅ Disponível</div></div>
     <div class="card" style="--cc:var(--c2)"><b>2 · Padrões e modelos</b><span>Modelo OSI e arquitetura TCP/IP.</span><div class="st">✅ Disponível</div></div>
     <div class="card" style="--cc:var(--c3)"><b>3 · Acesso à rede</b><span>Ethernet (802.3) e redes sem fio (802.11).</span><div class="st">✅ Disponível</div></div>
-    <div class="card" style="--cc:var(--c4)"><b>4 · Camada de internet</b><span>IPv4, IPv6, roteamento, ARP e ICMP.</span><div class="st">⏳ Em breve</div></div>
+    <div class="card" style="--cc:var(--c4)"><b>4 · Camada de internet</b><span>IPv4, IPv6, roteamento, ARP e ICMP.</span><div class="st">✅ Disponível</div></div>
     <div class="card" style="--cc:var(--c5)"><b>5 · Camada de transporte</b><span>Protocolos TCP e UDP.</span><div class="st">⏳ Em breve</div></div>
     <div class="card" style="--cc:var(--c6)"><b>6 · Camada de aplicação</b><span>Web, e-mail, DNS, DHCP, FTP e SSH.</span><div class="st">⏳ Em breve</div></div>
     <div class="card" style="--cc:var(--c7)"><b>7 · Segurança de redes</b><span>Ameaças, ataques e soluções de proteção.</span><div class="st">⏳ Em breve</div></div>
@@ -771,8 +795,314 @@ ip link</code></pre></li>
   <div class="open"><p><b>3.</b> Uma sala de aula com 40 alunos usa o Wi-Fi em 2,4 GHz e está lenta. Cite duas medidas para melhorar.</p>
     <button>Ver resposta</button><div class="answer">Por exemplo: usar a faixa de 5 GHz (mais rápida e com mais canais livres), colocar mais pontos de acesso distribuídos pela sala, escolher canais sem sobreposição (1, 6 e 11 em 2,4 GHz) e usar cabo nos equipamentos fixos para liberar o ar.</div></div>
 </section>
-<section class="chapter" id="cap4"><div class="chap-head"><div class="chap-num" style="background:var(--c4)">4</div><div><small>Capítulo 4</small><h2>Camada de internet TCP/IP</h2></div></div>
-  <div class="soon-card">⏳ Em construção. Conteúdo: IP (IPv4 e IPv6), endereçamento, roteamento estático e dinâmico, ARP e ICMP.</div></section>
+<section class="chapter" id="cap4" style="--cc:var(--c4)">
+  <div class="chap-head"><div class="chap-num" style="background:var(--c4)">4</div><div><small>Capítulo 4</small><h2>Camada de internet TCP/IP</h2></div></div>
+
+  <div class="obj"><h4>🎯 Ao final deste capítulo, você será capaz de:</h4>
+    <ul>
+      <li>Explicar o papel do protocolo IP e comparar o IPv4 com o IPv6.</li>
+      <li>Ler e montar endereços IPv4, máscaras e prefixos, e calcular rede, broadcast e hosts de uma sub-rede.</li>
+      <li>Reconhecer endereços IPv6 e abreviá-los corretamente.</li>
+      <li>Explicar como um roteador escolhe o caminho e diferenciar roteamento estático e dinâmico.</li>
+      <li>Explicar o que fazem o ARP e o ICMP, e usar <code>ping</code> e <code>traceroute</code> para diagnosticar problemas.</li>
+    </ul>
+  </div>
+
+  <h3>O que faz a camada de internet?</h3>
+  <p>Enquanto a camada de acesso leva os dados até o vizinho, a <b>camada de internet</b> leva os dados <b>de uma ponta a outra, atravessando várias redes</b>. Ela dá um <b>endereço lógico</b> (o IP) a cada equipamento e define o <b>caminho</b> até o destino. No OSI, é a camada 3 (Rede), e o equipamento típico é o <b>roteador</b>.</p>
+  <div class="box analogia"><div class="ic">💡</div><div><h5>Pense assim...</h5><p>É como o <b>sistema de CEP e Correios</b>. O endereço completo (rua, cidade, CEP) é o IP. Os centros de distribuição que decidem “esta carta vai para tal cidade” são os roteadores.</p></div></div>
+
+  <!-- 4.1 -->
+  <h3 id="c4-ip">4.1 Protocolo IP (IPv4 e IPv6)</h3>
+  <p>O <b>IP</b> (<i>Internet Protocol</i>) tem duas características importantes:</p>
+  <ul>
+    <li><b>Sem conexão:</b> cada pacote viaja sozinho, sem “combinar” nada antes. Pacotes diferentes podem seguir caminhos diferentes.</li>
+    <li><b>Melhor esforço (<i>best effort</i>):</b> o IP tenta entregar, mas <b>não garante</b> a entrega, a ordem ou a ausência de erros. Quem confirma e reenvia é o TCP, na camada de transporte.</li>
+  </ul>
+  <div class="box analogia"><div class="ic">💡</div><div><h5>Pense assim...</h5><p>O IP é como mandar uma <b>carta simples</b>: o correio faz o melhor para entregar, mas não avisa se chegou. Se você quiser aviso de recebimento, precisa de outro serviço por cima, como o TCP.</p></div></div>
+
+  <h3>O cabeçalho IPv4</h3>
+  <p>Os campos que mais importam para nós:</p>
+  <table>
+    <tr><th>Campo</th><th>Para que serve</th></tr>
+    <tr><td><b>Versão</b></td><td>Diz se é IPv4 ou IPv6.</td></tr>
+    <tr><td><b>Endereço IP de origem e de destino</b></td><td>Quem enviou e para quem vai (32 bits cada).</td></tr>
+    <tr><td><b>TTL</b> (<i>Time To Live</i>)</td><td>Número que diminui 1 a cada roteador. Quando chega a 0, o pacote é descartado. Evita que pacotes fiquem rodando para sempre.</td></tr>
+    <tr><td><b>Protocolo</b></td><td>Diz o que vem dentro: 6 = TCP, 17 = UDP, 1 = ICMP.</td></tr>
+    <tr><td><b>Checksum</b></td><td>Verificação de erros do cabeçalho.</td></tr>
+  </table>
+  <p>Se o pacote for maior que o tamanho máximo aceito por um enlace (1500 bytes na Ethernet), ele pode ser dividido em pedaços menores, a chamada <b>fragmentação</b>.</p>
+
+  <h3>IPv4 x IPv6</h3>
+  <p>O IPv4 foi criado nos anos 1980 e tem cerca de 4,3 bilhões de endereços. Com tantos celulares, computadores e dispositivos IoT, eles acabaram. O <b>IPv6</b> foi criado para resolver isso e para simplificar o protocolo.</p>
+  <table>
+    <tr><th></th><th>IPv4</th><th>IPv6</th></tr>
+    <tr><td><b>Tamanho do endereço</b></td><td>32 bits</td><td>128 bits</td></tr>
+    <tr><td><b>Quantidade</b></td><td>≈ 4,3 bilhões</td><td>≈ 3,4 × 10<sup>38</sup> (praticamente inesgotável)</td></tr>
+    <tr><td><b>Escrita</b></td><td>Decimal com pontos<br><code>192.168.10.77</code></td><td>Hexadecimal com dois-pontos<br><code>2001:db8::1</code></td></tr>
+    <tr><td><b>Cabeçalho</b></td><td>Tamanho variável, com checksum</td><td>Tamanho fixo (40 bytes), mais simples e sem checksum</td></tr>
+    <tr><td><b>Broadcast</b></td><td>Existe</td><td>Não existe (usa multicast)</td></tr>
+    <tr><td><b>NAT</b></td><td>Muito usado para economizar endereços</td><td>Em geral não é necessário</td></tr>
+  </table>
+  <div class="box atencao"><div class="ic">⚠️</div><div><h5>Atenção</h5><p>IPv4 e IPv6 <b>convivem</b> hoje. A maioria das redes usa os dois ao mesmo tempo (<i>dual stack</i>). No IPv6, o campo equivalente ao TTL se chama <b>Hop Limit</b> (limite de saltos).</p></div></div>
+
+  <!-- 4.2 -->
+  <h3 id="c4-end">4.2 Endereçamento IP (IPv4 e IPv6)</h3>
+  <h3 style="font-size:18px;margin-top:14px">Endereço IPv4</h3>
+  <p>Um endereço IPv4 tem <b>32 bits</b>, divididos em 4 grupos de 8 bits (<b>octetos</b>), escritos em decimal e separados por pontos. Cada octeto vai de 0 a 255.</p>
+  <pre><button class="cp">Copiar</button><code>192.168.10.77  =  11000000.10101000.00001010.01001101</code></pre>
+  <p>Todo endereço tem duas partes: a <b>parte de rede</b> (qual “bairro”) e a <b>parte de host</b> (qual “casa” dentro do bairro). Quem diz onde termina uma e começa a outra é a <b>máscara de sub-rede</b>, ou o <b>prefixo</b>: <code>/24</code> significa “os 24 primeiros bits são a rede”.</p>
+  <div class="box analogia"><div class="ic">💡</div><div><h5>Pense assim...</h5><p>Um endereço IP é como <b>“Rua das Flores, nº 77”</b>. A rua é a rede. O número é o host. A máscara diz quantos “dígitos” do endereço identificam a rua. Duas casas na mesma rua falam direto. Para falar com outra rua, é preciso passar por um roteador.</p></div></div>
+
+  <h3 style="font-size:18px;margin-top:14px">Endereços especiais</h3>
+  <ul>
+    <li><b>Endereço de rede:</b> todos os bits de host em 0. Identifica a rede e não pode ser usado em um computador.</li>
+    <li><b>Endereço de broadcast:</b> todos os bits de host em 1. Fala com todos os hosts da rede. Também não é usado em computadores.</li>
+    <li><b>Hosts utilizáveis:</b> tudo que fica entre os dois. Em uma sub-rede com <i>n</i> bits de host, são <b>2<sup>n</sup> − 2</b> hosts.</li>
+    <li><b>Loopback:</b> <code>127.0.0.0/8</code> (o <code>127.0.0.1</code> é o “próprio computador”).</li>
+    <li><b>APIPA / link-local:</b> <code>169.254.0.0/16</code>. O computador se dá esse endereço quando não consegue obter um (por exemplo, quando o DHCP falha).</li>
+  </ul>
+  <p><b>Endereços privados</b> (não rodam na Internet, usados dentro de casas, escolas e empresas):</p>
+  <table>
+    <tr><th>Faixa</th><th>Prefixo</th></tr>
+    <tr><td><code>10.0.0.0</code> a <code>10.255.255.255</code></td><td>10.0.0.0/8</td></tr>
+    <tr><td><code>172.16.0.0</code> a <code>172.31.255.255</code></td><td>172.16.0.0/12</td></tr>
+    <tr><td><code>192.168.0.0</code> a <code>192.168.255.255</code></td><td>192.168.0.0/16</td></tr>
+  </table>
+  <p>Para sair para a Internet, os endereços privados passam por um <b>NAT</b>, que os troca por um endereço público do provedor. Por isso todos os aparelhos da sua casa aparecem “com o mesmo IP” na Internet.</p>
+
+  <h3 style="font-size:18px;margin-top:14px">Máscaras mais comuns</h3>
+  <table>
+    <tr><th>Prefixo</th><th>Máscara</th><th>Bits de host</th><th>Hosts utilizáveis</th></tr>
+    <tr><td>/8</td><td>255.0.0.0</td><td>24</td><td>16.777.214</td></tr>
+    <tr><td>/16</td><td>255.255.0.0</td><td>16</td><td>65.534</td></tr>
+    <tr><td>/24</td><td>255.255.255.0</td><td>8</td><td>254</td></tr>
+    <tr><td>/25</td><td>255.255.255.128</td><td>7</td><td>126</td></tr>
+    <tr><td>/26</td><td>255.255.255.192</td><td>6</td><td>62</td></tr>
+    <tr><td>/27</td><td>255.255.255.224</td><td>5</td><td>30</td></tr>
+    <tr><td>/28</td><td>255.255.255.240</td><td>4</td><td>14</td></tr>
+    <tr><td>/29</td><td>255.255.255.248</td><td>3</td><td>6</td></tr>
+    <tr><td>/30</td><td>255.255.255.252</td><td>2</td><td>2</td></tr>
+  </table>
+  <div class="box exemplo"><div class="ic">📌</div><div><h5>Exemplo resolvido: 192.168.10.77/26</h5><p>/26 deixa 6 bits para host, então cada sub-rede tem 2<sup>6</sup> = <b>64 endereços</b>, em blocos de 64: 0–63, 64–127, 128–191... O número 77 está no bloco 64–127. Logo:<br>• Rede: <b>192.168.10.64</b><br>• Broadcast: <b>192.168.10.127</b><br>• Hosts: <b>192.168.10.65</b> a <b>192.168.10.126</b> (62 hosts)</p></div></div>
+
+  <h3 style="font-size:18px;margin-top:14px">🧮 Calculadora de sub-rede IPv4</h3>
+  <p>Digite um endereço e escolha o prefixo. Os bits em <span style="color:#1565c0;font-weight:700">azul</span> são da rede e os bits em <span style="color:#ef6c00;font-weight:700">laranja</span> são do host.</p>
+  <div class="tool" id="calc">
+    <div class="tool-ctl">
+      IP: <input id="ipIn" value="192.168.10.77" size="16" inputmode="decimal" aria-label="Endereço IP">
+      Prefixo: <select id="ipPfx" aria-label="Prefixo"></select>
+      <button id="ipGo">Calcular</button>
+    </div>
+    <div class="bits" id="ipBits"></div>
+    <table class="tool-tab"><tbody id="ipOut"></tbody></table>
+  </div>
+  <div class="box dica"><div class="ic">✅</div><div><h5>Dica para fazer de cabeça</h5><p>Descubra o <b>tamanho do bloco</b>: 256 menos o valor do octeto da máscara. Para /26 (máscara .192): 256 − 192 = 64. As redes começam em múltiplos de 64 (0, 64, 128, 192). O broadcast é o último número do bloco.</p></div></div>
+
+  <h3 style="font-size:18px;margin-top:14px">Endereço IPv6</h3>
+  <p>O IPv6 tem <b>128 bits</b>, escritos em <b>8 grupos de 4 dígitos hexadecimais</b>, separados por dois-pontos:</p>
+  <pre><button class="cp">Copiar</button><code>2001:0db8:0000:0000:0000:0000:0000:0001</code></pre>
+  <p><b>Regras para abreviar:</b></p>
+  <ol>
+    <li>Zeros à esquerda de cada grupo podem ser omitidos: <code>0db8</code> → <code>db8</code>.</li>
+    <li>Uma sequência de grupos só de zeros pode virar <code>::</code>, mas <b>apenas uma vez</b> no endereço.</li>
+  </ol>
+  <p>Resultado: <code>2001:db8::1</code>. O prefixo funciona como no IPv4: <code>2001:db8:abcd:1::/64</code> significa que os 64 primeiros bits são a rede. Nas redes locais, o padrão é o <b>/64</b>.</p>
+  <table>
+    <tr><th>Tipo</th><th>Faixa</th><th>Para que serve</th></tr>
+    <tr><td><b>Global unicast</b></td><td><code>2000::/3</code></td><td>Endereços públicos, que rodam na Internet</td></tr>
+    <tr><td><b>Link-local</b></td><td><code>fe80::/10</code></td><td>Uso só no mesmo enlace. Todo equipamento IPv6 tem um.</td></tr>
+    <tr><td><b>Local único (ULA)</b></td><td><code>fc00::/7</code></td><td>Parecido com os endereços privados do IPv4</td></tr>
+    <tr><td><b>Multicast</b></td><td><code>ff00::/8</code></td><td>Fala com um grupo de equipamentos (substitui o broadcast)</td></tr>
+    <tr><td><b>Loopback</b></td><td><code>::1</code></td><td>O próprio computador</td></tr>
+  </table>
+  <p style="font-size:14px;color:var(--suave)">O prefixo <code>2001:db8::/32</code> é reservado para <b>documentação e exemplos</b>, por isso aparece nesta apostila.</p>
+
+  <!-- 4.3 -->
+  <h3 id="c4-rot">4.3 Roteamento IP (estático e dinâmico)</h3>
+  <p><b>Roteamento</b> é o processo de escolher o caminho para um pacote chegar a outra rede. Cada roteador tem uma <b>tabela de roteamento</b> com linhas como: “para chegar à rede X, mande para o roteador Y, pela interface Z”.</p>
+  <div class="box analogia"><div class="ic">💡</div><div><h5>Pense assim...</h5><p>O roteador é como <b>uma placa de sinalização em um cruzamento</b>: “Para Natal, vá por aqui. Para Mossoró, vá por ali. Qualquer outro destino, siga pela rodovia principal.” A placa não conhece a viagem inteira, só o <b>próximo passo</b> (próximo salto, ou <i>next hop</i>).</p></div></div>
+  <p>Cada rota tem: a <b>rede de destino</b> (com prefixo), o <b>próximo salto</b> e a <b>interface</b> de saída. Duas regras importantes:</p>
+  <ul>
+    <li><b>Prefixo mais longo vence:</b> se mais de uma rota serve ao destino, vale a mais específica (a de maior prefixo).</li>
+    <li><b>Rota padrão</b> (<code>0.0.0.0/0</code>): atende “todo o resto”. É por onde o tráfego sai para a Internet.</li>
+  </ul>
+
+  <h3 style="font-size:18px;margin-top:14px">🧭 Simulador de roteamento</h3>
+  <p>Este roteador tem a tabela abaixo. Digite um destino (ou clique em um exemplo) e veja qual rota ele escolhe.</p>
+  <div class="tool" id="rt">
+    <table class="tool-tab" style="max-width:none">
+      <tr><th>#</th><th>Destino</th><th>Próximo salto</th><th>Interface</th></tr>
+      <tr id="rt0"><td>1</td><td><code>192.168.1.0/24</code></td><td>direto</td><td>Gi0/0</td></tr>
+      <tr id="rt1"><td>2</td><td><code>192.168.2.0/24</code></td><td>10.0.0.2</td><td>Gi0/1</td></tr>
+      <tr id="rt2"><td>3</td><td><code>192.168.2.128/25</code></td><td>10.0.0.6</td><td>Gi0/2</td></tr>
+      <tr id="rt3"><td>4</td><td><code>0.0.0.0/0</code> (padrão)</td><td>10.0.0.9</td><td>Gi0/3</td></tr>
+    </table>
+    <div class="tool-ctl" style="margin-top:12px">
+      Destino: <input id="rtIn" value="192.168.2.200" size="16" inputmode="decimal" aria-label="IP de destino">
+      <button id="rtGo">Rotear ▶</button>
+      <button class="alt" data-ex="192.168.1.20">192.168.1.20</button>
+      <button class="alt" data-ex="192.168.2.50">192.168.2.50</button>
+      <button class="alt" data-ex="192.168.2.200">192.168.2.200</button>
+      <button class="alt" data-ex="8.8.8.8">8.8.8.8</button>
+    </div>
+    <p class="enc-txt" id="rtMsg"></p>
+  </div>
+
+  <h3 style="font-size:18px;margin-top:14px">Roteamento estático x dinâmico</h3>
+  <table>
+    <tr><th></th><th>Estático</th><th>Dinâmico</th></tr>
+    <tr><td><b>Como funciona</b></td><td>O administrador digita cada rota no roteador.</td><td>Os roteadores <b>trocam informações</b> entre si e montam as tabelas sozinhos.</td></tr>
+    <tr><td><b>Se um caminho cai</b></td><td>Não se adapta. Alguém precisa mudar a rota.</td><td>Descobre sozinho e usa outro caminho.</td></tr>
+    <tr><td><b>Vantagens</b></td><td>Simples, previsível e leve.</td><td>Escala bem e se recupera de falhas.</td></tr>
+    <tr><td><b>Uso típico</b></td><td>Redes pequenas e rota padrão para a Internet.</td><td>Redes médias e grandes, com muitos roteadores.</td></tr>
+  </table>
+  <p><b>Protocolos de roteamento dinâmico mais conhecidos:</b></p>
+  <ul>
+    <li><b>RIP:</b> o mais simples. Conta apenas o número de saltos (máximo de 15). Bom para aprender.</li>
+    <li><b>OSPF:</b> mais moderno e rápido para se adaptar. Muito usado dentro de empresas e provedores.</li>
+    <li><b>EIGRP:</b> protocolo da Cisco.</li>
+    <li><b>BGP:</b> usado <b>entre</b> as grandes redes (sistemas autônomos). É o protocolo que mantém a Internet conectada.</li>
+  </ul>
+
+  <!-- 4.4 -->
+  <h3 id="c4-arp">4.4 Protocolos ARP e ICMP</h3>
+  <h3 style="font-size:18px;margin-top:14px">ARP: descobrindo o MAC a partir do IP</h3>
+  <p>Para enviar um quadro, o computador precisa do <b>MAC</b> do destino, mas só conhece o <b>IP</b>. O <b>ARP</b> (<i>Address Resolution Protocol</i>) faz essa “tradução” <b>dentro da rede local</b>.</p>
+  <ol class="steps">
+    <li>O PC A quer falar com o IP <code>192.168.1.20</code> e não sabe o MAC dele.</li>
+    <li>Ele envia um <b>ARP Request em broadcast</b> (MAC de destino <code>FF:FF:FF:FF:FF:FF</code>): “Quem tem o IP 192.168.1.20? Responda para mim.”</li>
+    <li>Todos recebem, mas só o dono do IP responde com um <b>ARP Reply</b> (direto para A): “Sou eu, meu MAC é tal.”</li>
+    <li>O PC A guarda a resposta na <b>tabela ARP</b> (cache) e envia o quadro. Nas próximas vezes não precisa perguntar de novo.</li>
+  </ol>
+  <div class="box analogia"><div class="ic">💡</div><div><h5>Pense assim...</h5><p>É como <b>gritar no corredor</b>: “De quem é o carro de placa ABC-1234?” Só o dono responde: “É meu, estou na vaga 12.”</p></div></div>
+  <div class="box atencao"><div class="ic">⚠️</div><div><h5>Atenção</h5><p>Para falar com um destino <b>fora da rede</b>, o computador faz o ARP do <b>gateway</b> (roteador), não do destino final. O MAC do quadro é o do roteador, mas o IP de destino continua sendo o do servidor distante. No <b>IPv6</b>, o ARP é substituído pelo <b>NDP</b> (<i>Neighbor Discovery</i>).</p></div></div>
+
+  <h3 style="font-size:18px;margin-top:14px">ICMP: o protocolo de avisos e diagnóstico</h3>
+  <p>O <b>ICMP</b> (<i>Internet Control Message Protocol</i>) não transporta dados de usuário. Ele leva <b>mensagens de controle e de erro</b> entre equipamentos. Viaja dentro do pacote IP.</p>
+  <table>
+    <tr><th>Mensagem</th><th>Significado</th><th>Quem usa</th></tr>
+    <tr><td><b>Echo Request / Echo Reply</b></td><td>“Você está aí?” / “Estou aqui.”</td><td><code>ping</code></td></tr>
+    <tr><td><b>Destination Unreachable</b></td><td>“Não consigo chegar a esse destino.”</td><td>Roteadores e hosts</td></tr>
+    <tr><td><b>Time Exceeded</b></td><td>“O TTL do pacote chegou a zero.”</td><td><code>traceroute</code></td></tr>
+  </table>
+  <div class="box exemplo"><div class="ic">📌</div><div><h5>Como o traceroute descobre o caminho?</h5><p>Ele envia pacotes com <b>TTL = 1</b>: o primeiro roteador zera o TTL, descarta o pacote e devolve um <i>Time Exceeded</i>, revelando quem ele é. Depois envia com <b>TTL = 2</b>, e o segundo roteador se revela, e assim por diante, até chegar ao destino. Cada linha do resultado é um salto.</p></div></div>
+
+  <!-- LABS -->
+  <div class="lab" id="c4-lab">
+    <h3>🧪 Laboratório 6 – Roteamento estático com dois roteadores (Packet Tracer)</h3>
+    <p><b>Objetivo:</b> ligar duas redes locais por dois roteadores e fazer um PC falar com o outro.</p>
+    <pre><button class="cp">Copiar</button><code>PC1 ──── R1 ──── R2 ──── PC2
+192.168.1.10   Gi0/0: 192.168.1.1/24     Gi0/0: 10.0.0.2/30   192.168.2.10
+               Gi0/1: 10.0.0.1/30        Gi0/1: 192.168.2.1/24</code></pre>
+    <ol class="steps">
+      <li><b>Monte a topologia:</b> 2 roteadores (ex.: modelo 2911) e 2 PCs. Ligue PC1–R1 (Gi0/0), R1 (Gi0/1)–R2 (Gi0/0) e R2 (Gi0/1)–PC2. Use cabo <b>crossover</b> em todas as ligações. Se alguma luz não ficar verde, teste o cabo direto.</li>
+      <li><b>Configure os PCs.</b> PC1: IP <code>192.168.1.10</code>, máscara <code>255.255.255.0</code>, gateway <code>192.168.1.1</code>. PC2: IP <code>192.168.2.10</code>, máscara <code>255.255.255.0</code>, gateway <code>192.168.2.1</code>.</li>
+      <li><b>Configure o R1</b> (aba CLI):
+<pre><button class="cp">Copiar</button><code>enable
+configure terminal
+interface gigabitEthernet0/0
+ ip address 192.168.1.1 255.255.255.0
+ no shutdown
+exit
+interface gigabitEthernet0/1
+ ip address 10.0.0.1 255.255.255.252
+ no shutdown
+exit
+ip route 192.168.2.0 255.255.255.0 10.0.0.2
+end</code></pre></li>
+      <li><b>Configure o R2:</b>
+<pre><button class="cp">Copiar</button><code>enable
+configure terminal
+interface gigabitEthernet0/0
+ ip address 10.0.0.2 255.255.255.252
+ no shutdown
+exit
+interface gigabitEthernet0/1
+ ip address 192.168.2.1 255.255.255.0
+ no shutdown
+exit
+ip route 192.168.1.0 255.255.255.0 10.0.0.1
+end</code></pre></li>
+      <li><b>Teste.</b> No PC1: <code>ping 192.168.2.10</code>. No R1: <code>show ip route</code>. As rotas marcadas com <b>C</b> são redes diretamente conectadas e as marcadas com <b>S</b> são estáticas.</li>
+      <li><b>Desafio 1:</b> apague a rota estática (<code>no ip route 192.168.2.0 255.255.255.0 10.0.0.2</code> no R1) e repita o ping. O que acontece? Por quê?</li>
+      <li><b>Desafio 2 (dinâmico):</b> apague as rotas estáticas e ative o RIP. No R1: <code>router rip</code>, <code>version 2</code>, <code>network 192.168.1.0</code>, <code>network 10.0.0.0</code>. No R2: <code>router rip</code>, <code>version 2</code>, <code>network 10.0.0.0</code>, <code>network 192.168.2.0</code>. Veja o <code>show ip route</code> (rotas marcadas com <b>R</b>).</li>
+    </ol>
+
+    <h3>🧪 Laboratório 7 – ARP, ICMP e traceroute no seu computador</h3>
+    <ol class="steps">
+      <li><b>Veja a tabela ARP.</b>
+<pre><button class="cp">Copiar</button><code># Windows ou Linux
+arp -a
+
+# Linux (alternativa)
+ip neigh</code></pre></li>
+      <li><b>Descubra o gateway</b> (<code>ipconfig</code> ou <code>ip route</code>), faça <code>ping</code> nele e rode <code>arp -a</code> de novo. O MAC do gateway deve aparecer na tabela.</li>
+      <li><b>Veja o ARP em ação.</b> Abra o Wireshark, use o filtro <code>arp</code> e faça ping em um colega da mesma rede. Procure as mensagens <i>“Who has...?”</i> (request) e <i>“... is at ...”</i> (reply).</li>
+      <li><b>Descubra o caminho até a Internet.</b>
+<pre><button class="cp">Copiar</button><code># Windows
+tracert -d 8.8.8.8
+
+# Linux
+traceroute -n 8.8.8.8</code></pre>
+        Conte os saltos. O primeiro é o seu roteador. Linhas com <code>*</code> são roteadores que não responderam ao ICMP.</li>
+      <li><b>Para discutir:</b> por que o ARP não cruza o roteador? Qual é o MAC no quadro quando você acessa um site: o do servidor ou o do seu gateway?</li>
+    </ol>
+  </div>
+
+  <h3>📐 Exercícios de endereçamento</h3>
+  <p>Use a calculadora para conferir, mas tente fazer no papel primeiro. Para cada item, ache <b>rede, broadcast, faixa de hosts e quantidade de hosts</b>:</p>
+  <div class="open"><p><b>a)</b> <code>192.168.0.100/27</code></p><button>Ver resposta</button><div class="answer">Bloco de 32. Rede <b>192.168.0.96</b>, broadcast <b>192.168.0.127</b>, hosts <b>.97 a .126</b> (30 hosts).</div></div>
+  <div class="open"><p><b>b)</b> <code>172.16.45.200/20</code></p><button>Ver resposta</button><div class="answer">/20 = máscara 255.255.240.0 (blocos de 16 no 3º octeto). 45 está no bloco 32–47. Rede <b>172.16.32.0</b>, broadcast <b>172.16.47.255</b>, hosts <b>172.16.32.1 a 172.16.47.254</b> (4.094 hosts).</div></div>
+  <div class="open"><p><b>c)</b> <code>10.10.10.10/8</code></p><button>Ver resposta</button><div class="answer">Rede <b>10.0.0.0</b>, broadcast <b>10.255.255.255</b>, hosts <b>10.0.0.1 a 10.255.255.254</b> (16.777.214 hosts).</div></div>
+
+  <div class="resumo">
+    <h3>📝 Resumo do capítulo</h3>
+    <ul>
+      <li>O IP leva pacotes de ponta a ponta entre redes. É sem conexão e de melhor esforço, sem garantia de entrega.</li>
+      <li>IPv4 tem 32 bits (≈ 4,3 bilhões de endereços). IPv6 tem 128 bits e foi criado porque o IPv4 esgotou.</li>
+      <li>A máscara (ou prefixo) separa rede e host. Hosts utilizáveis = 2<sup>n</sup> − 2. Endereços privados: 10/8, 172.16/12 e 192.168/16.</li>
+      <li>IPv6 usa hexadecimal e pode ser abreviado (zeros à esquerda e um único <code>::</code>).</li>
+      <li>O roteador consulta a tabela de roteamento e escolhe a rota de prefixo mais longo. Existe a rota padrão (<code>0.0.0.0/0</code>).</li>
+      <li>Roteamento estático é manual. O dinâmico (RIP, OSPF, BGP) se adapta sozinho.</li>
+      <li>ARP descobre o MAC a partir do IP na rede local. ICMP leva avisos e dá base ao <code>ping</code> e ao <code>traceroute</code>.</li>
+    </ul>
+  </div>
+
+  <h3 id="c4-quiz">🧠 Quiz do capítulo 4</h3>
+  <div class="quiz">
+    <div class="q"><p>1. Quantos bits tem um endereço IPv6?</p>
+      <button class="opt">a) 32</button><button class="opt">b) 64</button><button class="opt" data-ok="1">c) 128</button><button class="opt">d) 256</button>
+      <div class="fb">O IPv6 tem <b>128 bits</b>. O IPv4 tem 32.</div></div>
+    <div class="q"><p>2. Quantos hosts utilizáveis tem uma sub-rede /26?</p>
+      <button class="opt">a) 64</button><button class="opt" data-ok="1">b) 62</button><button class="opt">c) 30</button><button class="opt">d) 126</button>
+      <div class="fb">/26 deixa 6 bits para host: 2<sup>6</sup> = 64 endereços, menos o de rede e o de broadcast = <b>62</b>.</div></div>
+    <div class="q"><p>3. Qual destes é um endereço IPv4 privado?</p>
+      <button class="opt">a) 8.8.8.8</button><button class="opt" data-ok="1">b) 172.20.5.9</button><button class="opt">c) 200.17.100.1</button><button class="opt">d) 172.32.1.1</button>
+      <div class="fb">A faixa privada 172.16.0.0/12 vai de 172.16.0.0 a 172.31.255.255. Portanto o <b>172.20.5.9</b> é privado e o 172.32.1.1 já é público.</div></div>
+    <div class="q"><p>4. Para que serve o protocolo ARP?</p>
+      <button class="opt">a) Traduzir nomes de sites em IPs</button><button class="opt" data-ok="1">b) Descobrir o MAC de um equipamento a partir do seu IP, na rede local</button><button class="opt">c) Atribuir IPs automaticamente</button><button class="opt">d) Criptografar o tráfego</button>
+      <div class="fb">O ARP faz a ponte entre o IP (camada 3) e o MAC (camada 2). A tradução de nomes é o DNS, e a atribuição automática de IPs é o DHCP.</div></div>
+    <div class="q"><p>5. Um roteador tem as rotas <code>10.0.0.0/8</code> e <code>10.1.0.0/16</code>. Para o destino <code>10.1.2.3</code>, qual ele usa?</p>
+      <button class="opt">a) 10.0.0.0/8</button><button class="opt" data-ok="1">b) 10.1.0.0/16</button><button class="opt">c) Sorteia uma das duas</button><button class="opt">d) Descarta o pacote</button>
+      <div class="fb">Vale a regra do <b>prefixo mais longo</b>: a /16 é mais específica que a /8.</div></div>
+    <div class="q"><p>6. O <code>traceroute</code> descobre os roteadores do caminho usando:</p>
+      <button class="opt">a) Mensagens ARP</button><button class="opt" data-ok="1">b) TTL crescente e mensagens ICMP “Time Exceeded”</button><button class="opt">c) Consultas ao DNS</button><button class="opt">d) Um servidor central de rotas</button>
+      <div class="fb">Cada roteador que zera o TTL devolve um ICMP <i>Time Exceeded</i> e, assim, se revela.</div></div>
+    <div class="q"><p>7. Qual é a forma abreviada correta de <code>2001:0db8:0000:0000:0000:0000:0000:0001</code>?</p>
+      <button class="opt">a) 2001:db8:1</button><button class="opt" data-ok="1">b) 2001:db8::1</button><button class="opt">c) 2001::db8::1</button><button class="opt">d) 2001:db8:0:1</button>
+      <div class="fb">Tira-se os zeros à esquerda e troca-se a sequência de grupos zerados por <code>::</code>, uma única vez. A opção c usa <code>::</code> duas vezes, o que é inválido.</div></div>
+  </div>
+  <div class="score"></div>
+
+  <h3>✍️ Questões abertas</h3>
+  <div class="open"><p><b>1.</b> Explique o que acontece, passo a passo, quando o PC A quer enviar um pacote para um servidor na Internet. Quais endereços (IP e MAC) vão no quadro?</p>
+    <button>Ver resposta</button><div class="answer">O PC A vê que o IP de destino está fora da sua rede, então envia o quadro ao gateway. Ele usa o ARP para descobrir o MAC do gateway. No quadro, o MAC de destino é o do gateway, mas o IP de destino continua sendo o do servidor. A cada salto, o roteador remove o cabeçalho de enlace, consulta a tabela de roteamento e monta um novo quadro com os MACs do próximo trecho. O IP de origem e de destino permanece o mesmo (exceto pela troca feita pelo NAT).</div></div>
+  <div class="open"><p><b>2.</b> Qual a diferença entre roteamento estático e dinâmico? Dê um exemplo de quando usar cada um.</p>
+    <button>Ver resposta</button><div class="answer">No estático, o administrador cadastra as rotas manualmente. É simples, mas não se adapta a falhas, então serve para redes pequenas ou para a rota padrão. No dinâmico, os roteadores trocam informações (RIP, OSPF, BGP) e se adaptam sozinhos, o que é melhor para redes maiores com vários caminhos.</div></div>
+  <div class="open"><p><b>3.</b> Por que o IPv6 foi criado? Cite duas diferenças em relação ao IPv4.</p>
+    <button>Ver resposta</button><div class="answer">Porque os endereços IPv4 (≈ 4,3 bilhões) se esgotaram. O IPv6 tem endereços de 128 bits, o que praticamente elimina o problema. Outras diferenças: cabeçalho fixo e mais simples; não existe broadcast (usa multicast); o NAT deixa de ser necessário; usa NDP em vez de ARP.</div></div>
+</section>
 <section class="chapter" id="cap5"><div class="chap-head"><div class="chap-num" style="background:var(--c5)">5</div><div><small>Capítulo 5</small><h2>Camada de transporte TCP/IP</h2></div></div>
   <div class="soon-card">⏳ Em construção. Conteúdo: protocolos TCP e UDP.</div></section>
 <section class="chapter" id="cap6"><div class="chap-head"><div class="chap-num" style="background:var(--c6)">6</div><div><small>Capítulo 6</small><h2>Camada de aplicação TCP/IP</h2></div></div>
@@ -928,6 +1258,73 @@ ip link</code></pre></li>
     };
     document.getElementById('swReset').onclick=function(){table={};clear();msg.innerHTML='Tabela limpa. O switch esqueceu tudo.';draw();};
     draw();
+  })();
+
+  // --- Calculadora de sub-rede IPv4 + simulador de roteamento ---
+  (function(){
+    function ip2n(s){var p=String(s).trim().split('.');if(p.length!==4)return null;var n=0;
+      for(var i=0;i<4;i++){if(!/^\d{1,3}$/.test(p[i]))return null;var v=+p[i];if(v>255)return null;n=n*256+v;}return n;}
+    function n2ip(n){return [(n>>>24)&255,(n>>>16)&255,(n>>>8)&255,n&255].join('.');}
+    function maskOf(p){return p===0?0:((0xFFFFFFFF<<(32-p))>>>0);}
+    function pad(n){var s=n.toString(2);while(s.length<32)s='0'+s;return s;}
+
+    var ipIn=document.getElementById('ipIn'),sel=document.getElementById('ipPfx');
+    if(ipIn){
+      for(var p=8;p<=30;p++)sel.add(new Option('/'+p,p));
+      sel.value=26;
+      var out=document.getElementById('ipOut'),bitsEl=document.getElementById('ipBits');
+      function kind(n){
+        var a=n>>>24,b=(n>>>16)&255;
+        if(a===10)return 'Privado (10.0.0.0/8)';
+        if(a===172&&b>=16&&b<=31)return 'Privado (172.16.0.0/12)';
+        if(a===192&&b===168)return 'Privado (192.168.0.0/16)';
+        if(a===127)return 'Loopback (o próprio computador)';
+        if(a===169&&b===254)return 'Link-local / APIPA';
+        if(a>=224&&a<=239)return 'Multicast';
+        if(a>=240)return 'Reservado';
+        return 'Público';
+      }
+      function calc(){
+        var n=ip2n(ipIn.value),pf=+sel.value;
+        if(n===null){out.innerHTML='<tr><td colspan="2" class="bad">Endereço inválido. Use o formato 192.168.10.77 (4 números de 0 a 255).</td></tr>';bitsEl.innerHTML='';return;}
+        var m=maskOf(pf),net=(n&m)>>>0,bc=(net|(~m>>>0))>>>0,hosts=Math.pow(2,32-pf)-2;
+        var b=pad(n),h='';
+        for(var i=0;i<32;i++){h+='<span class="'+(i<pf?'n':'h')+'">'+b[i]+'</span>';if(i%8===7&&i<31)h+='<span class="d">.</span>';}
+        bitsEl.innerHTML=h;
+        var rows=[['Endereço IP',n2ip(n)],['Máscara de sub-rede',n2ip(m)+' (/'+pf+')'],['Endereço de rede',n2ip(net)],
+          ['Primeiro host',n2ip(net+1)],['Último host',n2ip(bc-1)],['Broadcast',n2ip(bc)],
+          ['Hosts utilizáveis',hosts.toLocaleString('pt-BR')],['Tipo',kind(n)]];
+        out.innerHTML=rows.map(function(r){return '<tr><td>'+r[0]+'</td><td><b>'+r[1]+'</b></td></tr>'}).join('');
+      }
+      document.getElementById('ipGo').onclick=calc;sel.onchange=calc;
+      ipIn.onkeydown=function(e){if(e.key==='Enter')calc();};
+      calc();
+    }
+
+    var rtIn=document.getElementById('rtIn');
+    if(rtIn){
+      var routes=[['192.168.1.0',24,'entrega <b>direto na rede</b>, pela interface Gi0/0'],['192.168.2.0',24,'envia para <b>10.0.0.2</b>, pela interface Gi0/1'],
+                  ['192.168.2.128',25,'envia para <b>10.0.0.6</b>, pela interface Gi0/2'],['0.0.0.0',0,'envia para <b>10.0.0.9</b>, pela interface Gi0/3 (rota padrão)']];
+      var msg=document.getElementById('rtMsg');
+      function route(){
+        var n=ip2n(rtIn.value);
+        [0,1,2,3].forEach(function(i){document.getElementById('rt'+i).classList.remove('hit')});
+        if(n===null){msg.innerHTML='<span class="bad">Endereço inválido.</span>';return;}
+        var best=-1,bp=-1,cands=[];
+        routes.forEach(function(r,i){
+          var m=maskOf(r[1]);
+          if(((n&m)>>>0)===ip2n(r[0])){cands.push(i+1);if(r[1]>bp){bp=r[1];best=i;}}
+        });
+        document.getElementById('rt'+best).classList.add('hit');
+        msg.innerHTML='Destino <b>'+n2ip(n)+'</b> combina com a(s) rota(s) <b>'+cands.join(', ')+'</b>'+
+          (cands.length>1?'. Vale a de <b>prefixo mais longo</b> (/'+bp+'), a rota '+(best+1):'. Rota escolhida: '+(best+1))+
+          '. O roteador '+routes[best][2]+'.';
+      }
+      document.getElementById('rtGo').onclick=route;
+      rtIn.onkeydown=function(e){if(e.key==='Enter')route();};
+      [].forEach.call(document.querySelectorAll('#rt [data-ex]'),function(b){b.onclick=function(){rtIn.value=b.dataset.ex;route();};});
+      route();
+    }
   })();
 
   // --- Gabarito no PDF ---
