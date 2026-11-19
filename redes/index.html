@@ -120,6 +120,27 @@ ol.steps>li::before{content:counter(s);position:absolute;left:0;top:2px;width:32
 .enc-txt{min-height:48px;margin:8px 0 12px;font-size:15.5px}
 .enc button{border:0;background:var(--cc);color:#fff;border-radius:10px;padding:8px 16px;font-size:15px;cursor:pointer;font-weight:600}
 .enc button.alt{background:#fff;color:var(--suave);border:1px solid var(--borda)}
+.frame{display:flex;gap:4px;margin:14px 0;overflow-x:auto}
+.frame span{color:#fff;text-align:center;padding:10px 6px;border-radius:8px;font-size:13px;font-weight:700;line-height:1.3;min-width:70px}
+.frame small{font-weight:400;opacity:.9}
+.pins{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin:12px 0}
+.pins>div{background:#fff;border:1px solid var(--borda);border-radius:12px;padding:10px 14px}
+.pins .row{display:flex;gap:5px;margin-top:8px}
+.pins .row i{flex:1;height:44px;border-radius:5px;border:1px solid #b0bec5;background:linear-gradient(135deg,var(--a) 0 25%,var(--b) 25% 50%,var(--a) 50% 75%,var(--b) 75%)}
+.sw{background:#fff;border:1px solid var(--borda);border-radius:16px;padding:16px;margin:12px 0}
+.sw-ctl{display:flex;flex-wrap:wrap;gap:10px;align-items:center;font-size:15px}
+.sw select{font-size:15px;padding:6px 8px;border-radius:8px;border:1px solid var(--borda)}
+.sw button{border:0;background:var(--cc);color:#fff;border-radius:10px;padding:8px 14px;font-size:15px;cursor:pointer;font-weight:600}
+.sw button.alt{background:#fff;color:var(--suave);border:1px solid var(--borda)}
+.sw-pcs{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:14px 0}
+.pcx{border:2px solid var(--borda);border-radius:12px;padding:8px 6px;text-align:center;font-size:13px;background:#fafafa;transition:all .2s}
+.pcx b{display:block;font-size:15px}
+.pcx small{display:block;color:var(--suave);word-break:break-all}
+.pcx.tx{background:#fff3e0;border-color:#ef6c00}
+.pcx.rx{background:#e8f5e9;border-color:#43a047}
+.pcx.dr{background:#f5f5f5;border-color:#bdbdbd;opacity:.6}
+.sw-tab{max-width:360px;font-size:14px}
+@media (max-width:600px){.sw-pcs{grid-template-columns:repeat(2,1fr)}}
 .soon-card{background:#fff;border:1px dashed #b0bec5;border-radius:16px;padding:18px 22px;margin:14px 0;color:var(--suave)}
 footer{text-align:center;color:var(--suave);font-size:14px;padding:30px 0 0}
 .back-top{position:fixed;right:20px;bottom:20px;width:44px;height:44px;border-radius:50%;border:0;background:var(--verde);color:#fff;font-size:20px;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.2);display:none;z-index:70}
@@ -141,7 +162,10 @@ footer{text-align:center;color:var(--suave);font-size:14px;padding:30px 0 0}
   .hero{padding:26px 0;border-radius:12px;margin-bottom:10px}
   .hero .wrap{padding:0 22px}
   section{padding:14px 0 0;break-before:auto}
-  #cap1,#cap2{break-before:page}
+  #cap1,#cap2,#cap3{break-before:page}
+  .sw button{display:none!important}
+  .sw-ctl{display:none}
+  .frame,.pins,.sw{break-inside:avoid}
   .layer .ld{display:block!important}
   .lh small{max-width:none}
   .layer,.enc{break-inside:avoid}
@@ -188,7 +212,13 @@ footer{text-align:center;color:var(--suave);font-size:14px;padding:30px 0 0}
       <a href="#c2-lab">Atividade e laboratório</a>
       <a href="#c2-quiz">Quiz e exercícios</a>
     </div>
-    <a href="#cap3" class="soon"><span class="n" style="background:var(--c3)">3</span>Acesso à rede</a>
+    <a href="#cap3"><span class="n" style="background:var(--c3)">3</span>Acesso à rede</a>
+    <div class="sub">
+      <a href="#c3-eth">Ethernet (802.3)</a>
+      <a href="#c3-wifi">Wi-Fi (802.11)</a>
+      <a href="#c3-lab">Laboratórios</a>
+      <a href="#c3-quiz">Quiz e exercícios</a>
+    </div>
     <a href="#cap4" class="soon"><span class="n" style="background:var(--c4)">4</span>Camada de internet</a>
     <a href="#cap5" class="soon"><span class="n" style="background:var(--c5)">5</span>Camada de transporte</a>
     <a href="#cap6" class="soon"><span class="n" style="background:var(--c6)">6</span>Camada de aplicação</a>
@@ -219,7 +249,7 @@ footer{text-align:center;color:var(--suave);font-size:14px;padding:30px 0 0}
   <div class="map">
     <div class="card" style="--cc:var(--c1)"><b>1 · Introdução a redes</b><span>História, topologias, componentes e classificação.</span><div class="st">✅ Disponível</div></div>
     <div class="card" style="--cc:var(--c2)"><b>2 · Padrões e modelos</b><span>Modelo OSI e arquitetura TCP/IP.</span><div class="st">✅ Disponível</div></div>
-    <div class="card" style="--cc:var(--c3)"><b>3 · Acesso à rede</b><span>Ethernet (802.3) e redes sem fio (802.11).</span><div class="st">⏳ Em breve</div></div>
+    <div class="card" style="--cc:var(--c3)"><b>3 · Acesso à rede</b><span>Ethernet (802.3) e redes sem fio (802.11).</span><div class="st">✅ Disponível</div></div>
     <div class="card" style="--cc:var(--c4)"><b>4 · Camada de internet</b><span>IPv4, IPv6, roteamento, ARP e ICMP.</span><div class="st">⏳ Em breve</div></div>
     <div class="card" style="--cc:var(--c5)"><b>5 · Camada de transporte</b><span>Protocolos TCP e UDP.</span><div class="st">⏳ Em breve</div></div>
     <div class="card" style="--cc:var(--c6)"><b>6 · Camada de aplicação</b><span>Web, e-mail, DNS, DHCP, FTP e SSH.</span><div class="st">⏳ Em breve</div></div>
@@ -532,8 +562,214 @@ ping -n 4 8.8.8.8      # Windows</code></pre></li>
   <div class="open"><p><b>3.</b> O ping para o roteador funciona, mas o navegador não abre nenhum site pelo nome. Em qual camada você investigaria primeiro e por quê?</p>
     <button>Ver resposta</button><div class="answer">Na camada de Aplicação (7), no serviço DNS, que traduz nomes em endereços IP. Como o ping responde, as camadas de baixo (física, enlace e rede) estão funcionando.</div></div>
 </section>
-<section class="chapter" id="cap3"><div class="chap-head"><div class="chap-num" style="background:var(--c3)">3</div><div><small>Capítulo 3</small><h2>Camada de acesso à rede</h2></div></div>
-  <div class="soon-card">⏳ Em construção. Conteúdo: família Ethernet (IEEE 802.3) e introdução às redes sem fio (IEEE 802.11).</div></section>
+<section class="chapter" id="cap3" style="--cc:var(--c3)">
+  <div class="chap-head"><div class="chap-num" style="background:var(--c3)">3</div><div><small>Capítulo 3</small><h2>Camada de acesso à rede</h2></div></div>
+
+  <div class="obj"><h4>🎯 Ao final deste capítulo, você será capaz de:</h4>
+    <ul>
+      <li>Explicar o papel da camada de acesso à rede (enlace + física) do TCP/IP.</li>
+      <li>Descrever a família Ethernet (IEEE 802.3): quadro, endereço MAC, cabos e velocidades.</li>
+      <li>Explicar como um switch aprende endereços MAC e encaminha quadros.</li>
+      <li>Descrever o funcionamento básico do Wi-Fi (IEEE 802.11): AP, SSID, faixas e canais.</li>
+      <li>Comparar redes cabeadas e sem fio e escolher a melhor para cada situação.</li>
+    </ul>
+  </div>
+
+  <h3>O que faz a camada de acesso à rede?</h3>
+  <p>É a camada que fica mais perto do “mundo real”. Ela leva os dados de <b>um equipamento até o vizinho direto</b>, pelo cabo ou pelo ar, e transforma tudo em sinais (elétricos, luz ou ondas de rádio). No OSI, ela reúne as camadas <b>2 (Enlace)</b> e <b>1 (Física)</b>.</p>
+  <div class="box analogia"><div class="ic">💡</div><div><h5>Pense assim...</h5><p>A camada de Rede (IP) decide o <b>destino final</b> da viagem, como a cidade. A camada de Acesso cuida de <b>cada trecho</b> do caminho, de uma esquina até a próxima, e usa o “nome” do vizinho (o MAC), não o endereço final.</p></div></div>
+  <p>Hoje dois padrões do IEEE dominam essa camada: o <b>802.3 (Ethernet)</b>, para redes cabeadas, e o <b>802.11 (Wi-Fi)</b>, para redes sem fio.</p>
+
+  <!-- 3.1 -->
+  <h3 id="c3-eth">3.1 Visão geral da família Ethernet (IEEE 802.3)</h3>
+  <p>A Ethernet nasceu nos anos 1970 e, de tanto evoluir, continua sendo a rede cabeada mais usada do mundo. O que mudou foi a velocidade e a tecnologia, não a ideia principal.</p>
+  <table>
+    <tr><th>Nome comum</th><th>Padrão</th><th>Velocidade</th><th>Meio típico</th></tr>
+    <tr><td><b>Ethernet</b> (10BASE-T)</td><td>802.3</td><td>10 Mbps</td><td>Par trançado</td></tr>
+    <tr><td><b>Fast Ethernet</b> (100BASE-TX)</td><td>802.3u</td><td>100 Mbps</td><td>Par trançado</td></tr>
+    <tr><td><b>Gigabit Ethernet</b> (1000BASE-T)</td><td>802.3ab</td><td>1 Gbps</td><td>Par trançado</td></tr>
+    <tr><td><b>10 Gigabit Ethernet</b> (10GBASE-T)</td><td>802.3an</td><td>10 Gbps</td><td>Par trançado (Cat6a) ou fibra</td></tr>
+  </table>
+  <p style="font-size:14px;color:var(--suave)">Existem versões ainda mais rápidas, usadas principalmente em fibra, em data centers e provedores. O “T” no nome indica par trançado (<i>twisted pair</i>).</p>
+
+  <h3>Endereço MAC: a identidade da placa de rede</h3>
+  <p>Todo equipamento de rede tem um <b>endereço MAC</b> de 48 bits, escrito com 12 dígitos hexadecimais, como <code>00:1A:2B:3C:4D:5E</code>. Os três primeiros pares identificam o <b>fabricante</b> (OUI) e os três últimos identificam a placa.</p>
+  <div class="box analogia"><div class="ic">💡</div><div><h5>Pense assim...</h5><p>O MAC é como o <b>número de série</b> de um produto: de fábrica, só vale para aquele aparelho. O IP é como o <b>endereço da sua casa</b>: muda quando você muda de rede. Por isso a rede usa os dois: o IP para chegar à cidade certa e o MAC para entregar na porta certa.</p></div></div>
+
+  <h3>O quadro Ethernet</h3>
+  <p>Na camada de enlace, os dados viram um <b>quadro</b> (<i>frame</i>). Veja os campos principais:</p>
+  <div class="frame">
+    <span style="background:#78909c;flex:1.4">Preâmbulo<br><small>sincroniza</small></span>
+    <span style="background:#c62828;flex:1.6">MAC destino<br><small>6 bytes</small></span>
+    <span style="background:#ef6c00;flex:1.6">MAC origem<br><small>6 bytes</small></span>
+    <span style="background:#6a1b9a;flex:1.2">Tipo<br><small>2 bytes</small></span>
+    <span style="background:#2e7d32;flex:3">Dados (pacote IP)<br><small>46 a 1500 bytes</small></span>
+    <span style="background:#1565c0;flex:1.2">FCS<br><small>4 bytes</small></span>
+  </div>
+  <ul>
+    <li><b>MAC destino e origem:</b> quem recebe e quem enviou, neste trecho.</li>
+    <li><b>Tipo:</b> diz qual protocolo vem dentro (por exemplo, IPv4 ou IPv6).</li>
+    <li><b>FCS:</b> um código para o receptor conferir se o quadro chegou sem erros. Se houver erro, o quadro é descartado.</li>
+  </ul>
+
+  <h3>Como o switch decide para onde enviar? (simulador)</h3>
+  <p>O switch mantém uma <b>tabela de endereços MAC</b>. Ele aprende sozinho, olhando o MAC de origem de cada quadro que chega. Se não conhece o destino, ele envia para todas as portas (<i>flooding</i>). Teste:</p>
+  <div class="box analogia"><div class="ic">💡</div><div><h5>Pense assim...</h5><p>O switch é como o <b>porteiro de um condomínio</b> que anota, em um caderno, em qual apartamento cada morador mora. No começo o caderno está vazio. Quando a primeira encomenda chega, ele não sabe onde é e pergunta em todas as portas. Mas já anota de quem veio. Depois de um tempo, ele entrega direto no apartamento certo.</p></div></div>
+  <div class="sw" id="sw">
+    <div class="sw-ctl">
+      De: <select id="swSrc"></select>
+      Para: <select id="swDst"></select>
+      <button id="swSend">Enviar quadro ▶</button>
+      <button id="swReset" class="alt">Limpar tabela</button>
+    </div>
+    <div class="sw-pcs" id="swPcs"></div>
+    <p class="enc-txt" id="swMsg">Escolha quem envia e quem recebe, e clique em “Enviar quadro”.</p>
+    <table class="sw-tab"><tr><th>Porta</th><th>MAC aprendido</th></tr><tbody id="swTab"></tbody></table>
+  </div>
+  <div class="box atencao"><div class="ic">⚠️</div><div><h5>Atenção</h5><p><b>Hub x switch.</b> O hub repete tudo para todas as portas (camada 1), e todo mundo disputa o mesmo meio. Para evitar colisões, a Ethernet antiga usava o <b>CSMA/CD</b>: “escute antes de falar e, se bater, pare e tente depois”. O switch dá a cada porta um canal próprio (full-duplex), então praticamente não há colisões nas redes de hoje.</p></div></div>
+
+  <h3>Cabos e conectores</h3>
+  <table>
+    <tr><th>Meio</th><th>Características</th><th>Uso comum</th></tr>
+    <tr><td><b>Par trançado UTP</b> (conector RJ-45)</td><td>Até <b>100 m</b> por trecho. Cat5e e Cat6 chegam a 1 Gbps. Cat6a chega a 10 Gbps nos 100 m.</td><td>Redes locais de escritórios, escolas e casas</td></tr>
+    <tr><td><b>Fibra óptica</b></td><td>Usa luz. Longas distâncias, altíssima velocidade e imune a interferência elétrica. Monomodo (mais distante) e multimodo (distâncias menores).</td><td>Ligação entre prédios, provedores e data centers</td></tr>
+  </table>
+  <p>Os cabos UTP têm 8 fios coloridos em 4 pares. A ordem dos fios no conector segue dois padrões:</p>
+  <div class="pins">
+    <div><b>T568A</b><div class="row"><i style="--a:#fff;--b:#43a047"></i><i style="background:#43a047"></i><i style="--a:#fff;--b:#ef6c00"></i><i style="background:#1e88e5"></i><i style="--a:#fff;--b:#1e88e5"></i><i style="background:#ef6c00"></i><i style="--a:#fff;--b:#6d4c41"></i><i style="background:#6d4c41"></i></div></div>
+    <div><b>T568B</b> (o mais usado no Brasil)<div class="row"><i style="--a:#fff;--b:#ef6c00"></i><i style="background:#ef6c00"></i><i style="--a:#fff;--b:#43a047"></i><i style="background:#1e88e5"></i><i style="--a:#fff;--b:#1e88e5"></i><i style="background:#43a047"></i><i style="--a:#fff;--b:#6d4c41"></i><i style="background:#6d4c41"></i></div></div>
+  </div>
+  <p style="font-size:14px;color:var(--suave)">Cores, da esquerda para a direita, de 1 a 8 (listrado = branco com a cor). T568A: verde-branco, verde, laranja-branco, azul, azul-branco, laranja, marrom-branco, marrom. T568B: laranja-branco, laranja, verde-branco, azul, azul-branco, verde, marrom-branco, marrom.</p>
+  <ul>
+    <li><b>Cabo direto:</b> o mesmo padrão nas duas pontas (B e B). Liga equipamentos diferentes, como PC e switch.</li>
+    <li><b>Cabo crossover (cruzado):</b> um padrão em cada ponta (A e B). Era usado para ligar equipamentos iguais, como PC e PC. Hoje a maioria das portas se ajusta sozinha (Auto-MDIX).</li>
+  </ul>
+
+  <!-- 3.2 -->
+  <h3 id="c3-wifi">3.2 Introdução às redes sem fio (IEEE 802.11)</h3>
+  <p>O <b>802.11</b> é o padrão do IEEE para redes locais sem fio (WLAN). “<b>Wi-Fi</b>” é o nome comercial dado pela Wi-Fi Alliance aos equipamentos que passam nos testes desse padrão. Em vez de cabo, os dados viajam por <b>ondas de rádio</b>.</p>
+  <div class="box analogia"><div class="ic">💡</div><div><h5>Pense assim...</h5><p>O Wi-Fi é como <b>uma conversa em uma sala cheia de gente</b>. Todos compartilham o mesmo ar. Para ninguém falar por cima, cada um espera um momento de silêncio antes de falar. Esse é o <b>CSMA/CA</b>: “escute antes, e evite colisão”. Já no cabo com switch, cada pessoa tem uma linha telefônica só dela.</p></div></div>
+
+  <h3>Peças de uma rede Wi-Fi</h3>
+  <table>
+    <tr><th>Termo</th><th>O que é</th></tr>
+    <tr><td><b>Estação (STA)</b></td><td>Qualquer aparelho com Wi-Fi: celular, notebook, smart TV.</td></tr>
+    <tr><td><b>Ponto de acesso (AP)</b></td><td>Equipamento que cria a rede sem fio e a liga à rede cabeada. Em casa, costuma estar dentro do roteador do provedor.</td></tr>
+    <tr><td><b>SSID</b></td><td>O nome da rede que aparece na lista do celular.</td></tr>
+    <tr><td><b>BSSID</b></td><td>O identificador do AP (na prática, o MAC do rádio dele).</td></tr>
+    <tr><td><b>Canal</b></td><td>Uma “faixa” de frequência usada pela rede.</td></tr>
+  </table>
+
+  <h3>Faixas de frequência e gerações</h3>
+  <table>
+    <tr><th>Faixa</th><th>Vantagens</th><th>Desvantagens</th></tr>
+    <tr><td><b>2,4 GHz</b></td><td>Alcance maior e atravessa melhor paredes.</td><td>Mais lenta e mais congestionada: micro-ondas, Bluetooth e as redes dos vizinhos interferem.</td></tr>
+    <tr><td><b>5 GHz</b></td><td>Mais rápida e com mais canais livres.</td><td>Alcance menor e sofre mais com paredes.</td></tr>
+    <tr><td><b>6 GHz</b> (Wi-Fi 6E e 7)</td><td>Faixa nova e “limpa”, muito rápida.</td><td>Alcance ainda menor. Exige equipamentos mais novos.</td></tr>
+  </table>
+  <table>
+    <tr><th>Padrão</th><th>Nome comercial</th><th>Faixa</th></tr>
+    <tr><td>802.11b / g</td><td>(antigos)</td><td>2,4 GHz</td></tr>
+    <tr><td>802.11a</td><td>(antigo)</td><td>5 GHz</td></tr>
+    <tr><td>802.11n</td><td>Wi-Fi 4</td><td>2,4 e 5 GHz</td></tr>
+    <tr><td>802.11ac</td><td>Wi-Fi 5</td><td>5 GHz</td></tr>
+    <tr><td>802.11ax</td><td>Wi-Fi 6 (e 6E, com 6 GHz)</td><td>2,4 e 5 GHz (6E: também 6 GHz)</td></tr>
+    <tr><td>802.11be</td><td>Wi-Fi 7</td><td>2,4, 5 e 6 GHz</td></tr>
+  </table>
+  <div class="box atencao"><div class="ic">⚠️</div><div><h5>Atenção</h5><p>As velocidades anunciadas nas caixas dos roteadores são <b>teóricas</b>. Na prática, a velocidade real é bem menor e é <b>dividida</b> entre todos os aparelhos conectados, pois o ar é compartilhado.</p></div></div>
+  <div class="box dica"><div class="ic">✅</div><div><h5>Dica: escolha de canais em 2,4 GHz</h5><p>Os canais de 2,4 GHz se sobrepõem. Os únicos que não se atrapalham são o <b>1, 6 e 11</b>. Se o seu vizinho já usa o canal 6, o 1 ou o 11 tende a funcionar melhor.</p></div></div>
+
+  <h3>Segurança básica no Wi-Fi</h3>
+  <p>Como o sinal passa pelo ar, qualquer pessoa por perto pode “ouvi-lo”. Por isso a rede precisa de criptografia: <b>WEP</b> é inseguro e não deve mais ser usado. Prefira <b>WPA2</b> ou <b>WPA3</b>, com uma senha longa e única. Veremos mais sobre segurança no capítulo 7.</p>
+
+  <h3>Cabeada ou sem fio?</h3>
+  <table>
+    <tr><th></th><th>Cabeada (Ethernet)</th><th>Sem fio (Wi-Fi)</th></tr>
+    <tr><td><b>Velocidade e estabilidade</b></td><td>Alta e constante</td><td>Varia com distância, paredes e interferência</td></tr>
+    <tr><td><b>Mobilidade</b></td><td>Baixa: preso ao cabo</td><td>Alta: circule pela casa ou escola</td></tr>
+    <tr><td><b>Instalação</b></td><td>Exige passar cabos</td><td>Mais rápida e barata</td></tr>
+    <tr><td><b>Segurança</b></td><td>Exige acesso físico à rede</td><td>Precisa de criptografia e senha</td></tr>
+  </table>
+  <div class="box exemplo"><div class="ic">📌</div><div><h5>Exemplo</h5><p>Em uma escola: <b>cabo</b> para servidores, computadores do laboratório e câmeras de segurança (precisam de estabilidade). <b>Wi-Fi</b> para celulares e notebooks dos alunos (precisam de mobilidade).</p></div></div>
+
+  <!-- LABS -->
+  <div class="lab" id="c3-lab">
+    <h3>🧪 Laboratório 4 – A tabela MAC do switch no Packet Tracer</h3>
+    <ol class="steps">
+      <li>Monte uma rede com <b>1 switch</b> e <b>3 PCs</b>, como no laboratório 2 (IPs <code>192.168.0.1</code>, <code>.2</code> e <code>.3</code>, máscara <code>255.255.255.0</code>).</li>
+      <li>Clique no switch, abra a aba <b>CLI</b> e digite:
+<pre><button class="cp">Copiar</button><code>enable
+show mac address-table</code></pre>
+        A tabela deve estar <b>vazia</b> (ou quase). Isso é o “caderno do porteiro” antes de aprender.</li>
+      <li>No PC1, abra o <b>Command Prompt</b> e rode <code>ping 192.168.0.2</code>.</li>
+      <li>Volte ao switch e repita <code>show mac address-table</code>. Agora há entradas <b>dinâmicas</b>, com o MAC de cada PC e a porta onde ele está.</li>
+      <li><b>Desafio:</b> mude o PC2 para outra porta do switch, faça um novo ping e veja a tabela outra vez. O que mudou?</li>
+    </ol>
+
+    <h3>🧪 Laboratório 5 – Inspecionando o seu Wi-Fi</h3>
+    <ol class="steps">
+      <li><b>Veja os detalhes da conexão atual.</b>
+<pre><button class="cp">Copiar</button><code># Windows
+netsh wlan show interfaces
+
+# Linux
+nmcli -f SSID,CHAN,FREQ,RATE,SIGNAL,SECURITY dev wifi</code></pre>
+        Anote: <b>SSID</b>, <b>canal</b>, <b>tipo de rádio</b> (por exemplo, 802.11ac), <b>sinal</b> e <b>segurança</b> (WPA2/WPA3).</li>
+      <li><b>Veja as redes vizinhas e os canais que elas usam</b> (somente Windows).
+<pre><button class="cp">Copiar</button><code>netsh wlan show networks mode=bssid</code></pre></li>
+      <li><b>Veja o MAC da sua placa de rede.</b>
+<pre><button class="cp">Copiar</button><code># Windows
+getmac /v
+
+# Linux
+ip link</code></pre></li>
+      <li><b>Para discutir:</b> sua rede está em 2,4 GHz ou 5 GHz? Há muitas redes no mesmo canal? Qual canal seria melhor?</li>
+    </ol>
+  </div>
+
+  <div class="resumo">
+    <h3>📝 Resumo do capítulo</h3>
+    <ul>
+      <li>A camada de acesso à rede leva os dados de um equipamento ao vizinho direto (OSI: enlace e física).</li>
+      <li>Ethernet (IEEE 802.3) é o padrão cabeado. O quadro tem MAC de destino, MAC de origem, tipo, dados e FCS.</li>
+      <li>O endereço MAC tem 48 bits e identifica a placa de rede. O switch aprende os MACs e encaminha só para a porta certa.</li>
+      <li>O UTP alcança até 100 m por trecho. A fibra usa luz e vai muito mais longe.</li>
+      <li>Wi-Fi (IEEE 802.11) usa ondas de rádio, com AP, SSID e canais. O CSMA/CA evita que dois falem ao mesmo tempo.</li>
+      <li>2,4 GHz alcança mais e 5/6 GHz são mais rápidas. Use WPA2 ou WPA3.</li>
+    </ul>
+  </div>
+
+  <h3 id="c3-quiz">🧠 Quiz do capítulo 3</h3>
+  <div class="quiz">
+    <div class="q"><p>1. Quantos bits tem um endereço MAC?</p>
+      <button class="opt">a) 32</button><button class="opt" data-ok="1">b) 48</button><button class="opt">c) 64</button><button class="opt">d) 128</button>
+      <div class="fb">O MAC tem <b>48 bits</b> (12 dígitos hexadecimais). O IPv4 tem 32 bits e o IPv6 tem 128.</div></div>
+    <div class="q"><p>2. Um switch recebe um quadro cujo MAC de destino ele ainda não conhece. O que ele faz?</p>
+      <button class="opt">a) Descarta o quadro</button><button class="opt" data-ok="1">b) Envia para todas as portas, exceto a de origem</button><button class="opt">c) Devolve para quem enviou</button><button class="opt">d) Pede o endereço ao roteador</button>
+      <div class="fb">Isso é o <i>flooding</i>. Ao mesmo tempo, o switch aprende o MAC de origem, e na próxima vez já encaminha só para a porta certa.</div></div>
+    <div class="q"><p>3. Qual é o comprimento máximo recomendado de um trecho de cabo UTP em redes Ethernet?</p>
+      <button class="opt">a) 10 m</button><button class="opt">b) 55 m</button><button class="opt" data-ok="1">c) 100 m</button><button class="opt">d) 1000 m</button>
+      <div class="fb">O limite padrão do par trançado é de <b>100 metros</b>. Para distâncias maiores, usa-se switch no meio do caminho ou fibra óptica.</div></div>
+    <div class="q"><p>4. Qual padrão do IEEE define as redes locais sem fio (Wi-Fi)?</p>
+      <button class="opt">a) 802.3</button><button class="opt" data-ok="1">b) 802.11</button><button class="opt">c) 802.1Q</button><button class="opt">d) 802.15</button>
+      <div class="fb">O <b>802.11</b> é o Wi-Fi. O 802.3 é a Ethernet cabeada.</div></div>
+    <div class="q"><p>5. Qual afirmação sobre as faixas do Wi-Fi está correta?</p>
+      <button class="opt">a) 5 GHz alcança mais longe que 2,4 GHz</button><button class="opt" data-ok="1">b) 2,4 GHz alcança mais longe, mas é mais congestionada</button><button class="opt">c) 2,4 GHz é sempre mais rápida</button><button class="opt">d) As duas faixas têm o mesmo alcance</button>
+      <div class="fb">A 2,4 GHz atravessa melhor obstáculos, mas tem mais interferência. A 5 GHz é mais rápida e menos congestionada, porém alcança menos.</div></div>
+    <div class="q"><p>6. Para ligar um PC a um switch com um cabo UTP “direto”, as duas pontas do cabo devem ter:</p>
+      <button class="opt" data-ok="1">a) O mesmo padrão (por exemplo, T568B nas duas)</button><button class="opt">b) Um padrão A e outro B</button><button class="opt">c) Cores aleatórias</button><button class="opt">d) Apenas 2 fios</button>
+      <div class="fb">Cabo direto = mesmo padrão nas duas pontas. Cabo crossover = A de um lado e B do outro.</div></div>
+  </div>
+  <div class="score"></div>
+
+  <h3>✍️ Questões abertas</h3>
+  <div class="open"><p><b>1.</b> Qual a diferença entre endereço MAC e endereço IP? Use uma analogia.</p>
+    <button>Ver resposta</button><div class="answer">O MAC é o “número de série” da placa de rede, vem de fábrica e é usado para entregar o quadro no trecho local. O IP é o “endereço da casa”, depende da rede em que o aparelho está e é usado para levar o pacote entre redes diferentes.</div></div>
+  <div class="open"><p><b>2.</b> Explique como um switch aprende em qual porta está cada computador.</p>
+    <button>Ver resposta</button><div class="answer">A cada quadro recebido, o switch lê o MAC de origem e anota, na tabela, que aquele MAC está na porta por onde o quadro chegou. Depois, quando algum quadro tiver aquele MAC como destino, o switch o envia só para essa porta.</div></div>
+  <div class="open"><p><b>3.</b> Uma sala de aula com 40 alunos usa o Wi-Fi em 2,4 GHz e está lenta. Cite duas medidas para melhorar.</p>
+    <button>Ver resposta</button><div class="answer">Por exemplo: usar a faixa de 5 GHz (mais rápida e com mais canais livres), colocar mais pontos de acesso distribuídos pela sala, escolher canais sem sobreposição (1, 6 e 11 em 2,4 GHz) e usar cabo nos equipamentos fixos para liberar o ar.</div></div>
+</section>
 <section class="chapter" id="cap4"><div class="chap-head"><div class="chap-num" style="background:var(--c4)">4</div><div><small>Capítulo 4</small><h2>Camada de internet TCP/IP</h2></div></div>
   <div class="soon-card">⏳ Em construção. Conteúdo: IP (IPv4 e IPv6), endereçamento, roteamento estático e dinâmico, ARP e ICMP.</div></section>
 <section class="chapter" id="cap5"><div class="chap-head"><div class="chap-num" style="background:var(--c5)">5</div><div><small>Capítulo 5</small><h2>Camada de transporte TCP/IP</h2></div></div>
@@ -653,6 +889,45 @@ ping -n 4 8.8.8.8      # Windows</code></pre></li>
   var links=[].slice.call(sb.querySelectorAll('.nav > a'));
   var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){links.forEach(function(l){l.classList.toggle('on',l.getAttribute('href')==='#'+e.target.id)})}})},{rootMargin:'-20% 0px -70% 0px'});
   document.querySelectorAll('header.hero, section[id]').forEach(function(s){io.observe(s)});
+
+  // --- Simulador de switch ---
+  (function(){
+    var pcs=[['A','AA:AA:AA:AA:AA:AA'],['B','BB:BB:BB:BB:BB:BB'],['C','CC:CC:CC:CC:CC:CC'],['D','DD:DD:DD:DD:DD:DD']];
+    var src=document.getElementById('swSrc'),dst=document.getElementById('swDst'),box=document.getElementById('swPcs'),msg=document.getElementById('swMsg'),tab=document.getElementById('swTab');
+    if(!src)return;
+    var table={};
+    pcs.forEach(function(p,i){
+      src.add(new Option('PC '+p[0],i));dst.add(new Option('PC '+p[0],i));
+      var d=document.createElement('div');d.className='pcx';d.id='pcx'+i;
+      d.innerHTML='<b>PC '+p[0]+'</b><small>Porta '+(i+1)+'</small><small>'+p[1]+'</small>';box.appendChild(d);
+    });
+    dst.value=2;
+    function clear(){pcs.forEach(function(p,i){document.getElementById('pcx'+i).className='pcx'});}
+    function draw(){
+      var h='',k;
+      for(k in table)h+='<tr><td>'+table[k]+'</td><td><code>'+k+'</code></td></tr>';
+      tab.innerHTML=h||'<tr><td colspan="2" style="color:#6b7280">Tabela vazia</td></tr>';
+    }
+    document.getElementById('swSend').onclick=function(){
+      var s=+src.value,d=+dst.value;clear();
+      if(s===d){msg.innerHTML='Escolha uma origem e um destino <b>diferentes</b>.';return;}
+      var learned=!(pcs[s][1] in table);
+      table[pcs[s][1]]=s+1;
+      document.getElementById('pcx'+s).classList.add('tx');
+      var text='O switch recebeu o quadro na porta '+(s+1)+(learned?' e <b>aprendeu</b> que o MAC do PC '+pcs[s][0]+' está nessa porta. ':'. ');
+      if(pcs[d][1] in table){
+        document.getElementById('pcx'+d).classList.add('rx');
+        pcs.forEach(function(p,i){if(i!==s&&i!==d)document.getElementById('pcx'+i).classList.add('dr');});
+        text+='Ele já conhecia o destino, então enviou <b>somente pela porta '+(d+1)+'</b>.';
+      }else{
+        pcs.forEach(function(p,i){if(i!==s)document.getElementById('pcx'+i).classList.add(i===d?'rx':'dr');});
+        text+='Ele <b>não conhece</b> o MAC do PC '+pcs[d][0]+', então fez <b>flooding</b>: enviou por todas as portas, menos a de origem. Só o PC '+pcs[d][0]+' aceita o quadro; os outros descartam.';
+      }
+      msg.innerHTML=text;draw();
+    };
+    document.getElementById('swReset').onclick=function(){table={};clear();msg.innerHTML='Tabela limpa. O switch esqueceu tudo.';draw();};
+    draw();
+  })();
 
   // --- Gabarito no PDF ---
   var ans=document.getElementById('ans');
