@@ -210,4 +210,84 @@
       print('Terminal de treino. Digite help para ver os comandos.');prompt();mis();
     }
   })();
+
+  // --- Capítulo 4: elasticidade, responsabilidade e custos ---
+  (function(){
+    function mkBtns(box,items,cb){
+      box.classList.add('nm-modes');var bs=[];
+      items.forEach(function(t,i){var b=document.createElement('button');b.type='button';b.textContent=t;b.setAttribute('aria-pressed','false');
+        b.onclick=function(){bs.forEach(function(x){x.classList.remove('on');x.setAttribute('aria-pressed','false')});b.classList.add('on');b.setAttribute('aria-pressed','true');cb(i)};bs.push(b);box.appendChild(b)});
+      return bs;
+    }
+    // Elasticidade
+    var el=document.getElementById('el');
+    if(el){
+      var D=[5,3,2,2,3,8,20,60,100,70,50,45,40,55,80,70,40,30,25,20,15,10,8,6];
+      var names=['Capacidade fixa na média','Capacidade fixa no pico','Capacidade elástica'];
+      var svg=document.getElementById('elSvg'),out=document.getElementById('elOut'),day=document.getElementById('elDay'),cur=0;
+      var avg=D.reduce(function(a,b){return a+b},0)/24;
+      function draw(){
+        var f=day.checked?3:1,dem=D.map(function(d){return d*f});
+        var cap=D.map(function(d,i){
+          if(cur===0)return Math.round(avg);
+          if(cur===1)return Math.max.apply(null,D);
+          return Math.max(5,Math.ceil(dem[i]*1.1));
+        });
+        var maxY=Math.max(110,Math.max.apply(null,dem),Math.max.apply(null,cap)),W=520,H=220,L=30,B=24,T=8,bw=(W-L-6)/24;
+        var sy=function(v){return H-B-(v/maxY)*(H-B-T)};
+        var h='<line x1="'+L+'" y1="'+(H-B)+'" x2="'+W+'" y2="'+(H-B)+'" stroke="currentColor" opacity=".4"/>';
+        dem.forEach(function(d,i){var x=L+i*bw+1;h+='<rect x="'+x+'" y="'+sy(d)+'" width="'+(bw-2)+'" height="'+(H-B-sy(d))+'" fill="#1565c0" opacity=".75"/>';
+          if(i%3===0)h+='<text x="'+(x+bw/2)+'" y="'+(H-8)+'" font-size="10" text-anchor="middle" fill="currentColor">'+i+'h</text>'});
+        var pts='';cap.forEach(function(c,i){var x=L+i*bw;pts+=x+','+sy(c)+' '+(x+bw)+','+sy(c)+' '});
+        h+='<polyline points="'+pts+'" fill="none" stroke="#ef6c00" stroke-width="3"/>';
+        h+='<text x="4" y="'+(T+8)+'" font-size="10" fill="currentColor">'+Math.round(maxY)+'</text>';
+        svg.innerHTML=h;
+        var tot=0,uns=0,idle=0,capT=0;
+        dem.forEach(function(d,i){tot+=d;capT+=cap[i];if(d>cap[i])uns+=d-cap[i];else idle+=cap[i]-d});
+        var pu=Math.round(uns/tot*100),pi=Math.round(idle/capT*100);
+        var msg='<b>'+names[cur]+(day.checked?' — dia de matrícula':'')+'</b><br>Acessos não atendidos: <b>'+pu+'%</b>. Capacidade ociosa (paga e parada): <b>'+pi+'%</b>.<br>';
+        if(cur===0)msg+=(pu>0?'Nos horários de pico falta capacidade: o portal fica lento ou cai.':'')+' Pagar pela média parece econômico, mas falha justo quando mais precisam.';
+        else if(cur===1)msg+=(pu>0?'Nem o pico normal cobre o dia de matrícula!':'Atende tudo, mas você paga por um servidor enorme que passa a maior parte do dia parado.');
+        else msg+='A capacidade acompanha a demanda: pouca falta e pouca sobra, mesmo no dia de matrícula. Isso é <b>elasticidade</b>.';
+        out.innerHTML=msg;
+      }
+      mkBtns(document.getElementById('elModes'),names,function(i){cur=i;draw()})[0].click();
+      day.onchange=draw;
+    }
+    // Responsabilidade
+    var rp=document.getElementById('rp');
+    if(rp){
+      var layers=['Aplicações','Dados','Ambiente de execução','Sistema operacional','Virtualização','Servidores','Armazenamento','Rede'];
+      // quantas camadas (de baixo p/ cima) o provedor cuida
+      var prov=[0,4,6,8],mn=['Servidor próprio','IaaS','PaaS','SaaS'];
+      var tx=[
+        'Você cuida de <b>tudo</b>, do cabo de rede ao programa. Máximo de controle, máximo de trabalho (e de investimento).',
+        'O provedor entrega rede, armazenamento, servidores e virtualização. Você instala e atualiza o <b>sistema operacional</b>, o ambiente e os programas. Ex.: uma VM no Amazon EC2.',
+        'O provedor cuida também do sistema operacional e do ambiente de execução. Você envia o <b>código</b> e cuida dos dados. Ex.: Azure App Service.',
+        'O provedor cuida de tudo. Você <b>usa</b> o programa e cuida de contas, senhas e dos seus dados. Ex.: Gmail.'
+      ];
+      var rows=document.getElementById('rpRows'),txt=document.getElementById('rpTxt');
+      mkBtns(document.getElementById('rpModes'),mn,function(i){
+        var h='<table style="width:100%">';
+        layers.forEach(function(l,j){var p=(layers.length-1-j)<prov[i];
+          h+='<tr><td>'+l+'</td><td style="width:140px"><span class="'+(p?'ok-w':'ok-y')+'">'+(p?'☁️ Provedor':'👤 Você')+'</span></td></tr>'});
+        rows.innerHTML=h+'</table>';txt.innerHTML=tx[i];
+      })[1].click();
+    }
+    // Custos
+    var ct=document.getElementById('ct');
+    if(ct){
+      var g=function(i){return parseFloat(document.getElementById(i).value)||0};
+      var fm=function(v){return 'R$ '+v.toFixed(2).replace('.',',')};
+      function cc(){
+        var y=Math.max(1,g('ctY')),own=g('ctP')/(y*12)+g('ctM'),r=Math.max(0.01,g('ctR')),h=g('ctH'),cloud=r*h,be=own/r;
+        document.getElementById('ctHv').textContent=h+' h/mês';
+        var o='Servidor próprio: <b>'+fm(own)+'</b>/mês (fixo). Nuvem com '+h+' h: <b>'+fm(cloud)+'</b>/mês.<br>';
+        if(be>=730)o+='Mesmo ligada o mês inteiro (730 h), a nuvem sai mais barata nestes valores.';
+        else o+='O empate ocorre perto de <b>'+Math.round(be)+' horas/mês</b>. '+(h<be?'Com o uso atual, a <b>nuvem</b> compensa mais.':'Com o uso atual, o <b>servidor próprio</b> compensa mais.');
+        document.getElementById('ctOut').innerHTML=o;
+      }
+      ['ctP','ctY','ctM','ctR','ctH'].forEach(function(i){document.getElementById(i).oninput=cc});cc();
+    }
+  })();
 })();

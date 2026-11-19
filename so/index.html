@@ -70,7 +70,15 @@ html[data-theme=dark]{--verde-claro:#10263a}
       <a href="#c3-lab">Atividade e laboratórios</a>
       <a href="#c3-quiz">Quiz e exercícios</a>
     </div>
-    <a href="#cap4" class="soon"><span class="n" style="background:var(--c4)">4</span>Computação em nuvem</a>
+    <a href="#cap4"><span class="n" style="background:var(--c4)">4</span>Computação em nuvem</a>
+    <div class="sub">
+      <a href="#c4-conc">Conceitos</a>
+      <a href="#c4-serv">IaaS, PaaS e SaaS</a>
+      <a href="#c4-impl">Nuvem pública, privada, híbrida</a>
+      <a href="#c4-prov">Provedores</a>
+      <a href="#c4-lab">Atividade e laboratórios</a>
+      <a href="#c4-quiz">Quiz e exercícios</a>
+    </div>
     <a href="#refs"><span class="n" style="background:#455a64">📚</span>Referências</a>
   </nav>
   <div class="tools">
@@ -99,7 +107,7 @@ html[data-theme=dark]{--verde-claro:#10263a}
     <div class="card" style="--cc:var(--c1)"><b>1 · Virtualização</b><span>Máquinas virtuais, hipervisores, redes virtuais e containers.</span><div class="st">✅ Disponível</div></div>
     <div class="card" style="--cc:var(--c2)"><b>2 · Windows Server</b><span>Instalação, Active Directory, políticas de grupo, DNS e DHCP.</span><div class="st">✅ Disponível</div></div>
     <div class="card" style="--cc:var(--c3)"><b>3 · Linux</b><span>Comandos, usuários, permissões, pacotes e serviços (DNS, DHCP, SSH, SMB, web).</span><div class="st">✅ Disponível</div></div>
-    <div class="card" style="--cc:var(--c4)"><b>4 · Computação em nuvem</b><span>IaaS, PaaS, SaaS, tipos de nuvem e provedores.</span><div class="st">⏳ Em breve</div></div>
+    <div class="card" style="--cc:var(--c4)"><b>4 · Computação em nuvem</b><span>IaaS, PaaS, SaaS, tipos de nuvem e provedores.</span><div class="st">✅ Disponível</div></div>
   </div>
 </section>
 
@@ -1088,9 +1096,220 @@ curl -H "Host: www.escola.internal" http://192.168.60.10</code></pre>
 
   <div class="box dica" style="margin-top:28px"><div class="ic">📚</div><div><h5>Para saber mais</h5><p>O <b>Manual do Administrador Debian</b> (debian-handbook.info, em português) e a <b>documentação do Debian</b> (debian.org/doc) explicam cada tópico em profundidade. Para praticar, vale o <b>LPIC-1</b>, certificação citada na bibliografia complementar da disciplina.</p></div></div>
 </section>
-<section class="chapter soon-ch" id="cap4" style="--cc:var(--c4)">
+<section class="chapter" id="cap4" style="--cc:var(--c4)">
   <div class="chap-head"><div class="chap-num" style="background:var(--c4)">4</div><div><small>Capítulo 4</small><h2>Introdução à computação em nuvem</h2></div></div>
-  <div class="soon-card">⏳ Em construção. Conteúdo: conceitos de nuvem, modelos de serviço (IaaS, PaaS, SaaS), modelos de implantação (privada, pública e híbrida) e principais provedores.</div>
+
+  <div class="obj"><h4>🎯 Ao final deste capítulo, você será capaz de:</h4>
+    <ul>
+      <li>Explicar o que é computação em nuvem e citar suas principais características.</li>
+      <li>Diferenciar IaaS, PaaS e SaaS e dizer quem cuida de cada camada.</li>
+      <li>Diferenciar nuvem pública, privada e híbrida e escolher a mais adequada a uma situação.</li>
+      <li>Reconhecer os principais provedores e alguns de seus serviços.</li>
+      <li>Avaliar vantagens, custos e cuidados (segurança e responsabilidade compartilhada) ao usar a nuvem.</li>
+    </ul>
+  </div>
+
+  <h3 id="c4-conc">4.1 Conceitos de computação em nuvem</h3>
+  <p><b>Computação em nuvem</b> é usar recursos de computação (servidores, armazenamento, redes, programas) <b>pela Internet, sob demanda</b>, em vez de comprar e manter tudo em casa. O “computador” está em um <b>data center</b> de um provedor, e você acessa quando precisa e <b>paga pelo que usar</b>.</p>
+  <div class="box analogia"><div class="ic">💡</div><div><h5>Pense assim...</h5><p>É como a <b>energia elétrica</b>. Você não tem uma usina em casa: liga a tomada e paga pelo consumo. Na nuvem, você não compra o servidor: “liga” os recursos e paga pelo uso. Se precisar de mais, é só pedir; se não precisar mais, devolve.</p></div></div>
+  <p>A definição mais usada é a do <b>NIST</b> (instituto de padrões dos EUA), que lista cinco características essenciais:</p>
+  <table>
+    <tr><th>Característica</th><th>Significa</th></tr>
+    <tr><td><b>Autoatendimento sob demanda</b></td><td>Você mesmo cria o que precisa, em minutos, sem pedir a ninguém.</td></tr>
+    <tr><td><b>Acesso amplo pela rede</b></td><td>Acessível de qualquer lugar, por computador, celular, etc.</td></tr>
+    <tr><td><b>Agrupamento de recursos</b></td><td>O provedor atende muitos clientes com os mesmos equipamentos (por isso a virtualização do capítulo 1).</td></tr>
+    <tr><td><b>Elasticidade rápida</b></td><td>Aumenta e diminui os recursos conforme a necessidade, quase automaticamente.</td></tr>
+    <tr><td><b>Serviço medido</b></td><td>O uso é medido, e você paga só pelo que consumiu.</td></tr>
+  </table>
+
+  <h3 style="font-size:18px;margin-top:14px">Vantagens e cuidados</h3>
+  <table>
+    <tr><th>👍 Vantagens</th><th>⚠️ Cuidados</th></tr>
+    <tr><td><b>Sem grande investimento inicial</b>: troca a compra de equipamentos por pagamento mensal.</td><td><b>Custos podem surpreender</b> se recursos ficarem ligados e esquecidos.</td></tr>
+    <tr><td><b>Elasticidade:</b> aguenta picos de acesso sem comprar equipamento que ficaria parado.</td><td><b>Depende da Internet:</b> sem conexão, sem acesso.</td></tr>
+    <tr><td><b>Rapidez:</b> um servidor novo em minutos.</td><td><b>Dependência do provedor</b> (<i>lock-in</i>): sair pode ser difícil e caro.</td></tr>
+    <tr><td><b>Alcance e disponibilidade:</b> data centers em várias regiões do mundo.</td><td><b>Privacidade e leis:</b> onde ficam os dados? A LGPD se aplica.</td></tr>
+  </table>
+  <p>Veja a elasticidade em ação. Esta é a demanda de um portal escolar ao longo de um dia. Escolha como dimensionar a capacidade:</p>
+  <div class="tool" id="el" style="--cc:var(--c4)">
+    <div class="tool-ctl">
+      <span id="elModes" role="group" aria-label="Estratégia de capacidade"></span>
+      <label><input type="checkbox" id="elDay"> Dia de matrícula (3× mais acessos)</label>
+    </div>
+    <svg id="elSvg" viewBox="0 0 520 220" role="img" aria-label="Gráfico de demanda e capacidade ao longo do dia" style="width:100%;max-width:560px;height:auto;display:block;margin:10px auto"></svg>
+    <p class="enc-txt" id="elOut"></p>
+  </div>
+  <p style="font-size:14px;color:var(--suave)">Barras azuis: demanda por hora. Linha laranja: capacidade contratada. Valores ilustrativos.</p>
+
+  <h3 id="c4-serv">4.2 Modelos de serviço: IaaS, PaaS e SaaS</h3>
+  <p>A nuvem pode ser oferecida em “camadas”. Quanto mais alto o modelo, <b>menos coisa você precisa administrar</b>, e menos controle tem.</p>
+  <table>
+    <tr><th>Modelo</th><th>O provedor entrega...</th><th>Você cuida de...</th><th>Exemplos</th></tr>
+    <tr><td><b>IaaS</b><br><i>Infraestrutura como serviço</i></td><td>Servidores virtuais, armazenamento e rede.</td><td>Sistema operacional, programas e dados. <b>É o que você fez nos capítulos 2 e 3, só que em máquinas virtuais do provedor.</b></td><td>Amazon EC2, Azure Virtual Machines, Google Compute Engine</td></tr>
+    <tr><td><b>PaaS</b><br><i>Plataforma como serviço</i></td><td>Tudo do IaaS, mais o sistema operacional e o ambiente para rodar aplicações.</td><td>O seu código (aplicação) e os dados.</td><td>Azure App Service, Google App Engine, Heroku</td></tr>
+    <tr><td><b>SaaS</b><br><i>Software como serviço</i></td><td>O programa pronto, funcionando.</td><td>Apenas usar (e configurar contas e dados).</td><td>Gmail, Microsoft 365, Google Workspace, Zoom, Dropbox</td></tr>
+  </table>
+  <div class="box analogia"><div class="ic">💡</div><div><h5>Pense assim: pizza como serviço</h5><p><b>Fazer em casa</b> (servidor próprio): você cuida de tudo, da massa ao forno. <b>IaaS</b> é <b>comprar a pizza congelada</b> e assar em casa: a massa vem pronta, mas o forno e o jantar são seus. <b>PaaS</b> é <b>pedir por delivery</b>: só falta servir. <b>SaaS</b> é <b>ir ao restaurante</b>: você só come.</p></div></div>
+  <p>Veja quem cuida de cada camada em cada modelo:</p>
+  <div class="tool" id="rp" style="--cc:var(--c4)">
+    <div class="nm-modes" id="rpModes" role="group" aria-label="Modelo de serviço"></div>
+    <div id="rpRows"></div>
+    <p class="enc-txt" id="rpTxt"></p>
+  </div>
+  <div class="box exemplo"><div class="ic">📌</div><div><h5>Mais um modelo: serverless (FaaS)</h5><p>Em “funções como serviço” (como o AWS Lambda), você escreve só uma <b>pequena função</b>, e o provedor a executa quando algo acontece (um clique, um arquivo enviado). Você nem vê o servidor, e paga só pelo tempo de execução.</p></div></div>
+  <div class="box dica"><div class="ic">✅</div><div><h5>Responsabilidade compartilhada</h5><p>Segurança na nuvem é <b>dividida</b>: o provedor protege a infraestrutura (prédio, hardware, rede), e <b>você protege o que colocou lá</b>: senhas, acessos, dados, configurações e, no IaaS, as atualizações do sistema operacional. Muitos vazamentos acontecem por <b>configuração errada do cliente</b> (por exemplo, um armazenamento aberto ao público), não por falha do provedor.</p></div></div>
+
+  <h3 id="c4-impl">4.3 Modelos de implantação</h3>
+  <table>
+    <tr><th>Modelo</th><th>O que é</th><th>Vantagens</th><th>Cuidados</th></tr>
+    <tr><td><b>Nuvem pública</b></td><td>Infraestrutura de um provedor, compartilhada entre muitos clientes, pela Internet.</td><td>Sem investimento inicial, muito variada, elástica.</td><td>Menos controle; custos variáveis; dados fora da sua casa.</td></tr>
+    <tr><td><b>Nuvem privada</b></td><td>Infraestrutura <b>só da sua organização</b>, no seu data center ou em um dedicado.</td><td>Mais controle e privacidade.</td><td>Você paga e administra os equipamentos; menos elástica.</td></tr>
+    <tr><td><b>Nuvem híbrida</b></td><td>Mistura das duas, conectadas (por VPN, por exemplo).</td><td>Dados sensíveis ficam na privada; picos de uso vão para a pública.</td><td>Mais complexa de integrar e proteger.</td></tr>
+    <tr><td><b>Nuvem comunitária</b></td><td>Compartilhada por organizações com interesses em comum (ex.: órgãos de governo).</td><td>Divide custos e requisitos.</td><td>Menos comum.</td></tr>
+  </table>
+  <div class="box analogia"><div class="ic">💡</div><div><h5>Pense assim...</h5><p>A <b>pública</b> é o <b>transporte coletivo</b>: barato e flexível, mas dividido com outros. A <b>privada</b> é o <b>carro próprio</b>: seu, no seu horário, porém você paga o carro e a manutenção. A <b>híbrida</b> é usar o carro no dia a dia e <b>pegar um aplicativo de transporte</b> nos dias de muita demanda.</p></div></div>
+  <p>Nas apostilas anteriores você já montou os blocos de uma <b>nuvem privada</b>: virtualização (cap. 1), servidores Windows e Linux (cap. 2 e 3) e rede. Ferramentas como <b>Proxmox</b> e <b>OpenStack</b> organizam isso em um painel de autoatendimento.</p>
+  <p>Compare custos de ter o seu próprio servidor ou usar a nuvem por hora:</p>
+  <div class="tool" id="ct" style="--cc:var(--c4)">
+    <div class="tool-ctl">
+      Servidor próprio (R$): <input id="ctP" type="number" min="1000" step="500" value="12000" style="width:100px" aria-label="Preço do servidor próprio em reais">
+      Vida útil (anos): <input id="ctY" type="number" min="1" max="10" value="4" style="width:60px" aria-label="Vida útil em anos">
+      Energia e manutenção (R$/mês): <input id="ctM" type="number" min="0" step="10" value="150" style="width:80px" aria-label="Custo mensal de energia e manutenção">
+      VM na nuvem (R$/hora): <input id="ctR" type="number" min="0.01" step="0.05" value="0.60" style="width:80px" aria-label="Preço da VM na nuvem por hora">
+    </div>
+    <div class="tool-ctl" style="margin-top:10px">Horas de uso por mês: <input id="ctH" type="range" min="10" max="730" value="200" aria-label="Horas de uso por mês" style="padding:0;width:220px"> <b id="ctHv"></b></div>
+    <p class="enc-txt" id="ctOut"></p>
+  </div>
+  <p style="font-size:14px;color:var(--suave)">Valores <b>fictícios</b>, só para raciocinar. Use as calculadoras de preços dos provedores para estimativas reais. O resultado depende do uso: o que fica ligado o mês inteiro costuma compensar mais em equipamento próprio; o que é usado de vez em quando, na nuvem.</p>
+
+  <h3 id="c4-prov">4.4 Principais provedores de serviços em nuvem</h3>
+  <table>
+    <tr><th>Provedor</th><th>Serviços de exemplo (IaaS / PaaS / outros)</th><th>Observação</th></tr>
+    <tr><td><b>Amazon Web Services (AWS)</b></td><td>EC2 (máquinas virtuais), S3 (armazenamento de objetos), Lambda (funções)</td><td>Pioneira e líder de mercado.</td></tr>
+    <tr><td><b>Microsoft Azure</b></td><td>Virtual Machines, App Service, Azure AD / Entra ID</td><td>Integra-se bem a ambientes Windows e ao Microsoft 365.</td></tr>
+    <tr><td><b>Google Cloud</b></td><td>Compute Engine, Cloud Run, BigQuery</td><td>Forte em dados e inteligência artificial.</td></tr>
+    <tr><td><b>Oracle Cloud, IBM Cloud, DigitalOcean e outros</b></td><td>VMs, bancos de dados, containers</td><td>Opções com foco em nichos ou preço simples.</td></tr>
+    <tr><td><b>SaaS (exemplos)</b></td><td>Google Workspace, Microsoft 365, Zoom, Dropbox</td><td>Programas prontos, pagos por usuário.</td></tr>
+  </table>
+  <p>Os provedores organizam a infraestrutura em <b>regiões</b> (áreas geográficas, como “São Paulo”) e <b>zonas de disponibilidade</b> (data centers separados dentro da região). Usar mais de uma zona protege o serviço se uma delas falhar. Escolher uma região próxima reduz a <b>latência</b>, e escolher uma região no Brasil ajuda a respeitar a <b>LGPD</b> quando há dados pessoais.</p>
+  <div class="box atencao"><div class="ic">⚠️</div><div><h5>Cuidado com a conta!</h5><p>Em IaaS, uma VM esquecida ligada continua <b>cobrando</b>. Boas práticas: configure <b>alertas de orçamento</b>, <b>desligue e apague</b> o que não usa e proteja a conta com <b>senha forte e MFA</b>. Nunca publique chaves de acesso em um repositório público.</p></div></div>
+
+  <!-- ATIVIDADES / LABS -->
+  <div class="lab" id="c4-lab">
+    <h3>🧑‍🤝‍🧑 Atividade desplugada – Pizza como serviço</h3>
+    <p><b>Objetivo:</b> fixar IaaS, PaaS e SaaS com uma analogia. <b>Preparação:</b> cartões com as etapas de fazer uma pizza (comprar ingredientes, preparar a massa, ter o forno, assar, servir, lavar a louça) e quatro cartazes: “Em casa”, “Congelada”, “Delivery” e “Restaurante”.</p>
+    <ol class="steps">
+      <li>Em equipes, distribuam os cartões: <b>quem faz o quê</b> em cada situação (você ou o fornecedor).</li>
+      <li>Relacionem cada cartaz a um modelo: servidor próprio, IaaS, PaaS e SaaS.</li>
+      <li>Cada equipe cria um exemplo de serviço do dia a dia para cada modelo (ex.: Gmail = SaaS) e justifica.</li>
+      <li>Fechamento: o que você perde de controle quando sobe de “em casa” para “restaurante”? E o que ganha?</li>
+    </ol>
+
+    <h3>🧪 Laboratório 15 – Pesquisa dirigida: comparando provedores</h3>
+    <p><b>Objetivo:</b> pesquisar de forma crítica e estimar custos. Não é preciso criar conta.</p>
+    <ol class="steps">
+      <li>Abra o site de <b>AWS</b>, <b>Microsoft Azure</b> e <b>Google Cloud</b>. Descubra, para cada um: <b>em quais regiões</b> existe data center (há alguma no Brasil?) e <b>qual serviço de máquinas virtuais</b> oferecem.</li>
+      <li>Use a <b>calculadora de preços</b> de cada provedor para estimar o custo mensal de <b>uma VM pequena (2 CPUs, 4 GB de memória), Linux, na região do Brasil, ligada 730 horas</b>.</li>
+      <li>Refaça a conta para uma VM ligada <b>apenas 8 horas por dia útil</b> (cerca de 176 horas). Quanto você economiza?</li>
+      <li>Preencha uma tabela com provedor, região, preço mensal 24x7, preço mensal 8x5 e uma observação. <b>Anote a data da consulta</b>, porque os preços mudam.</li>
+      <li><b>Conclusão em grupo:</b> para a sua escola, quais cargas seriam boas candidatas à nuvem? Quais não? Justifique com o que estudou (elasticidade, custos, LGPD).</li>
+    </ol>
+
+    <h3>🧪 Laboratório 16 – Publicando um site na nuvem (GitHub Pages)</h3>
+    <p><b>Objetivo:</b> colocar uma página no ar em um serviço de nuvem, sem pagar nada.</p>
+    <ol class="steps">
+      <li><b>Crie</b> uma conta gratuita no GitHub (com o apoio do professor) e um repositório público chamado <code>meu-site</code>.</li>
+      <li><b>Crie um arquivo</b> <code>index.html</code> com o conteúdo abaixo e envie para o repositório (botão <i>Add file → Create new file</i>):
+<pre><button class="cp">Copiar</button><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="pt-BR"&gt;
+&lt;head&gt;&lt;meta charset="UTF-8"&gt;&lt;title&gt;Meu primeiro site na nuvem&lt;/title&gt;&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Olá, nuvem!&lt;/h1&gt;
+  &lt;p&gt;Este site foi publicado por [seu nome].&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre></li>
+      <li><b>Ative o GitHub Pages:</b> em <i>Settings → Pages</i>, escolha a branch <code>main</code> e a pasta <code>/ (root)</code>. Após cerca de 1 minuto, o endereço aparece na tela.</li>
+      <li><b>Acesse</b> o endereço pelo celular. Isso é <b>nuvem pública</b>: o seu site está em servidores do provedor, não no seu computador.</li>
+      <li><b>Discuta:</b> isso é IaaS, PaaS ou SaaS? Quem cuida do servidor, do sistema operacional e do certificado HTTPS? (Dica: você só cuida do conteúdo.)</li>
+    </ol>
+
+    <h3>🧪 Laboratório 17 (opcional) – Minha nuvem privada com Nextcloud</h3>
+    <p><b>Objetivo:</b> montar um “Google Drive” próprio, juntando o que você aprendeu: VM, Linux e containers. Requer a VM Debian dos capítulos anteriores, com Docker (lab. 3 do capítulo 1) e <b>pelo menos 2 GB de memória</b>.</p>
+    <ol class="steps">
+      <li><b>Libere uma porta</b> do hospedeiro para a VM: no VirtualBox, <b>Configurações → Rede → Adaptador 1 (NAT) → Avançado → Redirecionamento de portas</b>. Crie uma regra: protocolo TCP, porta do hospedeiro <code>8080</code>, porta do convidado <code>8080</code>.</li>
+      <li><b>Suba o Nextcloud</b> em um container:
+<pre><button class="cp">Copiar</button><code>sudo docker run -d --name nuvem -p 8080:80 nextcloud
+sudo docker ps</code></pre></li>
+      <li><b>Acesse</b> pelo navegador do seu computador: <code>http://localhost:8080</code>. Crie a conta de administrador. Na tela do banco de dados, o SQLite serve para testes.</li>
+      <li><b>Explore:</b> envie um arquivo, crie um usuário e compartilhe uma pasta com ele. Compare com o Google Drive.</li>
+      <li><b>Discuta:</b> isso é nuvem privada ou pública? E se você a abrisse para a Internet? Que cuidados (HTTPS, senhas, MFA, backup, atualizações) passariam a ser sua responsabilidade?</li>
+      <li><b>Limpe:</b> <code>sudo docker rm -f nuvem</code>.</li>
+    </ol>
+
+    <h3>🧪 Laboratório 18 (demonstração do professor) – Criando uma VM na nuvem</h3>
+    <p>Se houver uma conta do professor (com orçamento limitado), a turma acompanha o passo a passo, que é parecido em qualquer provedor:</p>
+    <ol class="steps">
+      <li>Escolher a <b>região</b> e criar uma <b>VM</b> (imagem Debian ou Ubuntu, tamanho <b>mínimo</b>).</li>
+      <li>Criar ou enviar uma <b>chave SSH</b> (veja o capítulo 3) e conferir as <b>regras de firewall</b>: liberar só as portas necessárias.</li>
+      <li>Conectar por <code>ssh usuario@IP-publico</code> e instalar o Apache (<code>sudo apt install apache2</code>).</li>
+      <li>Abrir a porta 80 e acessar o IP no navegador.</li>
+      <li><b>Desligar e apagar</b> tudo ao final e conferir que o custo parou. Discuta: o que deu mais trabalho que o laboratório local? O que foi mais fácil?</li>
+    </ol>
+  </div>
+
+  <div class="resumo">
+    <h3>📝 Resumo do capítulo</h3>
+    <ul>
+      <li><b>Computação em nuvem</b> é usar recursos de computação pela Internet, sob demanda e pagando pelo uso. Características (NIST): autoatendimento, acesso pela rede, agrupamento de recursos, <b>elasticidade</b> e serviço medido.</li>
+      <li><b>IaaS</b> entrega infraestrutura (você cuida de SO, apps e dados); <b>PaaS</b>, uma plataforma (você cuida do código e dos dados); <b>SaaS</b>, o programa pronto.</li>
+      <li><b>Pública</b> (compartilhada, pela Internet), <b>privada</b> (só da organização), <b>híbrida</b> (as duas conectadas) e comunitária.</li>
+      <li>Principais provedores: <b>AWS</b>, <b>Microsoft Azure</b> e <b>Google Cloud</b>, além de outros. Organizam-se em regiões e zonas de disponibilidade.</li>
+      <li>Segurança é <b>compartilhada</b>: o provedor protege a infraestrutura; o cliente protege contas, dados e configurações.</li>
+      <li>Cuidados: custos, dependência do provedor, conexão e leis de proteção de dados (LGPD).</li>
+    </ul>
+  </div>
+
+  <h3 id="c4-quiz">🧠 Quiz do capítulo 4</h3>
+  <div class="quiz">
+    <div class="q"><p>1. Qual característica permite aumentar e diminuir recursos conforme a necessidade?</p>
+      <button class="opt">a) Serviço medido</button><button class="opt" data-ok="1">b) Elasticidade rápida</button><button class="opt">c) Acesso pela rede</button><button class="opt">d) Virtualização</button>
+      <div class="fb">A <b>elasticidade</b> ajusta a capacidade à demanda, evitando falta em picos e sobra em momentos de pouco uso.</div></div>
+    <div class="q"><p>2. Contratar máquinas virtuais em um provedor e instalar você mesmo o sistema operacional e os programas é um exemplo de:</p>
+      <button class="opt" data-ok="1">a) IaaS</button><button class="opt">b) PaaS</button><button class="opt">c) SaaS</button><button class="opt">d) Nuvem privada obrigatoriamente</button>
+      <div class="fb">No <b>IaaS</b>, o provedor entrega a infraestrutura (VMs, rede, armazenamento) e você cuida do sistema, dos programas e dos dados.</div></div>
+    <div class="q"><p>3. O Gmail é um exemplo de qual modelo de serviço?</p>
+      <button class="opt">a) IaaS</button><button class="opt">b) PaaS</button><button class="opt" data-ok="1">c) SaaS</button><button class="opt">d) Nenhum</button>
+      <div class="fb">É um <b>programa pronto</b>, usado pelo navegador: <b>SaaS</b>.</div></div>
+    <div class="q"><p>4. Uma plataforma em que você envia apenas o código da sua aplicação, sem cuidar do sistema operacional, é:</p>
+      <button class="opt">a) IaaS</button><button class="opt" data-ok="1">b) PaaS</button><button class="opt">c) SaaS</button><button class="opt">d) Um backup</button>
+      <div class="fb">No <b>PaaS</b>, o provedor cuida do sistema e do ambiente; você cuida da aplicação e dos dados.</div></div>
+    <div class="q"><p>5. Uma empresa guarda dados sensíveis em seus próprios servidores e usa a nuvem pública para suportar picos de acesso. Esse arranjo é uma nuvem:</p>
+      <button class="opt">a) Pública</button><button class="opt">b) Privada</button><button class="opt" data-ok="1">c) Híbrida</button><button class="opt">d) Comunitária</button>
+      <div class="fb">A <b>híbrida</b> combina a privada e a pública, conectadas.</div></div>
+    <div class="q"><p>6. Em uma VM contratada em IaaS, quem é responsável por instalar as atualizações de segurança do sistema operacional?</p>
+      <button class="opt">a) O provedor</button><button class="opt" data-ok="1">b) O cliente</button><button class="opt">c) O fabricante do processador</button><button class="opt">d) Ninguém</button>
+      <div class="fb">Pela <b>responsabilidade compartilhada</b>, no IaaS o sistema operacional é do cliente.</div></div>
+    <div class="q"><p>7. Qual destes é um provedor de nuvem pública?</p>
+      <button class="opt">a) Wireshark</button><button class="opt">b) Packet Tracer</button><button class="opt" data-ok="1">c) Microsoft Azure</button><button class="opt">d) Debian</button>
+      <div class="fb">Azure, AWS e Google Cloud são os principais provedores. Os outros são ferramentas e uma distribuição Linux.</div></div>
+    <div class="q"><p>8. Qual é um risco importante ao usar a nuvem?</p>
+      <button class="opt">a) Não é possível acessar de outro lugar</button><button class="opt" data-ok="1">b) Custos inesperados e configurações erradas que expõem dados</button><button class="opt">c) É impossível fazer backup</button><button class="opt">d) Só funciona com Windows</button>
+      <div class="fb">Recursos esquecidos ligados e armazenamentos abertos ao público são problemas muito comuns. Use alertas de custo, MFA e revise as permissões.</div></div>
+  </div>
+  <div class="score"></div>
+
+  <h3>✍️ Questões abertas</h3>
+  <div class="open"><p><b>1.</b> Explique, com suas palavras, o que é computação em nuvem e cite duas características.</p>
+    <button>Ver resposta</button><div class="answer">É usar recursos de computação (servidores, armazenamento, programas) pela Internet, sob demanda, pagando pelo que se usa, em vez de comprar e manter os equipamentos. Características: autoatendimento sob demanda, elasticidade rápida, serviço medido, acesso amplo pela rede e agrupamento de recursos.</div></div>
+  <div class="open"><p><b>2.</b> Diferencie IaaS, PaaS e SaaS e dê um exemplo de cada.</p>
+    <button>Ver resposta</button><div class="answer">IaaS entrega infraestrutura (VMs, rede, armazenamento): você cuida do sistema e dos programas (ex.: Amazon EC2). PaaS entrega uma plataforma para rodar aplicações: você cuida só do código e dos dados (ex.: Azure App Service). SaaS entrega o programa pronto, só para usar (ex.: Gmail, Microsoft 365).</div></div>
+  <div class="open"><p><b>3.</b> A escola vai abrir as matrículas online e espera um grande pico de acessos por apenas três dias. Que modelo de implantação e que característica da nuvem ajudam, e por quê?</p>
+    <button>Ver resposta</button><div class="answer">A nuvem pública (ou híbrida) e a elasticidade: dá para aumentar a capacidade só nesses dias e depois reduzir, pagando apenas pelo uso, em vez de comprar servidores que ficariam parados o resto do ano.</div></div>
+  <div class="open"><p><b>4.</b> O que significa responsabilidade compartilhada? Dê um exemplo do que cabe ao provedor e do que cabe ao cliente.</p>
+    <button>Ver resposta</button><div class="answer">Significa que a segurança é dividida. O provedor protege a infraestrutura física e de base (data centers, hardware, rede). O cliente protege o que coloca na nuvem: contas e senhas (com MFA), permissões, configurações, dados e, no IaaS, o sistema operacional e os programas.</div></div>
+
+  <div class="box dica" style="margin-top:28px"><div class="ic">📚</div><div><h5>Para saber mais</h5><p>A definição do NIST (<i>The NIST Definition of Cloud Computing</i>) é curta e clara, e a documentação dos provedores tem trilhas gratuitas de aprendizado para quem quer seguir carreira em nuvem.</p></div></div>
+  <div class="box exemplo"><div class="ic">🎓</div><div><h5>Fim da apostila</h5><p>Você percorreu o caminho completo: de uma máquina virtual na sua casa até a nuvem. O que aprendeu aqui, virtualizar, administrar Windows e Linux, configurar serviços e entender a nuvem, é a base do trabalho de quem cuida da infraestrutura de uma organização. Continue praticando!</p></div></div>
 </section>
 
 <section id="refs">
@@ -1102,6 +1321,7 @@ curl -H "Host: www.escola.internal" http://192.168.60.10</code></pre>
   <p class="ref">Samba Team. (s.d.). <i>Samba documentation</i>. https://www.samba.org/samba/docs/</p>
   <p class="ref">Microsoft. (s.d.). <i>Documentação do Windows</i>. https://learn.microsoft.com/pt-br/windows</p>
   <p class="ref">Microsoft. (s.d.). <i>Documentação do Windows Server</i>. https://learn.microsoft.com/pt-br/windows-server/</p>
+  <p class="ref">Mell, P., &amp; Grance, T. (2011). <i>The NIST definition of cloud computing</i> (NIST Special Publication 800-145). National Institute of Standards and Technology. https://doi.org/10.6028/NIST.SP.800-145</p>
   <p class="ref">Oracle. (s.d.). <i>Oracle VM VirtualBox: user manual</i>. https://www.virtualbox.org/manual/</p>
   <footer>Apostila de Sistemas Operacionais de Redes · IFRN – Campus João Câmara</footer>
 </section>
