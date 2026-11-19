@@ -168,6 +168,16 @@ tr.hit td{background:#fff3e0;font-weight:600}
 .lb{width:46px;height:40px;border-radius:8px;display:grid;place-items:center;font-size:12.5px;font-weight:700;color:#fff;position:relative}
 .lb.ok{background:#2e7d32}.lb.lost{background:#c62828}
 .lb em{position:absolute;top:-8px;right:-6px;background:#ef6c00;border-radius:999px;font-style:normal;font-size:11px;padding:1px 6px}
+.mail{background:#fff;border:2px dashed #b0bec5;border-radius:14px;padding:14px 18px;margin:12px 0;font-size:15.5px}
+.mail p{margin:6px 0}
+.mail hr{border:0;border-top:1px solid var(--borda);margin:8px 0}
+.mail-h{font-size:12.5px;font-weight:700;color:var(--suave);letter-spacing:.05em;margin-bottom:6px}
+.hot{border-bottom:2px dashed #ef6c00;cursor:pointer;padding:0 1px}
+.hot:hover{background:#fff3e0}
+.hot.found{background:#e8f5e9;border-bottom:2px solid #2e7d32}
+.mail-tip{background:#fffde7;border:1px solid #ffe082;border-radius:12px;padding:10px 14px;min-height:44px}
+.meter{height:12px;background:#eceff1;border-radius:8px;overflow:hidden;margin:12px 0}
+.meter i{display:block;height:100%;width:0;background:#c62828;transition:width .2s,background .2s}
 .soon-card{background:#fff;border:1px dashed #b0bec5;border-radius:16px;padding:18px 22px;margin:14px 0;color:var(--suave)}
 footer{text-align:center;color:var(--suave);font-size:14px;padding:30px 0 0}
 .back-top{position:fixed;right:20px;bottom:20px;width:44px;height:44px;border-radius:50%;border:0;background:var(--verde);color:#fff;font-size:20px;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.2);display:none;z-index:70}
@@ -189,7 +199,9 @@ footer{text-align:center;color:var(--suave);font-size:14px;padding:30px 0 0}
   .hero{padding:26px 0;border-radius:12px;margin-bottom:10px}
   .hero .wrap{padding:0 22px}
   section{padding:14px 0 0;break-before:auto}
-  #cap1,#cap2,#cap3,#cap4,#cap5,#cap6{break-before:page}
+  #cap1,#cap2,#cap3,#cap4,#cap5,#cap6,#cap7{break-before:page}
+  .mail{break-inside:avoid}
+  .mail-tip{display:none}
   .tool-ctl{display:none!important}
   .tool{break-inside:avoid}
   .sw button{display:none!important}
@@ -275,7 +287,14 @@ footer{text-align:center;color:var(--suave);font-size:14px;padding:30px 0 0}
       <a href="#c6-lab">Atividade e laboratórios</a>
       <a href="#c6-quiz">Quiz e exercícios</a>
     </div>
-    <a href="#cap7" class="soon"><span class="n" style="background:var(--c7)">7</span>Segurança de redes</a>
+    <a href="#cap7"><span class="n" style="background:var(--c7)">7</span>Segurança de redes</a>
+    <div class="sub">
+      <a href="#c7-intro">Segurança da informação</a>
+      <a href="#c7-amea">Ameaças e ataques</a>
+      <a href="#c7-sol">Soluções de segurança</a>
+      <a href="#c7-lab">Atividade e laboratórios</a>
+      <a href="#c7-quiz">Quiz e exercícios</a>
+    </div>
     <a href="#refs"><span class="n" style="background:#455a64">📚</span>Referências</a>
   </nav>
   <div class="tools">
@@ -306,7 +325,7 @@ footer{text-align:center;color:var(--suave);font-size:14px;padding:30px 0 0}
     <div class="card" style="--cc:var(--c4)"><b>4 · Camada de internet</b><span>IPv4, IPv6, roteamento, ARP e ICMP.</span><div class="st">✅ Disponível</div></div>
     <div class="card" style="--cc:var(--c5)"><b>5 · Camada de transporte</b><span>Protocolos TCP e UDP.</span><div class="st">✅ Disponível</div></div>
     <div class="card" style="--cc:var(--c6)"><b>6 · Camada de aplicação</b><span>Web, e-mail, DNS, DHCP, FTP e SSH.</span><div class="st">✅ Disponível</div></div>
-    <div class="card" style="--cc:var(--c7)"><b>7 · Segurança de redes</b><span>Ameaças, ataques e soluções de proteção.</span><div class="st">⏳ Em breve</div></div>
+    <div class="card" style="--cc:var(--c7)"><b>7 · Segurança de redes</b><span>Ameaças, ataques e soluções de proteção.</span><div class="st">✅ Disponível</div></div>
   </div>
 </section>
 
@@ -1602,8 +1621,308 @@ nmcli dev show | grep -E "IP4|DNS"</code></pre>
   <div class="open"><p><b>4.</b> O que o servidor DHCP entrega a um computador, além do endereço IP?</p>
     <button>Ver resposta</button><div class="answer">A máscara de sub-rede, o gateway padrão, os servidores DNS e o tempo de concessão (lease) do endereço.</div></div>
 </section>
-<section class="chapter" id="cap7"><div class="chap-head"><div class="chap-num" style="background:var(--c7)">7</div><div><small>Capítulo 7</small><h2>Segurança de redes</h2></div></div>
-  <div class="soon-card">⏳ Em construção. Conteúdo: segurança da informação, ameaças, ataques, vulnerabilidades, anti-malware, firewall, IPS/IDS e VPN.</div></section>
+<section class="chapter" id="cap7" style="--cc:var(--c7)">
+  <div class="chap-head"><div class="chap-num" style="background:var(--c7)">7</div><div><small>Capítulo 7</small><h2>Segurança de redes</h2></div></div>
+
+  <div class="obj"><h4>🎯 Ao final deste capítulo, você será capaz de:</h4>
+    <ul>
+      <li>Explicar os princípios da segurança da informação (confidencialidade, integridade e disponibilidade).</li>
+      <li>Diferenciar vulnerabilidade, ameaça e ataque, e reconhecer as principais ameaças a redes e usuários.</li>
+      <li>Identificar sinais de golpes como o phishing e escolher senhas mais seguras.</li>
+      <li>Explicar o que fazem o anti-malware, o firewall, o IDS/IPS e a VPN.</li>
+      <li>Aplicar boas práticas para proteger uma rede doméstica ou escolar.</li>
+    </ul>
+  </div>
+
+  <div class="box atencao"><div class="ic">⚖️</div><div><h5>Ética e lei</h5><p>Este capítulo foca em <b>como se defender</b>. Testar ataques em sistemas que não são seus, ou sem autorização, é <b>crime</b>. No Brasil, a invasão de dispositivos informáticos é prevista na <b>Lei 12.737/2012</b>. Experimente apenas no seu próprio computador, no Packet Tracer ou em ambientes que o professor autorizar.</p></div></div>
+
+  <!-- 7.1 -->
+  <h3 id="c7-intro">7.1 Introdução à segurança da informação</h3>
+  <p><b>Segurança da informação</b> é o conjunto de cuidados para proteger dados e sistemas contra acesso indevido, alteração ou perda. Hoje guardamos fotos, conversas, dinheiro e documentos em computadores e na Internet, então proteger tudo isso virou parte do dia a dia. No Brasil, a <b>LGPD</b> (Lei 13.709/2018) também obriga empresas e órgãos a protegerem os dados pessoais.</p>
+
+  <h3 style="font-size:18px;margin-top:14px">Os três pilares: a tríade CID (CIA)</h3>
+  <table>
+    <tr><th>Pilar</th><th>Ideia</th><th>Exemplo de falha</th></tr>
+    <tr><td><b>Confidencialidade</b></td><td>Só quem tem permissão acessa a informação.</td><td>Alguém lê o seu e-mail ou vaza as notas dos alunos.</td></tr>
+    <tr><td><b>Integridade</b></td><td>A informação não foi alterada de forma indevida.</td><td>Um valor de boleto é trocado no caminho.</td></tr>
+    <tr><td><b>Disponibilidade</b></td><td>O sistema e os dados estão acessíveis quando precisamos.</td><td>O site da escola cai no dia da matrícula.</td></tr>
+  </table>
+  <div class="box analogia"><div class="ic">💡</div><div><h5>Pense assim...</h5><p>Imagine uma <b>carta</b>. <b>Confidencialidade</b> é o envelope fechado, para ninguém ler. <b>Integridade</b> é o lacre, que mostra se alguém abriu e mudou o conteúdo. <b>Disponibilidade</b> é o carteiro que realmente entrega a carta, no prazo.</p></div></div>
+  <p>Outros dois conceitos importantes: <b>autenticidade</b> (ter certeza de quem enviou) e <b>não repúdio</b> (quem enviou não consegue negar depois).</p>
+
+  <h3 style="font-size:18px;margin-top:14px">Vulnerabilidade, ameaça, ataque e risco</h3>
+  <table>
+    <tr><th>Termo</th><th>O que é</th><th>Na analogia da casa</th></tr>
+    <tr><td><b>Vulnerabilidade</b></td><td>Uma fraqueza no sistema, na configuração ou nas pessoas.</td><td>A porta com fechadura fraca.</td></tr>
+    <tr><td><b>Ameaça</b></td><td>Algo ou alguém que pode explorar a fraqueza.</td><td>Um ladrão na vizinhança.</td></tr>
+    <tr><td><b>Ataque</b></td><td>A ação real que tenta explorar a vulnerabilidade.</td><td>A tentativa de arrombar a porta.</td></tr>
+    <tr><td><b>Risco</b></td><td>A chance de o ataque dar certo, multiplicada pelo estrago que causaria.</td><td>Quanto você tem a perder e quão fácil é entrar.</td></tr>
+  </table>
+
+  <h3 style="font-size:18px;margin-top:14px">Autenticação, autorização e registro</h3>
+  <ul>
+    <li><b>Autenticação:</b> provar quem você é. Pode ser por algo que você <b>sabe</b> (senha), algo que você <b>tem</b> (celular, token) ou algo que você <b>é</b> (digital, rosto). Usar <b>dois ou mais fatores</b> é a <b>autenticação multifator (MFA)</b>.</li>
+    <li><b>Autorização:</b> definir o que cada pessoa pode fazer depois de entrar (ler, editar, apagar). Vale o princípio do <b>menor privilégio</b>: cada um tem só o acesso de que precisa.</li>
+    <li><b>Registro (logs):</b> anotar quem fez o quê e quando, para investigar problemas.</li>
+  </ul>
+
+  <h3 style="font-size:18px;margin-top:14px">Criptografia em poucas palavras</h3>
+  <table>
+    <tr><th>Técnica</th><th>Ideia</th><th>Serve para</th></tr>
+    <tr><td><b>Simétrica</b></td><td>A <b>mesma chave</b> cifra e decifra.</td><td>Proteger dados com rapidez (Wi-Fi, arquivos, parte do HTTPS).</td></tr>
+    <tr><td><b>Assimétrica</b></td><td>Um <b>par de chaves</b>: a pública cifra e a privada decifra.</td><td>Trocar chaves com segurança e assinar documentos (SSH, certificados).</td></tr>
+    <tr><td><b>Hash</b></td><td>Gera um “resumo” de tamanho fixo, que não volta ao original.</td><td>Verificar integridade e guardar senhas.</td></tr>
+  </table>
+  <div class="box analogia"><div class="ic">💡</div><div><h5>Pense assim...</h5><p>Na <b>simétrica</b>, os dois usam a mesma chave de cofre. Na <b>assimétrica</b>, é como uma <b>caixa de correio</b>: qualquer pessoa pode colocar uma carta pela abertura (chave pública), mas só o dono abre a caixa (chave privada). O <b>hash</b> é como uma <b>impressão digital</b> do arquivo: qualquer mudança, por pequena que seja, gera outra digital.</p></div></div>
+  <p><b>Cifra de César:</b> a criptografia mais antiga e simples, que desloca cada letra algumas posições no alfabeto. Teste e depois tente decifrar sem saber o deslocamento:</p>
+  <div class="tool" id="cs">
+    <div class="tool-ctl">
+      Texto: <input id="csIn" value="REDES DE COMPUTADORES" size="26" style="font-family:inherit" aria-label="Texto">
+      Deslocamento: <select id="csK" aria-label="Deslocamento"></select>
+      <select id="csM" aria-label="Modo"><option value="1">Cifrar</option><option value="-1">Decifrar</option></select>
+    </div>
+    <p class="enc-txt" style="font-size:20px;font-family:Consolas,monospace;letter-spacing:1px;margin-top:12px"><b id="csOut"></b></p>
+    <p style="font-size:14px;color:var(--suave);margin:0">Só existem 25 deslocamentos possíveis. Em segundos, qualquer pessoa testa todos (força bruta). As cifras modernas usam chaves tão grandes que isso é impraticável.</p>
+  </div>
+  <div class="box dica"><div class="ic">✅</div><div><h5>Defesa em profundidade</h5><p>Nenhuma proteção é perfeita sozinha. Por isso se usam <b>várias camadas</b> de segurança, como um castelo com fosso, muralha, portões e guardas: se uma falha, a próxima segura. Veremos as principais camadas na seção 7.3.</p></div></div>
+
+  <!-- 7.2 -->
+  <h3 id="c7-amea">7.2 Ameaças, ataques e vulnerabilidades</h3>
+  <h3 style="font-size:18px;margin-top:14px">Malware (programas maliciosos)</h3>
+  <table>
+    <tr><th>Tipo</th><th>O que faz</th></tr>
+    <tr><td><b>Vírus</b></td><td>Se anexa a outros arquivos e precisa que o usuário os execute para se espalhar.</td></tr>
+    <tr><td><b>Worm</b></td><td>Se espalha <b>sozinho</b> pela rede, explorando falhas, sem precisar de ação do usuário.</td></tr>
+    <tr><td><b>Cavalo de Troia (trojan)</b></td><td>Finge ser um programa útil (um jogo, um “crack”) mas traz algo malicioso dentro.</td></tr>
+    <tr><td><b>Ransomware</b></td><td><b>Sequestra</b> os seus arquivos, criptografando-os, e exige pagamento para devolver o acesso.</td></tr>
+    <tr><td><b>Spyware e keylogger</b></td><td>Espionam o que você faz e registram o que você digita, como senhas.</td></tr>
+    <tr><td><b>Botnet</b></td><td>Rede de computadores infectados (“zumbis”) controlados à distância, muitas vezes usados em ataques.</td></tr>
+    <tr><td><b>Rootkit</b></td><td>Se esconde profundamente no sistema para não ser detectado.</td></tr>
+  </table>
+
+  <h3 style="font-size:18px;margin-top:14px">Engenharia social e phishing</h3>
+  <p>O elo mais fraco costuma ser a <b>pessoa</b>, não a máquina. A <b>engenharia social</b> engana o usuário para que ele mesmo entregue dados ou instale algo. O <b>phishing</b> é o exemplo mais comum: uma mensagem falsa, que imita um banco, uma loja ou um órgão público, tenta fazer você clicar em um link ou abrir um anexo. Variações: <b>smishing</b> (por SMS), <b>vishing</b> (por ligação) e <b>pharming</b> (redireciona você a um site falso, às vezes manipulando o DNS).</p>
+  <p><b>Pratique:</b> abaixo há um e-mail <b>fictício</b>, criado só para estudo. Clique nas partes que parecem suspeitas e descubra por quê.</p>
+  <div class="mail" id="mail">
+    <div class="mail-h">📧 E-MAIL DE EXEMPLO (fictício, apenas para estudo)</div>
+    <p><b>De:</b> <span class="hot" data-tip="<b>Remetente falso.</b> O endereço imita o nome do banco, mas troca a letra “l” pelo número “1” (exemp1o). Sempre confira o domínio com atenção.">suporte@banco-exemp1o.com</span></p>
+    <p><b>Assunto:</b> <span class="hot" data-tip="<b>Urgência e ameaça.</b> Golpistas criam pressa para você agir sem pensar. Bancos e órgãos sérios não ameaçam bloquear sua conta em 24 horas por e-mail.">URGENTE: sua conta será bloqueada em 24 horas!</span></p>
+    <hr>
+    <p><span class="hot" data-tip="<b>Saudação genérica.</b> Uma empresa que realmente tem a sua conta costuma usar o seu nome. “Prezado cliente” serve para qualquer vítima.">Prezado cliente,</span></p>
+    <p>Detectamos uma atividade suspeita na sua conta. <span class="hot" data-tip="<b>Erros de português.</b> “e necessário” sem acento e frases estranhas são sinais comuns de mensagens em massa, falsas.">Para evitar o bloqueio e necessario confirmar seus dados.</span></p>
+    <p><span class="hot" data-tip="<b>Link enganoso.</b> Olhe o domínio verdadeiro, que é o que vem antes da primeira barra: <code>verifique-conta.xyz</code>. “banco-exemplo” é só um subdomínio colocado para enganar. Nunca clique: digite você mesmo o endereço do banco ou use o aplicativo oficial.">Clique aqui e confirme sua senha</span> <small style="color:#6b7280">(http://banco-exemplo.verifique-conta.xyz/login)</small></p>
+    <p>Anexo: <span class="hot" data-tip="<b>Anexo perigoso.</b> Um arquivo <code>.exe</code> é um programa. Ninguém precisa executar um programa recebido por e-mail para “atualizar a segurança”. Pode ser um malware.">📎 atualizacao_seguranca.exe</span></p>
+    <p style="margin-bottom:0">Atenciosamente,<br>Equipe de Segurança</p>
+  </div>
+  <p class="mail-tip" id="mailTip">Clique nas partes sublinhadas do e-mail.</p>
+  <p><b id="mailCt">0 de 6 sinais encontrados</b></p>
+  <div class="box dica"><div class="ic">✅</div><div><h5>Regras de ouro contra golpes</h5><p>Desconfie de <b>urgência</b>, de <b>promessas boas demais</b> e de pedidos de <b>senha, código ou dados por mensagem</b>. Confira o endereço de quem enviou e <b>passe o mouse sobre o link</b> (sem clicar) para ver para onde ele leva. Na dúvida, entre em contato pelo site ou telefone oficial.</p></div></div>
+
+  <h3 style="font-size:18px;margin-top:14px">Principais ataques a redes</h3>
+  <p>Conhecer os ataques ajuda a entender para que servem as defesas. Veja os principais e como se proteger, ligando com o que já estudamos:</p>
+  <table>
+    <tr><th>Ataque</th><th>O que é</th><th>Como se defender</th></tr>
+    <tr><td><b>DoS / DDoS</b><br>(negação de serviço)</td><td>Sobrecarrega um serviço com tráfego ou pedidos até ele ficar <b>indisponível</b>. No DDoS, o ataque vem de muitas máquinas ao mesmo tempo (muitas vezes uma botnet). O <b>SYN flood</b> faz isso abusando do handshake do TCP (cap. 5).</td><td>Filtragem de tráfego, firewalls/IPS, serviços de mitigação e capacidade extra.</td></tr>
+    <tr><td><b>Interceptação (sniffing)</b></td><td>Capturar o tráfego que passa pela rede. Se estiver sem criptografia (Telnet, FTP, HTTP), dá para ler tudo.</td><td>Usar protocolos criptografados: HTTPS, SSH, SFTP, VPN, WPA2/WPA3.</td></tr>
+    <tr><td><b>Homem no meio</b><br>(<i>Man-in-the-Middle</i>)</td><td>O atacante se coloca entre duas partes e lê ou altera a conversa. Exemplos: Wi-Fi falso com nome parecido com o de um café, ou envenenamento do ARP (cap. 4), já que o ARP não tem autenticação.</td><td>HTTPS e verificação de certificados, evitar Wi-Fi aberto, recursos de segurança do switch.</td></tr>
+    <tr><td><b>Falsificação de DNS</b></td><td>Fazer um nome apontar para o IP errado, levando a vítima a um site falso (cap. 6).</td><td>DNS confiável, DNSSEC, atenção ao cadeado e ao certificado.</td></tr>
+    <tr><td><b>Força bruta e dicionário</b></td><td>Tentar muitas senhas até acertar, usando listas de senhas comuns.</td><td>Senhas longas e únicas, bloqueio após várias tentativas, MFA.</td></tr>
+    <tr><td><b>Injeção</b> (ex.: SQL injection)</td><td>Enviar dados maliciosos por formulários para fazer o sistema executar comandos indevidos.</td><td>Validar e tratar toda entrada de dados, programar com boas práticas.</td></tr>
+  </table>
+
+  <h3 style="font-size:18px;margin-top:14px">Vulnerabilidades mais comuns</h3>
+  <ul>
+    <li><b>Senhas fracas ou padrão</b> (como <code>admin/admin</code> no roteador).</li>
+    <li><b>Programas e sistemas desatualizados</b>, com falhas conhecidas e já corrigidas.</li>
+    <li><b>Serviços desnecessários ligados</b> (Telnet, FTP) e portas abertas sem uso.</li>
+    <li><b>Falta de criptografia</b> (HTTP, Wi-Fi aberto ou WEP).</li>
+    <li><b>Usuários sem orientação</b>, que caem em golpes.</li>
+    <li><b>Configurações padrão</b> nunca revisadas e <b>falta de backup</b>.</li>
+  </ul>
+
+  <h3 style="font-size:18px;margin-top:14px">🔑 Verificador de senha (estimativa)</h3>
+  <p>Digite uma senha <b>de teste</b> (nunca a sua senha verdadeira). Nada sai do seu navegador, mas por prudência não digite senhas reais em nenhuma ferramenta.</p>
+  <div class="tool" id="pw">
+    <div class="tool-ctl">Senha de teste: <input id="pwIn" type="text" value="" size="24" autocomplete="off" aria-label="Senha de teste" placeholder="ex.: minhasenha123"></div>
+    <div class="meter"><i id="pwBar"></i></div>
+    <p class="enc-txt" id="pwMsg" style="margin-bottom:0">Digite algo para ver a estimativa.</p>
+  </div>
+  <div class="box exemplo"><div class="ic">📌</div><div><h5>Como ler o resultado</h5><p>A estimativa supõe um atacante que testa <b>10 bilhões de senhas por segundo</b> (um cenário otimista para ele) e leva em conta o tamanho e os tipos de caracteres. Palavras comuns e senhas vazadas são quebradas muito mais rápido. O que realmente protege: <b>frases longas e únicas</b> (uma por serviço), um <b>gerenciador de senhas</b> e <b>MFA</b>.</p></div></div>
+
+  <!-- 7.3 -->
+  <h3 id="c7-sol">7.3 Soluções de segurança</h3>
+  <h3 style="font-size:18px;margin-top:14px">Anti-malware (antivírus)</h3>
+  <p>Programa instalado no computador que procura e remove programas maliciosos. Usa duas técnicas principais: a <b>assinatura</b> (compara o arquivo com um banco de malwares conhecidos) e a <b>análise de comportamento</b> (desconfia de programas que agem de modo suspeito, mesmo desconhecidos). Precisa estar <b>sempre atualizado</b> e <b>não é infalível</b>: o cuidado do usuário continua sendo essencial.</p>
+
+  <h3 style="font-size:18px;margin-top:14px">Firewall</h3>
+  <p>O <b>firewall</b> é o “porteiro” da rede: examina o tráfego que passa e <b>permite ou bloqueia</b> conforme <b>regras</b> (origem, destino, protocolo e porta). Pode ser um programa no computador (firewall pessoal, como o do Windows) ou um equipamento na borda da rede.</p>
+  <div class="box analogia"><div class="ic">💡</div><div><h5>Pense assim...</h5><p>É como o <b>porteiro de um prédio com lista de visitantes</b>. Quem está na lista e vai ao andar permitido, entra. Os demais, não passam. E, como regra geral, quem não está na lista é barrado.</p></div></div>
+  <ul>
+    <li><b>Filtro de pacotes (sem estado):</b> olha cada pacote isolado e compara com as regras. Rápido e simples. É o que fazem as <b>ACLs</b> dos roteadores.</li>
+    <li><b>Com estado (<i>stateful</i>):</b> “lembra” das conexões em andamento e aceita as respostas esperadas automaticamente.</li>
+    <li><b>De aplicação (proxy) e de nova geração (NGFW):</b> entendem o conteúdo (qual aplicativo, qual site) e podem integrar IPS e filtro de conteúdo.</li>
+    <li><b>DMZ</b> (<i>zona desmilitarizada</i>): uma rede separada para os servidores que precisam ser acessados de fora (como o site da escola), isolando-os da rede interna.</li>
+  </ul>
+  <p>Duas regras de ouro dos firewalls: <b>a primeira regra que combina vale</b> e, por padrão, <b>nega-se tudo o que não foi permitido</b>. Teste no simulador:</p>
+  <div class="tool" id="fw">
+    <table class="tool-tab" style="max-width:none">
+      <tr><th>#</th><th>Ação</th><th>Origem</th><th>Destino</th><th>Serviço</th></tr>
+      <tr id="fw0"><td>1</td><td>✅ Permitir</td><td>Rede interna (LAN)</td><td>Internet</td><td>HTTP e HTTPS (TCP 80, 443)</td></tr>
+      <tr id="fw1"><td>2</td><td>✅ Permitir</td><td>Rede interna (LAN)</td><td>Internet</td><td>DNS (UDP 53)</td></tr>
+      <tr id="fw2"><td>3</td><td>✅ Permitir</td><td>Qualquer</td><td>Servidor web (DMZ)</td><td>HTTPS (TCP 443)</td></tr>
+      <tr id="fw3"><td>4</td><td>⛔ Negar</td><td>Qualquer</td><td>Qualquer</td><td>Qualquer (regra padrão)</td></tr>
+    </table>
+    <div class="tool-ctl" style="margin-top:12px">
+      De: <select id="fwS"><option value="lan">PC da rede interna</option><option value="net">Alguém na Internet</option></select>
+      Para: <select id="fwD"><option value="net">Site na Internet</option><option value="web">Servidor web (DMZ)</option><option value="lan">PC da rede interna</option></select>
+      Serviço: <select id="fwV"><option value="http">HTTP (TCP 80)</option><option value="https">HTTPS (TCP 443)</option><option value="dns">DNS (UDP 53)</option><option value="ssh">SSH (TCP 22)</option><option value="telnet">Telnet (TCP 23)</option></select>
+      <button id="fwGo">Testar ▶</button>
+    </div>
+    <p class="enc-txt" id="fwMsg"></p>
+  </div>
+
+  <h3 style="font-size:18px;margin-top:14px">IDS e IPS</h3>
+  <table>
+    <tr><th></th><th>IDS (detecção)</th><th>IPS (prevenção)</th></tr>
+    <tr><td><b>O que faz</b></td><td>Observa o tráfego, <b>detecta</b> comportamentos suspeitos e <b>avisa</b> o administrador.</td><td>Detecta e <b>bloqueia</b> o ataque automaticamente.</td></tr>
+    <tr><td><b>Posição</b></td><td>Recebe uma <b>cópia</b> do tráfego (fora do caminho).</td><td>Fica <b>no meio do caminho</b>, por onde o tráfego passa.</td></tr>
+    <tr><td><b>Analogia</b></td><td>Alarme de segurança e câmeras.</td><td>Segurança que, além de ver, impede a entrada.</td></tr>
+    <tr><td><b>Risco</b></td><td>Só alerta: alguém precisa agir.</td><td>Um falso alarme pode bloquear tráfego legítimo.</td></tr>
+  </table>
+  <p>Os dois detectam por <b>assinaturas</b> (padrões de ataques conhecidos) ou por <b>anomalias</b> (algo fora do comportamento normal). Exemplos de ferramentas livres: <b>Snort</b> e <b>Suricata</b>.</p>
+
+  <h3 style="font-size:18px;margin-top:14px">VPN (rede privada virtual)</h3>
+  <p>A <b>VPN</b> cria um <b>túnel criptografado</b> dentro de uma rede pública, como a Internet. Quem está do lado de fora vê apenas dados embaralhados. Usos comuns:</p>
+  <ul>
+    <li><b>Acesso remoto:</b> um professor, de casa, acessa a rede do campus como se estivesse lá.</li>
+    <li><b>Site a site:</b> liga duas unidades de uma instituição de forma segura pela Internet.</li>
+    <li><b>Proteção em Wi-Fi público.</b></li>
+  </ul>
+  <p>Algumas tecnologias usadas: <b>IPsec</b>, <b>OpenVPN</b> e <b>WireGuard</b>.</p>
+  <div class="box analogia"><div class="ic">💡</div><div><h5>Pense assim...</h5><p>A Internet é uma estrada pública. A VPN é um <b>carro-forte</b> que passa por ela: todo mundo vê o carro, mas ninguém vê nem mexe no que há dentro.</p></div></div>
+  <div class="box atencao"><div class="ic">⚠️</div><div><h5>Atenção</h5><p>VPN protege o caminho, mas <b>não deixa você anônimo</b> nem protege contra golpes de phishing ou malware. Ela também não é proteção completa: o provedor da VPN passa a ver o seu tráfego.</p></div></div>
+
+  <h3 style="font-size:18px;margin-top:14px">Boas práticas: o essencial</h3>
+  <table>
+    <tr><th>Prática</th><th>Por quê</th></tr>
+    <tr><td><b>Atualizar</b> sistema e programas</td><td>Corrige falhas conhecidas.</td></tr>
+    <tr><td><b>Senhas longas e únicas</b> + gerenciador + <b>MFA</b></td><td>Se um site vazar, os outros não caem junto.</td></tr>
+    <tr><td><b>Backup 3-2-1</b>: 3 cópias, em 2 tipos de mídia, 1 fora do local</td><td>É a defesa mais eficaz contra ransomware e perdas.</td></tr>
+    <tr><td><b>Wi-Fi com WPA2 ou WPA3</b>, senha forte, trocar a senha padrão do roteador e desligar o WPS</td><td>Evita intrusos na rede.</td></tr>
+    <tr><td><b>Desligar serviços e portas sem uso</b></td><td>Menos portas abertas, menos riscos.</td></tr>
+    <tr><td><b>Segmentar a rede</b> (VLANs, DMZ)</td><td>Se uma parte for invadida, o problema não se espalha.</td></tr>
+    <tr><td><b>Educar os usuários</b></td><td>Pessoas bem informadas barram boa parte dos golpes.</td></tr>
+  </table>
+
+  <!-- ATIVIDADES / LABS -->
+  <div class="lab" id="c7-lab">
+    <h3>🧑‍🤝‍🧑 Atividade desplugada – Detetives de golpes</h3>
+    <p><b>Objetivo:</b> treinar o olhar crítico contra phishing. <b>Preparação:</b> o professor leva (impressas ou no projetor) 6 mensagens fictícias, algumas legítimas e outras suspeitas.</p>
+    <ol class="steps">
+      <li>Em equipes, classifiquem cada mensagem como <b>segura</b> ou <b>suspeita</b>.</li>
+      <li>Para cada uma, listem as <b>pistas</b> que usaram (remetente, urgência, link, anexo, erros, pedido de dados).</li>
+      <li>Cada equipe apresenta o caso mais difícil. A turma discute: <b>o que você faria?</b> (apagar, denunciar, ligar para o número oficial).</li>
+      <li>Fechamento: elaborem um <b>cartaz de 5 dicas</b> para os colegas da escola.</li>
+    </ol>
+  </div>
+
+  <div class="lab" id="c7-lab2">
+    <h3>🧪 Laboratório 12 – Um firewall simples com ACL no Packet Tracer</h3>
+    <p><b>Objetivo:</b> bloquear o ping do PC1 para o PC2, mantendo o resto liberado. Use a mesma topologia do laboratório 6 (PC1 – R1 – R2 – PC2, com as rotas estáticas funcionando e <code>ping</code> respondendo).</p>
+    <ol class="steps">
+      <li><b>Confirme que há comunicação.</b> No PC1, rode <code>ping 192.168.2.10</code>. Deve responder.</li>
+      <li><b>Crie a ACL no R2</b> (que fica do lado do PC2):
+<pre><button class="cp">Copiar</button><code>enable
+configure terminal
+access-list 100 deny icmp 192.168.1.0 0.0.0.255 192.168.2.0 0.0.0.255 echo
+access-list 100 permit ip any any
+interface gigabitEthernet0/1
+ ip access-group 100 out
+end</code></pre>
+        A primeira linha <b>nega</b> pedidos de ping (<i>echo</i>) da rede do PC1 para a rede do PC2. A segunda <b>libera todo o resto</b>: sem ela, o fim implícito da ACL negaria tudo. O <code>out</code> aplica a regra ao tráfego que sai pela interface do lado do PC2.</li>
+      <li><b>Teste.</b> No PC1, repita <code>ping 192.168.2.10</code>: deve falhar (<i>Destination host unreachable</i>). Veja os contadores no R2: <code>show access-lists</code>.</li>
+      <li><b>Desafio 1:</b> agora o PC2 consegue dar ping no PC1? Por quê? (Dica: a ACL só filtra o tráfego que <b>sai</b> pela Gi0/1 e só bloqueia o <i>pedido</i> de echo.)</li>
+      <li><b>Desafio 2:</b> remova a ACL com <code>no access-list 100</code> (e <code>no ip access-group 100 out</code> na interface) e confirme que o ping volta a funcionar.</li>
+    </ol>
+
+    <h3>🧪 Laboratório 13 – Segurança no seu computador</h3>
+    <ol class="steps">
+      <li><b>Veja o estado do firewall.</b>
+<pre><button class="cp">Copiar</button><code># Windows
+netsh advfirewall show allprofiles state
+
+# Linux (se o ufw estiver instalado; pode pedir senha de administrador)
+sudo ufw status verbose</code></pre>
+        O firewall está ligado? Em quais perfis (domínio, privado, público)?</li>
+      <li><b>Liste as portas abertas</b> e procure serviços desnecessários (por exemplo, Telnet na 23 ou FTP na 21):
+<pre><button class="cp">Copiar</button><code># Windows
+netstat -ano
+
+# Linux
+ss -tuln</code></pre></li>
+      <li><b>Compare tráfego sem e com criptografia no Wireshark.</b> Capture <b>apenas o seu próprio tráfego</b>, em ambiente autorizado. Com o filtro <code>http</code> rode no terminal:
+<pre><button class="cp">Copiar</button><code>curl http://example.com</code></pre>
+        Clique com o botão direito em um pacote → <b>Follow → HTTP Stream</b>: o pedido e a página aparecem em <b>texto legível</b>. Depois use o filtro <code>tls</code> e rode:
+<pre><button class="cp">Copiar</button><code>curl https://example.com</code></pre>
+        Agora o conteúdo aparece como <i>Application Data</i>, <b>ilegível</b>. Essa é a diferença entre HTTP e HTTPS.</li>
+      <li><b>Inspecione um certificado.</b> No navegador, abra um site HTTPS, clique no cadeado e veja <b>quem emitiu o certificado</b> e até quando ele é válido.</li>
+      <li><b>Teste a sua higiene digital.</b> Verifique se o sistema tem atualizações pendentes, se você usa a mesma senha em vários sites e se ativou o MFA nas suas contas principais.</li>
+    </ol>
+  </div>
+
+  <div class="resumo">
+    <h3>📝 Resumo do capítulo</h3>
+    <ul>
+      <li>Os pilares da segurança são <b>confidencialidade, integridade e disponibilidade</b>. Vulnerabilidade é a fraqueza, ameaça é quem pode explorá-la e ataque é a ação.</li>
+      <li>Autenticação (quem é você), autorização (o que pode fazer) e registro. Use senhas longas e únicas, e <b>MFA</b>.</li>
+      <li>Ameaças: malware (vírus, worm, trojan, ransomware, spyware, botnet), engenharia social e phishing, DDoS, interceptação, homem no meio, força bruta e injeção.</li>
+      <li>Defesas: <b>anti-malware</b>, <b>firewall</b> (regras, primeira que combina vale, negar por padrão, DMZ), <b>IDS</b> (avisa) e <b>IPS</b> (bloqueia), <b>VPN</b> (túnel criptografado).</li>
+      <li>Boas práticas: atualizar, backup 3-2-1, Wi-Fi com WPA2/WPA3, desligar o que não usa, segmentar a rede e educar usuários.</li>
+    </ul>
+  </div>
+
+  <h3 id="c7-quiz">🧠 Quiz do capítulo 7</h3>
+  <div class="quiz">
+    <div class="q"><p>1. Qual princípio garante que apenas pessoas autorizadas tenham acesso à informação?</p>
+      <button class="opt" data-ok="1">a) Confidencialidade</button><button class="opt">b) Integridade</button><button class="opt">c) Disponibilidade</button><button class="opt">d) Autenticidade</button>
+      <div class="fb">É a <b>confidencialidade</b>. A integridade garante que nada foi alterado, e a disponibilidade, que o acesso está possível quando necessário.</div></div>
+    <div class="q"><p>2. Qual malware se espalha sozinho pela rede, sem precisar que o usuário abra algum arquivo?</p>
+      <button class="opt">a) Cavalo de Troia</button><button class="opt" data-ok="1">b) Worm</button><button class="opt">c) Spyware</button><button class="opt">d) Adware</button>
+      <div class="fb">O <b>worm</b> explora falhas e se propaga automaticamente. O cavalo de Troia precisa convencer o usuário a executá-lo.</div></div>
+    <div class="q"><p>3. Um programa criptografa os arquivos do seu computador e exige pagamento para liberá-los. Trata-se de:</p>
+      <button class="opt">a) Phishing</button><button class="opt">b) Keylogger</button><button class="opt" data-ok="1">c) Ransomware</button><button class="opt">d) Rootkit</button>
+      <div class="fb">É o <b>ransomware</b>. A melhor defesa é ter backup (3-2-1) e manter tudo atualizado.</div></div>
+    <div class="q"><p>4. Um ataque DDoS prejudica principalmente qual pilar da segurança?</p>
+      <button class="opt">a) Confidencialidade</button><button class="opt">b) Integridade</button><button class="opt" data-ok="1">c) Disponibilidade</button><button class="opt">d) Não repúdio</button>
+      <div class="fb">O objetivo do DDoS é <b>derrubar ou sobrecarregar</b> o serviço, tornando-o indisponível.</div></div>
+    <div class="q"><p>5. Qual é a principal função de um firewall?</p>
+      <button class="opt">a) Remover vírus de arquivos</button><button class="opt" data-ok="1">b) Permitir ou bloquear o tráfego de rede conforme regras</button><button class="opt">c) Traduzir nomes em IPs</button><button class="opt">d) Atribuir endereços IP</button>
+      <div class="fb">O firewall é o “porteiro”: filtra o tráfego por origem, destino, protocolo e porta. Remover vírus é tarefa do anti-malware.</div></div>
+    <div class="q"><p>6. Qual é a diferença entre IDS e IPS?</p>
+      <button class="opt">a) O IDS bloqueia e o IPS apenas avisa</button><button class="opt" data-ok="1">b) O IDS detecta e avisa; o IPS detecta e bloqueia</button><button class="opt">c) Os dois fazem exatamente a mesma coisa</button><button class="opt">d) O IDS criptografa e o IPS descriptografa</button>
+      <div class="fb">IDS = <b>alarme</b> (detecta e alerta). IPS = <b>segurança que age</b> (detecta e bloqueia).</div></div>
+    <div class="q"><p>7. O que uma VPN faz?</p>
+      <button class="opt">a) Aumenta a velocidade da Internet</button><button class="opt">b) Impede qualquer tipo de golpe</button><button class="opt" data-ok="1">c) Cria um túnel criptografado por uma rede pública</button><button class="opt">d) Substitui o antivírus</button>
+      <div class="fb">A VPN protege o <b>caminho</b> dos dados. Ela não substitui o antivírus nem evita phishing.</div></div>
+    <div class="q"><p>8. Qual destes é um sinal típico de phishing?</p>
+      <button class="opt">a) Mensagem com o seu nome, enviada pelo domínio oficial, sem pedir dados</button><button class="opt" data-ok="1">b) Mensagem urgente, com link para um domínio parecido com o do banco, pedindo sua senha</button><button class="opt">c) E-mail de um colega que você esperava</button><button class="opt">d) Aviso do sistema operacional pedindo para você atualizar pelo menu oficial</button>
+      <div class="fb">Urgência, domínio parecido e pedido de senha formam o trio clássico do <b>phishing</b>.</div></div>
+  </div>
+  <div class="score"></div>
+
+  <h3>✍️ Questões abertas</h3>
+  <div class="open"><p><b>1.</b> Explique a tríade confidencialidade, integridade e disponibilidade, dando um exemplo de falha de cada uma.</p>
+    <button>Ver resposta</button><div class="answer">Confidencialidade: só quem tem permissão acessa (falha: vazamento de dados de alunos). Integridade: a informação não é alterada indevidamente (falha: o valor de um pagamento é trocado). Disponibilidade: o sistema está acessível quando necessário (falha: o site da escola sai do ar na matrícula).</div></div>
+  <div class="open"><p><b>2.</b> Diferencie vulnerabilidade, ameaça e ataque com um exemplo de rede Wi-Fi.</p>
+    <button>Ver resposta</button><div class="answer">Vulnerabilidade: a rede usa uma senha fraca ou padrão. Ameaça: uma pessoa mal-intencionada por perto que pode tirar proveito disso. Ataque: a tentativa real de adivinhar a senha para entrar na rede.</div></div>
+  <div class="open"><p><b>3.</b> Compare IDS e IPS e diga em que situação um IPS pode causar problemas.</p>
+    <button>Ver resposta</button><div class="answer">O IDS detecta e avisa, e fica recebendo uma cópia do tráfego. O IPS detecta e bloqueia, por estar no caminho do tráfego. Um IPS pode causar problemas quando há falso positivo: ele bloqueia um tráfego legítimo, achando que era um ataque.</div></div>
+  <div class="open"><p><b>4.</b> Liste cinco medidas para proteger a rede Wi-Fi de uma escola ou de uma casa.</p>
+    <button>Ver resposta</button><div class="answer">Por exemplo: usar WPA2 ou WPA3 com senha forte; trocar a senha de administração padrão do roteador; desligar o WPS; manter o firmware do roteador atualizado; separar uma rede de visitantes da rede interna; desativar serviços e portas sem uso; e orientar os usuários.</div></div>
+
+  <div class="box dica" style="margin-top:28px"><div class="ic">📚</div><div><h5>Para saber mais</h5><p>A <b>Cartilha de Segurança para Internet</b>, do CERT.br, é gratuita, em português e tem dicas práticas para todas as idades (cartilha.cert.br).</p></div></div>
+  <div class="box exemplo"><div class="ic">🎓</div><div><h5>Fim da apostila</h5><p>Você percorreu todos os capítulos da disciplina: das redes locais à segurança. Continue praticando nos laboratórios, e lembre-se: quanto mais você entende como a rede funciona por dentro, melhor consegue protegê-la.</p></div></div>
+</section>
 
 <section id="refs">
   <h2>📚 Referências</h2>
@@ -1903,6 +2222,100 @@ nmcli dev show | grep -E "IP4|DNS"</code></pre>
         ' <b>TCP:</b> entregou <b>'+N+' de '+N+'</b>, com <b>'+retx+' retransmiss'+(retx===1?'ão':'ões')+'</b>'+(retx?' (tempo extra).':'.');
     }
     go.onclick=run;run();
+  })();
+
+  // --- Capítulo 7: César, phishing, senha e firewall ---
+  (function(){
+    // Cifra de César
+    var csIn=document.getElementById('csIn');
+    if(csIn){
+      var K=document.getElementById('csK'),M=document.getElementById('csM'),O=document.getElementById('csOut');
+      for(var i=1;i<=25;i++)K.add(new Option(i,i));K.value=3;
+      function cs(){
+        var s=csIn.value.normalize('NFD').replace(/[̀-ͯ]/g,''),k=((+K.value)*(+M.value)%26+26)%26,r='';
+        for(var j=0;j<s.length;j++){
+          var c=s.charCodeAt(j);
+          if(c>=65&&c<=90)r+=String.fromCharCode((c-65+k)%26+65);
+          else if(c>=97&&c<=122)r+=String.fromCharCode((c-97+k)%26+97);
+          else r+=s[j];
+        }
+        O.textContent=r;
+      }
+      csIn.oninput=cs;K.onchange=cs;M.onchange=cs;cs();
+    }
+
+    // Phishing: sinais clicáveis
+    var hots=document.querySelectorAll('#mail .hot');
+    if(hots.length){
+      var tip=document.getElementById('mailTip'),ct=document.getElementById('mailCt'),found=0;
+      [].forEach.call(hots,function(h){
+        h.onclick=function(){
+          tip.innerHTML=h.dataset.tip;
+          if(!h.classList.contains('found')){h.classList.add('found');found++;}
+          ct.textContent=found+' de '+hots.length+' sinais encontrados'+(found===hots.length?' 🎉 Você achou todos!':'');
+        };
+      });
+    }
+
+    // Verificador de senha
+    var pw=document.getElementById('pwIn');
+    if(pw){
+      var bar=document.getElementById('pwBar'),msg=document.getElementById('pwMsg');
+      var common=['123456','1234567','12345678','123456789','1234567890','password','senha','senha123','qwerty','qwerty123','abc123','admin','admin123','111111','123123','000000','654321','brasil','iloveyou','minhasenha','minhasenha123','1q2w3e','12345','1234','letmein','mudar123'];
+      function dur(s){var m=60,h=3600,d=86400,y=31557600;
+        if(s<1)return 'menos de 1 segundo';
+        if(s<m)return Math.round(s)+' segundos';
+        if(s<h)return Math.round(s/m)+' minutos';
+        if(s<d)return Math.round(s/h)+' horas';
+        if(s<y)return Math.round(s/d)+' dias';
+        if(s<y*1000)return Math.round(s/y).toLocaleString('pt-BR')+' anos';
+        if(s<y*1e6)return Math.round(s/y/1000).toLocaleString('pt-BR')+' mil anos';
+        return 'milhões de anos ou mais';}
+      function check(){
+        var v=pw.value;
+        if(!v){bar.style.width='0';msg.innerHTML='Digite algo para ver a estimativa.';return;}
+        var pool=0;
+        if(/[a-z]/.test(v))pool+=26;if(/[A-Z]/.test(v))pool+=26;if(/[0-9]/.test(v))pool+=10;if(/[^A-Za-z0-9]/.test(v))pool+=33;
+        var bits=v.length*Math.log(pool)/Math.LN2,weak='';
+        if(common.indexOf(v.toLowerCase())>-1){bits=1;weak='Está entre as senhas mais usadas e vazadas: seria descoberta quase na hora.';}
+        else if(/^(.)\1+$/.test(v)){bits=Math.min(bits,6);weak='Repete o mesmo caractere.';}
+        else if(/^(0123|1234|2345|3456|4567|5678|6789|abcd|qwer)/i.test(v)&&v.length<12){bits=Math.min(bits,16);weak='Segue uma sequência fácil de adivinhar.';}
+        var lvl=bits<28?['Muito fraca','#c62828']:bits<36?['Fraca','#ef6c00']:bits<60?['Razoável','#f9a825']:bits<80?['Forte','#2e7d32']:['Muito forte','#1b5e20'];
+        bar.style.width=Math.min(100,Math.max(4,bits/80*100))+'%';bar.style.background=lvl[1];
+        var secs=Math.pow(2,Math.max(bits-1,0))/1e10;
+        msg.innerHTML='<b style="color:'+lvl[1]+'">'+lvl[0]+'</b> · '+v.length+' caracteres · tempo estimado para descobrir por força bruta: <b>'+dur(secs)+'</b>.'+(weak?'<br>⚠️ '+weak:'')+
+          (v.length<12&&!weak?'<br>💡 Dica: senhas com 12 ou mais caracteres, de preferência uma frase, ficam bem mais fortes.':'');
+      }
+      pw.oninput=check;check();
+    }
+
+    // Simulador de firewall
+    var fwS=document.getElementById('fwS');
+    if(fwS){
+      var D=document.getElementById('fwD'),V=document.getElementById('fwV'),out=document.getElementById('fwMsg');
+      var rules=[
+        {a:true,s:['lan'],d:['net'],v:['http','https']},
+        {a:true,s:['lan'],d:['net'],v:['dns']},
+        {a:true,s:'any',d:['web'],v:['https']},
+        {a:false,s:'any',d:'any',v:'any'}
+      ];
+      function m(list,x){return list==='any'||list.indexOf(x)>-1;}
+      function fw(){
+        [0,1,2,3].forEach(function(i){document.getElementById('fw'+i).classList.remove('hit')});
+        var s=fwS.value,d=D.value,v=V.value;
+        if(s===d){out.innerHTML='Origem e destino estão na <b>mesma rede</b>: esse tráfego nem passa pelo firewall. Escolha origem e destino diferentes.';return;}
+        for(var i=0;i<rules.length;i++){
+          var r=rules[i];
+          if(m(r.s,s)&&m(r.d,d)&&m(r.v,v)){
+            document.getElementById('fw'+i).classList.add('hit');
+            out.innerHTML=(r.a?'✅ <b>PERMITIDO</b>':'⛔ <b>NEGADO</b>')+' pela regra <b>'+(i+1)+'</b>. '+
+              (i===3?'Nenhuma regra anterior permitiu esse tráfego, então vale a <b>regra padrão: negar</b>.':'A primeira regra que combina é a que vale.');
+            return;
+          }
+        }
+      }
+      document.getElementById('fwGo').onclick=fw;fwS.onchange=fw;D.onchange=fw;V.onchange=fw;fw();
+    }
   })();
 
   // --- Gabarito no PDF ---
