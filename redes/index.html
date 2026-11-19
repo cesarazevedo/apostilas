@@ -156,6 +156,18 @@ ol.steps>li::before{content:counter(s);position:absolute;left:0;top:2px;width:32
 #rt .tool-tab td:first-child,#rt .tool-tab th:first-child{width:36px;color:var(--suave)}
 tr.hit td{background:#fff3e0;font-weight:600}
 #rt tr.hit td:first-child,tr.hit td:first-child{background:#ef6c00;color:#fff}
+.hs-head{display:flex;justify-content:space-between;font-weight:700;padding:0 6px 8px;border-bottom:2px solid var(--borda);margin-bottom:8px}
+.hsr{display:flex;margin:6px 0}
+.hsr.r{justify-content:flex-end}
+.hsb{max-width:78%;border-radius:12px;padding:7px 12px;font-size:14.5px;color:#fff;line-height:1.35}
+.hsb small{display:block;opacity:.92;font-size:12.5px}
+.hsb.syn{background:#ef6c00}.hsb.ack{background:#2e7d32}.hsb.dat{background:#1565c0}.hsb.fin{background:#c62828}
+.ls-row{display:flex;gap:12px;align-items:center;margin:12px 0}
+.ls-row>b{flex:0 0 42px}
+.ls-boxes{display:flex;flex-wrap:wrap;gap:6px}
+.lb{width:46px;height:40px;border-radius:8px;display:grid;place-items:center;font-size:12.5px;font-weight:700;color:#fff;position:relative}
+.lb.ok{background:#2e7d32}.lb.lost{background:#c62828}
+.lb em{position:absolute;top:-8px;right:-6px;background:#ef6c00;border-radius:999px;font-style:normal;font-size:11px;padding:1px 6px}
 .soon-card{background:#fff;border:1px dashed #b0bec5;border-radius:16px;padding:18px 22px;margin:14px 0;color:var(--suave)}
 footer{text-align:center;color:var(--suave);font-size:14px;padding:30px 0 0}
 .back-top{position:fixed;right:20px;bottom:20px;width:44px;height:44px;border-radius:50%;border:0;background:var(--verde);color:#fff;font-size:20px;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.2);display:none;z-index:70}
@@ -177,7 +189,7 @@ footer{text-align:center;color:var(--suave);font-size:14px;padding:30px 0 0}
   .hero{padding:26px 0;border-radius:12px;margin-bottom:10px}
   .hero .wrap{padding:0 22px}
   section{padding:14px 0 0;break-before:auto}
-  #cap1,#cap2,#cap3,#cap4{break-before:page}
+  #cap1,#cap2,#cap3,#cap4,#cap5{break-before:page}
   .tool-ctl{display:none!important}
   .tool{break-inside:avoid}
   .sw button{display:none!important}
@@ -245,7 +257,15 @@ footer{text-align:center;color:var(--suave);font-size:14px;padding:30px 0 0}
       <a href="#c4-lab">Laboratórios</a>
       <a href="#c4-quiz">Quiz e exercícios</a>
     </div>
-    <a href="#cap5" class="soon"><span class="n" style="background:var(--c5)">5</span>Camada de transporte</a>
+    <a href="#cap5"><span class="n" style="background:var(--c5)">5</span>Camada de transporte</a>
+    <div class="sub">
+      <a href="#c5-portas">Portas e sockets</a>
+      <a href="#c5-tcp">Protocolo TCP</a>
+      <a href="#c5-udp">Protocolo UDP</a>
+      <a href="#c5-comp">TCP x UDP</a>
+      <a href="#c5-lab">Atividade e laboratórios</a>
+      <a href="#c5-quiz">Quiz e exercícios</a>
+    </div>
     <a href="#cap6" class="soon"><span class="n" style="background:var(--c6)">6</span>Camada de aplicação</a>
     <a href="#cap7" class="soon"><span class="n" style="background:var(--c7)">7</span>Segurança de redes</a>
     <a href="#refs"><span class="n" style="background:#455a64">📚</span>Referências</a>
@@ -276,7 +296,7 @@ footer{text-align:center;color:var(--suave);font-size:14px;padding:30px 0 0}
     <div class="card" style="--cc:var(--c2)"><b>2 · Padrões e modelos</b><span>Modelo OSI e arquitetura TCP/IP.</span><div class="st">✅ Disponível</div></div>
     <div class="card" style="--cc:var(--c3)"><b>3 · Acesso à rede</b><span>Ethernet (802.3) e redes sem fio (802.11).</span><div class="st">✅ Disponível</div></div>
     <div class="card" style="--cc:var(--c4)"><b>4 · Camada de internet</b><span>IPv4, IPv6, roteamento, ARP e ICMP.</span><div class="st">✅ Disponível</div></div>
-    <div class="card" style="--cc:var(--c5)"><b>5 · Camada de transporte</b><span>Protocolos TCP e UDP.</span><div class="st">⏳ Em breve</div></div>
+    <div class="card" style="--cc:var(--c5)"><b>5 · Camada de transporte</b><span>Protocolos TCP e UDP.</span><div class="st">✅ Disponível</div></div>
     <div class="card" style="--cc:var(--c6)"><b>6 · Camada de aplicação</b><span>Web, e-mail, DNS, DHCP, FTP e SSH.</span><div class="st">⏳ Em breve</div></div>
     <div class="card" style="--cc:var(--c7)"><b>7 · Segurança de redes</b><span>Ameaças, ataques e soluções de proteção.</span><div class="st">⏳ Em breve</div></div>
   </div>
@@ -1103,8 +1123,218 @@ traceroute -n 8.8.8.8</code></pre>
   <div class="open"><p><b>3.</b> Por que o IPv6 foi criado? Cite duas diferenças em relação ao IPv4.</p>
     <button>Ver resposta</button><div class="answer">Porque os endereços IPv4 (≈ 4,3 bilhões) se esgotaram. O IPv6 tem endereços de 128 bits, o que praticamente elimina o problema. Outras diferenças: cabeçalho fixo e mais simples; não existe broadcast (usa multicast); o NAT deixa de ser necessário; usa NDP em vez de ARP.</div></div>
 </section>
-<section class="chapter" id="cap5"><div class="chap-head"><div class="chap-num" style="background:var(--c5)">5</div><div><small>Capítulo 5</small><h2>Camada de transporte TCP/IP</h2></div></div>
-  <div class="soon-card">⏳ Em construção. Conteúdo: protocolos TCP e UDP.</div></section>
+<section class="chapter" id="cap5" style="--cc:var(--c5)">
+  <div class="chap-head"><div class="chap-num" style="background:var(--c5)">5</div><div><small>Capítulo 5</small><h2>Camada de transporte TCP/IP</h2></div></div>
+
+  <div class="obj"><h4>🎯 Ao final deste capítulo, você será capaz de:</h4>
+    <ul>
+      <li>Explicar o papel da camada de transporte e o que são portas e sockets.</li>
+      <li>Descrever como o TCP garante uma entrega confiável (handshake, confirmações, retransmissão, controle de fluxo).</li>
+      <li>Descrever as características do UDP e quando ele é a melhor escolha.</li>
+      <li>Comparar TCP e UDP e escolher o mais adequado para cada aplicação.</li>
+      <li>Identificar portas e conexões ativas no seu computador e no Wireshark.</li>
+    </ul>
+  </div>
+
+  <h3>O que faz a camada de transporte?</h3>
+  <p>O IP leva o pacote até o <b>computador</b> certo. Mas dentro dele há vários programas usando a rede ao mesmo tempo (navegador, e-mail, jogo, atualização do sistema). A <b>camada de transporte</b> leva os dados até o <b>programa</b> certo e decide <b>como</b> a entrega será feita: com ou sem garantias. Ela fica entre os programas (aplicação) e o IP (internet), e funciona <b>só nas pontas</b>: os roteadores não mexem nela.</p>
+  <div class="box analogia"><div class="ic">💡</div><div><h5>Pense assim...</h5><p>O IP entrega a carta no <b>prédio</b> certo. A camada de transporte entrega no <b>apartamento</b> certo (a porta) e ainda escolhe o tipo de envio: <b>carta registrada</b> com aviso de recebimento (TCP) ou <b>panfleto</b> jogado na caixa de correio, sem aviso (UDP).</p></div></div>
+
+  <h3 id="c5-portas">Portas e sockets</h3>
+  <p>Uma <b>porta</b> é um número de 16 bits (de 0 a 65535) que identifica um programa ou serviço dentro de um computador. A combinação <b>IP + porta</b> forma um <b>socket</b>, por exemplo <code>200.17.100.5:443</code>.</p>
+  <table>
+    <tr><th>Faixa</th><th>Nome</th><th>Uso</th></tr>
+    <tr><td><b>0 a 1023</b></td><td>Portas bem conhecidas</td><td>Serviços padrão (web, e-mail, SSH...). Reservadas para servidores.</td></tr>
+    <tr><td><b>1024 a 49151</b></td><td>Portas registradas</td><td>Aplicações específicas (bancos de dados, jogos...)</td></tr>
+    <tr><td><b>49152 a 65535</b></td><td>Portas dinâmicas (efêmeras)</td><td>O cliente escolhe uma aleatória para cada conexão. Na prática, muitos sistemas usam também parte da faixa registrada.</td></tr>
+  </table>
+  <table>
+    <tr><th>Porta</th><th>Serviço</th><th>Protocolo de transporte</th></tr>
+    <tr><td>20 e 21</td><td>FTP</td><td>TCP</td></tr>
+    <tr><td>22</td><td>SSH</td><td>TCP</td></tr>
+    <tr><td>23</td><td>Telnet</td><td>TCP</td></tr>
+    <tr><td>25</td><td>SMTP (envio de e-mail)</td><td>TCP</td></tr>
+    <tr><td>53</td><td>DNS</td><td>UDP (e TCP em casos específicos)</td></tr>
+    <tr><td>67 e 68</td><td>DHCP</td><td>UDP</td></tr>
+    <tr><td>80</td><td>HTTP</td><td>TCP</td></tr>
+    <tr><td>110</td><td>POP3</td><td>TCP</td></tr>
+    <tr><td>143</td><td>IMAP</td><td>TCP</td></tr>
+    <tr><td>443</td><td>HTTPS</td><td>TCP (e UDP, no HTTP/3)</td></tr>
+  </table>
+  <div class="box exemplo"><div class="ic">📌</div><div><h5>Exemplo</h5><p>Você abre dois sites ao mesmo tempo no navegador. Os dois falam com a porta <b>443</b> dos servidores, mas o seu computador usa uma <b>porta de origem diferente</b> para cada um (por exemplo, 52114 e 52115). É isso que permite que as respostas cheguem à aba certa.</p></div></div>
+
+  <!-- 5.1 TCP -->
+  <h3 id="c5-tcp">5.1 Protocolo TCP</h3>
+  <p>O <b>TCP</b> (<i>Transmission Control Protocol</i>) é o protocolo da <b>confiança</b>. Antes de enviar dados, ele estabelece uma conexão e depois garante que tudo chegue, <b>completo, sem erros e na ordem certa</b>. Principais características:</p>
+  <ul>
+    <li><b>Orientado a conexão:</b> os dois lados “combinam” antes de começar.</li>
+    <li><b>Confiável:</b> cada pedaço recebido é confirmado (ACK). O que se perde é reenviado.</li>
+    <li><b>Entrega em ordem:</b> numera os bytes e reorganiza o que chegar fora de ordem.</li>
+    <li><b>Controle de fluxo:</b> o receptor informa quanto aguenta receber, para não ser “afogado” (campo <i>janela</i>).</li>
+    <li><b>Controle de congestionamento:</b> reduz a velocidade quando percebe que a rede está sobrecarregada.</li>
+  </ul>
+  <div class="box analogia"><div class="ic">💡</div><div><h5>Pense assim...</h5><p>O TCP é como uma <b>ligação telefônica</b>: você liga e espera o “alô”, confirma que a pessoa está ouvindo, conversa, e quando algo não é entendido pede para repetir. No fim, os dois se despedem. Isso dá segurança, mas gasta mais tempo.</p></div></div>
+
+  <h3>O cabeçalho TCP</h3>
+  <table>
+    <tr><th>Campo</th><th>Para que serve</th></tr>
+    <tr><td><b>Porta de origem e de destino</b></td><td>Identificam os programas que se comunicam.</td></tr>
+    <tr><td><b>Número de sequência</b></td><td>Posição do primeiro byte do segmento no fluxo de dados. Serve para ordenar.</td></tr>
+    <tr><td><b>Número de confirmação (ACK)</b></td><td>Diz qual byte o receptor espera receber em seguida.</td></tr>
+    <tr><td><b>Flags</b></td><td>Bits de controle: <b>SYN</b> (iniciar conexão), <b>ACK</b> (confirmação), <b>FIN</b> (encerrar), <b>RST</b> (derrubar a conexão), <b>PSH</b> (entregar logo).</td></tr>
+    <tr><td><b>Janela</b></td><td>Quantidade de dados que o receptor aceita receber antes de enviar uma confirmação.</td></tr>
+    <tr><td><b>Checksum</b></td><td>Verifica se o segmento chegou sem erros.</td></tr>
+  </table>
+  <p>O cabeçalho TCP tem no mínimo <b>20 bytes</b>. A unidade de dados da camada de transporte, no TCP, é o <b>segmento</b>.</p>
+
+  <h3 id="c5-hs">Estabelecendo e encerrando a conexão (handshake)</h3>
+  <p>Para abrir uma conexão, o TCP usa o <b>handshake de 3 vias</b> (<i>three-way handshake</i>): <b>SYN → SYN+ACK → ACK</b>. Clique em “Próximo passo” e acompanhe:</p>
+  <div class="tool" id="hs">
+    <div class="hs-head"><span>💻 Cliente</span><span>🖥️ Servidor</span></div>
+    <div id="hsRows"></div>
+    <p class="enc-txt" id="hsTxt"></p>
+    <div class="tool-ctl"><button id="hsNext">Próximo passo ▶</button><button id="hsReset" class="alt">Reiniciar</button></div>
+  </div>
+  <div class="box atencao"><div class="ic">⚠️</div><div><h5>Atenção</h5><p>Os números de sequência iniciais na vida real são <b>aleatórios</b> (aqui usamos 100 e 300 para ficar fácil). Ataques do tipo <b>SYN flood</b> exploram o handshake, enviando milhares de SYN e nunca completando a conexão. Veremos isso no capítulo 7.</p></div></div>
+
+  <h3>Como o TCP corrige as perdas?</h3>
+  <ol class="steps">
+    <li>O emissor numera os bytes e envia os segmentos, mantendo uma cópia de cada um.</li>
+    <li>O receptor envia <b>ACKs</b> dizendo “recebi tudo até o byte X”.</li>
+    <li>Se o ACK de um segmento não chega a tempo (<i>timeout</i>), ou se chegam ACKs repetidos indicando que algo faltou, o emissor <b>reenvia</b> o segmento.</li>
+    <li>Quando muitas perdas acontecem, o TCP entende que a rede está congestionada e <b>diminui a velocidade</b>. Depois, vai aumentando aos poucos.</li>
+  </ol>
+  <div class="box analogia"><div class="ic">💡</div><div><h5>Pense assim...</h5><p>É como um <b>motorista em dia de trânsito</b>: ao perceber engarrafamento, reduz a velocidade para não piorar a situação, e acelera de novo quando a pista libera.</p></div></div>
+
+  <!-- 5.2 UDP -->
+  <h3 id="c5-udp">5.2 Protocolo UDP</h3>
+  <p>O <b>UDP</b> (<i>User Datagram Protocol</i>) é o protocolo da <b>velocidade</b>. Ele só faz o mínimo: coloca as portas, o tamanho e um checksum e entrega ao IP. Não faz conexão, não confirma, não reenvia e não reordena.</p>
+  <table>
+    <tr><th>Campo do cabeçalho UDP (apenas 8 bytes)</th><th>Para que serve</th></tr>
+    <tr><td><b>Porta de origem</b> e <b>porta de destino</b></td><td>Identificam os programas.</td></tr>
+    <tr><td><b>Tamanho</b></td><td>Tamanho do datagrama.</td></tr>
+    <tr><td><b>Checksum</b></td><td>Verifica se os dados chegaram sem erros.</td></tr>
+  </table>
+  <div class="box analogia"><div class="ic">💡</div><div><h5>Pense assim...</h5><p>O UDP é como <b>falar em um megafone</b> ou ouvir uma <b>rádio ao vivo</b>: você fala e segue em frente, sem esperar resposta. Se alguém não ouviu uma palavra, não adianta voltar atrás: a transmissão continua.</p></div></div>
+  <p><b>Quando usar UDP?</b> Quando a velocidade importa mais do que a perfeição, ou quando a mensagem é muito pequena:</p>
+  <ul>
+    <li><b>Chamadas de voz e vídeo ao vivo</b> e <b>jogos online:</b> um quadro perdido é melhor do que um atraso. Reenviar um dado antigo não ajuda.</li>
+    <li><b>DNS:</b> perguntas e respostas curtas. Se perder, o programa pergunta de novo.</li>
+    <li><b>DHCP</b> e outros serviços de descoberta na rede local.</li>
+  </ul>
+  <div class="box dica"><div class="ic">✅</div><div><h5>Curiosidade</h5><p>O <b>HTTP/3</b>, usado por sites modernos, roda sobre o <b>QUIC</b>, que é construído em cima do UDP. O QUIC refaz por conta própria as garantias que precisa (confiabilidade, ordem), com mais flexibilidade do que o TCP.</p></div></div>
+
+  <h3 id="c5-comp">TCP x UDP: comparação</h3>
+  <table>
+    <tr><th></th><th>TCP</th><th>UDP</th></tr>
+    <tr><td><b>Conexão</b></td><td>Sim (handshake)</td><td>Não</td></tr>
+    <tr><td><b>Confiabilidade</b></td><td>Garante entrega, com confirmação e reenvio</td><td>Não garante</td></tr>
+    <tr><td><b>Ordem</b></td><td>Entrega na ordem correta</td><td>Pode chegar fora de ordem</td></tr>
+    <tr><td><b>Controle de fluxo e congestionamento</b></td><td>Sim</td><td>Não</td></tr>
+    <tr><td><b>Cabeçalho</b></td><td>20 bytes ou mais</td><td>8 bytes</td></tr>
+    <tr><td><b>Velocidade e carga</b></td><td>Mais lento e pesado</td><td>Rápido e leve</td></tr>
+    <tr><td><b>Exemplos</b></td><td>Web (HTTP/HTTPS), e-mail, FTP, SSH</td><td>DNS, DHCP, voz e vídeo ao vivo, jogos</td></tr>
+  </table>
+
+  <h3>🧪 Simulador: TCP x UDP com perda de pacotes</h3>
+  <p>Arraste a barra para escolher a porcentagem de pacotes que a rede perde e clique em “Enviar 10 segmentos”.</p>
+  <div class="tool" id="ls">
+    <div class="tool-ctl">
+      Perda da rede: <input type="range" id="lsP" min="0" max="50" value="20" style="padding:0;width:180px"> <b id="lsV">20%</b>
+      <button id="lsGo">Enviar 10 segmentos ▶</button>
+    </div>
+    <div class="ls-row"><b>UDP</b><div class="ls-boxes" id="lsU"></div></div>
+    <div class="ls-row"><b>TCP</b><div class="ls-boxes" id="lsT"></div></div>
+    <p class="enc-txt" id="lsMsg"></p>
+  </div>
+  <div class="box exemplo"><div class="ic">📌</div><div><h5>O que isso mostra?</h5><p>O UDP entrega o que conseguir, e o que se perdeu fica perdido. O TCP entrega tudo, mas ao custo de <b>retransmissões</b> (o número em cada caixa mostra quantas tentativas foram necessárias), ou seja, de <b>mais tempo</b>. Por isso a escolha depende da aplicação.</p></div></div>
+
+  <!-- ATIVIDADE DESPLUGADA -->
+  <div class="lab" id="c5-lab">
+    <h3>🧑‍🤝‍🧑 Atividade desplugada – Passando recados (TCP x UDP)</h3>
+    <p><b>Objetivo:</b> sentir a diferença entre entregar com e sem confirmação. <b>Materiais:</b> papel e caneta. <b>Equipes:</b> grupos de 4 alunos em fila: emissor, 2 “roteadores” e receptor.</p>
+    <ol class="steps">
+      <li><b>Rodada UDP:</b> o emissor escreve uma frase de 5 palavras, dividida em 5 papéis numerados. Passa os papéis pela fila sem esperar resposta. <b>Um roteador, sem avisar, descarta um papel.</b> O receptor monta a frase com o que chegou.</li>
+      <li><b>Rodada TCP:</b> repetem a atividade, mas agora o receptor devolve, a cada papel recebido, um “ACK” (um papel com o número). Se o emissor não recebe o ACK de um número, <b>reenvia</b> aquele papel.</li>
+      <li><b>Compare:</b> qual rodada entregou a frase completa? Qual foi mais rápida? Quantas mensagens a mais foram necessárias?</li>
+    </ol>
+  </div>
+
+  <div class="lab" id="c5-lab2">
+    <h3>🧪 Laboratório 8 – Handshake e UDP no Wireshark</h3>
+    <ol class="steps">
+      <li><b>Inicie a captura</b> na interface ativa.</li>
+      <li><b>Veja o UDP.</b> Filtro: <code>dns</code>. No terminal rode:
+<pre><button class="cp">Copiar</button><code>nslookup www.ifrn.edu.br</code></pre>
+        Abra uma consulta e expanda <code>User Datagram Protocol</code>: veja as portas de origem (alta) e de destino (<b>53</b>), o tamanho e o checksum.</li>
+      <li><b>Veja o handshake do TCP.</b> Filtro: <code>tcp.flags.syn == 1</code>. Abra um site HTTPS no navegador. Procure um pacote <code>[SYN]</code> para a porta <b>443</b> e outro <code>[SYN, ACK]</code> de resposta.</li>
+      <li><b>Veja a conversa inteira.</b> Dentro do pacote <code>[SYN]</code>, expanda o TCP e anote o <i>Stream index</i> (por exemplo, 5). Use o filtro <code>tcp.stream eq 5</code> (troque pelo seu número). Os três primeiros pacotes são SYN, SYN+ACK e ACK.</li>
+      <li><b>Explore o cabeçalho TCP:</b> portas, <i>Sequence Number</i>, <i>Acknowledgment Number</i>, <i>Flags</i> e <i>Window</i>. Compare com a tabela deste capítulo.</li>
+    </ol>
+
+    <h3>🧪 Laboratório 9 – Portas e conexões do seu computador</h3>
+    <ol class="steps">
+      <li><b>Liste as conexões e portas abertas.</b>
+<pre><button class="cp">Copiar</button><code># Windows
+netstat -ano
+
+# Linux: portas escutando
+ss -tuln
+# Linux: conexões TCP estabelecidas
+ss -tn</code></pre></li>
+      <li><b>Identifique no resultado:</b> o protocolo (TCP/UDP), o endereço local e a porta, o endereço remoto e o <b>estado</b>. <code>LISTEN</code> é um serviço esperando conexões. <code>ESTABLISHED</code> é uma conexão ativa. <code>TIME_WAIT</code> é uma conexão que acabou de ser encerrada.</li>
+      <li><b>Crie um servidor web de teste</b> (precisa do Python instalado) e veja a nova porta:
+<pre><button class="cp">Copiar</button><code>python3 -m http.server 8000</code></pre>
+        Em outro terminal rode <code>ss -tln</code> (ou <code>netstat -an</code>) e procure a porta <b>8000</b> em <code>LISTEN</code>. Acesse <code>http://localhost:8000</code> no navegador. Para parar, use <code>Ctrl + C</code>.</li>
+      <li><b>Para discutir:</b> por que o seu navegador mostra tantas conexões com a porta remota 443 e portas locais diferentes entre si?</li>
+    </ol>
+  </div>
+
+  <div class="resumo">
+    <h3>📝 Resumo do capítulo</h3>
+    <ul>
+      <li>A camada de transporte leva os dados ao programa certo (por <b>porta</b>) e define a forma de entrega. IP + porta = <b>socket</b>.</li>
+      <li>O <b>TCP</b> é orientado a conexão e confiável: handshake de 3 vias (SYN, SYN+ACK, ACK), confirmações, reenvio, ordem, controle de fluxo e de congestionamento.</li>
+      <li>O <b>UDP</b> é sem conexão e sem garantias, com cabeçalho de 8 bytes. É rápido e leve.</li>
+      <li>TCP é usado na web, no e-mail, no FTP e no SSH. UDP é usado em DNS, DHCP, voz, vídeo ao vivo e jogos.</li>
+      <li>Portas: 0–1023 são bem conhecidas. O cliente usa portas dinâmicas para cada conexão.</li>
+    </ul>
+  </div>
+
+  <h3 id="c5-quiz">🧠 Quiz do capítulo 5</h3>
+  <div class="quiz">
+    <div class="q"><p>1. Qual protocolo de transporte é orientado a conexão e garante a entrega dos dados?</p>
+      <button class="opt" data-ok="1">a) TCP</button><button class="opt">b) UDP</button><button class="opt">c) IP</button><button class="opt">d) ICMP</button>
+      <div class="fb">O <b>TCP</b> estabelece conexão e usa confirmações e reenvio para garantir a entrega.</div></div>
+    <div class="q"><p>2. Qual é a ordem correta do handshake de 3 vias do TCP?</p>
+      <button class="opt">a) ACK, SYN, SYN+ACK</button><button class="opt" data-ok="1">b) SYN, SYN+ACK, ACK</button><button class="opt">c) SYN, ACK, FIN</button><button class="opt">d) FIN, ACK, SYN</button>
+      <div class="fb">O cliente envia <b>SYN</b>, o servidor responde <b>SYN+ACK</b> e o cliente fecha com <b>ACK</b>.</div></div>
+    <div class="q"><p>3. Qual é a porta padrão do HTTPS?</p>
+      <button class="opt">a) 80</button><button class="opt" data-ok="1">b) 443</button><button class="opt">c) 53</button><button class="opt">d) 22</button>
+      <div class="fb">HTTPS = <b>443</b>. O HTTP é 80, o DNS é 53 e o SSH é 22.</div></div>
+    <div class="q"><p>4. Qual aplicação costuma usar UDP porque prefere velocidade a garantias?</p>
+      <button class="opt">a) Transferência de arquivos por FTP</button><button class="opt">b) Envio de e-mail</button><button class="opt" data-ok="1">c) Chamada de vídeo ao vivo</button><button class="opt">d) Acesso remoto por SSH</button>
+      <div class="fb">Em tempo real, um quadro atrasado não serve para nada. Vale mais seguir em frente do que reenviar.</div></div>
+    <div class="q"><p>5. Para que servem as portas?</p>
+      <button class="opt">a) Para identificar o computador na Internet</button><button class="opt" data-ok="1">b) Para identificar qual programa ou serviço deve receber os dados</button><button class="opt">c) Para criptografar os dados</button><button class="opt">d) Para escolher o caminho dos pacotes</button>
+      <div class="fb">O IP identifica o computador. A <b>porta</b> identifica o programa dentro dele.</div></div>
+    <div class="q"><p>6. O que o campo “janela” do TCP controla?</p>
+      <button class="opt">a) A criptografia da conexão</button><button class="opt" data-ok="1">b) Quanta informação o receptor aceita receber antes de confirmar (controle de fluxo)</button><button class="opt">c) O endereço IP de destino</button><button class="opt">d) O tempo de vida do pacote</button>
+      <div class="fb">A janela informa quanto o receptor consegue aguentar, evitando que o emissor o sobrecarregue.</div></div>
+    <div class="q"><p>7. Qual é uma desvantagem do UDP?</p>
+      <button class="opt">a) Cabeçalho muito grande</button><button class="opt">b) É sempre mais lento que o TCP</button><button class="opt" data-ok="1">c) Não garante a entrega nem a ordem dos dados</button><button class="opt">d) Só funciona em redes sem fio</button>
+      <div class="fb">O UDP é simples e rápido, mas não confirma, não reenvia e não reordena. Se a aplicação precisar disso, ela mesma deve cuidar.</div></div>
+  </div>
+  <div class="score"></div>
+
+  <h3>✍️ Questões abertas</h3>
+  <div class="open"><p><b>1.</b> Explique o handshake de 3 vias do TCP usando uma analogia com uma ligação telefônica.</p>
+    <button>Ver resposta</button><div class="answer">SYN é o “alô, quero falar com você”. O SYN+ACK é o “alô, ouvi, e eu também estou pronto para falar”. O último ACK é o “ótimo, então vamos começar”. Só depois os dados começam a ser enviados.</div></div>
+  <div class="open"><p><b>2.</b> Por que o DNS normalmente usa UDP em vez de TCP?</p>
+    <button>Ver resposta</button><div class="answer">Porque as consultas e respostas são curtas. Com o UDP não há o custo do handshake, e se algo se perder o programa simplesmente repete a pergunta. O DNS também pode usar TCP, por exemplo quando a resposta é grande demais.</div></div>
+  <div class="open"><p><b>3.</b> Um jogo online e o download de um arquivo grande: qual protocolo de transporte cada um tende a usar e por quê?</p>
+    <button>Ver resposta</button><div class="answer">O jogo online tende a usar UDP, pois precisa de baixa latência e uma informação atrasada perde o valor. O download de arquivo usa TCP, porque o arquivo precisa chegar completo e sem erros, mesmo que leve um pouco mais de tempo.</div></div>
+</section>
 <section class="chapter" id="cap6"><div class="chap-head"><div class="chap-num" style="background:var(--c6)">6</div><div><small>Capítulo 6</small><h2>Camada de aplicação TCP/IP</h2></div></div>
   <div class="soon-card">⏳ Em construção. Conteúdo: SMTP, POP, IMAP, HTTP, DNS, DHCP, FTP, TELNET e SSH.</div></section>
 <section class="chapter" id="cap7"><div class="chap-head"><div class="chap-num" style="background:var(--c7)">7</div><div><small>Capítulo 7</small><h2>Segurança de redes</h2></div></div>
@@ -1325,6 +1555,48 @@ traceroute -n 8.8.8.8</code></pre>
       [].forEach.call(document.querySelectorAll('#rt [data-ex]'),function(b){b.onclick=function(){rtIn.value=b.dataset.ex;route();};});
       route();
     }
+  })();
+
+  // --- Handshake TCP passo a passo ---
+  (function(){
+    var rowsEl=document.getElementById('hsRows');if(!rowsEl)return;
+    var S=[
+      {d:'r',c:'syn',t:'SYN · seq=100',s:'Cliente → Servidor',x:'<b>1. SYN.</b> O cliente diz: “Quero abrir uma conexão. Meu número inicial é 100.”'},
+      {d:'l',c:'syn',t:'SYN+ACK · seq=300 · ack=101',s:'Servidor → Cliente',x:'<b>2. SYN+ACK.</b> O servidor responde: “Aceito. Meu número inicial é 300 e já recebi o seu 100, então espero o 101.”'},
+      {d:'r',c:'ack',t:'ACK · ack=301',s:'Cliente → Servidor',x:'<b>3. ACK.</b> O cliente confirma: “Recebi o seu 300, espero o 301.” <b>Conexão estabelecida!</b> Agora os dois podem enviar dados.'},
+      {d:'r',c:'dat',t:'DADOS · seq=101 · 50 bytes',s:'Cliente → Servidor',x:'<b>4. Dados.</b> O cliente envia 50 bytes, começando no byte 101.'},
+      {d:'l',c:'ack',t:'ACK · ack=151',s:'Servidor → Cliente',x:'<b>5. Confirmação.</b> O servidor diz: “Recebi até o byte 150. Pode mandar o 151.” Se esse ACK não chegasse, o cliente reenviaria os dados.'},
+      {d:'r',c:'fin',t:'FIN',s:'Cliente → Servidor',x:'<b>6. Encerramento.</b> O cliente envia FIN: “Terminei.” O servidor confirma (ACK), envia também o seu FIN e a conexão se fecha.'}
+    ];
+    var k=0,txt=document.getElementById('hsTxt'),nx=document.getElementById('hsNext');
+    function draw(){
+      rowsEl.innerHTML=S.slice(0,k+1).map(function(s){return '<div class="hsr '+(s.d==='r'?'l':'r')+'"><div class="hsb '+s.c+'">'+(s.d==='r'?'➡️ ':'⬅️ ')+s.t+'<small>'+s.s+'</small></div></div>'}).join('');
+      txt.innerHTML=S[k].x;nx.disabled=k===S.length-1;
+    }
+    nx.onclick=function(){if(k<S.length-1){k++;draw();}};
+    document.getElementById('hsReset').onclick=function(){k=0;draw();};
+    window.addEventListener('beforeprint',function(){k=S.length-1;draw();});
+    draw();
+  })();
+
+  // --- Simulador TCP x UDP com perdas ---
+  (function(){
+    var go=document.getElementById('lsGo');if(!go)return;
+    var pr=document.getElementById('lsP'),pv=document.getElementById('lsV'),U=document.getElementById('lsU'),T=document.getElementById('lsT'),m=document.getElementById('lsMsg');
+    pr.oninput=function(){pv.textContent=pr.value+'%'};
+    function run(){
+      var p=pr.value/100,N=10,u='',t='',lost=0,retx=0,i,tries;
+      for(i=1;i<=N;i++){
+        if(Math.random()<p){lost++;u+='<div class="lb lost">'+i+'</div>';}else u+='<div class="lb ok">'+i+'</div>';
+        tries=1;while(Math.random()<p&&tries<30)tries++;
+        retx+=tries-1;
+        t+='<div class="lb ok">'+i+(tries>1?'<em>×'+tries+'</em>':'')+'</div>';
+      }
+      U.innerHTML=u;T.innerHTML=t;
+      m.innerHTML='<b>UDP:</b> entregou <b>'+(N-lost)+' de '+N+'</b>'+(lost?' ('+lost+' perdido'+(lost>1?'s':'')+' para sempre).':'.')+
+        ' <b>TCP:</b> entregou <b>'+N+' de '+N+'</b>, com <b>'+retx+' retransmiss'+(retx===1?'ão':'ões')+'</b>'+(retx?' (tempo extra).':'.');
+    }
+    go.onclick=run;run();
   })();
 
   // --- Gabarito no PDF ---
