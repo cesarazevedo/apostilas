@@ -239,4 +239,41 @@
     v.oninput=r;r();
   })();
 
+  // --- Cap. 6: laboratório de listas ---
+  (function(){
+    var o=$('lsL');if(!o)return;var L;
+    function r(msg){
+      o.innerHTML=L.length?L.map(function(v,i){return '<span>'+v+'<sub style="font-size:10px"> '+i+'</sub></span>'}).join(''):'<em>Lista vazia: []</em>';
+      $('lsT').innerHTML='<code>L = ['+L.join(', ')+']</code> &nbsp; <code>len(L)</code> = <b>'+L.length+'</b>'+(msg?'<br>'+msg:'');
+    }
+    function reset(){L=[15,8,9];r('')}
+    document.querySelectorAll('#ls button[data-o]').forEach(function(b){b.onclick=function(){
+      var k=b.dataset.o,v=parseInt($('lsV').value,10);if(isNaN(v))v=0;var m='';
+      if(k==='rst')return reset();
+      if(k==='app'){L.push(v);m='append('+v+')'}
+      else if(k==='ins'){L.unshift(v);m='insert(0, '+v+')'}
+      else if(k==='pop'||k==='pop0'){if(!L.length){m='<span class="ok-n">IndexError: pop from empty list</span>'}else{var x=k==='pop'?L.pop():L.shift();m='retirou <b>'+x+'</b> ('+(k==='pop'?'como pilha: sai o último':'como fila: sai o primeiro')+')'}}
+      else if(k==='rev'){L.reverse();m='reverse()'}
+      else if(k==='srt'){L.sort(function(a,b){return a-b});m='sort()'}
+      r(m)}});
+    reset();
+  })();
+
+  // --- Cap. 6: ordenação da bolha ---
+  (function(){
+    var o=$('bbL');if(!o)return;var L,p,j,hi,done;
+    function draw(){
+      o.innerHTML=L.map(function(v,i){var on=!done&&(i===hi||i===hi+1);return '<span style="'+(on?'background:#ef6c00;color:#fff;border-color:#ef6c00':'')+'">'+v+'</span>'}).join('');
+    }
+    function reset(){L=[];while(L.length<6)L.push(1+Math.floor(Math.random()*9));p=0;j=0;hi=-5;done=false;$('bbT').innerHTML='Lista embaralhada. Aperte o botão.';draw()}
+    function step(){
+      if(done)return;var n=L.length;
+      hi=j;var m='Comparando <b>'+L[j]+'</b> com <b>'+L[j+1]+'</b>: ';
+      if(L[j]>L[j+1]){var t=L[j];L[j]=L[j+1];L[j+1]=t;m+='estão fora de ordem, <b>trocou</b>.'}else m+='já estão em ordem.';
+      j++;if(j>=n-1-p){j=0;p++;if(p>=n-1){done=true;m='<span class="ok-y">Pronto!</span> A lista está ordenada.'}}
+      $('bbT').innerHTML=m;draw();
+    }
+    $('bbN').onclick=step;$('bbR').onclick=reset;reset();
+  })();
+
 })();
