@@ -33,5 +33,15 @@ window.GLOSSARIO={
 "PPM":"Palavras por minuto: a medida da velocidade de digitação.",
 "QWERTY":"O nome da ordem das letras no teclado, que vem das primeiras letras da fileira de cima.",
 "arroba":"O símbolo @, usado nos endereços de e-mail.",
-"acento":"Sinal sobre a letra, como ´ ~ ^ `, que muda o som da palavra."
+"acento":"Sinal sobre a letra, como ´ ~ ^ `, que muda o som da palavra.",
+"Word":"Programa da Microsoft para escrever e formatar textos.",
+"formatação":"Mudar a aparência do texto: letra, tamanho, cor e posição.",
+"negrito":"Letra mais grossa, usada para dar destaque.",
+"itálico":"Letra inclinada.",
+"sublinhado":"Linha embaixo do texto.",
+"margem":"A borda branca da folha, onde não se escreve.",
+"parágrafo":"Bloco de texto que termina quando você aperta Enter.",
+"PDF":"Tipo de arquivo que abre igual em qualquer computador ou celular.",
+"currículo":"Documento que apresenta quem você é, o que estudou e onde trabalhou.",
+"selecionar":"Marcar um trecho do texto para depois mudar ou copiar."
 };

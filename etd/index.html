@@ -67,6 +67,14 @@ pre{font-size:16px}
 .tk-text .o{color:#2e7d32}.tk-text .b{color:#c62828;text-decoration:underline;background:rgba(198,40,40,.12)}.tk-text .c{background:#ffeb3b;color:#000;border-radius:3px}.tk-text .p{opacity:.85}
 .tk-in{width:100%;font-size:24px;padding:12px 14px;border:3px solid var(--cc);border-radius:12px;background:transparent;color:var(--texto);font-family:Consolas,"Courier New",monospace}
 .tk-hint{font-weight:700;min-height:30px;margin:8px 0 0}
+.ill .pg{fill:#fff}
+.fm-prev{border:2px solid var(--borda);border-radius:6px;padding:18px 24px;background:#fff;color:#111;min-height:210px;margin:12px 0;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.12)}
+.fm-prev ul{margin:6px 0 0 24px;padding:0}
+#fmCol button{width:42px;height:42px;border-radius:50%;padding:0;border:3px solid var(--borda)}
+#fmCol button.on{border-color:var(--texto)}
+.ctl label{font-size:18px}
+.ctl select{font-size:18px;padding:6px 10px;border-radius:8px;border:2px solid var(--borda);background:transparent;color:var(--texto)}
+.ctl input[type=range]{width:160px;vertical-align:middle}
 .ok-y{color:#2e7d32;font-weight:700}.ok-n{color:#c62828;font-weight:700}
 @page{@bottom-center{content:"Educação em Tecnologias Digitais – IFRN · página " counter(page);font-size:9pt;color:#777}}
 </style>
@@ -99,7 +107,16 @@ pre{font-size:16px}
       <a href="#c2-lab">Atividade e práticas</a>
       <a href="#c2-quiz">Quiz e exercícios</a>
     </div>
-    <a href="#cap3" class="soon"><span class="n" style="background:var(--c3)">3</span>Word: textos</a>
+    <a href="#cap3"><span class="n" style="background:var(--c3)">3</span>Word: textos</a>
+    <div class="sub">
+      <a href="#c3-tela">Conhecendo o Word</a>
+      <a href="#c3-texto">Digitar, selecionar, salvar</a>
+      <a href="#c3-format">Formatando</a>
+      <a href="#c3-pagina">Página, imagens, PDF</a>
+      <a href="#c3-doc">Currículo e outros textos</a>
+      <a href="#c3-lab">Atividade e práticas</a>
+      <a href="#c3-quiz">Quiz e exercícios</a>
+    </div>
     <a href="#cap4" class="soon"><span class="n" style="background:var(--c4)">4</span>Excel: planilhas</a>
     <a href="#cap5" class="soon"><span class="n" style="background:var(--c5)">5</span>PowerPoint: apresentações</a>
     <a href="#cap6" class="soon"><span class="n" style="background:var(--c6)">6</span>Internet e comunicação</a>
@@ -131,7 +148,7 @@ pre{font-size:16px}
   <div class="map">
     <div class="card" style="--cc:var(--c1)"><b>1 · O computador e o Windows</b><span>As partes do computador, o mouse, a área de trabalho, arquivos e pastas.</span><div class="st">✅ Disponível</div></div>
     <div class="card" style="--cc:var(--c2)"><b>2 · Teclado e digitação</b><span>Onde ficam as letras e como digitar com treino na tela.</span><div class="st">✅ Disponível</div></div>
-    <div class="card" style="--cc:var(--c3)"><b>3 · Word</b><span>Escrever e formatar textos, currículo e cartas.</span><div class="st">⏳ Em breve</div></div>
+    <div class="card" style="--cc:var(--c3)"><b>3 · Word</b><span>Escrever e formatar textos, currículo e cartas.</span><div class="st">✅ Disponível</div></div>
     <div class="card" style="--cc:var(--c4)"><b>4 · Excel</b><span>Planilhas, contas e orçamento da casa.</span><div class="st">⏳ Em breve</div></div>
     <div class="card" style="--cc:var(--c5)"><b>5 · PowerPoint</b><span>Montar uma apresentação do zero.</span><div class="st">⏳ Em breve</div></div>
     <div class="card" style="--cc:var(--c6)"><b>6 · Internet e comunicação</b><span>Pesquisar, e-mail, gov.br e arquivos na nuvem.</span><div class="st">⏳ Em breve</div></div>
@@ -582,7 +599,248 @@ Profissão: Costureira</code></pre>
 
   <div class="box dica" style="margin-top:28px"><div class="ic">📚</div><div><h5>Para saber mais</h5><p>Seu computador tem um <b>teclado virtual</b> na tela (menu Iniciar → pesquise “Teclado virtual”), útil quando uma tecla do teclado físico quebra. E a Central de Ajuda do Windows tem a lista completa de atalhos de teclado.</p></div></div>
 </section>
-<section class="chapter soon-ch" id="cap3" style="--cc:var(--c3)"><div class="chap-head"><div class="chap-num" style="background:var(--c3)">3</div><div><small>Capítulo 3</small><h2>Word: textos</h2></div></div><div class="soon-card">⏳ Este capítulo será publicado em breve.</div></section>
+<section class="chapter" id="cap3" style="--cc:var(--c3)">
+  <div class="chap-head"><div class="chap-num" style="background:var(--c3)">3</div><div><small>Capítulo 3</small><h2>Word: escrevendo textos</h2></div></div>
+
+  <div class="obj"><h4>🎯 Ao final deste capítulo, você será capaz de:</h4>
+    <ul>
+      <li>Abrir o Word e reconhecer as partes da tela.</li>
+      <li>Digitar um texto, <b>selecionar</b>, copiar, colar e desfazer.</li>
+      <li><b>Salvar</b> e abrir de novo um documento.</li>
+      <li>Formatar: negrito, itálico, sublinhado, tamanho, cor, alinhamento e lista.</li>
+      <li>Inserir uma imagem, ajustar a página e <b>imprimir</b> ou salvar em <b>PDF</b>.</li>
+      <li>Montar um <b>currículo</b>, um convite e um aviso.</li>
+    </ul>
+  </div>
+
+  <h3 id="c3-tela">3.1 Conhecendo o Word</h3>
+  <p>O <b>Word</b> é um <b>editor de texto</b>: no lugar do caderno e da caneta, você usa o teclado. Com ele se escrevem cartas, trabalhos, currículos, avisos e convites. E a grande vantagem: dá para <b>corrigir</b>, <b>mudar a letra</b> e <b>imprimir várias vezes</b> sem começar do zero.</p>
+  <p><b>Para abrir:</b> clique no botão Iniciar, digite <b>Word</b> e clique no programa. Na primeira tela, escolha <b>Documento em branco</b>. Aparece uma <b>folha branca</b> esperando o seu texto.</p>
+  <div class="box analogia"><div class="ic">💡</div><div><h5>Pense assim: a mesa de escritório</h5><p>A <b>folha branca</b> é o papel sobre a mesa. Os botões de cima são uma <b>caixa de ferramentas</b> com várias <b>gavetas</b> (as “guias”): em cada gaveta, ferramentas parecidas ficam juntas.</p></div></div>
+  <p>Toque em uma parte da tela do Word para saber para que serve:</p>
+  <div class="tool" id="wd" style="--cc:var(--c3)">
+    <svg class="ill" id="wdSvg" viewBox="0 0 560 340" role="img" aria-label="Desenho da tela do Word com título, acesso rápido, guias, faixa de opções, folha e barra de status">
+      <g class="part" data-k="acesso"><rect class="sh" x="10" y="10" width="116" height="28" rx="6"/><text x="68" y="29" text-anchor="middle">💾  ↶  ↷</text></g>
+      <g class="part" data-k="titulo"><rect class="sh" x="130" y="10" width="420" height="28" rx="6"/><text x="340" y="29" text-anchor="middle">Documento1 - Word</text></g>
+      <g class="part" data-k="guias"><rect class="sh" x="10" y="42" width="540" height="26" rx="6"/><text x="22" y="60">Arquivo    <tspan font-weight="800">Página Inicial</tspan>    Inserir    Layout    Revisão    Exibição</text></g>
+      <g class="part" data-k="faixa"><rect class="sh" x="10" y="72" width="540" height="72" rx="6"/><text x="30" y="96">📋 Colar</text><path class="sl" d="M110 80V136M330 80V136M470 80V136"/><text x="150" y="96">Fonte:  <tspan font-weight="800">N</tspan>  <tspan font-style="italic">I</tspan>  <tspan text-decoration="underline">S</tspan>  A</text><text x="150" y="124">Calibri     12</text><text x="350" y="96">Parágrafo: ☰ ≡ ☰ ≣</text><text x="350" y="124">• Marcadores</text><text x="490" y="96">Estilos</text></g>
+      <g class="part" data-k="pagina"><rect class="sc" x="10" y="150" width="540" height="150" rx="4"/><rect class="sh pg" x="140" y="158" width="280" height="134" rx="2"/><path class="sl" d="M158 184h200M158 204h240M158 224h180" stroke-dasharray="12 6"/><text x="280" y="148" text-anchor="middle" style="display:none"> </text></g>
+      <g class="part" data-k="status"><rect class="sh" x="10" y="306" width="540" height="26" rx="6"/><text x="22" y="324">Página 1 de 1    0 palavras    Português (Brasil)</text><text x="540" y="324" text-anchor="end">—●—  100%</text></g>
+    </svg>
+    <div class="pbtns" id="wdBtns" role="group" aria-label="Partes da tela do Word"></div>
+    <div class="box dica"><div class="ic">🔎</div><div class="pinfo" id="wdInfo" aria-live="polite"></div></div>
+  </div>
+
+  <h3 id="c3-texto">3.2 Digitando, selecionando e salvando</h3>
+  <h3 style="font-size:22px;margin-top:20px">Digitando</h3>
+  <ul>
+    <li>O <b>risquinho que pisca</b> (o cursor) mostra onde a próxima letra vai aparecer.</li>
+    <li>Quando a linha acaba, o texto <b>desce sozinho</b>. <b>Não aperte Enter</b> no fim da linha! Use o <b>Enter</b> só quando quiser começar um <b>novo parágrafo</b>.</li>
+    <li>Deixe <b>um espaço</b> depois da vírgula e do ponto, e <b>nenhum</b> antes deles.</li>
+  </ul>
+  <div class="box analogia"><div class="ic">💡</div><div><h5>Pense assim...</h5><p>Na máquina de escrever, ao chegar no fim da folha, você empurrava a alavanca (“ding!”). No Word <b>não precisa</b>: ele faz isso sozinho.</p></div></div>
+  <h3 style="font-size:22px;margin-top:20px">Selecionar: a regra de ouro</h3>
+  <p>Para mudar uma palavra ou um trecho, <b>primeiro você seleciona</b> (deixa o texto “pintado”) e <b>depois</b> escolhe o que fazer. É como usar um <b>marca-texto</b>: marcou, agora é só dizer o que fazer com a parte marcada.</p>
+  <table>
+    <tr><th>Para selecionar...</th><th>Faça assim</th></tr>
+    <tr><td>Um trecho</td><td>Clique no começo e <b>arraste</b> até o fim.</td></tr>
+    <tr><td>Uma palavra</td><td><b>Duplo clique</b> sobre ela.</td></tr>
+    <tr><td>Um parágrafo</td><td><b>Três cliques</b> seguidos dentro dele.</td></tr>
+    <tr><td>Uma linha</td><td>Clique na <b>margem esquerda</b>, ao lado da linha.</td></tr>
+    <tr><td>O texto todo</td><td>Atalho <b>Ctrl + T</b> (no Word em português, T de “Tudo”).</td></tr>
+  </table>
+  <p><b>Copiar, recortar, colar e desfazer</b> funcionam como no capítulo 1: <b>Ctrl + C</b>, <b>Ctrl + X</b>, <b>Ctrl + V</b> e <b>Ctrl + Z</b> (a setinha ↶ no canto de cima também desfaz).</p>
+  <div class="box exemplo"><div class="ic">📌</div><div><h5>Sublinhados coloridos</h5><p>O Word corrige você enquanto escreve: <b>sublinhado vermelho</b> = possível erro de <b>ortografia</b>; <b>sublinhado azul</b> = possível erro de <b>gramática</b>. Clique com o <b>botão direito</b> na palavra e escolha a sugestão correta. Mas <b>leia sempre</b>: nem tudo que ele sugere está certo.</p></div></div>
+  <h3 style="font-size:22px;margin-top:20px">Salvar e abrir</h3>
+  <ol class="steps">
+    <li>Clique no <b>disquete</b> 💾 (canto superior esquerdo). Na <b>primeira vez</b>, abre a tela <b>Salvar como</b>.</li>
+    <li>Escolha a <b>pasta</b> (por exemplo, a que você criou no capítulo 1).</li>
+    <li>Digite um <b>nome que você entenda</b> (<i>Curriculo Maria</i>) e clique em <b>Salvar</b>. O arquivo ganha o final <b>.docx</b>.</li>
+    <li>Depois disso, é só clicar no <b>disquete</b> de novo, de vez em quando, para guardar as mudanças.</li>
+  </ol>
+  <p>Para <b>abrir</b> um documento antigo: abra o Word → <b>Abrir</b> (ou procure em “Recentes”). Ou, mais fácil, abra a pasta e dê <b>duplo clique</b> no arquivo.</p>
+  <div class="box atencao"><div class="ic">⚠️</div><div><h5>Atalhos do Word em português são diferentes</h5><p>No Word em português, <b>salvar é Ctrl + B</b> (e não Ctrl + S) e <b>Ctrl + S é sublinhado</b>. Além disso, os atalhos podem mudar entre as versões. Por isso, <b>use os botões</b>: eles funcionam em qualquer versão. Se o Word pedir para <b>entrar na conta Microsoft</b> ou salvar no <b>OneDrive</b>, escolha <b>Este PC</b> ou chame o professor.</p></div></div>
+
+  <h3 id="c3-format">3.3 Formatando o texto</h3>
+  <p><b>Formatar</b> é mudar a aparência do texto (letra, tamanho, cor, posição) para ficar <b>bonito e fácil de ler</b>. Tudo isso fica na guia <b>Página Inicial</b>. Lembre da regra de ouro: <b>selecione primeiro</b>!</p>
+  <p>Mexa nos controles abaixo e veja o resultado. Depois, é só <b>procurar o mesmo botão</b> no Word:</p>
+  <div class="tool" id="fm" style="--cc:var(--c3)">
+    <div class="ctl" id="fmTg" role="group" aria-label="Estilo da letra"></div>
+    <div class="ctl"><label>Tipo de letra: <select id="fmFont" aria-label="Tipo de letra"><option>Arial</option><option>Times New Roman</option><option>Courier New</option></select></label>
+      <label>Tamanho: <input type="range" id="fmSize" min="12" max="40" value="20" aria-label="Tamanho da letra"> <b id="fmSv">20</b></label></div>
+    <div class="ctl" id="fmCol" role="group" aria-label="Cor da letra"></div>
+    <div class="ctl" id="fmAl" role="group" aria-label="Alinhamento"></div>
+    <div class="fm-prev" id="fmPrev"></div>
+    <p class="enc-txt" id="fmHow" aria-live="polite"></p>
+  </div>
+  <table>
+    <tr><th>Quero...</th><th>Onde clico (guia Página Inicial)</th></tr>
+    <tr><td>Letra mais grossa, inclinada ou sublinhada</td><td>Grupo <b>Fonte</b>: botões <b>N</b>, <i>I</i> e <u>S</u>.</td></tr>
+    <tr><td>Trocar o tipo ou o tamanho da letra</td><td>Grupo <b>Fonte</b>: as caixinhas com o nome e o número (o padrão é 11 ou 12).</td></tr>
+    <tr><td>Mudar a cor da letra</td><td>Grupo <b>Fonte</b>: botão com a letra <b>A</b> e um traço colorido.</td></tr>
+    <tr><td>Centralizar, alinhar à direita ou justificar</td><td>Grupo <b>Parágrafo</b>: botões com linhas alinhadas.</td></tr>
+    <tr><td>Lista com bolinhas ou números</td><td>Grupo <b>Parágrafo</b>: botões de marcadores e numeração.</td></tr>
+    <tr><td>Deixar mais espaço entre as linhas</td><td>Grupo <b>Parágrafo</b>: botão de espaçamento entre linhas.</td></tr>
+  </table>
+  <div class="box dica"><div class="ic">✅</div><div><h5>Texto bonito é texto fácil de ler</h5><p>Use <b>no máximo dois tipos de letra</b>, o <b>título maior</b> que o resto e <b>poucas cores</b>. Texto com muitos enfeites cansa a vista. Para textos longos, o alinhamento <b>justificado</b> deixa as laterais retas, e o <b>esquerdo</b> é mais fácil de ler.</p></div></div>
+  <p>Treine reconhecendo os botões da barra do Word:</p>
+  <div class="tool" id="bt" style="--cc:var(--c3)">
+    <div class="card-dev" id="btIc" aria-live="polite"></div>
+    <div class="ctl" id="btBtns" role="group" aria-label="Escolha a função"></div>
+    <p class="enc-txt" id="btTxt" aria-live="polite"></p>
+  </div>
+
+  <h3 id="c3-pagina">3.4 Página, imagens, impressão e PDF</h3>
+  <table>
+    <tr><th>Quero...</th><th>Como faço</th></tr>
+    <tr><td><b>Mudar as margens</b> (a borda branca)</td><td>Guia <b>Layout</b> → <b>Margens</b> → escolha (a “Normal” serve para quase tudo).</td></tr>
+    <tr><td><b>Folha deitada</b></td><td>Guia <b>Layout</b> → <b>Orientação</b> → <b>Paisagem</b>. A folha em pé é <b>Retrato</b>.</td></tr>
+    <tr><td><b>Inserir uma foto</b></td><td>Guia <b>Inserir</b> → <b>Imagens</b> → <b>Este dispositivo</b> → escolha o arquivo.</td></tr>
+    <tr><td><b>Mudar o tamanho da foto</b></td><td>Clique nela e arraste um <b>canto</b> (os cantos mantêm a proporção; as laterais deformam!).</td></tr>
+    <tr><td><b>Fazer uma tabela</b></td><td>Guia <b>Inserir</b> → <b>Tabela</b> → arraste para escolher linhas e colunas.</td></tr>
+    <tr><td><b>Numerar as páginas</b></td><td>Guia <b>Inserir</b> → <b>Número de Página</b>.</td></tr>
+  </table>
+  <h3 style="font-size:22px;margin-top:20px">Imprimir</h3>
+  <ol class="steps">
+    <li>Clique em <b>Arquivo</b> → <b>Imprimir</b>. À direita aparece a <b>pré-visualização</b>: é como a folha vai sair.</li>
+    <li>Confira a <b>impressora</b> escolhida e o <b>número de cópias</b>.</li>
+    <li>Clique em <b>Imprimir</b>.</li>
+  </ol>
+  <div class="box atencao"><div class="ic">⚠️</div><div><h5>Olhe antes de imprimir</h5><p>A pré-visualização evita <b>gastar papel e tinta</b>. Confira se o texto cabe na folha e se não sobrou uma linha perdida na página 2.</p></div></div>
+  <h3 style="font-size:22px;margin-top:20px">Salvar em PDF</h3>
+  <p>O <b>PDF</b> é uma “foto” do documento: <b>não muda</b> quando aberto em outro computador ou no celular. É a melhor forma de <b>enviar um currículo</b> por e-mail ou WhatsApp. No Word: <b>Arquivo</b> → <b>Salvar como</b> → em “Tipo”, escolha <b>PDF</b> → <b>Salvar</b>.</p>
+
+  <h3 id="c3-doc">3.5 Documentos do dia a dia</h3>
+  <p>Agora vamos usar tudo isso para criar documentos <b>úteis na vida real</b>.</p>
+  <h3 style="font-size:22px;margin-top:20px">O currículo</h3>
+  <p>O currículo é a sua <b>apresentação para quem vai contratar</b>. Deve caber em <b>uma página</b>, ser <b>claro</b> e <b>sem erros</b>. Uma boa ordem:</p>
+  <table>
+    <tr><th>Parte</th><th>O que escrever</th></tr>
+    <tr><td><b>Nome e contato</b></td><td>Nome completo (em destaque), cidade, telefone e <b>e-mail sério</b> (<i>maria.silva@...</i>, e não apelidos).</td></tr>
+    <tr><td><b>Objetivo</b></td><td>Uma linha: a vaga que você procura.</td></tr>
+    <tr><td><b>Formação</b></td><td>Escola e cursos feitos (e o ano).</td></tr>
+    <tr><td><b>Experiência</b></td><td>Onde trabalhou, o cargo e o que fazia. <b>Do mais recente para o mais antigo.</b></td></tr>
+    <tr><td><b>Cursos e habilidades</b></td><td>Cursos curtos, o que sabe fazer (atender bem, costurar, usar o computador...).</td></tr>
+  </table>
+  <div class="box atencao"><div class="ic">🔒</div><div><h5>Cuidado com seus dados</h5><p><b>Não coloque</b> CPF, RG, senhas ou endereço completo no currículo. Telefone, e-mail e cidade bastam. Esses dados só devem ser entregues quando a empresa precisar, na contratação.</p></div></div>
+  <div class="box exemplo"><div class="ic">📌</div><div><h5>Exemplo (dados inventados)</h5><p><b>MARIA DAS DORES SILVA</b> (título, centralizado, negrito, tamanho 18)<br>João Câmara/RN · (84) 99999-0000 · maria.silva@email.com<br><b>Objetivo:</b> vaga de auxiliar de cozinha.<br><b>Formação:</b> Ensino Fundamental (EJA, em andamento).<br><b>Experiência:</b> Cozinheira em restaurante local (2019–2024): preparo de refeições e atendimento.<br><b>Cursos:</b> Manipulação de alimentos (20 h); Informática básica (30 h).</p></div></div>
+  <h3 style="font-size:22px;margin-top:20px">Outros textos</h3>
+  <ul>
+    <li><b>Aviso ou recado:</b> título grande e centralizado, texto curto, <b>data, horário e local</b> em destaque.</li>
+    <li><b>Convite:</b> título colorido, uma imagem, e os detalhes (quando, onde, quem convida).</li>
+    <li><b>Requerimento ou carta:</b> cidade e data, a quem se dirige, o pedido, e a <b>assinatura</b>.</li>
+  </ul>
+
+  <!-- ATIVIDADES / PRÁTICAS -->
+  <div class="lab" id="c3-lab">
+    <h3>🧑‍🤝‍🧑 Atividade sem computador – Os botões no papel</h3>
+    <p><b>Objetivo:</b> reconhecer os botões do Word antes de usar. <b>Preparação:</b> o professor desenha no quadro (ou imprime) a barra da guia Página Inicial, e entrega cartões com os nomes das funções: negrito, itálico, sublinhado, centralizar, marcadores, salvar, desfazer.</p>
+    <ol class="steps">
+      <li>Em duplas, <b>cole cada cartão</b> embaixo do botão correto.</li>
+      <li>O professor aponta um botão e a turma diz o que ele faz.</li>
+      <li>Cada dupla escolhe um texto de papel (um bilhete) e <b>marca com caneta</b> o que ficaria em negrito, o que seria centralizado e onde entraria uma lista.</li>
+    </ol>
+
+    <h3>🧪 Prática 1 – Meu primeiro documento</h3>
+    <ol class="steps">
+      <li><b>Abra o Word</b> e escolha <b>Documento em branco</b>.</li>
+      <li>Escreva <b>três linhas</b> sobre você: nome, onde mora e o que gosta de fazer. Use o <b>Enter</b> apenas entre parágrafos.</li>
+      <li><b>Corrija</b> os sublinhados vermelhos, se houver (botão direito → sugestão).</li>
+      <li>Clique no <b>disquete</b> e salve na sua pasta com o nome <code>Meu primeiro texto</code>.</li>
+      <li><b>Feche</b> o Word e <b>abra de novo</b> o arquivo, com duplo clique na pasta.</li>
+    </ol>
+
+    <h3>🧪 Prática 2 – Um aviso bem formatado</h3>
+    <ol class="steps">
+      <li>Em um documento novo, digite: <i>Aviso: Reunião de pais</i> (primeira linha) e, abaixo, um texto de 3 linhas com <b>data, horário e local</b> (inventados).</li>
+      <li><b>Selecione o título</b> → <b>Centralizar</b>, <b>N</b> (negrito) e tamanho <b>20</b>. Mude a <b>cor</b>.</li>
+      <li><b>Selecione a data e o horário</b> e coloque em <b>negrito</b>.</li>
+      <li>Escreva uma lista <b>“Traga:”</b> com três itens e use o botão de <b>marcadores</b>.</li>
+      <li>Salve como <code>Aviso</code>.</li>
+    </ol>
+
+    <h3>🧪 Prática 3 – Convite de aniversário</h3>
+    <ol class="steps">
+      <li>Em um documento novo, escreva o <b>título</b> (<i>Você está convidado!</i>) bem grande, centralizado e colorido.</li>
+      <li>Guia <b>Inserir</b> → <b>Imagens</b> → <b>Este dispositivo</b>. Escolha a imagem que o professor indicou. Ajuste o tamanho pelos <b>cantos</b>.</li>
+      <li>Escreva abaixo <b>quem convida, o dia, a hora e o local</b>, centralizados.</li>
+      <li>Veja a <b>pré-visualização</b> (Arquivo → Imprimir). Cabe em uma página?</li>
+      <li>Salve como <code>Convite</code>.</li>
+    </ol>
+
+    <h3>🧪 Prática 4 – Meu currículo</h3>
+    <ol class="steps">
+      <li>Em um documento novo, monte o currículo seguindo o modelo da seção 3.5 (use dados <b>verdadeiros</b>, mas <b>sem CPF e RG</b>; se preferir, use dados inventados).</li>
+      <li>Nome em <b>destaque</b> (centralizado, negrito, tamanho maior). Cada parte com um <b>título em negrito</b>.</li>
+      <li>Use <b>marcadores</b> para os cursos e habilidades.</li>
+      <li><b>Corrija</b> a ortografia. Peça a um colega para <b>ler</b> e apontar erros.</li>
+      <li>Salve como <code>Curriculo</code> e depois <b>Salvar como PDF</b>.</li>
+      <li>Se houver impressora, <b>imprima</b> (veja a pré-visualização antes).</li>
+    </ol>
+
+    <h3>🧪 Prática 5 (opcional) – Tabela de horários</h3>
+    <ol class="steps">
+      <li>Guia <b>Inserir</b> → <b>Tabela</b> e crie uma tabela de <b>6 colunas</b> (os dias da semana) e <b>4 linhas</b>.</li>
+      <li>Preencha com a sua rotina (trabalho, aula, casa). Deixe a primeira linha em <b>negrito</b>.</li>
+      <li>Salve como <code>Minha semana</code>. No próximo capítulo, você fará algo parecido no Excel e verá a diferença.</li>
+    </ol>
+  </div>
+
+  <div class="resumo">
+    <h3>📝 Resumo do capítulo</h3>
+    <ul>
+      <li>O <b>Word</b> escreve e formata textos. A tela tem o título, o <b>acesso rápido</b>, as <b>guias</b>, a <b>faixa de opções</b>, a <b>folha</b> e a barra de status.</li>
+      <li>O texto <b>desce sozinho</b>: Enter só para novo parágrafo.</li>
+      <li><b>Regra de ouro:</b> primeiro <b>selecione</b>, depois formate.</li>
+      <li>Formatação na guia <b>Página Inicial</b>: N, I, S, tamanho, cor, alinhamento e marcadores.</li>
+      <li><b>Salvar</b> com o disquete (no Word em português, Ctrl + B). Salve com frequência.</li>
+      <li>Guia <b>Inserir</b> traz imagens e tabelas; guia <b>Layout</b>, as margens e a orientação.</li>
+      <li><b>Imprimir:</b> veja a pré-visualização. <b>PDF</b> é ótimo para enviar o currículo.</li>
+    </ul>
+  </div>
+
+  <h3 id="c3-quiz">🧠 Quiz do capítulo 3</h3>
+  <p>Clique na resposta que você acha certa.</p>
+  <div class="quiz">
+    <div class="q"><p>1. Para que serve o Word?</p>
+      <button class="opt">a) Fazer contas e planilhas</button><button class="opt" data-ok="1">b) Escrever e formatar textos</button><button class="opt">c) Navegar na internet</button><button class="opt">d) Ouvir música</button>
+      <div class="fb">O <b>Word</b> é um editor de texto. As planilhas ficam para o Excel.</div></div>
+    <div class="q"><p>2. Ao chegar no fim da linha, o que fazer?</p>
+      <button class="opt">a) Apertar Enter</button><button class="opt" data-ok="1">b) Continuar digitando: o texto desce sozinho</button><button class="opt">c) Apertar Tab</button><button class="opt">d) Apertar Esc</button>
+      <div class="fb">O Enter só é usado para começar um <b>novo parágrafo</b>.</div></div>
+    <div class="q"><p>3. Antes de colocar uma palavra em negrito, você precisa:</p>
+      <button class="opt">a) Salvar o documento</button><button class="opt" data-ok="1">b) Selecionar a palavra</button><button class="opt">c) Imprimir</button><button class="opt">d) Fechar o Word</button>
+      <div class="fb">A <b>regra de ouro</b>: primeiro seleciona, depois formata.</div></div>
+    <div class="q"><p>4. Um sublinhado <b>vermelho</b> sob uma palavra indica:</p>
+      <button class="opt">a) Que ela está em negrito</button><button class="opt" data-ok="1">b) Possível erro de ortografia</button><button class="opt">c) Que ela já foi impressa</button><button class="opt">d) Que ela foi salva</button>
+      <div class="fb">Clique com o botão direito para ver as sugestões, mas <b>confira</b> antes de aceitar.</div></div>
+    <div class="q"><p>5. Qual botão deixa o título no meio da folha?</p>
+      <button class="opt">a) Negrito</button><button class="opt" data-ok="1">b) Centralizar</button><button class="opt">c) Marcadores</button><button class="opt">d) Desfazer</button>
+      <div class="fb">O botão <b>Centralizar</b> fica no grupo Parágrafo, na guia Página Inicial.</div></div>
+    <div class="q"><p>6. Qual é o jeito mais seguro de salvar, em qualquer versão do Word?</p>
+      <button class="opt" data-ok="1">a) Clicar no botão do disquete</button><button class="opt">b) Desligar o computador</button><button class="opt">c) Fechar a folha com o X sem ler a pergunta</button><button class="opt">d) Imprimir</button>
+      <div class="fb">O <b>botão</b> não muda entre versões. Já os atalhos podem mudar.</div></div>
+    <div class="q"><p>7. Por que o PDF é bom para enviar um currículo?</p>
+      <button class="opt">a) Porque fica maior</button><button class="opt" data-ok="1">b) Porque abre igual em qualquer computador ou celular</button><button class="opt">c) Porque apaga os erros</button><button class="opt">d) Porque corrige a ortografia</button>
+      <div class="fb">O <b>PDF</b> mantém a aparência do documento em qualquer aparelho.</div></div>
+    <div class="q"><p>8. Qual informação <b>não</b> deve constar em um currículo?</p>
+      <button class="opt">a) Telefone</button><button class="opt">b) Cidade</button><button class="opt" data-ok="1">c) CPF e RG</button><button class="opt">d) Cursos feitos</button>
+      <div class="fb">Dados de documentos só devem ser entregues quando a empresa precisar, na contratação.</div></div>
+  </div>
+  <div class="score"></div>
+
+  <h3>✍️ Questões abertas</h3>
+  <div class="open"><p><b>1.</b> Explique a “regra de ouro” da formatação e dê um exemplo.</p>
+    <button>Ver resposta</button><div class="answer">Primeiro seleciona o texto, depois escolhe o que fazer. Exemplo: selecionar o título e clicar em Centralizar.</div></div>
+  <div class="open"><p><b>2.</b> Descreva os passos para salvar um documento novo pela primeira vez.</p>
+    <button>Ver resposta</button><div class="answer">Clicar no disquete (ou Arquivo → Salvar como), escolher a pasta, digitar um nome que faça sentido e clicar em Salvar.</div></div>
+  <div class="open"><p><b>3.</b> Cite três partes importantes de um currículo.</p>
+    <button>Ver resposta</button><div class="answer">Por exemplo: nome e contato, objetivo, formação, experiência e cursos. Deve caber em uma página, sem erros.</div></div>
+  <div class="open"><p><b>4.</b> Por que olhar a pré-visualização antes de imprimir?</p>
+    <button>Ver resposta</button><div class="answer">Para ver como a folha vai sair, conferir se o texto cabe e evitar gastar papel e tinta com erros.</div></div>
+
+  <div class="box dica" style="margin-top:28px"><div class="ic">📚</div><div><h5>Para saber mais</h5><p>A Central de Ajuda da Microsoft (support.microsoft.com/pt-br) tem a lista de <b>atalhos de teclado do Word</b> e tutoriais com imagens. Quando travar, escreva a sua dúvida na caixa <b>“Pesquisar”</b> do próprio Word.</p></div></div>
+</section>
 <section class="chapter soon-ch" id="cap4" style="--cc:var(--c4)"><div class="chap-head"><div class="chap-num" style="background:var(--c4)">4</div><div><small>Capítulo 4</small><h2>Excel: planilhas</h2></div></div><div class="soon-card">⏳ Este capítulo será publicado em breve.</div></section>
 <section class="chapter soon-ch" id="cap5" style="--cc:var(--c5)"><div class="chap-head"><div class="chap-num" style="background:var(--c5)">5</div><div><small>Capítulo 5</small><h2>PowerPoint: apresentações</h2></div></div><div class="soon-card">⏳ Este capítulo será publicado em breve.</div></section>
 <section class="chapter soon-ch" id="cap6" style="--cc:var(--c6)"><div class="chap-head"><div class="chap-num" style="background:var(--c6)">6</div><div><small>Capítulo 6</small><h2>Internet e comunicação</h2></div></div><div class="soon-card">⏳ Este capítulo será publicado em breve.</div></section>
@@ -590,6 +848,7 @@ Profissão: Costureira</code></pre>
 
 <section id="refs">
   <h2>📚 Referências</h2>
+  <p class="ref">MICROSOFT. <b>Atalhos de teclado do Word</b>. [<i>S. l.</i>], [s.d.]. Disponível em: https://support.microsoft.com/pt-BR/Accessibility/word/keyboard-shortcuts-in-word. Acesso em: 20 nov. 2026.</p>
   <p class="ref">MICROSOFT. <b>Suporte da Microsoft: Windows</b>. [<i>S. l.</i>], [s.d.]. Disponível em: https://support.microsoft.com/pt-br/windows. Acesso em: 20 nov. 2026.</p>
   <footer>Apostila de Educação em Tecnologias Digitais · IFRN – Campus João Câmara</footer>
 </section>

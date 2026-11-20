@@ -238,4 +238,74 @@
     L.forEach(function(l,i){var b=document.createElement('button');b.type='button';b.textContent=l.n;b.setAttribute('aria-pressed','false');b.onclick=function(){load(i);inp.focus()};lbox.appendChild(b)});
     load(0);
   })();
+
+  // --- Cap. 3: tela do Word ---
+  (function(){
+    var box=$('wdBtns');if(!box)return;
+    var P=[
+      {k:'acesso',n:'Acesso rápido',d:'Botões de uso constante: salvar (disquete), desfazer e refazer.'},
+      {k:'titulo',n:'Barra de título',d:'Mostra o nome do documento. Se ainda não salvou, aparece “Documento1”.'},
+      {k:'guias',n:'Guias',d:'As “gavetas” da caixa de ferramentas: Página Inicial, Inserir, Layout, Revisão...'},
+      {k:'faixa',n:'Faixa de opções',d:'Os botões da guia aberta. Na Página Inicial ficam colar, fonte (N, I, S), parágrafo e estilos.'},
+      {k:'pagina',n:'Folha',d:'O papel onde você escreve. O risquinho que pisca é o cursor.'},
+      {k:'status',n:'Barra de status',d:'Mostra a página atual, o número de palavras e o zoom (para aumentar ou diminuir a folha na tela).'}
+    ];
+    var info=$('wdInfo'),svg=$('wdSvg'),by={};
+    function sel(k){
+      var p=P.filter(function(x){return x.k===k})[0];
+      [].forEach.call(svg.querySelectorAll('.part'),function(g){g.classList.toggle('on',g.getAttribute('data-k')===k)});
+      bs.forEach(function(b,i){var on=P[i].k===k;b.classList.toggle('on',on);b.setAttribute('aria-pressed',on)});
+      info.innerHTML='<b>'+p.n+'</b><br>'+p.d;
+    }
+    var bs=mkBtns(box,P.map(function(x){return x.n}),function(i){sel(P[i].k)});
+    [].forEach.call(svg.querySelectorAll('.part'),function(g){g.addEventListener('click',function(){sel(g.getAttribute('data-k'))})});
+    sel('guias');
+  })();
+
+  // --- Cap. 3: simulador de formatação ---
+  (function(){
+    var tg=$('fmTg');if(!tg)return;
+    var st={n:false,i:false,s:false,col:'#111111',al:'left',lst:false};
+    var prev=$('fmPrev'),how=$('fmHow'),font=$('fmFont'),size=$('fmSize'),sv=$('fmSv');
+    var HOW={n:'Botão <b>N</b> (Negrito), grupo Fonte.',i:'Botão <b>I</b> (Itálico), grupo Fonte.',s:'Botão <b>S</b> (Sublinhado), grupo Fonte.',lst:'Botão de <b>marcadores</b> (bolinhas), grupo Parágrafo.',
+      font:'Caixinha com o <b>nome da letra</b>, grupo Fonte.',size:'Caixinha com o <b>número</b>, grupo Fonte.',col:'Botão <b>A</b> com traço colorido, grupo Fonte.',al:'Botões de <b>alinhamento</b>, grupo Parágrafo.'};
+    function say(k){how.innerHTML='👉 No Word: '+HOW[k]}
+    function render(){
+      var css='font-family:'+font.value+';font-size:'+size.value+'px;color:'+st.col+';text-align:'+st.al+';';
+      if(st.n)css+='font-weight:700;';if(st.i)css+='font-style:italic;';if(st.s)css+='text-decoration:underline;';
+      var t='Festa na escola';
+      prev.innerHTML=st.lst?'<div style="'+css+'">'+t+'</div><ul style="'+css+'"><li>Traga um prato</li><li>Traga uma bebida</li></ul>':'<div style="'+css+'">'+t+'</div><div style="'+css+'font-size:16px;font-weight:400;font-style:normal;text-decoration:none">Domingo, às 10 horas, no pátio.</div>';
+      sv.textContent=size.value;
+    }
+    var T=[['N','n'],['I','i'],['S','s'],['• Lista','lst']];
+    T.forEach(function(t){var b=document.createElement('button');b.type='button';b.textContent=t[0];b.setAttribute('aria-pressed','false');
+      b.onclick=function(){st[t[1]]=!st[t[1]];b.classList.toggle('on',st[t[1]]);b.setAttribute('aria-pressed',st[t[1]]);say(t[1]);render()};tg.appendChild(b)});
+    var C=[['#111111','Preto'],['#c62828','Vermelho'],['#1565c0','Azul'],['#2e7d32','Verde']],cb=$('fmCol');
+    C.forEach(function(c){var b=document.createElement('button');b.type='button';b.style.background=c[0];b.title=c[1];b.setAttribute('aria-label',c[1]);
+      b.onclick=function(){st.col=c[0];[].forEach.call(cb.children,function(x){x.classList.remove('on')});b.classList.add('on');say('col');render()};cb.appendChild(b)});
+    cb.children[0].classList.add('on');
+    var A=[['⬅ Esquerda','left'],['⬛ Centro','center'],['➡ Direita','right']],ab=$('fmAl');
+    A.forEach(function(a,i){var b=document.createElement('button');b.type='button';b.textContent=a[0];
+      b.onclick=function(){st.al=a[1];[].forEach.call(ab.children,function(x){x.classList.remove('on')});b.classList.add('on');say('al');render()};ab.appendChild(b);if(i===0)b.classList.add('on')});
+    font.onchange=function(){say('font');render()};size.oninput=function(){say('size');render()};
+    render();say('n');how.innerHTML='Mexa nos botões acima e veja a folha mudar.';
+  })();
+
+  // --- Cap. 3: jogo dos botões ---
+  (function(){
+    var ic=$('btIc');if(!ic)return;
+    var Q=[['N','Negrito (letra grossa)'],['I','Itálico (letra inclinada)'],['S','Sublinhado'],['💾','Salvar'],['↶','Desfazer'],['🖨️','Imprimir'],['📋','Colar'],['A','Cor da letra'],['•','Marcadores (lista)'],['☰','Alinhar o texto']];
+    var bb=$('btBtns'),tx=$('btTxt'),cur,ok=0,tot=0;
+    function next(){
+      cur=Q[Math.floor(Math.random()*Q.length)];
+      ic.innerHTML=cur[0]+'<b>Para que serve este botão?</b>';
+      var opts=Q.map(function(q){return q[1]}).sort(function(){return Math.random()-.5});
+      var pick=[cur[1]];opts.forEach(function(o){if(pick.length<4&&pick.indexOf(o)<0)pick.push(o)});
+      pick.sort(function(){return Math.random()-.5});
+      bb.innerHTML='';
+      pick.forEach(function(o){var b=document.createElement('button');b.type='button';b.textContent=o;
+        b.onclick=function(){tot++;if(o===cur[1]){ok++;tx.innerHTML='<span class="ok-y">✔ Muito bem!</span> Acertos: '+ok+' de '+tot+'.'}else{tx.innerHTML='<span class="ok-n">✘ Quase!</span> Era: <b>'+cur[1]+'</b>. Acertos: '+ok+' de '+tot+'.'}next()};bb.appendChild(b)});
+    }
+    next();
+  })();
 })();
