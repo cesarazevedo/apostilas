@@ -25,13 +25,17 @@ Formato:
 
 Recursos do site:
 - CSS e JS compartilhados; JS e glossário próprios por disciplina.
-- Modo escuro, painel de progresso salvo no navegador, glossário com
-  dicas, botão de copiar código, imprimir com/sem respostas.
+- Modo escuro com botão fixo (ícone 🌙/☀️) no canto superior direito,
+  painel de progresso salvo no navegador, glossário com dicas, botão
+  de copiar código, imprimir com/sem respostas.
 - Acessibilidade (pular ao conteúdo, foco visível, leitor de tela).
 - Funcionamento offline (service worker) e instalável (manifest).
 - Em toda apostila, um link para voltar à página inicial
   (cesarazevedo.github.io/apostilas): "← Todas as apostilas" no menu
   lateral e "🏠 Apostilas" na barra do celular.
+- Uma página do professor (`professor.html`) com carga horária por
+  capítulo, sequência de aulas, avaliação e requisitos, no padrão de
+  Redes e SO.
 - Publicar no GitHub Pages (repo cesarazevedo/apostilas), com um card
   na página inicial. A descrição do card deve ser curta e atrativa,
   com uma pergunta ou convite ao aluno. Nada de "apostila com N
