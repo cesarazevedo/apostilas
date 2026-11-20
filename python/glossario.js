@@ -66,5 +66,13 @@ window.GLOSSARIO={
 "recursão":"Técnica em que uma função chama a si mesma até chegar a um caso base.",
 "caso base":"Condição que encerra uma recursão sem fazer nova chamada.",
 "lambda":"Função pequena, sem nome, escrita em uma linha.",
-"módulo":"Arquivo de Python com funções prontas, usado com import, como o random."
+"módulo":"Arquivo de Python com funções prontas, usado com import, como o random.",
+"arquivo":"Conjunto de dados guardado no disco, que continua existindo depois que o programa termina.",
+"open":"Função que abre um arquivo, informando o nome e o modo (r, w ou a).",
+"with":"Bloco que abre um recurso, como um arquivo, e o fecha automaticamente ao terminar.",
+"modo":"Letra que diz o que fazer com o arquivo: r (ler), w (gravar do zero) ou a (acrescentar).",
+"csv":"Formato de arquivo de texto que representa uma tabela, com valores separados por um delimitador.",
+"delimitador":"Caractere que separa as colunas em um CSV, como ; ou vírgula.",
+"encoding":"Forma de converter texto em bytes; utf-8 é a mais usada e aceita acentos.",
+"exceção":"Erro que acontece durante a execução e pode ser tratado com try e except."
 };
