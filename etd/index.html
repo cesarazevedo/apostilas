@@ -48,6 +48,25 @@ pre{font-size:16px}
 #mtArena{position:relative;height:280px;border:3px dashed var(--borda);border-radius:16px;margin:12px 0;background:rgba(173,20,87,.04);overflow:hidden;user-select:none;-webkit-user-select:none}
 #mtTarget{position:absolute;width:86px;height:86px;border-radius:50%;border:0;background:var(--cc);color:#fff;font-size:34px;cursor:pointer;display:none;box-shadow:0 3px 10px rgba(0,0,0,.25);touch-action:manipulation}
 #mtTask{font-size:21px;font-weight:700;min-height:34px}
+.kb{display:block;width:100%;max-width:640px;height:auto;margin:14px auto;color:var(--texto)}
+.kb .k rect{fill:rgba(173,20,87,.07);stroke:currentColor;stroke-width:1.5}
+.kb .k text{font-size:12px;text-anchor:middle;fill:currentColor;font-family:inherit;font-weight:600;pointer-events:none}
+.kb .k{cursor:pointer}
+.kb .k.on rect{fill:var(--cc);stroke:var(--cc)}
+.kb .k.on text{fill:#fff}
+.kb.dedos .k rect{stroke:#455a64}
+.kb.dedos .k text{fill:#1f2937}
+.kb.dedos .k[data-f=p] rect{fill:#ef9a9a}.kb.dedos .k[data-f=a] rect{fill:#ffcc80}.kb.dedos .k[data-f=m] rect{fill:#fff59d}.kb.dedos .k[data-f=i] rect{fill:#a5d6a7}.kb.dedos .k[data-f=t] rect{fill:#ce93d8}
+.kb .k.nx rect,.kb.dedos .k.nx rect{stroke:#000;stroke-width:4;fill:#ffeb3b}.kb .k.nx text{fill:#000}
+.kb .k.sx rect{stroke:#000;stroke-width:3}
+.kb .bump{stroke:currentColor;stroke-width:2.5}
+.legend{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:6px 0}
+.legend span{border-radius:8px;padding:3px 12px;font-size:16px;color:#1f2937;font-weight:600}
+.tk-text{font-size:30px;line-height:1.55;font-family:Consolas,"Courier New",monospace;padding:14px 16px;border:2px solid var(--borda);border-radius:12px;margin:10px 0;overflow-wrap:break-word;word-break:normal}
+@media (max-width:480px){.tk-text{font-size:22px}.tk-in{font-size:20px}}
+.tk-text .o{color:#2e7d32}.tk-text .b{color:#c62828;text-decoration:underline;background:rgba(198,40,40,.12)}.tk-text .c{background:#ffeb3b;color:#000;border-radius:3px}.tk-text .p{opacity:.85}
+.tk-in{width:100%;font-size:24px;padding:12px 14px;border:3px solid var(--cc);border-radius:12px;background:transparent;color:var(--texto);font-family:Consolas,"Courier New",monospace}
+.tk-hint{font-weight:700;min-height:30px;margin:8px 0 0}
 .ok-y{color:#2e7d32;font-weight:700}.ok-n{color:#c62828;font-weight:700}
 @page{@bottom-center{content:"Educação em Tecnologias Digitais – IFRN · página " counter(page);font-size:9pt;color:#777}}
 </style>
@@ -71,7 +90,15 @@ pre{font-size:16px}
       <a href="#c1-lab">Atividade e práticas</a>
       <a href="#c1-quiz">Quiz e exercícios</a>
     </div>
-    <a href="#cap2" class="soon"><span class="n" style="background:var(--c2)">2</span>Teclado e digitação</a>
+    <a href="#cap2"><span class="n" style="background:var(--c2)">2</span>Teclado e digitação</a>
+    <div class="sub">
+      <a href="#c2-teclado">Conhecendo o teclado</a>
+      <a href="#c2-postura">Postura e dedos</a>
+      <a href="#c2-especiais">Maiúsculas e acentos</a>
+      <a href="#c2-treino">Treinador de digitação</a>
+      <a href="#c2-lab">Atividade e práticas</a>
+      <a href="#c2-quiz">Quiz e exercícios</a>
+    </div>
     <a href="#cap3" class="soon"><span class="n" style="background:var(--c3)">3</span>Word: textos</a>
     <a href="#cap4" class="soon"><span class="n" style="background:var(--c4)">4</span>Excel: planilhas</a>
     <a href="#cap5" class="soon"><span class="n" style="background:var(--c5)">5</span>PowerPoint: apresentações</a>
@@ -103,7 +130,7 @@ pre{font-size:16px}
   <p>Cada capítulo segue o mesmo caminho: <b>o que vamos aprender → explicação com exemplos do dia a dia → prática → resumo → quiz</b>. Se errar, não tem problema: no computador sempre dá para <b>tentar de novo</b>. Para guardar uma cópia no papel, use o botão <b>Salvar em PDF</b>.</p>
   <div class="map">
     <div class="card" style="--cc:var(--c1)"><b>1 · O computador e o Windows</b><span>As partes do computador, o mouse, a área de trabalho, arquivos e pastas.</span><div class="st">✅ Disponível</div></div>
-    <div class="card" style="--cc:var(--c2)"><b>2 · Teclado e digitação</b><span>Onde ficam as letras e como digitar com treino na tela.</span><div class="st">⏳ Em breve</div></div>
+    <div class="card" style="--cc:var(--c2)"><b>2 · Teclado e digitação</b><span>Onde ficam as letras e como digitar com treino na tela.</span><div class="st">✅ Disponível</div></div>
     <div class="card" style="--cc:var(--c3)"><b>3 · Word</b><span>Escrever e formatar textos, currículo e cartas.</span><div class="st">⏳ Em breve</div></div>
     <div class="card" style="--cc:var(--c4)"><b>4 · Excel</b><span>Planilhas, contas e orçamento da casa.</span><div class="st">⏳ Em breve</div></div>
     <div class="card" style="--cc:var(--c5)"><b>5 · PowerPoint</b><span>Montar uma apresentação do zero.</span><div class="st">⏳ Em breve</div></div>
@@ -375,7 +402,186 @@ pre{font-size:16px}
 </section>
 
 <!-- ================= CAPÍTULOS EM BREVE ================= -->
-<section class="chapter soon-ch" id="cap2" style="--cc:var(--c2)"><div class="chap-head"><div class="chap-num" style="background:var(--c2)">2</div><div><small>Capítulo 2</small><h2>Teclado e digitação</h2></div></div><div class="soon-card">⏳ Este capítulo será publicado em breve.</div></section>
+<section class="chapter" id="cap2" style="--cc:var(--c2)">
+  <div class="chap-head"><div class="chap-num" style="background:var(--c2)">2</div><div><small>Capítulo 2</small><h2>Teclado e digitação</h2></div></div>
+
+  <div class="obj"><h4>🎯 Ao final deste capítulo, você será capaz de:</h4>
+    <ul>
+      <li>Reconhecer os grupos de teclas e a função das principais (Enter, Espaço, Shift, Backspace...).</li>
+      <li>Sentar-se e posicionar as mãos do jeito certo.</li>
+      <li>Digitar letras, números, maiúsculas, acentos e símbolos como o <b>@</b> do e-mail.</li>
+      <li>Usar os dedos certos e treinar com o treinador de digitação até ganhar firmeza.</li>
+      <li>Preencher uma ficha com seus dados no computador.</li>
+    </ul>
+  </div>
+
+  <h3 id="c2-teclado">2.1 Conhecendo o teclado</h3>
+  <p>No celular você escreve tocando na tela. No computador, o <b>teclado</b> é uma tábua cheia de teclas, mas ele <b>não é tão complicado</b>: as letras ficam na ordem do quadro abaixo, e as outras teclas têm funções bem claras. Toque nos botões (ou em uma tecla) para descobrir:</p>
+  <div class="tool" id="kx" style="--cc:var(--c2)">
+    <svg class="kb" id="kxSvg" role="img" aria-label="Desenho de um teclado de computador brasileiro"></svg>
+    <div class="pbtns" id="kxBtns" role="group" aria-label="Grupos de teclas"></div>
+    <div class="box dica"><div class="ic">⌨️</div><div class="pinfo" id="kxInfo" aria-live="polite"></div></div>
+  </div>
+  <div class="box analogia"><div class="ic">💡</div><div><h5>Pense assim: a máquina de escrever</h5><p>O teclado do computador é o <b>filho da máquina de escrever</b>: as letras ficam na mesma ordem (por isso o nome do primeiro grupo de letras: <b>QWERTY</b>). A diferença é que agora você pode <b>apagar</b> o erro sem gastar papel!</p></div></div>
+
+  <h3 style="font-size:22px;margin-top:20px">As teclas mais importantes</h3>
+  <table>
+    <tr><th>Tecla</th><th>O que faz</th></tr>
+    <tr><td><b>Enter</b></td><td>Pula para a linha de baixo ou confirma uma escolha.</td></tr>
+    <tr><td><b>Espaço</b></td><td>Deixa um espaço entre as palavras (a barra comprida).</td></tr>
+    <tr><td><b>Backspace</b> (←)</td><td>Apaga a letra que está <b>antes</b> do cursor (o “risquinho” que pisca).</td></tr>
+    <tr><td><b>Delete</b> (Del)</td><td>Apaga a letra que está <b>depois</b> do cursor.</td></tr>
+    <tr><td><b>Shift</b> (⇧)</td><td>Segure para escrever <b>letra maiúscula</b> ou o símbolo de <b>cima</b> da tecla.</td></tr>
+    <tr><td><b>Caps Lock</b></td><td>“Trava” as maiúsculas: tudo sai em MAIÚSCULA até apertar de novo.</td></tr>
+    <tr><td><b>Tab</b></td><td>Pula para a próxima casinha de um formulário ou dá um recuo grande.</td></tr>
+    <tr><td><b>Esc</b></td><td>Cancela ou fecha uma janela de opções.</td></tr>
+    <tr><td><b>Setas</b> (← ↑ ↓ →)</td><td>Movem o cursor pelo texto, sem apagar nada.</td></tr>
+    <tr><td><b>Ctrl</b> e <b>Alt</b></td><td>Ajudantes que, junto com outra tecla, formam os <b>atalhos</b> (Ctrl + C, Ctrl + Z...).</td></tr>
+    <tr><td><b>Tecla do Windows</b></td><td>Abre o menu Iniciar.</td></tr>
+    <tr><td><b>F1 a F12</b></td><td>Teclas de função, na fileira de cima. A <b>F1</b> costuma abrir a ajuda.</td></tr>
+    <tr><td><b>Teclado numérico</b></td><td>Os números agrupados, à direita (em muitos notebooks não existe). Funciona quando a luz do <b>Num Lock</b> está acesa.</td></tr>
+  </table>
+  <div class="box atencao"><div class="ic">⚠️</div><div><h5>Digitando tudo em maiúsculas?</h5><p>Se tudo sair em MAIÚSCULA sem querer, é o <b>Caps Lock</b> ligado (a luzinha acende). Aperte a tecla de novo para desligar. Em mensagens e e-mails, escrever tudo em maiúsculas parece que você está <b>gritando</b>.</p></div></div>
+
+  <h3 id="c2-postura">2.2 Postura e posição das mãos</h3>
+  <p>Quem digita direito <b>cansa menos</b> e erra menos. Antes de começar, ajeite-se:</p>
+  <table>
+    <tr><th>✅ Faça</th><th>❌ Evite</th></tr>
+    <tr><td>Sentar com as <b>costas apoiadas</b> na cadeira e os <b>pés no chão</b>.</td><td>Ficar curvado ou com as pernas cruzadas por muito tempo.</td></tr>
+    <tr><td>Deixar a <b>tela na altura dos olhos</b>, a um braço de distância.</td><td>Olhar a tela de baixo para cima ou muito de perto.</td></tr>
+    <tr><td>Manter <b>punhos retos</b>, com os dedos curvados sobre as teclas.</td><td>Apoiar os punhos com força na mesa ou dobrá-los para cima.</td></tr>
+    <tr><td>Fazer uma <b>pausa</b> a cada meia hora para alongar as mãos.</td><td>Digitar horas seguidas sem parar.</td></tr>
+  </table>
+  <h3 style="font-size:22px;margin-top:20px">Os dedos de cada tecla</h3>
+  <p>Cada dedo cuida de uma região de teclas, como em um <b>piano</b>. Os dedos “moram” na <b>linha do meio</b>: <b>A S D F</b> na mão esquerda e <b>J K L Ç</b> na direita. Repare que o <b>F</b> e o <b>J</b> têm um <b>risquinho em relevo</b>: é para os dedos indicadores acharem o lugar sem olhar.</p>
+  <div class="tool" id="fd" style="--cc:var(--c2)">
+    <svg class="kb dedos" id="fdSvg" role="img" aria-label="Teclado colorido mostrando qual dedo usa cada tecla"></svg>
+    <div class="legend" aria-label="Cores dos dedos"><span style="background:#ef9a9a">Mindinho</span><span style="background:#ffcc80">Anelar</span><span style="background:#fff59d">Médio</span><span style="background:#a5d6a7">Indicador</span><span style="background:#ce93d8">Polegar (espaço)</span></div>
+  </div>
+  <div class="box dica"><div class="ic">✅</div><div><h5>Dica de ouro</h5><p>No começo, <b>olhar para as teclas é normal</b>. A meta é, aos poucos, olhar <b>para a tela</b>. Primeiro acerte; <b>depois</b> acelere. Quem treina 10 minutos por dia aprende mais rápido que quem treina 2 horas uma vez por semana.</p></div></div>
+
+  <h3 id="c2-especiais">2.3 Maiúsculas, acentos e símbolos</h3>
+  <table>
+    <tr><th>Quero escrever...</th><th>Como faço</th></tr>
+    <tr><td><b>Letra maiúscula</b> (<b>M</b>aria)</td><td>Segure <b>Shift</b> e aperte a letra. (O Shift do lado oposto ao da letra.)</td></tr>
+    <tr><td><b>Acento agudo</b> (á, é, í, ó, ú)</td><td>Aperte a tecla <b>´</b> (fica à direita do P) e <b>depois</b> a letra.</td></tr>
+    <tr><td><b>Til</b> (ã, õ)</td><td>Aperte a tecla <b>~</b> (à direita do Ç) e depois a letra.</td></tr>
+    <tr><td><b>Circunflexo</b> (â, ê, ô)</td><td>Segure <b>Shift</b> e aperte a tecla <b>~</b>; solte; aperte a letra.</td></tr>
+    <tr><td><b>Crase</b> (à)</td><td>Segure <b>Shift</b> e aperte a tecla <b>´</b>; solte; aperte o <b>A</b>.</td></tr>
+    <tr><td><b>Cedilha</b> (ç)</td><td>Tem tecla própria, ao lado do <b>L</b>.</td></tr>
+    <tr><td><b>@</b> (arroba) do e-mail</td><td><b>Shift</b> + tecla do <b>2</b>.</td></tr>
+    <tr><td><b>Símbolos de cima</b> (!, $, %, (, ))</td><td><b>Shift</b> + a tecla do número.</td></tr>
+    <tr><td><b>Ponto</b> e <b>vírgula</b></td><td>As teclas <b>.</b> e <b>,</b>, à direita do M.</td></tr>
+  </table>
+  <div class="box exemplo"><div class="ic">📌</div><div><h5>Escrevendo um e-mail</h5><p><b>maria.silva@email.com</b>: letras minúsculas, o <b>ponto</b> entre o nome e o sobrenome, a <b>arroba</b> (Shift + 2) e outro ponto antes do <b>com</b>. Sem espaços!</p></div></div>
+
+  <h3 id="c2-treino">2.4 Treinador de digitação</h3>
+  <p>Escolha uma lição, clique na caixa e <b>digite o texto que aparece</b>. O teclado mostra <b>qual tecla apertar</b> e com <b>qual dedo</b>. Letra <span class="ok-y">verde</span> é acerto; <span class="ok-n">vermelha</span>, erro (use o <b>Backspace</b>). Não se preocupe com a velocidade.</p>
+  <div class="tool" id="tk" style="--cc:var(--c2)">
+    <div class="pbtns" id="tkLessons" role="group" aria-label="Lições"></div>
+    <div id="tkText" class="tk-text" aria-label="Texto para digitar"></div>
+    <input id="tkIn" class="tk-in" type="text" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" aria-label="Digite aqui o texto acima" placeholder="Digite aqui">
+    <p class="tk-hint" id="tkHint" aria-live="polite"></p>
+    <svg class="kb dedos" id="tkSvg" role="img" aria-label="Teclado que mostra a próxima tecla a apertar"></svg>
+    <p class="enc-txt" id="tkOut" aria-live="polite"></p>
+  </div>
+  <div class="box exemplo"><div class="ic">📌</div><div><h5>Como ler o resultado</h5><p><b>Acertos</b> é a porcentagem de teclas certas. <b>PPM</b> é “palavras por minuto” (cada 5 teclas valem 1 palavra). <b>Acertar vem primeiro</b>: se passar de 90% de acertos, tente ir um pouco mais rápido.</p></div></div>
+
+  <!-- ATIVIDADES / PRÁTICAS -->
+  <div class="lab" id="c2-lab">
+    <h3>🧑‍🤝‍🧑 Atividade sem computador – Teclado de papel</h3>
+    <p><b>Objetivo:</b> decorar a posição dos dedos sem olhar. <b>Preparação:</b> o professor imprime um desenho de teclado (ou cada aluno desenha o seu em uma folha, com as 3 fileiras de letras).</p>
+    <ol class="steps">
+      <li>Coloque os dedos na <b>linha do meio</b> (A S D F — J K L Ç) sobre o papel.</li>
+      <li>Em duplas: um <b>fala uma palavra</b> (sala, fada, jaca...) e o outro <b>toca com o dedo certo</b>, sem falar.</li>
+      <li>Troquem de papel. Depois, o professor diz o nome de uma tecla e a turma aponta o dedo que a alcança.</li>
+    </ol>
+
+    <h3>🧪 Prática 1 – Conhecendo o teclado no Bloco de Notas</h3>
+    <ol class="steps">
+      <li><b>Abra o Bloco de Notas</b> (menu Iniciar → digite “Bloco de Notas”).</li>
+      <li>Escreva o seu <b>nome completo</b>. Use <b>Shift</b> para as iniciais maiúsculas. Aperte <b>Enter</b> e escreva a sua cidade.</li>
+      <li>Escreva uma frase com <b>acentos</b>: <i>Hoje eu aprendi a usar o teclado.</i> Use o <b>Backspace</b> para corrigir os erros.</li>
+      <li>Aperte o <b>Caps Lock</b>, escreva seu primeiro nome, e aperte de novo para desligar.</li>
+      <li>Salve o arquivo na sua pasta (capítulo 1) com o nome <code>Meu teclado</code>.</li>
+    </ol>
+
+    <h3>🧪 Prática 2 – Treino diário</h3>
+    <ol class="steps">
+      <li>Faça as <b>lições 1, 2 e 3</b> do treinador, uma de cada vez.</li>
+      <li>Meta: terminar cada lição com <b>mais de 90% de acertos</b>. Se não conseguir, repita.</li>
+      <li>Anote em um papel o seu <b>PPM</b> e os <b>acertos</b> de cada lição. Daqui a uma semana, repita e compare.</li>
+      <li>Quando estiver mais firme, tente as lições <b>4 (acentos)</b>, <b>5 (números e símbolos)</b> e <b>6 (texto de verdade)</b>.</li>
+    </ol>
+
+    <h3>🧪 Prática 3 – Preenchendo uma ficha</h3>
+    <p>No Bloco de Notas, digite a ficha abaixo, <b>com dados inventados</b> (não use seus dados verdadeiros de documentos):</p>
+    <pre><button class="cp">Copiar</button><code>Nome: Maria das Dores Silva
+Telefone: (84) 99999-0000
+E-mail: maria.silva@email.com
+Endereço: Rua das Flores, 123, João Câmara
+Profissão: Costureira</code></pre>
+    <ol class="steps">
+      <li>Use <b>Enter</b> entre as linhas e <b>Tab</b> ou espaço entre as palavras, conforme preferir.</li>
+      <li>Confira os acentos, a <b>arroba</b> e os parênteses. Corrija o que estiver errado.</li>
+      <li>Salve com o nome <code>Minha ficha</code>.</li>
+    </ol>
+  </div>
+
+  <div class="resumo">
+    <h3>📝 Resumo do capítulo</h3>
+    <ul>
+      <li>O teclado tem <b>letras, números, símbolos e teclas especiais</b> (Enter, Espaço, Backspace, Shift, Caps Lock, Tab, Esc...).</li>
+      <li><b>Backspace</b> apaga para trás; <b>Shift</b> faz maiúsculas e símbolos de cima; <b>Caps Lock</b> trava as maiúsculas.</li>
+      <li>Sente-se com as costas apoiadas, tela na altura dos olhos e punhos retos. <b>Faça pausas.</b></li>
+      <li>Os dedos “moram” na linha do meio (<b>A S D F — J K L Ç</b>). O <b>F</b> e o <b>J</b> têm relevo.</li>
+      <li><b>Acento:</b> aperte a tecla do acento e depois a letra. <b>@:</b> Shift + 2.</li>
+      <li>Treine pouco, todo dia. <b>Primeiro acerte, depois acelere.</b></li>
+    </ul>
+  </div>
+
+  <h3 id="c2-quiz">🧠 Quiz do capítulo 2</h3>
+  <p>Clique na resposta que você acha certa.</p>
+  <div class="quiz">
+    <div class="q"><p>1. Qual tecla apaga a letra que está <b>antes</b> do cursor?</p>
+      <button class="opt">a) Enter</button><button class="opt" data-ok="1">b) Backspace</button><button class="opt">c) Tab</button><button class="opt">d) Esc</button>
+      <div class="fb">O <b>Backspace</b> (←) apaga para trás. O Delete apaga para a frente.</div></div>
+    <div class="q"><p>2. Para escrever uma letra <b>maiúscula</b>, você:</p>
+      <button class="opt" data-ok="1">a) Segura o Shift e aperta a letra</button><button class="opt">b) Aperta duas vezes a letra</button><button class="opt">c) Aperta Esc e a letra</button><button class="opt">d) Aperta Enter e a letra</button>
+      <div class="fb">O <b>Shift</b> segurado faz a letra sair maiúscula. O <b>Caps Lock</b> trava as maiúsculas.</div></div>
+    <div class="q"><p>3. Tudo o que você digita sai em MAIÚSCULAS. O que provavelmente aconteceu?</p>
+      <button class="opt">a) O computador quebrou</button><button class="opt" data-ok="1">b) O Caps Lock está ligado</button><button class="opt">c) O Num Lock está desligado</button><button class="opt">d) A tela está suja</button>
+      <div class="fb">Aperte o <b>Caps Lock</b> de novo para desligar.</div></div>
+    <div class="q"><p>4. Em quais teclas os dedos “moram” (posição inicial)?</p>
+      <button class="opt">a) Q W E R — U I O P</button><button class="opt" data-ok="1">b) A S D F — J K L Ç</button><button class="opt">c) Z X C V — M , . ;</button><button class="opt">d) 1 2 3 4 — 7 8 9 0</button>
+      <div class="fb">A <b>linha do meio</b>. O relevo no <b>F</b> e no <b>J</b> ajuda a achar o lugar.</div></div>
+    <div class="q"><p>5. Como se escreve a <b>arroba</b> (@) em um teclado brasileiro?</p>
+      <button class="opt">a) Aperta só a tecla do 2</button><button class="opt" data-ok="1">b) Shift + tecla do 2</button><button class="opt">c) Caps Lock + 2</button><button class="opt">d) Tab + 2</button>
+      <div class="fb">O símbolo de cima da tecla do 2 aparece com o <b>Shift</b>.</div></div>
+    <div class="q"><p>6. Como se escreve “ã”?</p>
+      <button class="opt">a) Aperta o A duas vezes</button><button class="opt" data-ok="1">b) Aperta a tecla do til (~) e depois o A</button><button class="opt">c) Aperta o A e depois o til</button><button class="opt">d) Aperta Enter e o A</button>
+      <div class="fb">Primeiro o <b>acento</b>, depois a <b>letra</b>.</div></div>
+    <div class="q"><p>7. Qual é a postura mais correta ao digitar?</p>
+      <button class="opt">a) Curvado, com o rosto perto da tela</button><button class="opt" data-ok="1">b) Costas apoiadas, pés no chão e tela na altura dos olhos</button><button class="opt">c) Pernas cruzadas e punhos dobrados para cima</button><button class="opt">d) Deitado na cadeira</button>
+      <div class="fb">Postura boa evita dores e cansaço.</div></div>
+    <div class="q"><p>8. Ao treinar digitação, o mais importante no começo é:</p>
+      <button class="opt">a) Digitar o mais rápido possível</button><button class="opt" data-ok="1">b) Acertar as teclas, e só depois aumentar a velocidade</button><button class="opt">c) Nunca olhar para o teclado desde o primeiro dia</button><button class="opt">d) Treinar 3 horas seguidas</button>
+      <div class="fb">A velocidade vem com o tempo. <b>Treinar pouco, todo dia</b>, funciona melhor.</div></div>
+  </div>
+  <div class="score"></div>
+
+  <h3>✍️ Questões abertas</h3>
+  <div class="open"><p><b>1.</b> Explique a diferença entre Backspace e Delete.</p>
+    <button>Ver resposta</button><div class="answer">O Backspace apaga a letra que está antes do cursor (para trás). O Delete apaga a que está depois (para a frente).</div></div>
+  <div class="open"><p><b>2.</b> Descreva como escrever a palavra “Mãe” com a letra maiúscula e o acento.</p>
+    <button>Ver resposta</button><div class="answer">Segurar o Shift e apertar o M; soltar; apertar a tecla do til (~) e depois o A; depois apertar o E.</div></div>
+  <div class="open"><p><b>3.</b> Por que é bom treinar todos os dias por pouco tempo?</p>
+    <button>Ver resposta</button><div class="answer">Porque a mão aprende por repetição. Treinos curtos e frequentes fixam a posição dos dedos melhor do que um treino longo e raro, e cansam menos.</div></div>
+  <div class="open"><p><b>4.</b> Escreva, com o teclado, um e-mail fictício e diga quais teclas especiais você usou.</p>
+    <button>Ver resposta</button><div class="answer">Exemplo: maria.silva@email.com. Teclas especiais: Shift + 2 (para a arroba) e a tecla do ponto. Se usou maiúscula, também o Shift.</div></div>
+
+  <div class="box dica" style="margin-top:28px"><div class="ic">📚</div><div><h5>Para saber mais</h5><p>Seu computador tem um <b>teclado virtual</b> na tela (menu Iniciar → pesquise “Teclado virtual”), útil quando uma tecla do teclado físico quebra. E a Central de Ajuda do Windows tem a lista completa de atalhos de teclado.</p></div></div>
+</section>
 <section class="chapter soon-ch" id="cap3" style="--cc:var(--c3)"><div class="chap-head"><div class="chap-num" style="background:var(--c3)">3</div><div><small>Capítulo 3</small><h2>Word: textos</h2></div></div><div class="soon-card">⏳ Este capítulo será publicado em breve.</div></section>
 <section class="chapter soon-ch" id="cap4" style="--cc:var(--c4)"><div class="chap-head"><div class="chap-num" style="background:var(--c4)">4</div><div><small>Capítulo 4</small><h2>Excel: planilhas</h2></div></div><div class="soon-card">⏳ Este capítulo será publicado em breve.</div></section>
 <section class="chapter soon-ch" id="cap5" style="--cc:var(--c5)"><div class="chap-head"><div class="chap-num" style="background:var(--c5)">5</div><div><small>Capítulo 5</small><h2>PowerPoint: apresentações</h2></div></div><div class="soon-card">⏳ Este capítulo será publicado em breve.</div></section>

@@ -22,5 +22,16 @@ window.GLOSSARIO={
 "extensão":"As letras depois do ponto no nome do arquivo (como .docx), que mostram o tipo.",
 "Explorador de Arquivos":"O programa do Windows que mostra suas pastas e arquivos.",
 "Bloco de Notas":"Programa simples do Windows para escrever texto sem enfeites.",
-"atalho":"Uma combinação de teclas que faz uma ação rápida, como Ctrl + C."
+"atalho":"Uma combinação de teclas que faz uma ação rápida, como Ctrl + C.",
+"teclado":"O conjunto de teclas usado para escrever e dar comandos ao computador.",
+"Backspace":"Tecla que apaga a letra antes do cursor.",
+"Enter":"Tecla que pula para a linha de baixo ou confirma uma escolha.",
+"Shift":"Tecla que, segurada, faz letras maiúsculas e símbolos de cima.",
+"Caps Lock":"Tecla que trava as letras maiúsculas.",
+"Tab":"Tecla que pula para a próxima casinha de um formulário.",
+"digitar":"Escrever no computador usando o teclado.",
+"PPM":"Palavras por minuto: a medida da velocidade de digitação.",
+"QWERTY":"O nome da ordem das letras no teclado, que vem das primeiras letras da fileira de cima.",
+"arroba":"O símbolo @, usado nos endereços de e-mail.",
+"acento":"Sinal sobre a letra, como ´ ~ ^ `, que muda o som da palavra."
 };
