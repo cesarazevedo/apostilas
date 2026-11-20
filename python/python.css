@@ -102,3 +102,13 @@ html[data-theme=dark] .compare-item code{background:#0f172a;color:#e2e8f0}
 @media (max-width:700px){.compare-grid{grid-template-columns:1fr!important}.compare-item code{display:block;overflow-x:auto;max-width:100%}
 .op-table,.truth-table,.trace-table,.method-table,.format-table,.exercise-table{display:block;overflow-x:auto;max-width:100%}.string-visual,.recursion-diagram,.anatomy-box{overflow-x:auto}}
 .compare-grid>*,.example-grid>*,.feature-list>*,.tip-grid>*{min-width:0}.compare-item code{white-space:pre}
+.repl{background:#0f172a;color:#e2e8f0;border-radius:12px;padding:12px 14px;font-family:Consolas,"Courier New",monospace;font-size:15px;line-height:1.5}
+.repl .out{white-space:pre-wrap;max-height:240px;overflow:auto;word-break:break-word;min-height:48px}
+.repl .out .e{color:#f87171}.repl .out .o{color:#fbbf24}.repl .out .c{color:#94a3b8}
+.rpl{display:flex;gap:6px;align-items:center}.rpl span{color:#86efac}
+.rpl input{flex:1;background:transparent;border:0;color:#e2e8f0;font:inherit;outline:0;padding:2px 0;min-width:80px}
+.shelf{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 0}
+.shelf span{background:rgba(48,105,152,.14);border:2px solid var(--c1);border-radius:10px;padding:4px 10px;font-family:Consolas,monospace;font-size:14.5px}
+.shelf em{font-style:normal;color:var(--suave);font-size:14px;align-self:center}
+.sugs{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 0}
+.sugs button{font-family:Consolas,monospace!important}

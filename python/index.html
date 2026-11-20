@@ -37,7 +37,17 @@ html[data-theme=dark]{--verde-claro:#10263a}
       <a href="#c1-tools">Ferramentas do capítulo</a>
       <a href="#c1-quiz">Quiz e exercícios</a>
     </div>
-    <a href="#cap2" class="soon"><span class="n" style="background:var(--c2)">2</span>Ambiente</a>
+    <a href="#cap2"><span class="n" style="background:var(--c2)">2</span>Ambiente</a>
+    <div class="sub">
+      <a href="#c2-1">2.1 Instalação do Python</a>
+      <a href="#c2-2">2.2 Usando o Interpretador (IDLE)</a>
+      <a href="#c2-3">2.3 Editando e Salvando Programas</a>
+      <a href="#c2-4">2.4 Os Primeiros Programas</a>
+      <a href="#c2-5">2.5 Variáveis e Atribuição</a>
+      <a href="#c2-lab">Exercícios</a>
+      <a href="#c2-tools">Ferramentas</a>
+      <a href="#c2-quiz">Quiz e exercícios</a>
+    </div>
     <a href="#cap3" class="soon"><span class="n" style="background:var(--c3)">3</span>Variáveis e entrada</a>
     <a href="#cap4" class="soon"><span class="n" style="background:var(--c4)">4</span>Condições</a>
     <a href="#cap5" class="soon"><span class="n" style="background:var(--c5)">5</span>Repetições</a>
@@ -74,7 +84,7 @@ html[data-theme=dark]{--verde-claro:#10263a}
   <p>Cada capítulo termina com <b>resumo, quiz e questões abertas</b>. Errar faz parte: leia a mensagem de erro, ela é uma pista.</p>
   <div class="map">
     <div class="card" style="--cc:var(--c1)" data-ok="1"><b>1 · Motivação</b><span>Por que programar, paciência, ritmo de estudo e por que Python.</span><div class="st">✅ Disponível</div></div>
-    <div class="card" style="--cc:var(--c2)"><b>2 · Ambiente</b><span>Instalar o Python, usar o IDLE e escrever os primeiros programas.</span><div class="st">⏳ Em breve</div></div>
+    <div class="card" style="--cc:var(--c2)" data-ok="1"><b>2 · Ambiente</b><span>Instalar o Python, usar o IDLE e escrever os primeiros programas.</span><div class="st">✅ Disponível</div></div>
     <div class="card" style="--cc:var(--c3)"><b>3 · Variáveis e entrada</b><span>Tipos, operadores, strings e como pedir dados ao usuário.</span><div class="st">⏳ Em breve</div></div>
     <div class="card" style="--cc:var(--c4)"><b>4 · Condições</b><span>if, else, condições aninhadas e elif.</span><div class="st">⏳ Em breve</div></div>
     <div class="card" style="--cc:var(--c5)"><b>5 · Repetições</b><span>while, contadores, acumuladores e laços aninhados.</span><div class="st">⏳ Em breve</div></div>
@@ -349,7 +359,309 @@ nome = <span class="function">input</span>(<span class="string">"Qual é o seu n
 
   <div class="box dica" style="margin-top:28px"><div class="ic">📚</div><div><h5>Para saber mais</h5><p>O <b>Python Tutor</b> (pythontutor.com), que abre pelo botão <b>▶ Executar</b>, mostra o seu programa linha por linha. Para consultar a linguagem, veja <b>O tutorial de Python</b>, em português, em docs.python.org/pt-br/3/tutorial/.</p></div></div>
 </section>
-<section class="chapter soon-ch" id="cap2" style="--cc:var(--c2)"><div class="chap-head"><div class="chap-num" style="background:var(--c2)">2</div><div><small>Capítulo 2</small><h2>Ambiente</h2></div></div><div class="soon-card">⏳ Este capítulo será publicado em breve.</div></section>
+<section class="chapter" id="cap2" style="--cc:var(--c2)">
+  <div class="chap-head"><div class="chap-num" style="background:var(--c2)">2</div><div><small>Capítulo 2</small><h2>Ambiente</h2></div></div>
+  <div class="obj"><h4>🎯 Ao final deste capítulo, você será capaz de:</h4><ul><li>explicar o que é o interpretador e instalar o Python no seu computador</li><li>usar o IDLE para testar comandos e criar, salvar e executar arquivos .py</li><li>digitar programas com cuidado (maiúsculas, aspas, parênteses e indentação)</li><li>usar o <code>print</code> e os operadores <code>+ - * / ** %</code>, respeitando a precedência</li><li>guardar valores em variáveis com o sinal de atribuição <code>=</code></li></ul></div>
+<h3 id="c2-1">2.1 Instalação do Python</h3>
+<p class="sec-sub">Seções 2.1, 2.1.1, 2.1.2, 2.1.3 — Colocando o Python na sua máquina</p>
+<h4 class="pyh">🧰 O que é o interpretador?</h4>
+<p>Antes de programar, precisamos instalar o <strong>interpretador Python</strong>. Ele é o programa que aceita comandos escritos em Python e os executa, linha a linha. É ele quem traduz nossos programas em um formato que o computador entende.</p>
+<p>Sem o interpretador, nossos programas seriam apenas texto. Ele também verifica se escrevemos corretamente, mostrando <strong>mensagens de erro</strong> quando encontra algum problema.</p>
+<div class="box analogia"><div class="ic">💬</div><div>
+<p>“O interpretador Python é como um tradutor: você fala em Python, ele traduz para o computador executar.”</p>
+</div></div>
+<h4 class="pyh">🖥 Instalando no Windows</h4>
+<p>O Python está disponível gratuitamente no site oficial. Veja o passo a passo:</p>
+<ol class="step-list">
+<li>Acesse <strong>python.org</strong> e clique em <strong>Downloads</strong></li>
+<li>Baixe a versão mais recente do Python 3 (ex: Python 3.12)</li>
+<li>Execute o instalador baixado (.exe)</li>
+<li><strong>IMPORTANTE:</strong> Marque a opção <em>“Add Python to PATH”</em> antes de clicar em Install</li>
+<li>Escolha <strong>“Install for all users”</strong> (recomendado)</li>
+<li>Aceite o diretório padrão ou escolha outro local</li>
+<li>Aguarde a barra de progresso completar</li>
+<li>Clique em <strong>Finish</strong> para concluir</li>
+</ol>
+<div class="box analogia"><div class="ic">💬</div><div>
+<p>⚠ Dica importante: Marcar “Add Python to PATH” evita muita dor de cabeça depois. Se esqueceu, reinstale marcando essa opção.</p>
+</div></div>
+<h4 class="pyh">🐧 Instalando no Linux</h4>
+<p>A maioria das distribuições Linux já vem com Python instalado. Para verificar a versão, abra o terminal e digite:</p>
+<pre class="py nr"><span class="pylab">Terminal</span><button class="cp">Copiar</button><code>python3 --version</code></pre>
+<p>Se precisar instalar ou atualizar no <strong>Ubuntu/Debian</strong>:</p>
+<pre class="py nr"><span class="pylab">Terminal</span><button class="cp">Copiar</button><code>sudo apt-get install python3
+sudo apt-get install idle-python3</code></pre>
+<p>Você precisa de permissões de administrador (root) para instalar via apt-get.</p>
+<h4 class="pyh">🍎 Instalando no Mac OS X</h4>
+<p>Os Macs vêm com uma versão do Python, mas geralmente é a versão 2.x (antiga). Para instalar o Python 3, você pode:</p>
+<ul>
+<li>Baixar o instalador diretamente do <strong>python.org</strong> (formato .pkg)</li>
+<li>Usar o <strong>Homebrew</strong>: <code>brew install python3</code></li>
+<li>Usar o <strong>MacPorts</strong>: <code>sudo port install python34</code></li>
+</ul>
+<p>Para executar o interpretador após instalar, digite <code>python3</code> no terminal.</p>
+<h3 id="c2-2">2.2 Usando o Interpretador (IDLE)</h3>
+<p class="sec-sub">Seu playground para testar código Python</p>
+<h4 class="pyh">🎮 O que é o IDLE?</h4>
+<p>O <strong>IDLE</strong> é a interface gráfica que acompanha o Python. Ele permite editar e executar programas de forma simples, tudo num só lugar.</p>
+<p><strong>Como abrir o IDLE:</strong></p>
+<ul>
+<li><strong>Windows:</strong> Menu Iniciar → Python 3.x → IDLE</li>
+<li><strong>Linux:</strong> No terminal, digite <code>idle-python3</code> ou <code>idle3</code></li>
+<li><strong>Mac:</strong> No terminal, digite <code>IDLE3</code> ou <code>idle3</code></li>
+</ul>
+<h4 class="pyh">💬 A janela do interpretador</h4>
+<p>Ao abrir o IDLE, você verá a <strong>janela do interpretador</strong> (Python Shell). Repare no símbolo <code>&gt;&gt;&gt;</code> — ele indica que o Python está pronto para receber um comando.</p>
+<p>Digite seu primeiro comando e pressione <strong>Enter</strong>:</p>
+<pre class="py nr"><span class="pylab">IDLE - Python Shell</span><button class="cp">Copiar</button><code><span class="prompt">&gt;&gt;&gt;</span> print(<span class="string">"Oi"</span>)
+<span class="output">Oi</span>
+<span class="prompt">&gt;&gt;&gt;</span></code></pre>
+<p>Pronto! Você acabou de executar seu primeiro comando Python. A função <code>print()</code> exibe uma mensagem na tela.</p>
+<div class="box analogia"><div class="ic">💬</div><div>
+<p>“Uma das grandes vantagens do Python é contar com o interpretador interativo. Você pode testar qualquer comando e ver o resultado instantaneamente.”</p>
+</div></div>
+<h4 class="pyh">🧪 Experimente!</h4>
+<p>O interpretador é perfeito para experimentar. Tente digitar outros comandos:</p>
+<pre class="py nr"><span class="pylab">IDLE</span><button class="cp">Copiar</button><code><span class="prompt">&gt;&gt;&gt;</span> print(<span class="string">"Olá, Mundo!"</span>)
+<span class="output">Olá, Mundo!</span>
+<span class="prompt">&gt;&gt;&gt;</span> print(<span class="string">"Meu nome é Python"</span>)
+<span class="output">Meu nome é Python</span>
+<span class="prompt">&gt;&gt;&gt;</span> 2 + 3
+<span class="output">5</span></code></pre>
+<p>Perceba que o interpretador também funciona como uma <strong>calculadora</strong>. Digitou <code>2 + 3</code> e ele respondeu <code>5</code>. Veremos mais sobre isso nas próximas aulas.</p>
+<p>Esse ciclo de <strong>digitar → executar → ver resultado</strong> é muito importante para o aprendizado. Use e abuse do interpretador para testar ideias!</p>
+<h3 id="c2-3">2.3 Editando e Salvando Programas</h3>
+<p class="sec-sub">Seções 2.3 e 2.4 — Do interpretador ao seu primeiro arquivo .py</p>
+<h4 class="pyh">📄 Interpretador vs. Editor de Textos</h4>
+<p>Até agora, digitamos comandos diretamente no interpretador. Isso é ótimo para testes rápidos, mas para programas maiores precisamos de <strong>arquivos</strong>.</p>
+<p>Um programa Python nada mais é que um <strong>arquivo-texto</strong> escrito em um formato especial (a linguagem Python). Podemos usar qualquer editor de textos: o próprio IDLE, VS Code, Sublime Text, Vim, etc.</p>
+<div class="box atencao"><div class="ic">⚠️</div><div>
+<p>⚠ <strong>Nunca use o Microsoft Word ou LibreOffice Writer!</strong> Esses editores gravam arquivos em formatos especiais que não servem para programar. Use sempre um <strong>editor de código</strong> ou o próprio IDLE.</p>
+</div></div>
+<h4 class="pyh">💾 Criando seu primeiro arquivo no IDLE</h4>
+<p>O IDLE tem seu próprio editor de textos embutido. Siga os passos:</p>
+<ol class="step-list">
+<li>Com o IDLE aberto, clique no menu <strong>File → New File</strong> (Ctrl+N)</li>
+<li>Uma nova janela se abre — essa é a <strong>janela do editor de textos</strong></li>
+<li>Digite seu programa:<br/>
+<pre class="py"><span class="pylab">teste.py</span><button class="cp">Copiar</button><code><span class="function">print</span>(<span class="string">"Oi"</span>)
+                    </code></pre>
+</li>
+<li>Salve com <strong>File → Save</strong> (Ctrl+S). Nomeie como <code>teste.py</code></li>
+<li>Execute com <strong>Run → Run Module</strong> (F5)</li>
+</ol>
+<p>O resultado aparecerá na janela do interpretador (Python Shell). Você verá a palavra <code>RESTART</code> seguida do resultado <code>Oi</code>.</p>
+<div class="box analogia"><div class="ic">💬</div><div>
+<p>💡 Lembre-se: a extensão <strong>.py</strong> não é adicionada automaticamente pelo IDLE. Sempre salve seus programas com a extensão .py!</p>
+</div></div>
+<h4 class="pyh">⚠ Cuidados ao digitar programas</h4>
+<p>Ao digitar um programa, preste atenção nestes detalhes:</p>
+<ul>
+<li><strong>Maiúsculas e minúsculas são diferentes</strong> — <code>print</code> funciona, <code>Print</code> dá erro. Python é <em>case-sensitive</em></li>
+<li><strong>Aspas devem ser abertas e fechadas</strong> — toda vez que abrir aspas, feche-as. O IDLE muda a cor do texto entre aspas para ajudar</li>
+<li><strong>Parênteses não são opcionais</strong> — não remova os parênteses das funções. Preste a mesma atenção que dá às aspas</li>
+<li><strong>Espaços são muito importantes</strong> — Python usa a <strong>indentação</strong> (espaços no início da linha) para organizar o código. Nunca junte duas linhas em uma só</li>
+</ul>
+<div class="box analogia"><div class="ic">💬</div><div>
+<p>“Organize seus programas em uma pasta específica no computador. Crie um diretório para cada capítulo. Com o tempo, essa organização vai facilitar muito.”</p>
+</div></div>
+<h3 id="c2-4">2.4 Os Primeiros Programas</h3>
+<p class="sec-sub">Anatomia do print(), calculadora e operadores</p>
+<h4 class="pyh">🔬 Anatomia do primeiro programa</h4>
+<p>Vamos analisar nosso primeiro programa em detalhes. Cada parte tem um nome e uma função específica:</p>
+<div class="anatomy-box">
+<code>print( "Oi" )</code>
+<div class="labels">
+<div class="label-item"><strong>print</strong>função</div>
+<div class="label-item"><strong>(  )</strong>parênteses</div>
+<div class="label-item"><strong>"  "</strong>aspas</div>
+<div class="label-item"><strong>Oi</strong>mensagem</div>
+</div>
+</div>
+<p>A função <code>print</code> informa que queremos <strong>exibir algo na tela</strong>. As aspas delimitam o texto (a mensagem). Os parênteses separam os parâmetros da função.</p>
+<p>Sempre que quisermos mostrar algo ao usuário — uma mensagem, uma pergunta ou o resultado de um cálculo — usaremos a função <code>print</code>.</p>
+<h4 class="pyh">🔢 Python como calculadora</h4>
+<p>O interpretador Python também funciona como uma poderosa calculadora. Experimente no IDLE:</p>
+<pre class="py nr"><span class="pylab">IDLE</span><button class="cp">Copiar</button><code><span class="prompt">&gt;&gt;&gt;</span> 2 + 3          <span class="comment"># Adição</span>
+<span class="output">5</span>
+<span class="prompt">&gt;&gt;&gt;</span> 5 - 3          <span class="comment"># Subtração</span>
+<span class="output">2</span>
+<span class="prompt">&gt;&gt;&gt;</span> 10 - 4 + 2     <span class="comment"># Combinação</span>
+<span class="output">8</span>
+<span class="prompt">&gt;&gt;&gt;</span> 2 * 10         <span class="comment"># Multiplicação</span>
+<span class="output">20</span>
+<span class="prompt">&gt;&gt;&gt;</span> 20 / 4         <span class="comment"># Divisão</span>
+<span class="output">5.0</span></code></pre>
+<p>Não se esqueça de pressionar <strong>Enter</strong> após cada linha para que o interpretador calcule o resultado.</p>
+<h4 class="pyh">📊 Tabela de operadores</h4>
+<p>Python usa símbolos específicos para cada operação matemática:</p>
+<table class="op-table">
+<thead>
+<tr><th>Operador</th><th>Operação</th><th>Exemplo</th><th>Resultado</th></tr>
+</thead>
+<tbody>
+<tr><td>+</td><td>Adição</td><td>2 + 3</td><td>5</td></tr>
+<tr><td>-</td><td>Subtração</td><td>5 - 3</td><td>2</td></tr>
+<tr><td>*</td><td>Multiplicação</td><td>2 * 10</td><td>20</td></tr>
+<tr><td>/</td><td>Divisão</td><td>20 / 4</td><td>5.0</td></tr>
+<tr><td>**</td><td>Exponenciação</td><td>2 ** 3</td><td>8</td></tr>
+<tr><td>%</td><td>Resto da divisão</td><td>10 % 3</td><td>1</td></tr>
+</tbody>
+</table>
+<pre class="py nr"><span class="pylab">IDLE</span><button class="cp">Copiar</button><code><span class="prompt">&gt;&gt;&gt;</span> 2 ** 3         <span class="comment"># 2 elevado a 3</span>
+<span class="output">8</span>
+<span class="prompt">&gt;&gt;&gt;</span> 10 % 3         <span class="comment"># Resto de 10 ÷ 3</span>
+<span class="output">1</span>
+<span class="prompt">&gt;&gt;&gt;</span> 16 % 7         <span class="comment"># Resto de 16 ÷ 7</span>
+<span class="output">2</span></code></pre>
+<h4 class="pyh">🎯 Precedência de operações</h4>
+<p>Assim como na matemática, Python segue uma <strong>ordem de prioridade</strong>:</p>
+<ol>
+<li><strong>Exponenciação</strong> (<code>**</code>)</li>
+<li><strong>Multiplicação, Divisão e Resto</strong> (<code>*</code>, <code>/</code>, <code>%</code>)</li>
+<li><strong>Adição e Subtração</strong> (<code>+</code>, <code>-</code>)</li>
+</ol>
+<p>Use <strong>parênteses</strong> para alterar a ordem ou para deixar a expressão mais clara:</p>
+<pre class="py nr"><span class="pylab">Exemplo</span><button class="cp">Copiar</button><code><span class="prompt">&gt;&gt;&gt;</span> 1500 + (1500 * 5 / 100)
+<span class="output">1575.0</span></code></pre>
+<div class="box analogia"><div class="ic">💬</div><div>
+<p>“Na dúvida, use parênteses! Além de garantir a ordem correta, eles tornam a fórmula mais fácil de ler.”</p>
+</div></div>
+<h3 id="c2-5">2.5 Variáveis e Atribuição</h3>
+<p class="sec-sub">Guardando valores na memória do computador</p>
+<h4 class="pyh">📦 O que são variáveis?</h4>
+<p>Além de cálculos simples, o interpretador também pode executar programas completos. Para isso, precisamos entender o conceito de <strong>variáveis</strong>.</p>
+<p>Na matemática, usamos incógnitas como <em>x</em> e <em>y</em>. Em programação, variáveis funcionam de forma parecida: são <strong>nomes que dão acesso a uma área da memória</strong> do computador onde armazenamos dados.</p>
+<p>Imagine a memória como uma grande <strong>estante com compartimentos</strong>. Cada compartimento tem um nome. Para guardar algo, usamos o símbolo de igualdade (<code>=</code>). Chamamos isso de <strong>atribuição</strong>: a variável <em>recebe</em> um valor.</p>
+<h4 class="pyh">✍ Primeiro programa com variáveis</h4>
+<p>Observe este programa simples:</p>
+<pre class="py"><span class="pylab">Listagem 2.7</span><button class="cp">Copiar</button><code>a = <span class="number">2</span> <span class="comment"># a recebe 2</span>
+b = <span class="number">3</span> <span class="comment"># b recebe 3</span>
+<span class="function">print</span>(a + b)  <span class="comment"># exibe a soma</span></code></pre>
+<p><strong>Linha por linha:</strong></p>
+<ul>
+<li><code>a = 2</code> — Cria uma variável chamada <code>a</code> e armazena o valor <code>2</code></li>
+<li><code>b = 3</code> — Cria uma variável chamada <code>b</code> e armazena o valor <code>3</code></li>
+<li><code>print(a + b)</code> — Calcula <code>a + b</code> e exibe o resultado: <code>5</code></li>
+</ul>
+<p>Você pode testar isso direto no interpretador:</p>
+<pre class="py"><span class="pylab">IDLE</span><button class="cp">Copiar</button><code><span class="prompt">&gt;&gt;&gt;</span> a = <span class="number">2</span>
+<span class="prompt">&gt;&gt;&gt;</span> b = <span class="number">3</span>
+<span class="prompt">&gt;&gt;&gt;</span> <span class="function">print</span>(a + b)
+<span class="output">5</span></code></pre>
+<p>Note que as duas primeiras linhas não exibem nada na tela — elas apenas guardam os valores na memória. Só o <code>print</code> mostra o resultado.</p>
+<h4 class="pyh">💰 Exemplo prático: aumento de salário</h4>
+<p>Vamos a um exemplo do mundo real. Calcular um aumento de 5% sobre um salário de R$ 1500:</p>
+<pre class="py"><span class="pylab">Listagem 2.11</span><button class="cp">Copiar</button><code>salário = <span class="number">1500</span>
+aumento = <span class="number">5</span>
+<span class="function">print</span>(salário + (salário * aumento / <span class="number">100</span>))</code></pre>
+<pre class="py nr"><span class="pylab">Resultado</span><button class="cp">Copiar</button><code><span class="output">1575.0</span></code></pre>
+<p><strong>Por que usar variáveis em vez de números diretos?</strong></p>
+<ul>
+<li><strong>Clareza</strong> — <code>salário</code> é mais legível que <code>1500</code></li>
+<li><strong>Flexibilidade</strong> — se o salário mudar, basta alterar uma linha</li>
+<li><strong>Menos erros</strong> — o valor aparece em um só lugar, sem repetição</li>
+</ul>
+<p>Compare com a versão sem variáveis:</p>
+<pre class="py"><span class="pylab">Sem variáveis</span><button class="cp">Copiar</button><code><span class="function">print</span>(<span class="number">1500</span> + (<span class="number">1500</span> * <span class="number">5</span> / <span class="number">100</span>))</code></pre>
+<p>O resultado é o mesmo, mas se precisarmos mudar o salário, teremos que alterar em <strong>dois lugares</strong> — aumentando a chance de esquecer um e ter resultado incorreto.</p>
+<div class="box analogia"><div class="ic">💬</div><div>
+<p>“Variáveis são como células de uma planilha: você pode referenciá-las várias vezes e, quando o valor muda, tudo se atualiza automaticamente.”</p>
+</div></div>
+<h4 class="pyh" id="c2-lab">📝 Exercícios do Capítulo 2</h4>
+<p>Pratique o que aprendeu! Tente resolver estes exercícios no IDLE:</p>
+<div class="lab">
+<h3>✏ Exercício 2.1</h3>
+<p>Converta as expressões matemáticas abaixo para Python e calcule no interpretador:</p>
+<ol>
+<li><code>10 + 20 + 30</code></li>
+<li><code>4 - 30</code></li>
+<li><code>(9 - 2) * 6 - 1</code></li>
+</ol>
+</div>
+<div class="lab">
+<h3>✏ Exercício 2.2</h3>
+<p>Digite a seguinte expressão no interpretador:</p>
+<p><code>28 * 3 * 28 ** 2 + 1 - 10 * 4 / 2</code></p>
+<p>Tente resolver também no papel, usando lápis. A precedência importa!</p>
+</div>
+<div class="lab">
+<h3>✏ Exercício 2.3</h3>
+<p>Faça um programa que exiba <strong>seu nome</strong> na tela.</p>
+</div>
+<div class="lab">
+<h3>✏ Exercício 2.4</h3>
+<p>Escreva um programa que exiba o resultado de <strong>2a × 3b</strong>, onde <em>a</em> vale 3 e <em>b</em> vale 5.</p>
+</div>
+<div class="lab">
+<h3>✏ Exercício 2.5</h3>
+<p>Modifique o primeiro programa (Listagem 2.7) para calcular a soma de <strong>três</strong> variáveis.</p>
+</div>
+<div class="lab">
+<h3>✏ Exercício 2.6</h3>
+<p>Modifique o programa de aumento de salário (Listagem 2.11) para calcular um aumento de <strong>15%</strong> sobre um salário de <strong>R$ 750</strong>.</p>
+</div>
+
+  <h3 id="c2-tools">🛠️ Ferramentas do capítulo</h3>
+  <div class="tool" id="rp" style="--cc:var(--c2)">
+    <h4 style="margin-top:0">⌨️ Mini-interpretador (faz de conta)</h4>
+    <p>Treine sem instalar nada. Aceita números, textos, <code>+ - * / // ** %</code>, variáveis e <code>print(...)</code>. Não é o Python de verdade, mas se comporta de forma parecida.</p>
+    <div class="sugs" id="rpS"></div>
+    <div class="repl"><div class="out" id="rpO" aria-live="polite"></div>
+    <div class="rpl"><span>&gt;&gt;&gt;</span><input id="rpI" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Digite um comando Python"></div></div>
+    <div class="shelf" id="rpV"></div>
+    <div class="tool-ctl"><button type="button" id="rpC" class="alt">Limpar</button></div>
+  </div>
+  <div class="tool" id="pc" style="--cc:var(--c2)">
+    <h4 style="margin-top:0">🎯 Desafio da precedência</h4>
+    <p>Qual será o resultado? Pense primeiro, depois responda.</p>
+    <div class="mt-q" id="pcQ" aria-live="polite"></div>
+    <div class="tool-ctl"><input type="text" id="pcA" inputmode="decimal" placeholder="Seu resultado" aria-label="Seu resultado" style="padding:8px 10px;border-radius:8px;border:1px solid var(--borda,#ccc);font:inherit;width:140px"><button type="button" id="pcB">Conferir</button><button type="button" id="pcN" class="alt">Outra conta</button></div>
+    <p id="pcT" aria-live="polite"></p>
+  </div>
+
+  <div class="resumo"><h3>📝 Resumo do capítulo</h3><ul><li>O <b>interpretador</b> lê o seu programa e o executa, linha por linha.</li><li>O <b>IDLE</b> traz o prompt <code>&gt;&gt;&gt;</code> para testes rápidos e um editor para salvar programas em arquivos <code>.py</code>.</li><li>No IDLE, <b>File → New File</b> cria o arquivo e <b>F5</b> (Run Module) executa o programa.</li><li>Python diferencia <b>maiúsculas de minúsculas</b>, exige aspas e parênteses fechados e cobra <b>indentação</b> correta.</li><li><code>print(...)</code> mostra valores na tela; os operadores são <code>+ - * / ** %</code>.</li><li>A <b>precedência</b> manda: primeiro <code>**</code>, depois <code>* / %</code>, depois <code>+ -</code>; parênteses mudam a ordem.</li><li>Uma <b>variável</b> é um nome que guarda um valor; o <code>=</code> <b>atribui</b>, não compara.</li></ul></div>
+  <h3 id="c2-quiz">🧠 Quiz do capítulo 2</h3>
+  <p>Clique na resposta que você acha certa.</p>
+  <div class="quiz">
+    <div class="q"><p>1. Qual é o papel do interpretador do Python?</p>
+      <button class="opt">a) Desenhar telas e janelas</button><button class="opt" data-ok="1">b) Ler o programa e executá-lo, instrução por instrução</button><button class="opt">c) Guardar fotos e músicas</button><button class="opt">d) Conectar o computador à internet</button>
+      <div class="fb">O interpretador lê o seu código e faz o computador executá-lo. Sem ele, o arquivo <code>.py</code> é só texto.</div></div>
+    <div class="q"><p>2. No Windows, qual opção da instalação ajuda o Python a funcionar em qualquer pasta?</p>
+      <button class="opt" data-ok="1">a) Add Python to PATH</button><button class="opt">b) Run as administrator</button><button class="opt">c) Install for slow computers</button><button class="opt">d) Delete old files</button>
+      <div class="fb">Marcar <b>Add Python to PATH</b> deixa o comando <code>python</code> disponível em qualquer lugar.</div></div>
+    <div class="q"><p>3. O que significa o símbolo <code>&gt;&gt;&gt;</code> no IDLE?</p>
+      <button class="opt">a) Um erro grave</button><button class="opt">b) O programa terminou</button><button class="opt" data-ok="1">c) O interpretador está esperando um comando</button><button class="opt">d) O arquivo foi salvo</button>
+      <div class="fb">O <code>&gt;&gt;&gt;</code> é o prompt: o Python está pronto para receber o que você digitar.</div></div>
+    <div class="q"><p>4. Como executar um programa salvo no IDLE?</p>
+      <button class="opt" data-ok="1">a) Pressionar F5 (Run Module)</button><button class="opt">b) Fechar o IDLE</button><button class="opt">c) Abrir o arquivo no Word</button><button class="opt">d) Digitar exit()</button>
+      <div class="fb"><b>F5</b> (Run Module) salva e roda o arquivo aberto.</div></div>
+    <div class="q"><p>5. Por que não se deve escrever programas no Word?</p>
+      <button class="opt">a) Porque o Word é pago</button><button class="opt" data-ok="1">b) Porque ele insere formatação e aspas especiais que o Python não entende</button><button class="opt">c) Porque o Word é lento</button><button class="opt">d) Porque o Python só aceita arquivos .doc</button>
+      <div class="fb">Editores como o Word colocam formatações escondidas e aspas curvas. O Python quer texto puro.</div></div>
+    <div class="q"><p>6. Qual é o resultado de <code>2 + 3 * 4</code> em Python?</p>
+      <button class="opt">a) 20</button><button class="opt" data-ok="1">b) 14</button><button class="opt">c) 24</button><button class="opt">d) 9</button>
+      <div class="fb">A multiplicação vem antes da soma: 3 * 4 = 12 e 2 + 12 = 14. Com parênteses, <code>(2 + 3) * 4</code> daria 20.</div></div>
+    <div class="q"><p>7. O que faz a linha <code>a = 5</code>?</p>
+      <button class="opt">a) Pergunta se a é igual a 5</button><button class="opt" data-ok="1">b) Guarda o valor 5 na variável a</button><button class="opt">c) Apaga a variável a</button><button class="opt">d) Mostra 5 na tela</button>
+      <div class="fb">O <code>=</code> é <b>atribuição</b>: guarda o valor na variável. Não mostra nada na tela.</div></div>
+    <div class="q"><p>8. Em Python, <code>Nome</code> e <code>nome</code> são a mesma variável?</p>
+      <button class="opt">a) Sim, sempre</button><button class="opt" data-ok="1">b) Não, maiúsculas e minúsculas fazem diferença</button><button class="opt">c) Só no Windows</button><button class="opt">d) Só dentro do print</button>
+      <div class="fb">Python é <i>case-sensitive</i>: <code>Nome</code> e <code>nome</code> são nomes diferentes.</div></div>
+  </div>
+  <div class="score"></div>
+  <h3>✍️ Questões abertas</h3>
+  <div class="open"><p><b>1.</b> Explique, com suas palavras, a diferença entre o interpretador e o editor de textos.</p>
+    <button>Ver resposta</button><div class="answer">O interpretador executa comandos um a um e mostra o resultado na hora; é bom para testar. O editor guarda o programa inteiro em um arquivo, que pode ser salvo e executado de novo. Analogia: conversar com alguém (interpretador) versus escrever uma carta (editor).</div></div>
+  <div class="open"><p><b>2.</b> Calcule no papel e depois confira no IDLE: <code>28 * 3 * 28 ** 2 + 1 - 10 * 4 / 2</code>.</p>
+    <button>Ver resposta</button><div class="answer">Primeiro <code>28 ** 2</code> = 784; depois as multiplicações e a divisão: 28 * 3 * 784 = 65856 e 10 * 4 / 2 = 20.0; por fim 65856 + 1 - 20.0 = <b>65837.0</b>.</div></div>
+  <div class="open"><p><b>3.</b> Se <code>a = 2</code> e <code>b = 3</code>, qual é o valor de <code>a * b + 1</code> depois de executar <code>a = 10</code>?</p>
+    <button>Ver resposta</button><div class="answer">Com <code>a = 10</code>, o novo valor é 10 * 3 + 1 = <b>31</b>. A variável guarda só o último valor atribuído.</div></div>
+  <div class="open"><p><b>4.</b> Cite dois cuidados ao digitar um programa em Python.</p>
+    <button>Ver resposta</button><div class="answer">Por exemplo: respeitar maiúsculas e minúsculas, fechar aspas e parênteses, e manter a indentação correta.</div></div>
+
+  <div class="box dica" style="margin-top:28px"><div class="ic">📚</div><div><h5>Para saber mais</h5><p>Documentação oficial: <i>O tutorial de Python</i>, seção “Usando o interpretador Python”, em docs.python.org/pt-br/3/tutorial/. Teste também o IDLE no seu computador: aprender a digitar e errar é a melhor parte.</p></div></div>
+</section>
 <section class="chapter soon-ch" id="cap3" style="--cc:var(--c3)"><div class="chap-head"><div class="chap-num" style="background:var(--c3)">3</div><div><small>Capítulo 3</small><h2>Variáveis e entrada</h2></div></div><div class="soon-card">⏳ Este capítulo será publicado em breve.</div></section>
 <section class="chapter soon-ch" id="cap4" style="--cc:var(--c4)"><div class="chap-head"><div class="chap-num" style="background:var(--c4)">4</div><div><small>Capítulo 4</small><h2>Condições</h2></div></div><div class="soon-card">⏳ Este capítulo será publicado em breve.</div></section>
 <section class="chapter soon-ch" id="cap5" style="--cc:var(--c5)"><div class="chap-head"><div class="chap-num" style="background:var(--c5)">5</div><div><small>Capítulo 5</small><h2>Repetições</h2></div></div><div class="soon-card">⏳ Este capítulo será publicado em breve.</div></section>
