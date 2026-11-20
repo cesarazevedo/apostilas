@@ -230,15 +230,15 @@ html[data-theme=dark]{--verde-claro:#10263a}
     <h3>🧪 Laboratório 1 – Instalando o VirtualBox e criando a primeira VM</h3>
     <ol class="steps">
       <li><b>Confira a virtualização.</b> No Windows, veja no Gerenciador de Tarefas se ela está habilitada. Se não estiver, ative <b>Intel VT-x</b> ou <b>AMD-V</b> na BIOS/UEFI.</li>
-      <li><b>Instale o VirtualBox</b> (virtualbox.org) e baixe a imagem <b>ISO “netinst”</b> do Debian (debian.org).</li>
-      <li><b>Crie a VM.</b> Clique em <b>Nova</b> e use: nome <code>debian1</code>; tipo <b>Linux / Debian (64-bit)</b>; <b>2 GB</b> de memória; <b>2 CPUs</b>; disco virtual de <b>20 GB</b> (alocado dinamicamente).</li>
+      <li><b>Instale o VirtualBox</b> (virtualbox.org) e baixe a imagem <b>ISO do Ubuntu Server 26.04 LTS</b> (ubuntu.com/download/server, cerca de 3 GB).</li>
+      <li><b>Crie a VM.</b> Clique em <b>Nova</b> e use: nome <code>ubuntu1</code>; tipo <b>Linux / Ubuntu (64-bit)</b>; <b>2 GB</b> de memória; <b>2 CPUs</b>; disco virtual de <b>20 GB</b> (alocado dinamicamente).</li>
       <li><b>Inicie a VM</b> com a ISO e avance até o menu do instalador. A instalação completa será feita no capítulo 3. Aqui, o objetivo é ver o “computador” ligar.</li>
       <li><b>Crie um snapshot.</b> No menu da VM, escolha <b>Instantâneos → Tirar</b> e dê o nome <code>inicio</code>.</li>
       <li><b>Desafio:</b> altere uma configuração da VM, depois <b>restaure o snapshot</b>. O que voltou ao que era? Experimente também <b>clonar</b> a VM (clone completo × vinculado).</li>
     </ol>
 
     <h3>🧪 Laboratório 2 – Uma rede interna entre duas VMs</h3>
-    <p><b>Objetivo:</b> ligar duas VMs por um switch virtual e testar a conexão. Use duas VMs com Debian (por exemplo, a <code>debian1</code> e um clone dela).</p>
+    <p><b>Objetivo:</b> ligar duas VMs por um switch virtual e testar a conexão. Use duas VMs com Ubuntu (por exemplo, a <code>ubuntu1</code> e um clone dela).</p>
     <ol class="steps">
       <li><b>Configure a rede.</b> Com as VMs desligadas, abra <b>Configurações → Rede → Adaptador 2</b>, ative-o, escolha <b>Rede interna</b> e dê o nome <code>lab</code>, nas duas VMs. Deixe o Adaptador 1 em <b>NAT</b> (para ter Internet).</li>
       <li><b>Descubra o nome da interface.</b> Dentro de cada VM, rode o comando abaixo. O Adaptador 2 costuma ser <code>enp0s8</code>.
@@ -255,19 +255,19 @@ sudo ip link set enp0s8 up</code></pre>
     </ol>
 
     <h3>🧪 Laboratório 3 (opcional) – Conhecendo containers</h3>
-    <p>Se houver tempo, em uma VM Debian com Internet (adaptador em NAT):</p>
+    <p>Se houver tempo, em uma VM Ubuntu com Internet (adaptador em NAT):</p>
     <ol class="steps">
       <li><b>Instale o Docker.</b>
 <pre><button class="cp">Copiar</button><code>sudo apt update
 sudo apt install -y docker.io</code></pre></li>
       <li><b>Rode o primeiro container.</b>
 <pre><button class="cp">Copiar</button><code>sudo docker run hello-world</code></pre></li>
-      <li><b>Entre em um container Debian</b> e veja o kernel:
+      <li><b>Entre em um container de outra distribuição</b> (Debian) e veja o kernel:
 <pre><button class="cp">Copiar</button><code>sudo docker run -it debian:stable bash
 cat /etc/os-release
 uname -r
 exit</code></pre>
-        Compare o <code>uname -r</code> com o da VM (rode também fora do container). O kernel é o <b>mesmo</b>, porque o container não tem kernel próprio.</li>
+        Compare o <code>uname -r</code> com o da VM (rode também fora do container). O kernel é o <b>mesmo</b>, porque o container não tem kernel próprio, mas o <code>os-release</code> mostra uma distribuição <b>diferente</b> (Debian dentro, Ubuntu fora).</li>
       <li><b>Compare.</b> Quanto tempo o container levou para iniciar, em comparação com ligar uma VM?</li>
     </ol>
   </div>
@@ -322,7 +322,7 @@ exit</code></pre>
   <div class="open"><p><b>4.</b> Quando é melhor usar um container em vez de uma VM, e quando é melhor usar uma VM?</p>
     <button>Ver resposta</button><div class="answer">O container é melhor para empacotar e rodar rapidamente um serviço ou aplicação, com pouco uso de recursos. A VM é melhor quando se precisa de um sistema operacional completo e diferente do hospedeiro (ex.: Windows em um host Linux) ou de isolamento mais forte.</div></div>
 
-  <div class="box dica" style="margin-top:28px"><div class="ic">📚</div><div><h5>Para saber mais</h5><p>O <b>Manual do Usuário do VirtualBox</b> (virtualbox.org/manual) tem um capítulo completo sobre redes virtuais, e a <b>documentação do Debian</b> (debian.org/doc) ajuda na instalação dos laboratórios.</p></div></div>
+  <div class="box dica" style="margin-top:28px"><div class="ic">📚</div><div><h5>Para saber mais</h5><p>O <b>Manual do Usuário do VirtualBox</b> (virtualbox.org/manual) tem um capítulo completo sobre redes virtuais, e a <b>documentação do Ubuntu Server</b> (ubuntu.com/server/docs) ajuda na instalação dos laboratórios.</p></div></div>
 </section>
 
 <!-- ================= CAPÍTULOS EM CONSTRUÇÃO ================= -->
@@ -651,7 +651,7 @@ nslookup arquivos.escola.local</code></pre></li>
   <div class="obj"><h4>🎯 Ao final deste capítulo, você será capaz de:</h4>
     <ul>
       <li>Explicar o que é Linux, a diferença entre kernel e distribuição e por que ele é tão usado em servidores.</li>
-      <li>Instalar e fazer a configuração inicial de um Linux Server (Debian).</li>
+      <li>Instalar e fazer a configuração inicial de um Linux Server (Ubuntu Server).</li>
       <li>Usar os principais comandos, gerenciar usuários, grupos, arquivos e permissões.</li>
       <li>Configurar a rede, acompanhar processos e manter pacotes e serviços.</li>
       <li>Instalar e configurar SSH, DNS, DHCP, SMB (Samba) e servidor web.</li>
@@ -660,11 +660,11 @@ nslookup arquivos.escola.local</code></pre></li>
 
   <h3 id="c3-visao">3.1 Visão geral do Linux para servidores</h3>
   <p><b>Linux</b> é, a rigor, o <b>kernel</b>: o núcleo que controla o hardware. O que instalamos é uma <b>distribuição</b>: o kernel mais programas, ferramentas e um gerenciador de pacotes, reunidos por uma comunidade ou empresa. Ele é <b>software livre</b>: o código é aberto e pode ser estudado, modificado e distribuído.</p>
-  <div class="box analogia"><div class="ic">💡</div><div><h5>Pense assim...</h5><p>O <b>kernel</b> é o <b>motor</b>. A <b>distribuição</b> é o <b>carro completo</b>, montado por uma fabricante: o mesmo motor pode vir em carros diferentes (Debian, Ubuntu, Rocky...), cada um com seu estilo e suas peças.</p></div></div>
+  <div class="box analogia"><div class="ic">💡</div><div><h5>Pense assim...</h5><p>O <b>kernel</b> é o <b>motor</b>. A <b>distribuição</b> é o <b>carro completo</b>, montado por uma fabricante: o mesmo motor pode vir em carros diferentes (Ubuntu, Debian, Rocky...), cada um com seu estilo e suas peças.</p></div></div>
   <table>
     <tr><th>Distribuição</th><th>Família</th><th>Características</th></tr>
-    <tr><td><b>Debian</b></td><td>Debian (apt)</td><td>Muito estável, comunitária, base de muitas outras. É a que usaremos.</td></tr>
-    <tr><td><b>Ubuntu Server</b></td><td>Debian (apt)</td><td>Baseada no Debian, com versões de suporte longo (LTS), muito usada em nuvem.</td></tr>
+    <tr><td><b>Ubuntu Server</b></td><td>Debian (apt)</td><td>Mantida pela empresa Canonical, com versões de suporte longo (<b>LTS</b>: 5 anos de atualizações) e muito usada em nuvem. <b>É a que usaremos</b> (versão 26.04 LTS; a 24.04 LTS funciona igual).</td></tr>
+    <tr><td><b>Debian</b></td><td>Debian (apt)</td><td>Muito estável e comunitária. É a base na qual o Ubuntu foi construído.</td></tr>
     <tr><td><b>Rocky Linux / AlmaLinux</b></td><td>Red Hat (dnf)</td><td>Compatíveis com o Red Hat Enterprise Linux, comuns em empresas.</td></tr>
   </table>
   <h3 style="font-size:18px;margin-top:14px">Por que Linux em servidores?</h3>
@@ -684,12 +684,12 @@ nslookup arquivos.escola.local</code></pre></li>
   <p>Não é uma disputa: muitas redes usam <b>os dois</b>. Um técnico completo sabe administrar ambos.</p>
 
   <h3 id="c3-inst">3.2 Instalação e configurações iniciais</h3>
-  <p>Instalar um Linux Server é parecido com instalar um sistema comum, com uma diferença: <b>não instalamos interface gráfica</b>. Ela gasta memória e abre mais portas de ataque. Na instalação do Debian você vai definir:</p>
+  <p>Instalar um Linux Server é parecido com instalar um sistema comum, com uma diferença: <b>não instalamos interface gráfica</b>. Ela gasta memória e abre mais portas de ataque. Na instalação do Ubuntu Server você vai definir:</p>
   <ul>
     <li><b>Nome da máquina</b> (<i>hostname</i>), por exemplo <code>srv-linux</code>.</li>
-    <li><b>Usuário administrador.</b> Dica: <b>deixe a senha do root em branco</b>. O Debian então cria o seu usuário com poder de administrador, via <code>sudo</code>.</li>
+    <li><b>Usuário administrador.</b> O Ubuntu <b>não pede senha do root</b> (a conta fica bloqueada): o usuário que você cria já entra no grupo <code>sudo</code> e administra o sistema com ele.</li>
     <li><b>Particionamento:</b> como dividir o disco. Para estudo, use “disco inteiro” com tudo em uma partição. Em servidores reais, separam-se áreas como <code>/var</code> (logs) e <code>/home</code>.</li>
-    <li><b>Seleção de software:</b> <b>desmarque</b> o ambiente gráfico e marque <b>servidor SSH</b> e <b>utilitários padrão do sistema</b>.</li>
+    <li><b>Acesso remoto:</b> marque <b>Install OpenSSH server</b> e <b>não escolha</b> os “featured server snaps” (programas extras). Não existe ambiente gráfico na instalação do servidor.</li>
   </ul>
   <div class="box dica"><div class="ic">✅</div><div><h5>Depois de instalar</h5><p>Faça logo: <b>atualizar</b> o sistema (<code>apt update</code> e <code>apt upgrade</code>), conferir a <b>rede</b>, acertar o <b>fuso horário</b> e, se for o caso, criar um <b>snapshot</b>.</p></div></div>
   <h3 style="font-size:18px;margin-top:14px">A árvore de diretórios</h3>
@@ -786,14 +786,16 @@ nslookup arquivos.escola.local</code></pre></li>
     <tr><td><code>hostname</code>, <code>/etc/hostname</code></td><td>Nome da máquina.</td></tr>
     <tr><td><code>/etc/hosts</code></td><td>Lista local de “nome → IP”, consultada antes do DNS.</td></tr>
     <tr><td><code>/etc/resolv.conf</code></td><td>Servidores DNS usados pela máquina.</td></tr>
-    <tr><td><code>/etc/network/interfaces</code></td><td>Configuração de IP fixo ou DHCP no Debian (instalação sem interface gráfica).</td></tr>
+    <tr><td><code>/etc/netplan/*.yaml</code></td><td>Configuração de IP fixo ou DHCP no Ubuntu (<b>netplan</b>).</td></tr>
   </table>
-  <p>Exemplo de IP fixo no <code>/etc/network/interfaces</code>:</p>
-  <pre><button class="cp">Copiar</button><code>auto enp0s8
-iface enp0s8 inet static
-    address 192.168.60.10
-    netmask 255.255.255.0</code></pre>
-  <p>Para aplicar: <code>sudo ifup enp0s8</code>. Para usar DHCP, troque <code>static</code> por <code>dhcp</code> e apague as linhas de endereço. <b>O nome da interface varia</b> (<code>enp0s3</code>, <code>enp0s8</code>, <code>eth0</code>...): descubra com <code>ip -br a</code>.</p>
+  <p>No Ubuntu, a rede é descrita em arquivos <b>YAML</b> na pasta <code>/etc/netplan/</code>. Exemplo de IP fixo em um arquivo novo, <code>/etc/netplan/60-lab.yaml</code>:</p>
+  <pre><button class="cp">Copiar</button><code>network:
+  version: 2
+  ethernets:
+    enp0s8:
+      dhcp4: false
+      addresses: [192.168.60.10/24]</code></pre>
+  <p>Para aplicar: <code>sudo netplan apply</code>. Para usar DHCP, troque por <code>dhcp4: true</code> e apague a linha <code>addresses</code>. No YAML <b>a indentação importa</b>: use só espaços (nunca Tab). Se o netplan reclamar das permissões, rode <code>sudo chmod 600 /etc/netplan/60-lab.yaml</code>. <b>O nome da interface varia</b> (<code>enp0s3</code>, <code>enp0s8</code>, <code>eth0</code>...): descubra com <code>ip -br a</code>.</p>
 
   <h3 style="font-size:18px;margin-top:14px">Processos e serviços</h3>
   <p>Todo programa em execução é um <b>processo</b>, com um número (PID). Os <b>serviços</b> (como o SSH ou o servidor web) são processos que ficam rodando em segundo plano e são controlados pelo <b>systemd</b>.</p>
@@ -809,9 +811,9 @@ iface enp0s8 inet static
   <div class="box dica"><div class="ic">✅</div><div><h5>Quando um serviço não sobe</h5><p>1) <code>systemctl status nome</code>; 2) <code>journalctl -u nome -n 30</code> para ler o erro; 3) teste a configuração (a maioria dos serviços tem um comando para isso); 4) corrija e reinicie. <b>Quase sempre o erro é um ponto-e-vírgula ou uma letra errada no arquivo.</b></p></div></div>
 
   <h3 style="font-size:18px;margin-top:14px">Manutenção de pacotes</h3>
-  <p>No Linux, instala-se software por um <b>gerenciador de pacotes</b>, a “loja de aplicativos” oficial da distribuição. No Debian, o <code>apt</code>.</p>
+  <p>No Linux, instala-se software por um <b>gerenciador de pacotes</b>, a “loja de aplicativos” oficial da distribuição. No Ubuntu (e no Debian), o <code>apt</code>.</p>
   <table>
-    <tr><th>Tarefa</th><th>Debian / Ubuntu (apt)</th><th>Rocky / Alma (dnf)</th></tr>
+    <tr><th>Tarefa</th><th>Ubuntu / Debian (apt)</th><th>Rocky / Alma (dnf)</th></tr>
     <tr><td>Atualizar a lista</td><td><code>sudo apt update</code></td><td>(automático)</td></tr>
     <tr><td>Atualizar os programas</td><td><code>sudo apt upgrade</code></td><td><code>sudo dnf upgrade</code></td></tr>
     <tr><td>Instalar</td><td><code>sudo apt install apache2</code></td><td><code>sudo dnf install httpd</code></td></tr>
@@ -824,7 +826,7 @@ iface enp0s8 inet static
   <h3 id="c3-serv">3.4 Serviços de rede no Linux</h3>
   <p>Todos seguem o mesmo caminho: <b>instalar o pacote → editar o arquivo de configuração → testar a configuração → (re)iniciar o serviço → testar de um cliente</b>.</p>
   <table>
-    <tr><th>Serviço</th><th>Pacote (Debian)</th><th>Serviço systemd</th><th>Configuração</th><th>Porta</th></tr>
+    <tr><th>Serviço</th><th>Pacote (Ubuntu)</th><th>Serviço systemd</th><th>Configuração</th><th>Porta</th></tr>
     <tr><td><b>SSH</b></td><td>openssh-server</td><td><code>ssh</code></td><td><code>/etc/ssh/sshd_config</code></td><td>22 TCP</td></tr>
     <tr><td><b>DNS</b></td><td>bind9</td><td><code>bind9</code></td><td><code>/etc/bind/</code></td><td>53 UDP/TCP</td></tr>
     <tr><td><b>DHCP</b></td><td>isc-dhcp-server</td><td><code>isc-dhcp-server</code></td><td><code>/etc/dhcp/dhcpd.conf</code></td><td>67/68 UDP</td></tr>
@@ -863,14 +865,14 @@ subnet 192.168.60.0 netmask 255.255.255.0 {
   range 192.168.60.100 192.168.60.200;
   option routers 192.168.60.10;
 }</code></pre>
-  <div class="box atencao"><div class="ic">⚠️</div><div><h5>Sobre o ISC DHCP</h5><p>A ISC encerrou a manutenção do <i>isc-dhcp</i> e recomenda o <b>Kea</b>. O pacote ainda existe no Debian (marcado como “obsoleto”) e a lógica (escopo, opções, reservas) é a mesma em qualquer servidor DHCP, por isso é bom para aprender. Em produção nova, avalie o <b>Kea</b> ou o <b>dnsmasq</b> (que faz DNS e DHCP em um só programa, ótimo para redes pequenas).</p></div></div>
+  <div class="box atencao"><div class="ic">⚠️</div><div><h5>Sobre o ISC DHCP</h5><p>A ISC encerrou a manutenção do <i>isc-dhcp</i> e recomenda o <b>Kea</b>. Na documentação do Ubuntu, o pacote consta como <b>obsoleto e sem suporte desde o 24.04 LTS</b>, mas ainda pode ser instalado, e a lógica (escopo, opções, reservas) é a mesma em qualquer servidor DHCP, por isso é bom para aprender. Em produção nova, avalie o <b>Kea</b> ou o <b>dnsmasq</b> (que faz DNS e DHCP em um só programa, ótimo para redes pequenas).</p></div></div>
 
   <h3 style="font-size:18px;margin-top:14px">SMB com Samba</h3>
   <p>O <b>SMB</b> é o protocolo de compartilhamento de arquivos do Windows. O <b>Samba</b> faz o Linux falar SMB, então Windows, Linux e celulares acessam as mesmas pastas. Cada compartilhamento é um bloco no <code>smb.conf</code>, e os usuários do Samba precisam existir também no Linux (e ter senha própria do Samba, com <code>smbpasswd</code>). Permissões: valem as do compartilhamento <b>e</b> as do Linux, como no Windows (vence a mais restritiva).</p>
 
   <h3 style="font-size:18px;margin-top:14px">Servidor web com Apache</h3>
   <p>O <b>Apache</b> entrega páginas por HTTP. Logo após instalar, já funciona: a página padrão fica em <code>/var/www/html</code>. Os registros de acesso e erros ficam em <code>/var/log/apache2/</code>. Para vários sites no mesmo servidor, usam-se os <b>hosts virtuais</b> (um arquivo em <code>sites-available</code> para cada site, ativado com <code>a2ensite</code>).</p>
-  <div class="box atencao"><div class="ic">⚠️</div><div><h5>E o firewall?</h5><p>O Debian recém-instalado <b>não tem regras de firewall</b>: todas as portas dos serviços instalados ficam acessíveis. Em produção, use um firewall (por exemplo, o <code>ufw</code>) e libere só o necessário. <b>Libere o SSH antes de ativar</b>, senão você se tranca para fora: <code>sudo ufw allow 22/tcp</code> e depois <code>sudo ufw enable</code>. Lembre do capítulo de segurança da apostila de Redes.</p></div></div>
+  <div class="box atencao"><div class="ic">⚠️</div><div><h5>E o firewall?</h5><p>O Ubuntu Server já traz o <code>ufw</code> (um firewall fácil de usar), mas ele vem <b>desativado</b>: todas as portas dos serviços instalados ficam acessíveis. Em produção, ative-o e libere só o necessário. <b>Libere o SSH antes de ativar</b>, senão você se tranca para fora: <code>sudo ufw allow 22/tcp</code> e depois <code>sudo ufw enable</code>. Lembre do capítulo de segurança da apostila de Redes.</p></div></div>
 
   <!-- ATIVIDADES / LABS -->
   <div class="lab" id="c3-lab">
@@ -882,18 +884,18 @@ subnet 192.168.60.0 netmask 255.255.255.0 {
       <li>Troquem as respostas entre equipes e discutam as diferenças. Quando o <code>777</code> é uma boa ideia? (Dica: quase nunca.)</li>
     </ol>
 
-    <h3>🧪 Laboratório 9 – Instalando o Debian Server</h3>
+    <h3>🧪 Laboratório 9 – Instalando o Ubuntu Server</h3>
     <ol class="steps">
-      <li><b>Crie a VM</b> <code>srv-linux</code> no VirtualBox: Linux / Debian 64-bit, <b>2 GB</b>, 2 CPUs, disco de <b>20 GB</b>, com a ISO “netinst” do Debian (a mesma do capítulo 1). Marque <b>Skip Unattended Installation</b>.</li>
+      <li><b>Crie a VM</b> <code>srv-linux</code> no VirtualBox: Linux / Ubuntu 64-bit, <b>2 GB</b>, 2 CPUs, disco de <b>20 GB</b>, com a ISO do Ubuntu Server (a mesma do capítulo 1). Marque <b>Skip Unattended Installation</b>.</li>
       <li><b>Rede.</b> Adaptador 1 em <b>NAT</b> (Internet para baixar pacotes) e Adaptador 2 em <b>Rede interna</b> chamada <code>lablinux</code>.</li>
-      <li><b>Instale</b> escolhendo <i>Install</i> (modo texto): idioma português do Brasil; nome da máquina <code>srv-linux</code>; domínio em branco; <b>senha do root em branco</b> (o seu usuário ganha <code>sudo</code>); crie o seu usuário; particionamento <b>“Assistido, disco inteiro”</b>; na seleção de software, <b>desmarque o ambiente gráfico</b> (e o “GNOME”) e deixe marcados apenas <b>servidor SSH</b> e <b>utilitários de sistema padrão</b>.</li>
+      <li><b>Instale</b> seguindo as telas do instalador (em modo texto; use as setas, <b>Espaço</b> para marcar e <b>Enter</b> para confirmar): idioma e teclado em português do Brasil; tipo <b>Ubuntu Server</b>; rede (deixe como está: a placa NAT pega IP sozinha e a placa da rede interna ficará sem IP, o que é normal); proxy em branco e espelho (<i>mirror</i>) padrão; disco <b>“Use an entire disk”</b> (aceite as sugestões); perfil: <b>seu nome</b>, nome do servidor <code>srv-linux</code>, <b>seu usuário</b> e senha; pule o Ubuntu Pro; marque <b>Install OpenSSH server</b>; não escolha nenhum snap. As telas podem variar um pouco entre versões. Ao terminar, escolha <i>Reboot</i> e, se pedir, remova a ISO.</li>
       <li><b>Primeiro acesso.</b> Entre com seu usuário e rode:
 <pre><button class="cp">Copiar</button><code>whoami
 hostnamectl
 ip -br a
 sudo apt update
 sudo apt upgrade -y</code></pre></li>
-      <li><b>Crie um snapshot</b> chamado <code>debian-base</code>. Ele será a base para os próximos laboratórios.</li>
+      <li><b>Crie um snapshot</b> chamado <code>ubuntu-base</code>. Ele será a base para os próximos laboratórios.</li>
     </ol>
 
     <h3>🧪 Laboratório 10 – Comandos, usuários, grupos e permissões</h3>
@@ -929,14 +931,17 @@ sudo -u joao ls /srv/escola/notas</code></pre>
     <h3>🧪 Laboratório 11 – Rede, processos e pacotes</h3>
     <ol class="steps">
       <li><b>Configure o IP fixo</b> na segunda placa (confira o nome com <code>ip -br a</code>; costuma ser <code>enp0s8</code>):
-<pre><button class="cp">Copiar</button><code>sudo nano /etc/network/interfaces
-# acrescente no final:
-auto enp0s8
-iface enp0s8 inet static
-    address 192.168.60.10
-    netmask 255.255.255.0
+<pre><button class="cp">Copiar</button><code>sudo nano /etc/netplan/60-lab.yaml
+# conteúdo do arquivo (só espaços, sem Tab):
+network:
+  version: 2
+  ethernets:
+    enp0s8:
+      dhcp4: false
+      addresses: [192.168.60.10/24]
 
-sudo ifup enp0s8
+sudo chmod 600 /etc/netplan/60-lab.yaml
+sudo netplan apply
 ip -br a</code></pre></li>
       <li><b>Veja as portas abertas:</b> <code>sudo ss -tulpn</code>. Qual serviço escuta na porta 22?</li>
       <li><b>Brinque com processos:</b>
@@ -951,11 +956,13 @@ top</code></pre>
 sudo apt install -y htop
 htop
 sudo apt remove -y htop</code></pre></li>
-      <li><b>Clone</b> a VM (clone completo, gerando novos endereços MAC) com o nome <code>cli-linux</code>. Ela será o cliente dos próximos laboratórios. No clone, <b>mude o hostname</b> e o IP da segunda placa para <code>192.168.60.20</code>:
+      <li><b>Clone</b> a VM (clone completo, gerando novos endereços MAC) com o nome <code>cli-linux</code>. Ela será o cliente dos próximos laboratórios. No clone, <b>mude o hostname</b>, gere um <b>novo identificador de máquina</b> e troque o IP da segunda placa para <code>192.168.60.20</code>. (Clones idênticos têm o mesmo <code>machine-id</code>, e o DHCP pode confundir as duas máquinas no laboratório 13.)
 <pre><button class="cp">Copiar</button><code>sudo hostnamectl set-hostname cli-linux
 sudo sed -i 's/srv-linux/cli-linux/' /etc/hosts
-sudo nano /etc/network/interfaces   # address 192.168.60.20
-sudo ifdown enp0s8; sudo ifup enp0s8
+sudo rm /etc/machine-id
+sudo systemd-machine-id-setup
+sudo nano /etc/netplan/60-lab.yaml   # addresses: [192.168.60.20/24]
+sudo netplan apply
 ping 192.168.60.10</code></pre></li>
     </ol>
 
@@ -976,8 +983,9 @@ ssh maria@192.168.60.10</code></pre>
 #   PermitRootLogin no
 #   PasswordAuthentication no
 sudo sshd -t
-sudo systemctl restart ssh</code></pre>
-        Em outra janela, tente entrar com um usuário que <b>não</b> tem chave. O que acontece?</li>
+sudo systemctl restart ssh
+sudo sshd -T | grep -i passwordauthentication</code></pre>
+        O último comando mostra o valor <b>em uso</b>. Se ainda aparecer <code>yes</code>, outro arquivo está mandando: procure em <code>/etc/ssh/sshd_config.d/</code> (o Ubuntu costuma ter um arquivo ali) e ajuste lá. Em outra janela, tente entrar com um usuário que <b>não</b> tem chave. O que acontece?</li>
     </ol>
 
     <h3>🧪 Laboratório 13 – DHCP e DNS no servidor</h3>
@@ -1001,8 +1009,8 @@ dig @192.168.60.10 www.escola.internal</code></pre></li>
 <pre><button class="cp">Copiar</button><code>sudo dhcpd -t -cf /etc/dhcp/dhcpd.conf
 sudo systemctl restart isc-dhcp-server
 systemctl status isc-dhcp-server</code></pre></li>
-      <li><b>Cliente por DHCP.</b> No <code>cli-linux</code>, em <code>/etc/network/interfaces</code>, troque a segunda placa para <code>iface enp0s8 inet dhcp</code> (apague as linhas de endereço), e rode:
-<pre><button class="cp">Copiar</button><code>sudo ifdown enp0s8; sudo ifup enp0s8
+      <li><b>Cliente por DHCP.</b> No <code>cli-linux</code>, em <code>/etc/netplan/60-lab.yaml</code>, troque a segunda placa para <code>dhcp4: true</code> (apague a linha <code>addresses</code>), e rode:
+<pre><button class="cp">Copiar</button><code>sudo netplan apply
 ip -br a
 dig @192.168.60.10 www.escola.internal</code></pre>
         Qual IP veio? No servidor, veja a concessão: <code>sudo cat /var/lib/dhcp/dhcpd.leases</code>.</li>
@@ -1046,11 +1054,11 @@ curl -H "Host: www.escola.internal" http://192.168.60.10</code></pre>
   <div class="resumo">
     <h3>📝 Resumo do capítulo</h3>
     <ul>
-      <li><b>Linux</b> é o kernel; a <b>distribuição</b> (Debian, Ubuntu, Rocky...) é o sistema completo. É livre, estável e muito usado em servidores.</li>
+      <li><b>Linux</b> é o kernel; a <b>distribuição</b> (Ubuntu, Debian, Rocky...) é o sistema completo. É livre, estável e muito usado em servidores.</li>
       <li>Instala-se o servidor <b>sem interface gráfica</b>, com SSH. Tudo parte de uma raiz <code>/</code>; as configurações ficam em <code>/etc</code> e os logs em <code>/var/log</code>.</li>
       <li>Comandos básicos: <code>pwd</code>, <code>ls</code>, <code>cd</code>, <code>mkdir</code>, <code>cp</code>, <code>mv</code>, <code>rm</code>, <code>cat</code>, <code>grep</code>, <code>sudo</code>, e o pipe <code>|</code>.</li>
       <li><b>Usuários e grupos</b>: <code>adduser</code>, <code>usermod -aG</code>, <code>id</code>. <b>Permissões</b> <code>rwx</code> para dono, grupo e outros, em números (4, 2, 1): <code>chmod 750</code>, <code>chown</code>.</li>
-      <li><b>Rede</b>: <code>ip -br a</code>, <code>/etc/network/interfaces</code>, <code>ss -tulpn</code>. <b>Serviços</b>: <code>systemctl</code> e <code>journalctl</code>. <b>Pacotes</b>: <code>apt update/install/remove</code>.</li>
+      <li><b>Rede</b>: <code>ip -br a</code>, <code>/etc/netplan/</code>, <code>ss -tulpn</code>. <b>Serviços</b>: <code>systemctl</code> e <code>journalctl</code>. <b>Pacotes</b>: <code>apt update/install/remove</code>.</li>
       <li>Serviços: <b>SSH</b> (22, prefira chaves), <b>BIND9</b> (DNS, zona e registros), <b>DHCP</b> (escopo e opções), <b>Samba</b> (SMB) e <b>Apache</b> (web). Sempre: instalar → configurar → testar a configuração → reiniciar → testar do cliente.</li>
     </ul>
   </div>
@@ -1066,9 +1074,9 @@ curl -H "Host: www.escola.internal" http://192.168.60.10</code></pre>
     <div class="q"><p>3. O que faz o comando <code>chmod 640 arquivo.txt</code>?</p>
       <button class="opt" data-ok="1">a) Dono lê e escreve, grupo só lê, outros não acessam</button><button class="opt">b) Todos podem escrever</button><button class="opt">c) Apenas o root acessa</button><button class="opt">d) Dono só lê; grupo e outros escrevem</button>
       <div class="fb">6 = rw- (dono), 4 = r-- (grupo), 0 = --- (outros). Ou seja: <b>dono lê e escreve, grupo só lê, outros nada</b>.</div></div>
-    <div class="q"><p>4. Qual comando instala o Apache no Debian?</p>
+    <div class="q"><p>4. Qual comando instala o Apache no Ubuntu?</p>
       <button class="opt">a) sudo install apache2</button><button class="opt" data-ok="1">b) sudo apt install apache2</button><button class="opt">c) sudo mkdir apache2</button><button class="opt">d) sudo ssh apache2</button>
-      <div class="fb">No Debian, os pacotes são instalados com o <b>apt</b>.</div></div>
+      <div class="fb">No Ubuntu (como no Debian), os pacotes são instalados com o <b>apt</b>.</div></div>
     <div class="q"><p>5. Para acrescentar a Maria ao grupo “professores” sem tirá-la dos outros grupos, usa-se:</p>
       <button class="opt">a) usermod -G professores maria</button><button class="opt" data-ok="1">b) usermod -aG professores maria</button><button class="opt">c) groupdel maria</button><button class="opt">d) passwd professores</button>
       <div class="fb">A opção <b>-a</b> (<i>append</i>) acrescenta. Sem ela, o <code>-G</code> substitui os grupos suplementares.</div></div>
@@ -1094,7 +1102,7 @@ curl -H "Host: www.escola.internal" http://192.168.60.10</code></pre>
   <div class="open"><p><b>4.</b> Descreva o passo a passo para descobrir por que o serviço do servidor web não está respondendo.</p>
     <button>Ver resposta</button><div class="answer">1) Verificar se o serviço está rodando: systemctl status apache2. 2) Ler os logs: journalctl -u apache2 e /var/log/apache2/error.log. 3) Testar a configuração (apache2ctl configtest). 4) Conferir se a porta 80 está aberta (ss -tulpn) e se há firewall bloqueando. 5) Testar do próprio servidor (curl localhost) e depois de um cliente, para separar problema de serviço de problema de rede.</div></div>
 
-  <div class="box dica" style="margin-top:28px"><div class="ic">📚</div><div><h5>Para saber mais</h5><p>O <b>Manual do Administrador Debian</b> (debian-handbook.info, em português) e a <b>documentação do Debian</b> (debian.org/doc) explicam cada tópico em profundidade. Para praticar, vale o <b>LPIC-1</b>, certificação citada na bibliografia complementar da disciplina.</p></div></div>
+  <div class="box dica" style="margin-top:28px"><div class="ic">📚</div><div><h5>Para saber mais</h5><p>A <b>documentação do Ubuntu Server</b> (ubuntu.com/server/docs) explica cada tópico em profundidade. Para praticar, vale o <b>LPIC-1</b>, certificação citada na bibliografia complementar da disciplina.</p></div></div>
 </section>
 <section class="chapter" id="cap4" style="--cc:var(--c4)">
   <div class="chap-head"><div class="chap-num" style="background:var(--c4)">4</div><div><small>Capítulo 4</small><h2>Introdução à computação em nuvem</h2></div></div>
@@ -1234,7 +1242,7 @@ curl -H "Host: www.escola.internal" http://192.168.60.10</code></pre>
     </ol>
 
     <h3>🧪 Laboratório 17 (opcional) – Minha nuvem privada com Nextcloud</h3>
-    <p><b>Objetivo:</b> montar um “Google Drive” próprio, juntando o que você aprendeu: VM, Linux e containers. Requer a VM Debian dos capítulos anteriores, com Docker (lab. 3 do capítulo 1) e <b>pelo menos 2 GB de memória</b>.</p>
+    <p><b>Objetivo:</b> montar um “Google Drive” próprio, juntando o que você aprendeu: VM, Linux e containers. Requer a VM Ubuntu dos capítulos anteriores, com Docker (lab. 3 do capítulo 1) e <b>pelo menos 2 GB de memória</b>.</p>
     <ol class="steps">
       <li><b>Libere uma porta</b> do hospedeiro para a VM: no VirtualBox, <b>Configurações → Rede → Adaptador 1 (NAT) → Avançado → Redirecionamento de portas</b>. Crie uma regra: protocolo TCP, porta do hospedeiro <code>8080</code>, porta do convidado <code>8080</code>.</li>
       <li><b>Suba o Nextcloud</b> em um container:
@@ -1249,7 +1257,7 @@ sudo docker ps</code></pre></li>
     <h3>🧪 Laboratório 18 (demonstração do professor) – Criando uma VM na nuvem</h3>
     <p>Se houver uma conta do professor (com orçamento limitado), a turma acompanha o passo a passo, que é parecido em qualquer provedor:</p>
     <ol class="steps">
-      <li>Escolher a <b>região</b> e criar uma <b>VM</b> (imagem Debian ou Ubuntu, tamanho <b>mínimo</b>).</li>
+      <li>Escolher a <b>região</b> e criar uma <b>VM</b> (imagem Ubuntu Server, tamanho <b>mínimo</b>).</li>
       <li>Criar ou enviar uma <b>chave SSH</b> (veja o capítulo 3) e conferir as <b>regras de firewall</b>: liberar só as portas necessárias.</li>
       <li>Conectar por <code>ssh usuario@IP-publico</code> e instalar o Apache (<code>sudo apt install apache2</code>).</li>
       <li>Abrir a porta 80 e acessar o IP no navegador.</li>
@@ -1290,7 +1298,7 @@ sudo docker ps</code></pre></li>
       <button class="opt">a) O provedor</button><button class="opt" data-ok="1">b) O cliente</button><button class="opt">c) O fabricante do processador</button><button class="opt">d) Ninguém</button>
       <div class="fb">Pela <b>responsabilidade compartilhada</b>, no IaaS o sistema operacional é do cliente.</div></div>
     <div class="q"><p>7. Qual destes é um provedor de nuvem pública?</p>
-      <button class="opt">a) Wireshark</button><button class="opt">b) Packet Tracer</button><button class="opt" data-ok="1">c) Microsoft Azure</button><button class="opt">d) Debian</button>
+      <button class="opt">a) Wireshark</button><button class="opt">b) Packet Tracer</button><button class="opt" data-ok="1">c) Microsoft Azure</button><button class="opt">d) Ubuntu</button>
       <div class="fb">Azure, AWS e Google Cloud são os principais provedores. Os outros são ferramentas e uma distribuição Linux.</div></div>
     <div class="q"><p>8. Qual é um risco importante ao usar a nuvem?</p>
       <button class="opt">a) Não é possível acessar de outro lugar</button><button class="opt" data-ok="1">b) Custos inesperados e configurações erradas que expõem dados</button><button class="opt">c) É impossível fazer backup</button><button class="opt">d) Só funciona com Windows</button>
@@ -1316,8 +1324,7 @@ sudo docker ps</code></pre></li>
   <h2>📚 Referências</h2>
   <p class="ref">ALVES, A. R. <b>Administração de servidores Linux</b>. Rio de Janeiro: Ciência Moderna, 2013.</p>
   <p class="ref">APACHE SOFTWARE FOUNDATION. <b>Apache HTTP Server documentation</b>. [<i>S. l.</i>], [s.d.]. Disponível em: https://httpd.apache.org/docs/. Acesso em: 20 nov. 2026.</p>
-  <p class="ref">DEBIAN. <b>Documentação do Projeto Debian</b>. [<i>S. l.</i>], [s.d.]. Disponível em: https://www.debian.org/doc/. Acesso em: 20 nov. 2026.</p>
-  <p class="ref">HERTZOG, R.; MAS, R. <b>Manual do administrador Debian</b>. [<i>S. l.</i>], [s.d.]. Disponível em: https://www.debian.org/doc/user-manuals.pt.html. Acesso em: 20 nov. 2026.</p>
+  <p class="ref">CANONICAL. <b>Ubuntu Server documentation</b>. [<i>S. l.</i>], [s.d.]. Disponível em: https://ubuntu.com/server/docs. Acesso em: 20 nov. 2026.</p>
   <p class="ref">MELL, P.; GRANCE, T. <b>The NIST definition of cloud computing</b>. Gaithersburg: National Institute of Standards and Technology, 2011. (NIST Special Publication, 800-145). DOI: 10.6028/NIST.SP.800-145.</p>
   <p class="ref">MICROSOFT. <b>Documentação do Windows</b>. [<i>S. l.</i>], [s.d.]. Disponível em: https://learn.microsoft.com/pt-br/windows. Acesso em: 20 nov. 2026.</p>
   <p class="ref">MICROSOFT. <b>Documentação do Windows Server</b>. [<i>S. l.</i>], [s.d.]. Disponível em: https://learn.microsoft.com/pt-br/windows-server/. Acesso em: 20 nov. 2026.</p>
