@@ -75,6 +75,18 @@ pre{font-size:16px}
 .ctl label{font-size:18px}
 .ctl select{font-size:18px;padding:6px 10px;border-radius:8px;border:2px solid var(--borda);background:transparent;color:var(--texto)}
 .ctl input[type=range]{width:160px;vertical-align:middle}
+.xl-grid{display:grid;grid-template-columns:34px repeat(5,1fr);max-width:520px;margin:10px 0;border:2px solid var(--borda)}
+.xl-grid div{border:1px solid var(--borda);padding:8px 4px;text-align:center;font-size:17px;min-height:38px}
+.xl-grid .h{background:rgba(46,125,50,.15);font-weight:700}
+.xl-grid .c{cursor:pointer}.xl-grid .c:hover{background:rgba(46,125,50,.15)}
+.xl-grid .c.on{outline:3px solid var(--cc);outline-offset:-3px;background:rgba(46,125,50,.2)}
+.xl-wrap{overflow-x:auto}
+table.xl{border-collapse:collapse;min-width:420px;font-size:18px}
+table.xl th,table.xl td{border:1px solid var(--borda);padding:8px 10px;text-align:right}
+table.xl th{background:rgba(46,125,50,.15);text-align:center}
+table.xl td:nth-child(2){text-align:left}
+table.xl input{width:70px;font-size:18px;padding:4px 6px;border:2px solid var(--cc);border-radius:6px;background:transparent;color:var(--texto);text-align:right;font-family:inherit}
+table.xl tr.res td{font-weight:700;background:rgba(46,125,50,.12)}
 .ok-y{color:#2e7d32;font-weight:700}.ok-n{color:#c62828;font-weight:700}
 @page{@bottom-center{content:"Educação em Tecnologias Digitais – IFRN · página " counter(page);font-size:9pt;color:#777}}
 </style>
@@ -117,7 +129,16 @@ pre{font-size:16px}
       <a href="#c3-lab">Atividade e práticas</a>
       <a href="#c3-quiz">Quiz e exercícios</a>
     </div>
-    <a href="#cap4" class="soon"><span class="n" style="background:var(--c4)">4</span>Excel: planilhas</a>
+    <a href="#cap4"><span class="n" style="background:var(--c4)">4</span>Excel: planilhas</a>
+    <div class="sub">
+      <a href="#c4-tela">O que é uma planilha</a>
+      <a href="#c4-digitar">Digitando e formatando</a>
+      <a href="#c4-contas">Fórmulas e funções</a>
+      <a href="#c4-grafico">Gráfico</a>
+      <a href="#c4-casa">Lista de compras e orçamento</a>
+      <a href="#c4-lab">Atividade e práticas</a>
+      <a href="#c4-quiz">Quiz e exercícios</a>
+    </div>
     <a href="#cap5" class="soon"><span class="n" style="background:var(--c5)">5</span>PowerPoint: apresentações</a>
     <a href="#cap6" class="soon"><span class="n" style="background:var(--c6)">6</span>Internet e comunicação</a>
     <a href="#cap7" class="soon"><span class="n" style="background:var(--c7)">7</span>Segurança e cidadania digital</a>
@@ -149,7 +170,7 @@ pre{font-size:16px}
     <div class="card" style="--cc:var(--c1)"><b>1 · O computador e o Windows</b><span>As partes do computador, o mouse, a área de trabalho, arquivos e pastas.</span><div class="st">✅ Disponível</div></div>
     <div class="card" style="--cc:var(--c2)"><b>2 · Teclado e digitação</b><span>Onde ficam as letras e como digitar com treino na tela.</span><div class="st">✅ Disponível</div></div>
     <div class="card" style="--cc:var(--c3)"><b>3 · Word</b><span>Escrever e formatar textos, currículo e cartas.</span><div class="st">✅ Disponível</div></div>
-    <div class="card" style="--cc:var(--c4)"><b>4 · Excel</b><span>Planilhas, contas e orçamento da casa.</span><div class="st">⏳ Em breve</div></div>
+    <div class="card" style="--cc:var(--c4)"><b>4 · Excel</b><span>Planilhas, contas e orçamento da casa.</span><div class="st">✅ Disponível</div></div>
     <div class="card" style="--cc:var(--c5)"><b>5 · PowerPoint</b><span>Montar uma apresentação do zero.</span><div class="st">⏳ Em breve</div></div>
     <div class="card" style="--cc:var(--c6)"><b>6 · Internet e comunicação</b><span>Pesquisar, e-mail, gov.br e arquivos na nuvem.</span><div class="st">⏳ Em breve</div></div>
     <div class="card" style="--cc:var(--c7)"><b>7 · Segurança e cidadania digital</b><span>Senhas, golpes, privacidade e notícias falsas.</span><div class="st">⏳ Em breve</div></div>
@@ -841,13 +862,218 @@ Profissão: Costureira</code></pre>
 
   <div class="box dica" style="margin-top:28px"><div class="ic">📚</div><div><h5>Para saber mais</h5><p>A Central de Ajuda da Microsoft (support.microsoft.com/pt-br) tem a lista de <b>atalhos de teclado do Word</b> e tutoriais com imagens. Quando travar, escreva a sua dúvida na caixa <b>“Pesquisar”</b> do próprio Word.</p></div></div>
 </section>
-<section class="chapter soon-ch" id="cap4" style="--cc:var(--c4)"><div class="chap-head"><div class="chap-num" style="background:var(--c4)">4</div><div><small>Capítulo 4</small><h2>Excel: planilhas</h2></div></div><div class="soon-card">⏳ Este capítulo será publicado em breve.</div></section>
+<section class="chapter" id="cap4" style="--cc:var(--c4)">
+  <div class="chap-head"><div class="chap-num" style="background:var(--c4)">4</div><div><small>Capítulo 4</small><h2>Excel: planilhas</h2></div></div>
+
+  <div class="obj"><h4>🎯 Ao final deste capítulo, você será capaz de:</h4>
+    <ul>
+      <li>Explicar o que é uma <b>planilha</b> e achar uma <b>célula</b> pelo endereço (A1, B3...).</li>
+      <li>Digitar dados e formatar como <b>dinheiro</b> (R$).</li>
+      <li>Fazer contas com <b>fórmulas</b>: somar, subtrair, multiplicar e dividir.</li>
+      <li>Usar <b>SOMA</b>, <b>MÉDIA</b>, <b>MÁXIMO</b> e <b>MÍNIMO</b>.</li>
+      <li>Criar um <b>gráfico</b> simples.</li>
+      <li>Montar uma <b>lista de compras</b> e um <b>orçamento da casa</b>.</li>
+    </ul>
+  </div>
+
+  <h3 id="c4-tela">4.1 O que é uma planilha</h3>
+  <p>O <b>Excel</b> é um programa de <b>tabelas e contas</b>. Ele serve para controlar o dinheiro da casa, a lista de compras, as vendas de um pequeno negócio, as notas da turma... Tudo que tem <b>números em linhas e colunas</b>.</p>
+  <div class="box analogia"><div class="ic">💡</div><div><h5>Pense assim: o caderno quadriculado com calculadora</h5><p>A planilha é um <b>caderno quadriculado gigante</b>. Cada quadradinho guarda uma informação. E o melhor: o Excel tem uma <b>calculadora dentro</b>, que refaz as contas sozinha quando você muda um número.</p></div></div>
+  <table>
+    <tr><th>Nome</th><th>O que é</th></tr>
+    <tr><td><b>Coluna</b></td><td>Fica na <b>vertical</b> (de pé, como uma coluna de prédio). Tem <b>letras</b>: A, B, C...</td></tr>
+    <tr><td><b>Linha</b></td><td>Fica na <b>horizontal</b> (deitada). Tem <b>números</b>: 1, 2, 3...</td></tr>
+    <tr><td><b>Célula</b></td><td>O quadradinho onde linha e coluna se encontram. É onde você digita.</td></tr>
+    <tr><td><b>Endereço</b></td><td>O “CEP” da célula: <b>letra da coluna + número da linha</b>. Ex.: <b>B3</b> = coluna B, linha 3.</td></tr>
+    <tr><td><b>Planilha / pasta de trabalho</b></td><td>O arquivo inteiro (<code>.xlsx</code>). Ele pode ter várias “abas” embaixo da tela.</td></tr>
+  </table>
+  <p>Para abrir: botão Iniciar → digite <b>Excel</b> → escolha <b>Pasta de trabalho em branco</b>. Para <b>salvar</b>, é igual ao Word: o botão do disquete 💾.</p>
+  <p>Clique nas células abaixo e veja o endereço:</p>
+  <div class="tool" id="xg" style="--cc:var(--c4)">
+    <div class="xl-grid" id="xgGrid" role="grid" aria-label="Planilha para treinar endereços"></div>
+    <p class="enc-txt" id="xgTxt" aria-live="polite">Clique em uma célula.</p>
+    <div class="ctl"><button type="button" id="xgPlay">🎯 Jogar: achar a célula</button></div>
+  </div>
+
+  <h3 id="c4-digitar">4.2 Digitando e formatando</h3>
+  <ul>
+    <li>Clique na célula e <b>digite</b>. Aperte <b>Enter</b> para ir para a célula de <b>baixo</b>, ou <b>Tab</b> para ir para a da <b>direita</b>.</li>
+    <li>Para <b>corrigir</b>: clique na célula e digite de novo (apaga o que tinha), ou aperte <b>F2</b> para editar sem apagar.</li>
+    <li>Para <b>apagar</b>: selecione a célula e aperte <b>Delete</b>.</li>
+    <li><b>Texto</b> fica encostado à esquerda; <b>número</b> fica encostado à direita. Se aparecer <b>####</b>, é só a coluna estreita: dê <b>duplo clique</b> na linha entre as letras do título da coluna para alargar.</li>
+    <li>Para <b>dinheiro</b>: selecione as células, guia <b>Página Inicial</b> → grupo <b>Número</b> → botão de <b>moeda</b> (R$). O número ganha o símbolo e as duas casas depois da vírgula.</li>
+    <li>Negrito, cor e tamanho funcionam como no Word (guia Página Inicial).</li>
+  </ul>
+  <div class="box atencao"><div class="ic">⚠️</div><div><h5>Vírgula, não ponto!</h5><p>No Brasil, o decimal é a <b>vírgula</b>: digite <b>2,50</b> e não 2.50. Com ponto, o Excel pode entender como data ou texto, e a conta não funciona.</p></div></div>
+
+  <h3 id="c4-contas">4.3 Fazendo contas: as fórmulas</h3>
+  <p>A <b>fórmula</b> é uma conta que você escreve na célula. A regra de ouro: <b>toda fórmula começa com o sinal de igual (=)</b>.</p>
+  <table>
+    <tr><th>Conta</th><th>Sinal</th><th>Exemplo</th></tr>
+    <tr><td>Somar</td><td><b>+</b></td><td><code>=A1+A2</code></td></tr>
+    <tr><td>Subtrair</td><td><b>−</b></td><td><code>=A1-A2</code></td></tr>
+    <tr><td>Multiplicar</td><td><b>*</b> (asterisco)</td><td><code>=B2*C2</code></td></tr>
+    <tr><td>Dividir</td><td><b>/</b> (barra)</td><td><code>=A1/A2</code></td></tr>
+  </table>
+  <div class="box exemplo"><div class="ic">📌</div><div><h5>Exemplo do mercado</h5><p>Arroz: <b>2 pacotes</b> (coluna B) a <b>R$ 6,00</b> cada (coluna C). Na célula D2, digite <code>=B2*C2</code> e aperte Enter. Aparece <b>12</b>. Se mudar o preço, o total <b>muda sozinho</b>!</p></div></div>
+  <p>Em vez de digitar o endereço, você pode <b>clicar nas células</b> durante a fórmula. É mais rápido e evita erro.</p>
+  <h3 style="font-size:22px;margin-top:20px">Funções: atalhos prontos</h3>
+  <p>Para somar uma lista grande, ninguém digita <code>=A1+A2+A3+...</code>. Usa-se uma <b>função</b>. Dentro dos parênteses vai o <b>intervalo</b>: <code>B2:B6</code> quer dizer “de B2 até B6”. Os dois pontos significam “até”.</p>
+  <table>
+    <tr><th>Função</th><th>O que faz</th><th>Exemplo</th></tr>
+    <tr><td><b>SOMA</b></td><td>Soma tudo</td><td><code>=SOMA(B2:B6)</code></td></tr>
+    <tr><td><b>MÉDIA</b></td><td>Calcula a média</td><td><code>=MÉDIA(B2:B6)</code></td></tr>
+    <tr><td><b>MÁXIMO</b></td><td>Acha o maior valor</td><td><code>=MÁXIMO(B2:B6)</code></td></tr>
+    <tr><td><b>MÍNIMO</b></td><td>Acha o menor valor</td><td><code>=MÍNIMO(B2:B6)</code></td></tr>
+  </table>
+  <div class="box dica"><div class="ic">✅</div><div><h5>Atalho da soma</h5><p>Clique na célula logo <b>abaixo</b> dos números, na guia <b>Página Inicial</b> clique no botão <b>Σ</b> (Soma automática) e aperte <b>Enter</b>. O Excel escolhe os números de cima sozinho. Confira se ele pegou tudo!</p></div></div>
+  <p>Teste: mude as quantidades e os preços e veja os totais mudarem.</p>
+  <div class="tool" id="xs" style="--cc:var(--c4)">
+    <div class="xl-wrap"><table class="xl" id="xsTab"></table></div>
+    <div class="ctl" id="xsFn" role="group" aria-label="Função para o resultado"></div>
+    <p class="enc-txt" id="xsTxt" aria-live="polite"></p>
+  </div>
+
+  <h3 id="c4-grafico">4.4 Gráfico: ver os números com os olhos</h3>
+  <p>Um <b>gráfico</b> mostra os números em desenho: fica mais fácil de comparar. Por exemplo: em qual mês a conta de luz foi mais alta?</p>
+  <ol class="steps">
+    <li><b>Selecione</b> os dados, <b>incluindo os títulos</b> (arraste do primeiro ao último).</li>
+    <li>Guia <b>Inserir</b> → <b>Gráficos Recomendados</b>.</li>
+    <li>Escolha o de <b>colunas</b> (barras em pé) e clique em <b>OK</b>.</li>
+    <li>Clique no <b>título do gráfico</b> e escreva um nome claro (<i>Conta de luz 2026</i>).</li>
+  </ol>
+  <p>Veja como uma tabela vira gráfico (conta de luz de quatro meses):</p>
+  <svg class="ill" viewBox="0 0 520 250" role="img" aria-label="Gráfico de colunas da conta de luz: janeiro 80, fevereiro 95, março 120, abril 70 reais">
+    <path class="sl" d="M60 20V200H500"/>
+    <rect x="90" y="120" width="60" height="80" fill="#2e7d32"/><rect x="190" y="105" width="60" height="95" fill="#2e7d32"/><rect x="290" y="80" width="60" height="120" fill="#c62828"/><rect x="390" y="130" width="60" height="70" fill="#2e7d32"/>
+    <text x="120" y="112" text-anchor="middle">80</text><text x="220" y="97" text-anchor="middle">95</text><text x="320" y="72" text-anchor="middle">120</text><text x="420" y="122" text-anchor="middle">70</text>
+    <text x="120" y="225" text-anchor="middle">Jan</text><text x="220" y="225" text-anchor="middle">Fev</text><text x="320" y="225" text-anchor="middle">Mar</text><text x="420" y="225" text-anchor="middle">Abr</text>
+    <text x="260" y="14" text-anchor="middle" font-weight="800">Conta de luz (R$)</text>
+  </svg>
+  <p>Repare: a barra <b>vermelha</b> (março) é a mais alta. Num relance, você vê o mês mais caro.</p>
+
+  <h3 id="c4-casa">4.5 Planilhas do dia a dia</h3>
+  <h3 style="font-size:22px;margin-top:20px">Lista de compras</h3>
+  <p>Colunas: <b>Produto</b>, <b>Quantidade</b>, <b>Preço</b> e <b>Total</b> (quantidade × preço). Embaixo, o <b>total geral</b> com SOMA. Assim você sabe quanto vai gastar <b>antes</b> de chegar ao caixa.</p>
+  <h3 style="font-size:22px;margin-top:20px">Orçamento da casa</h3>
+  <p>Anote o que <b>entra</b> (salário, renda extra) e o que <b>sai</b> (aluguel, água, luz, comida, transporte). A conta final é <b>o que entra menos o que sai</b>. Se o resultado ficar <b>negativo</b>, a casa gasta mais do que ganha, e a planilha mostra onde dá para cortar.</p>
+  <div class="box exemplo"><div class="ic">📌</div><div><h5>Modelo (valores inventados)</h5>
+    <p>A1 <b>Item</b> | B1 <b>Valor</b><br>A2 Salário | B2 1.800<br>A3 Aluguel | B3 600<br>A4 Comida | B4 700<br>A5 Luz e água | B5 180<br>A6 <b>Sobra</b> | B6 <code>=B2-B3-B4-B5</code> → <b>320</b></p></div></div>
+  <div class="box atencao"><div class="ic">🔒</div><div><h5>Planilha com dinheiro é coisa particular</h5><p>Não guarde <b>senhas</b>, número de cartão ou de conta na planilha. E, em computador de uso coletivo (escola, lan house), <b>apague ou leve seu arquivo</b> ao terminar.</p></div></div>
+
+  <div class="lab" id="c4-lab">
+    <h3>🧑‍🤝‍🧑 Atividade sem computador – Planilha no papel</h3>
+    <p><b>Objetivo:</b> entender linhas, colunas e fórmulas antes do computador. <b>Preparação:</b> folha quadriculada (ou tabela desenhada no quadro) para cada dupla.</p>
+    <ol class="steps">
+      <li>Escreva as <b>letras</b> A, B, C, D em cima e os <b>números</b> 1 a 6 ao lado.</li>
+      <li>O professor diz um endereço (<i>C4</i>) e a dupla coloca o <b>dedo</b> na célula certa.</li>
+      <li>Preencham uma lista de compras de 4 itens e <b>calculem o total à mão</b>. Depois, no computador, vocês verão o Excel fazer isso em um segundo.</li>
+    </ol>
+
+    <h3>🧪 Prática 1 – Minha primeira planilha</h3>
+    <ol class="steps">
+      <li>Abra o Excel → <b>Pasta de trabalho em branco</b>.</li>
+      <li>Em A1 digite <code>Nome</code>; em B1 digite <code>Idade</code>. Preencha <b>5 linhas</b> com colegas (use Tab e Enter).</li>
+      <li>Coloque os títulos em <b>negrito</b> e alargue as colunas (duplo clique entre as letras).</li>
+      <li>Salve como <code>Minha primeira planilha</code>.</li>
+    </ol>
+
+    <h3>🧪 Prática 2 – Lista de compras</h3>
+    <ol class="steps">
+      <li>Em A1 a D1: <code>Produto</code>, <code>Qtd</code>, <code>Preço</code>, <code>Total</code>.</li>
+      <li>Preencha <b>5 produtos</b> reais, com preços usando <b>vírgula</b>.</li>
+      <li>Em D2, digite <code>=B2*C2</code>. Para copiar a conta para as outras linhas, clique em D2 e <b>arraste o quadradinho</b> do canto inferior direito da célula até D6.</li>
+      <li>Em D7, digite <code>=SOMA(D2:D6)</code> para o <b>total geral</b>.</li>
+      <li>Formate os preços e totais como <b>moeda</b> (R$). Salve como <code>Lista de compras</code>.</li>
+      <li>Mude uma quantidade e veja o total mudar.</li>
+    </ol>
+
+    <h3>🧪 Prática 3 – Notas da turma</h3>
+    <ol class="steps">
+      <li>Em A1 a C1: <code>Aluno</code>, <code>Nota 1</code>, <code>Nota 2</code>. Coloque <b>5 alunos</b> com notas inventadas.</li>
+      <li>Em D1 escreva <code>Média</code>. Em D2 digite <code>=MÉDIA(B2:C2)</code> e copie para baixo.</li>
+      <li>Embaixo, ache a <b>maior nota</b> com <code>=MÁXIMO(B2:B6)</code> e a <b>menor</b> com <code>=MÍNIMO(B2:B6)</code>.</li>
+      <li>Salve como <code>Notas</code>.</li>
+    </ol>
+
+    <h3>🧪 Prática 4 – Orçamento da minha casa</h3>
+    <ol class="steps">
+      <li>Monte o modelo da seção 4.5 com valores <b>inventados</b> (ou aproximados, se preferir) para <b>6 meses</b>, um por coluna.</li>
+      <li>Use <b>SOMA</b> para o total das despesas e uma subtração para a <b>sobra</b> de cada mês.</li>
+      <li>Selecione os meses e as sobras e crie um <b>gráfico de colunas</b>, com título.</li>
+      <li>Salve como <code>Orçamento</code>. Qual mês sobrou menos? Por quê?</li>
+    </ol>
+
+    <h3>🧪 Prática 5 (opcional) – Pequeno negócio</h3>
+    <ol class="steps">
+      <li>Imagine que você vende bolos, lanches ou artesanato. Monte colunas: <b>Produto</b>, <b>Quanto custa fazer</b>, <b>Preço de venda</b>, <b>Lucro</b>.</li>
+      <li>Na coluna Lucro, faça a conta <b>venda − custo</b> e copie para baixo.</li>
+      <li>Descubra qual produto dá <b>mais lucro</b> usando <b>MÁXIMO</b>.</li>
+    </ol>
+  </div>
+
+  <div class="resumo">
+    <h3>📝 Resumo do capítulo</h3>
+    <ul>
+      <li>O <b>Excel</b> faz tabelas e contas. Coluna = letra, linha = número, <b>célula</b> = encontro dos dois (B3).</li>
+      <li><b>Enter</b> desce, <b>Tab</b> vai para a direita. Decimal com <b>vírgula</b>.</li>
+      <li>Toda <b>fórmula começa com =</b>. Sinais: + − * /.</li>
+      <li><b>SOMA, MÉDIA, MÁXIMO, MÍNIMO</b> usam um intervalo (<code>B2:B6</code>).</li>
+      <li>Mudou um número? As contas <b>se refazem sozinhas</b>.</li>
+      <li><b>Gráfico:</b> selecione os dados → Inserir → Gráficos.</li>
+      <li>Dinheiro na planilha: guarde só o necessário e nunca senhas.</li>
+    </ul>
+  </div>
+
+  <h3 id="c4-quiz">🧠 Quiz do capítulo 4</h3>
+  <p>Clique na resposta que você acha certa.</p>
+  <div class="quiz">
+    <div class="q"><p>1. Qual é o endereço da célula na coluna C, linha 4?</p>
+      <button class="opt">a) 4C</button><button class="opt" data-ok="1">b) C4</button><button class="opt">c) C-4 linha</button><button class="opt">d) CC4</button>
+      <div class="fb">Primeiro a <b>letra</b> da coluna, depois o <b>número</b> da linha: <b>C4</b>.</div></div>
+    <div class="q"><p>2. Toda fórmula no Excel começa com:</p>
+      <button class="opt">a) Uma letra</button><button class="opt">b) Um ponto</button><button class="opt" data-ok="1">c) O sinal de igual (=)</button><button class="opt">d) Um asterisco</button>
+      <div class="fb">Sem o <b>=</b>, o Excel entende como texto e não faz a conta.</div></div>
+    <div class="q"><p>3. Qual sinal multiplica no Excel?</p>
+      <button class="opt">a) x</button><button class="opt" data-ok="1">b) * (asterisco)</button><button class="opt">c) /</button><button class="opt">d) +</button>
+      <div class="fb">O <b>*</b> multiplica; a <b>/</b> divide.</div></div>
+    <div class="q"><p>4. O que faz <code>=SOMA(B2:B6)</code>?</p>
+      <button class="opt">a) Soma só B2 e B6</button><button class="opt" data-ok="1">b) Soma de B2 até B6</button><button class="opt">c) Calcula a média</button><button class="opt">d) Acha o maior valor</button>
+      <div class="fb">Os <b>dois pontos</b> significam “até”: soma B2, B3, B4, B5 e B6.</div></div>
+    <div class="q"><p>5. Você mudou um preço. O que acontece com o total?</p>
+      <button class="opt">a) Fica igual</button><button class="opt" data-ok="1">b) Refaz a conta sozinho</button><button class="opt">c) Apaga a planilha</button><button class="opt">d) Precisa digitar tudo de novo</button>
+      <div class="fb">Essa é a grande vantagem das <b>fórmulas</b>.</div></div>
+    <div class="q"><p>6. Como digitar R$ 2 e 50 centavos?</p>
+      <button class="opt">a) 2.50</button><button class="opt" data-ok="1">b) 2,50</button><button class="opt">c) 2 50</button><button class="opt">d) 250,</button>
+      <div class="fb">No Brasil o decimal é a <b>vírgula</b>.</div></div>
+    <div class="q"><p>7. Qual função mostra o <b>maior</b> valor de uma lista?</p>
+      <button class="opt">a) MÍNIMO</button><button class="opt">b) MÉDIA</button><button class="opt" data-ok="1">c) MÁXIMO</button><button class="opt">d) SOMA</button>
+      <div class="fb"><b>MÁXIMO</b> acha o maior; <b>MÍNIMO</b>, o menor.</div></div>
+    <div class="q"><p>8. Para que serve um gráfico?</p>
+      <button class="opt">a) Para apagar números</button><button class="opt" data-ok="1">b) Para comparar os números com o desenho</button><button class="opt">c) Para salvar o arquivo</button><button class="opt">d) Para imprimir</button>
+      <div class="fb">O gráfico deixa fácil ver, por exemplo, qual mês foi mais caro.</div></div>
+  </div>
+  <div class="score"></div>
+
+  <h3>✍️ Questões abertas</h3>
+  <div class="open"><p><b>1.</b> Explique o que são linha, coluna e célula.</p>
+    <button>Ver resposta</button><div class="answer">Linha é a fileira horizontal (números); coluna é a vertical (letras); célula é o quadradinho onde se cruzam, com endereço como B3.</div></div>
+  <div class="open"><p><b>2.</b> Escreva a fórmula que multiplica a quantidade (B2) pelo preço (C2).</p>
+    <button>Ver resposta</button><div class="answer"><code>=B2*C2</code></div></div>
+  <div class="open"><p><b>3.</b> Qual a vantagem de usar fórmula em vez de digitar o resultado?</p>
+    <button>Ver resposta</button><div class="answer">Quando um número muda, o resultado se atualiza sozinho, sem refazer a conta e com menos erro.</div></div>
+  <div class="open"><p><b>4.</b> No orçamento da casa, como saber quanto sobrou no mês?</p>
+    <button>Ver resposta</button><div class="answer">Total que entrou menos total que saiu. Se der negativo, gastou mais do que ganhou.</div></div>
+
+  <div class="box dica" style="margin-top:28px"><div class="ic">📚</div><div><h5>Para saber mais</h5><p>Na Central de Ajuda da Microsoft (support.microsoft.com/pt-br) há tutoriais com imagens sobre fórmulas e gráficos. Na caixa <b>“Pesquisar”</b> do próprio Excel, escreva o que você quer fazer.</p></div></div>
+</section>
 <section class="chapter soon-ch" id="cap5" style="--cc:var(--c5)"><div class="chap-head"><div class="chap-num" style="background:var(--c5)">5</div><div><small>Capítulo 5</small><h2>PowerPoint: apresentações</h2></div></div><div class="soon-card">⏳ Este capítulo será publicado em breve.</div></section>
 <section class="chapter soon-ch" id="cap6" style="--cc:var(--c6)"><div class="chap-head"><div class="chap-num" style="background:var(--c6)">6</div><div><small>Capítulo 6</small><h2>Internet e comunicação</h2></div></div><div class="soon-card">⏳ Este capítulo será publicado em breve.</div></section>
 <section class="chapter soon-ch" id="cap7" style="--cc:var(--c7)"><div class="chap-head"><div class="chap-num" style="background:var(--c7)">7</div><div><small>Capítulo 7</small><h2>Segurança e cidadania digital</h2></div></div><div class="soon-card">⏳ Este capítulo será publicado em breve.</div></section>
 
 <section id="refs">
   <h2>📚 Referências</h2>
+  <p class="ref">MICROSOFT. <b>Visão geral de fórmulas no Excel</b>. [<i>S. l.</i>], [s.d.]. Disponível em: https://support.microsoft.com/pt-br/excel. Acesso em: 20 nov. 2026.</p>
   <p class="ref">MICROSOFT. <b>Atalhos de teclado do Word</b>. [<i>S. l.</i>], [s.d.]. Disponível em: https://support.microsoft.com/pt-BR/Accessibility/word/keyboard-shortcuts-in-word. Acesso em: 20 nov. 2026.</p>
   <p class="ref">MICROSOFT. <b>Suporte da Microsoft: Windows</b>. [<i>S. l.</i>], [s.d.]. Disponível em: https://support.microsoft.com/pt-br/windows. Acesso em: 20 nov. 2026.</p>
   <footer>Apostila de Educação em Tecnologias Digitais · IFRN – Campus João Câmara</footer>
