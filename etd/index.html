@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Apostila de Educação em Tecnologias Digitais – IFRN</title>
+<script>try{var t=localStorage.getItem("tema");if(!t)t=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";document.documentElement.dataset.theme=t}catch(e){}</script>
+<link rel="stylesheet" href="../assets/apostila.css">
+<link rel="manifest" href="../manifest.webmanifest">
+<meta name="theme-color" content="#ad1457">
+<style>
+:root{
+  --c1:#ad1457; --c2:#00796b; --c3:#1565c0; --c4:#2e7d32; --c5:#ef6c00; --c6:#6a1b9a; --c7:#c62828;
+  --verde:#ad1457; --verde-claro:#fce4ec;
+}
+html[data-theme=dark]{--verde-claro:#2a1020}
+.hero{background:linear-gradient(135deg,#4a148c,#ad1457 55%,#ef6c00)}
+/* Letra maior e mais espaço (EJA) */
+body{font-size:19.5px;line-height:1.85}
+h3{font-size:25px;margin-top:36px}
+table{font-size:17.5px}
+.opt{font-size:19px;padding:14px 16px}
+.fb,.enc-txt,.ld{font-size:17.5px}
+ol.steps>li{margin-bottom:16px}
+.box{padding:18px 20px}
+.box h5{font-size:16px}
+.open button,.enc button{font-size:17px;padding:8px 18px}
+pre{font-size:16px}
+/* Ilustrações */
+.ill{display:block;margin:18px auto;max-width:580px;width:100%;height:auto;color:var(--texto)}
+.ill text{fill:currentColor;font-family:inherit;font-size:13px;font-weight:600}
+.ill .sh{fill:rgba(173,20,87,.10);stroke:currentColor;stroke-width:2.5;stroke-linejoin:round}
+.ill .sc{fill:rgba(21,101,192,.18);stroke:currentColor;stroke-width:2}
+.ill .sl{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}
+.ill .lead{fill:none;stroke:#ad1457;stroke-width:2}
+.ill .lbl text,.ill text.lb{fill:#ad1457}
+.part{cursor:pointer}
+.part:hover .sh{fill:rgba(173,20,87,.22)}
+.part.on .sh{stroke:var(--cc);stroke-width:5;fill:rgba(173,20,87,.25)}
+.pbtns,.ctl{display:flex;flex-wrap:wrap;gap:10px;margin:10px 0}
+.pbtns button,.ctl button{border:2px solid var(--borda);background:transparent;color:var(--texto);border-radius:999px;padding:9px 18px;font-size:17px;cursor:pointer;font-family:inherit}
+.pbtns button.on,.ctl button.on{background:var(--cc);color:#fff;border-color:var(--cc)}
+.ctl button.big{font-size:20px;padding:12px 24px;font-weight:700}
+.pinfo{min-height:96px;font-size:18.5px}
+.pinfo .tg{display:inline-block;background:var(--cc);color:#fff;border-radius:8px;padding:1px 10px;font-size:15px;margin-left:6px}
+.card-dev{font-size:34px;text-align:center;margin:8px 0}
+.card-dev b{display:block;font-size:26px}
+#mtArena{position:relative;height:280px;border:3px dashed var(--borda);border-radius:16px;margin:12px 0;background:rgba(173,20,87,.04);overflow:hidden;user-select:none;-webkit-user-select:none}
+#mtTarget{position:absolute;width:86px;height:86px;border-radius:50%;border:0;background:var(--cc);color:#fff;font-size:34px;cursor:pointer;display:none;box-shadow:0 3px 10px rgba(0,0,0,.25);touch-action:manipulation}
+#mtTask{font-size:21px;font-weight:700;min-height:34px}
+.ok-y{color:#2e7d32;font-weight:700}.ok-n{color:#c62828;font-weight:700}
+@page{@bottom-center{content:"Educação em Tecnologias Digitais – IFRN · página " counter(page);font-size:9pt;color:#777}}
+</style>
+</head>
+<body data-curso="etd" data-root="../">
+<div class="progress" id="progress"></div>
+<button class="theme-btn top" id="themeBtn" type="button">🌙</button>
+<div class="topbar"><button class="menu-btn" id="menuBtn" aria-label="Abrir menu">☰</button><b>Tecnologias Digitais</b><a class="home-link" href="../" style="margin-left:auto" aria-label="Voltar para todas as apostilas">🏠<span class="hl-t"> Apostilas</span></a></div>
+
+<aside class="sidebar" id="sidebar">
+  <a class="home-link" href="../">← Todas as apostilas</a>
+  <div class="brand"><div class="logo">💻</div><div><strong>Educação em Tecnologias Digitais</strong><small>EJA · IFRN · Campus João Câmara</small></div></div>
+  <nav class="nav" id="nav">
+    <a href="#inicio"><span class="n" style="background:#455a64">★</span>Início e mapa</a>
+    <a href="#cap1"><span class="n" style="background:var(--c1)">1</span>O computador e o Windows</a>
+    <div class="sub">
+      <a href="#c1-pc">O que é um computador</a>
+      <a href="#c1-so">Software e Windows</a>
+      <a href="#c1-mouse">Mouse e área de trabalho</a>
+      <a href="#c1-arq">Arquivos e pastas</a>
+      <a href="#c1-lab">Atividade e práticas</a>
+      <a href="#c1-quiz">Quiz e exercícios</a>
+    </div>
+    <a href="#cap2" class="soon"><span class="n" style="background:var(--c2)">2</span>Teclado e digitação</a>
+    <a href="#cap3" class="soon"><span class="n" style="background:var(--c3)">3</span>Word: textos</a>
+    <a href="#cap4" class="soon"><span class="n" style="background:var(--c4)">4</span>Excel: planilhas</a>
+    <a href="#cap5" class="soon"><span class="n" style="background:var(--c5)">5</span>PowerPoint: apresentações</a>
+    <a href="#cap6" class="soon"><span class="n" style="background:var(--c6)">6</span>Internet e comunicação</a>
+    <a href="#cap7" class="soon"><span class="n" style="background:var(--c7)">7</span>Segurança e cidadania digital</a>
+    <a href="#refs"><span class="n" style="background:#455a64">📚</span>Referências</a>
+  </nav>
+  <div class="tools">
+    <button onclick="window.print()">🖨️ Salvar em PDF</button>
+    <label><input type="checkbox" id="ans"> Incluir gabarito no PDF</label>
+  </div>
+</aside>
+
+<main>
+<header class="hero" id="inicio">
+  <div class="wrap">
+    <span class="tag">Apostila digital</span>
+    <h1>Educação em Tecnologias Digitais</h1>
+    <p>Do primeiro clique ao currículo, à planilha e aos golpes que você não vai cair</p>
+    <p>Prof. César Azevedo · IFRN – Campus João Câmara</p>
+    <div class="meta"><span>⏱️ 30 h</span><span>🖱️ Passo a passo, no seu ritmo</span><span>🧪 Prática no computador</span></div>
+  </div>
+</header>
+
+<div class="wrap">
+<section>
+  <h2>Como usar esta apostila</h2>
+  <p>Você já usa o <b>celular</b> todos os dias: manda mensagem, tira foto, paga uma conta. Aqui vamos usar o que você já sabe para aprender o <b>computador</b>, com calma e <b>passo a passo</b>. Ninguém precisa saber nada antes.</p>
+  <p>Cada capítulo segue o mesmo caminho: <b>o que vamos aprender → explicação com exemplos do dia a dia → prática → resumo → quiz</b>. Se errar, não tem problema: no computador sempre dá para <b>tentar de novo</b>. Para guardar uma cópia no papel, use o botão <b>Salvar em PDF</b>.</p>
+  <div class="map">
+    <div class="card" style="--cc:var(--c1)"><b>1 · O computador e o Windows</b><span>As partes do computador, o mouse, a área de trabalho, arquivos e pastas.</span><div class="st">✅ Disponível</div></div>
+    <div class="card" style="--cc:var(--c2)"><b>2 · Teclado e digitação</b><span>Onde ficam as letras e como digitar com treino na tela.</span><div class="st">⏳ Em breve</div></div>
+    <div class="card" style="--cc:var(--c3)"><b>3 · Word</b><span>Escrever e formatar textos, currículo e cartas.</span><div class="st">⏳ Em breve</div></div>
+    <div class="card" style="--cc:var(--c4)"><b>4 · Excel</b><span>Planilhas, contas e orçamento da casa.</span><div class="st">⏳ Em breve</div></div>
+    <div class="card" style="--cc:var(--c5)"><b>5 · PowerPoint</b><span>Montar uma apresentação do zero.</span><div class="st">⏳ Em breve</div></div>
+    <div class="card" style="--cc:var(--c6)"><b>6 · Internet e comunicação</b><span>Pesquisar, e-mail, gov.br e arquivos na nuvem.</span><div class="st">⏳ Em breve</div></div>
+    <div class="card" style="--cc:var(--c7)"><b>7 · Segurança e cidadania digital</b><span>Senhas, golpes, privacidade e notícias falsas.</span><div class="st">⏳ Em breve</div></div>
+  </div>
+</section>
+
+<!-- ================= CAPÍTULO 1 ================= -->
+<section class="chapter" id="cap1" style="--cc:var(--c1)">
+  <div class="chap-head"><div class="chap-num" style="background:var(--c1)">1</div><div><small>Capítulo 1</small><h2>O computador e o Windows</h2></div></div>
+
+  <div class="obj"><h4>🎯 Ao final deste capítulo, você será capaz de:</h4>
+    <ul>
+      <li>Dizer o que é um computador e nomear as suas partes principais.</li>
+      <li>Explicar a diferença entre <b>hardware</b> (o que se toca) e <b>software</b> (os programas).</li>
+      <li>Ligar, usar e desligar o computador do jeito certo.</li>
+      <li>Usar o mouse: clicar, clicar duas vezes, clicar com o botão direito e arrastar.</li>
+      <li>Reconhecer a área de trabalho e as janelas do Windows.</li>
+      <li>Criar, salvar, renomear, copiar e apagar arquivos e pastas.</li>
+    </ul>
+  </div>
+
+  <h3 id="c1-pc">1.1 O que é um computador?</h3>
+  <p>Computador é uma máquina que <b>recebe informações</b>, <b>trabalha com elas</b> e <b>mostra o resultado</b>. Seu celular também é um computador pequeno! A diferença é que o computador de mesa (ou o notebook) tem <b>tela maior, teclado e mouse</b>, o que ajuda a escrever documentos, fazer contas e preencher formulários com mais conforto.</p>
+  <div class="box analogia"><div class="ic">💡</div><div><h5>Pense assim: a cozinha</h5><p>O computador funciona como uma <b>cozinha</b>. Os <b>ingredientes</b> chegam (<b>entrada</b>: teclado e mouse). O <b>cozinheiro</b> trabalha neles (o <b>processador</b>). A <b>bancada</b> onde ele mexe tudo é a <b>memória RAM</b>, e quando a cozinha fecha, a bancada é limpa. A <b>despensa</b> guarda as coisas por muito tempo (o <b>disco</b>). E o <b>prato pronto</b> sai para a mesa (<b>saída</b>: monitor e caixa de som).</p></div></div>
+
+  <h3 style="font-size:21px;margin-top:20px">Conheça as peças</h3>
+  <p>Toque ou clique em uma peça (no desenho ou nos botões) para saber o que ela faz:</p>
+  <div class="tool" id="pc" style="--cc:var(--c1)">
+    <svg class="ill" id="pcSvg" viewBox="0 0 560 304" role="img" aria-label="Desenho de um computador com monitor, teclado, mouse, caixa de som e gabinete">
+      <g class="part" data-k="monitor"><rect class="sh" x="30" y="14" width="270" height="170" rx="10"/><rect class="sc" x="44" y="28" width="242" height="142" rx="4"/><rect class="sh" x="150" y="184" width="30" height="22"/><rect class="sh" x="115" y="206" width="100" height="10" rx="5"/><text x="165" y="104" text-anchor="middle">MONITOR</text></g>
+      <g class="part" data-k="teclado"><rect class="sh" x="40" y="236" width="250" height="46" rx="6"/><path class="sl" d="M54 248h222M54 259h222M54 270h222" stroke-dasharray="9 5"/><text x="165" y="299" text-anchor="middle" class="lb">TECLADO</text></g>
+      <g class="part" data-k="gabinete"><rect class="sh" x="340" y="20" width="104" height="200" rx="8"/><circle class="sh" cx="392" cy="52" r="9"/><rect class="sh" x="358" y="86" width="68" height="9" rx="3"/><path class="sl" d="M358 120h68M358 134h68M358 148h68"/><text x="392" y="190" text-anchor="middle">GABINETE</text></g>
+      <g class="part" data-k="mouse"><rect class="sh" x="476" y="196" width="46" height="72" rx="23"/><path class="sl" d="M499 196v32M476 228h46"/><text x="499" y="288" text-anchor="middle" class="lb">MOUSE</text></g>
+      <g class="part" data-k="som"><rect class="sh" x="466" y="40" width="66" height="112" rx="8"/><circle class="sh" cx="499" cy="72" r="13"/><circle class="sh" cx="499" cy="118" r="19"/><text x="499" y="172" text-anchor="middle" class="lb">CAIXA DE SOM</text></g>
+    </svg>
+    <div class="pbtns" id="pcBtns" role="group" aria-label="Peças do computador"></div>
+    <div class="box dica"><div class="ic">🔎</div><div class="pinfo" id="pcInfo" aria-live="polite"></div></div>
+  </div>
+
+  <div class="box exemplo"><div class="ic">📌</div><div><h5>Hardware e software</h5><p><b>Hardware</b> é tudo o que você consegue <b>tocar</b>: monitor, teclado, mouse, gabinete. <b>Software</b> é o que você <b>não toca</b>: os programas e o sistema, como o WhatsApp no celular ou o Word no computador. Um não funciona sem o outro, como um <b>rádio</b> (o aparelho) e a <b>música</b> (o que toca nele).</p></div></div>
+
+  <p>Agora treine: cada aparelho abaixo serve para <b>entrada</b> (mandar informação ao computador), <b>saída</b> (receber informação dele) ou <b>armazenamento</b> (guardar)?</p>
+  <div class="tool" id="io" style="--cc:var(--c1)">
+    <div class="card-dev" id="ioDev" aria-live="polite"></div>
+    <div class="ctl" id="ioBtns" role="group" aria-label="Escolha a categoria"></div>
+    <p class="enc-txt" id="ioTxt" aria-live="polite"></p>
+  </div>
+
+  <h3 style="font-size:21px;margin-top:20px">Por dentro do gabinete</h3>
+  <table>
+    <tr><th>Peça</th><th>Para que serve</th><th>Na cozinha</th></tr>
+    <tr><td><b>Processador</b></td><td>O “cérebro”: faz as contas e executa as ordens.</td><td>O cozinheiro</td></tr>
+    <tr><td><b>Memória RAM</b></td><td>Guarda o que você está usando <b>agora</b>. Some quando o computador é desligado.</td><td>A bancada</td></tr>
+    <tr><td><b>HD ou SSD</b></td><td>Guarda seus arquivos e programas <b>por muito tempo</b>, mesmo desligado.</td><td>A despensa</td></tr>
+    <tr><td><b>Fonte</b></td><td>Entrega a energia para as peças.</td><td>O gás do fogão</td></tr>
+  </table>
+  <div class="box atencao"><div class="ic">⚠️</div><div><h5>Cuidado</h5><p>Se a luz acabar ou o computador desligar de repente, tudo o que estava <b>na bancada (memória RAM)</b> e <b>não foi salvo</b> se perde. Por isso, <b>salve o seu trabalho com frequência</b>.</p></div></div>
+
+  <h3 id="c1-so">1.2 Software e sistema operacional</h3>
+  <p>Os <b>programas</b> (Word, navegador, jogo de cartas) fazem tarefas para você. Mas, antes de qualquer programa, o computador precisa de um programa especial: o <b>sistema operacional</b>. No computador, o mais comum é o <b>Windows</b>, da Microsoft.</p>
+  <div class="box analogia"><div class="ic">💡</div><div><h5>Pense assim...</h5><p>O sistema operacional é o <b>gerente de um restaurante</b>: recebe os clientes (você), organiza a cozinha, chama o programa certo e cuida para que tudo funcione. Sem gerente, a cozinha não trabalha.</p></div></div>
+  <table>
+    <tr><th></th><th>No celular</th><th>No computador</th></tr>
+    <tr><td><b>Sistema</b></td><td>Android ou iOS (iPhone)</td><td>Windows (ou outros, como o Linux)</td></tr>
+    <tr><td><b>Mexer na tela</b></td><td>Tocar com o dedo</td><td>Mouse e teclado</td></tr>
+    <tr><td><b>Programas</b></td><td>“Aplicativos” (apps)</td><td>“Programas”, também chamados de aplicativos</td></tr>
+    <tr><td><b>Várias coisas ao mesmo tempo</b></td><td>Uma tela por vez</td><td>Várias <b>janelas</b> abertas na mesma tela</td></tr>
+  </table>
+  <h3 style="font-size:21px;margin-top:20px">Ligar e desligar do jeito certo</h3>
+  <ul>
+    <li><b>Ligar:</b> aperte o botão de ligar do gabinete (e do monitor, se for separado) e espere aparecer a <b>tela de entrada</b>. Entre com o seu usuário e a senha, se pedir.</li>
+    <li><b>Desligar:</b> <b>nunca</b> pelo botão da tomada ou apertando o botão do gabinete. Use o <b>menu Iniciar</b> → botão de energia → <b>Desligar</b>. Espere a tela apagar sozinha.</li>
+    <li><b>Reiniciar:</b> desliga e liga de novo. Ajuda quando o computador trava.</li>
+  </ul>
+  <div class="box dica"><div class="ic">✅</div><div><h5>Dica</h5><p>Desligar do jeito certo dá tempo ao Windows de <b>guardar tudo no lugar</b>, como fechar o caixa antes de fechar a loja.</p></div></div>
+
+  <h3 id="c1-mouse">1.3 Mouse e área de trabalho</h3>
+  <p>O <b>mouse</b> move a <b>setinha</b> (o cursor) na tela. Ele tem dois botões principais e uma rodinha:</p>
+  <table>
+    <tr><th>Ação</th><th>Como fazer</th><th>Para quê</th></tr>
+    <tr><td><b>Clique</b></td><td>Aperte <b>uma vez</b> o botão <b>esquerdo</b>.</td><td>Escolher, selecionar.</td></tr>
+    <tr><td><b>Duplo clique</b></td><td>Aperte o esquerdo <b>duas vezes, rápido</b>.</td><td>Abrir um arquivo ou programa.</td></tr>
+    <tr><td><b>Botão direito</b></td><td>Aperte <b>uma vez</b> o botão <b>direito</b>.</td><td>Abrir um <b>menu de opções</b> (copiar, renomear...).</td></tr>
+    <tr><td><b>Arrastar</b></td><td>Segure o esquerdo e <b>mova</b> o mouse; solte onde quer.</td><td>Mover coisas de lugar.</td></tr>
+    <tr><td><b>Rodinha</b></td><td>Gire para frente ou para trás.</td><td>Subir e descer a página.</td></tr>
+  </table>
+  <p>Vamos treinar! Aparecem bolinhas na tela. Faça <b>o que o aviso pedir</b>: clique, duplo clique ou botão direito. São 10 bolinhas.</p>
+  <div class="tool" id="mt" style="--cc:var(--c1)">
+    <div id="mtTask" aria-live="polite">Aperte “Começar” para treinar.</div>
+    <div id="mtArena"><button type="button" id="mtTarget" aria-label="Alvo do treino do mouse">●</button></div>
+    <div class="ctl"><button type="button" class="big on" id="mtStart">▶ Começar</button></div>
+    <p class="enc-txt" id="mtOut" aria-live="polite"></p>
+  </div>
+
+  <h3 style="font-size:21px;margin-top:20px">A área de trabalho</h3>
+  <p>Quando o Windows liga, você vê a <b>área de trabalho</b>: é como o <b>tampo de uma mesa</b>, onde ficam as coisas que você mais usa.</p>
+  <svg class="ill" viewBox="0 0 560 270" role="img" aria-label="Desenho da área de trabalho do Windows com ícones, barra de tarefas e botão Iniciar">
+    <rect class="sc" x="10" y="10" width="540" height="200" rx="8"/>
+    <rect class="sh" x="30" y="28" width="38" height="46" rx="4"/><text x="49" y="92" text-anchor="middle">Lixeira</text>
+    <rect class="sh" x="100" y="28" width="38" height="46" rx="4"/><text x="119" y="92" text-anchor="middle">Pasta</text>
+    <rect class="sh" x="10" y="214" width="540" height="40" rx="6"/>
+    <g class="sh"><rect x="22" y="224" width="9" height="9"/><rect x="33" y="224" width="9" height="9"/><rect x="22" y="235" width="9" height="9"/><rect x="33" y="235" width="9" height="9"/></g>
+    <rect class="sh" x="60" y="222" width="110" height="24" rx="12"/><text x="115" y="238" text-anchor="middle">Pesquisar</text>
+    <text x="520" y="238" text-anchor="end">10:30</text>
+    <g class="lbl">
+      <path class="lead" d="M300 80L300 130"/><text x="300" y="148" text-anchor="middle" class="lb">Área de trabalho</text>
+      <path class="lead" d="M44 60L120 150"/><text x="130" y="168" class="lb">Ícones (atalhos)</text>
+      <path class="lead" d="M32 228L260 190"/><text x="270" y="186" class="lb">Botão Iniciar</text>
+      <path class="lead" d="M420 234L420 200"/><text x="420" y="196" text-anchor="middle" class="lb">Barra de tarefas</text>
+    </g>
+  </svg>
+  <ul>
+    <li><b>Ícones:</b> desenhos que representam programas, pastas e arquivos. Dê <b>duplo clique</b> para abrir.</li>
+    <li><b>Barra de tarefas:</b> a faixa de baixo. Mostra os programas abertos, a hora e a data.</li>
+    <li><b>Botão Iniciar:</b> o ícone do Windows. Abre o <b>menu Iniciar</b>, de onde você abre programas e <b>desliga</b> o computador. (No Windows 11 ele fica no meio da barra; no Windows 10, no canto esquerdo.)</li>
+    <li><b>Lixeira:</b> guarda o que você apagou, até você esvaziar.</li>
+  </ul>
+  <h3 style="font-size:21px;margin-top:20px">As janelas</h3>
+  <p>Cada programa aberto aparece em uma <b>janela</b>, como uma folha de papel sobre a mesa. Você pode abrir várias e trocar entre elas.</p>
+  <svg class="ill" viewBox="0 0 560 260" role="img" aria-label="Desenho de uma janela com barra de título e botões de minimizar, maximizar e fechar">
+    <rect class="sh" x="20" y="20" width="400" height="220" rx="8"/>
+    <rect class="sc" x="20" y="20" width="400" height="34" rx="8"/>
+    <text x="36" y="43">Documento - Bloco de Notas</text>
+    <text x="336" y="44" text-anchor="middle">—</text><text x="368" y="44" text-anchor="middle">☐</text><text x="400" y="44" text-anchor="middle">✕</text>
+    <path class="sl" d="M20 78h400"/><text x="36" y="70">Arquivo   Editar   Exibir</text>
+    <path class="sl" d="M36 110h250M36 134h280M36 158h200" stroke-dasharray="10 6"/>
+    <rect class="sh" x="400" y="82" width="14" height="150" rx="6"/>
+    <g class="lbl">
+      <path class="lead" d="M200 20L200 10"/><text x="205" y="12" class="lb">Barra de título (arraste por aqui)</text>
+      <path class="lead" d="M400 44V70H436"/><text x="442" y="74" class="lb">Fechar</text>
+      <path class="lead" d="M368 44V112H436"/><text x="442" y="108" class="lb">Maximizar</text><text x="442" y="124" class="lb">(tela toda)</text>
+      <path class="lead" d="M336 44V160H436"/><text x="442" y="156" class="lb">Minimizar</text><text x="442" y="172" class="lb">(guarda na barra)</text>
+    </g>
+  </svg>
+  <div class="box atencao"><div class="ic">⚠️</div><div><h5>Cuidado com o ✕</h5><p>Fechar a janela <b>encerra o programa</b>. Se tiver trabalho sem salvar, o Windows pergunta se você quer salvar. <b>Leia a pergunta com calma</b> antes de responder!</p></div></div>
+
+  <h3 id="c1-arq">1.4 Arquivos e pastas</h3>
+  <p>Tudo o que você cria no computador (uma carta, uma planilha, uma foto) é guardado em um <b>arquivo</b>. Para não virar bagunça, os arquivos ficam dentro de <b>pastas</b>.</p>
+  <div class="box analogia"><div class="ic">💡</div><div><h5>Pense assim...</h5><p>O <b>arquivo</b> é uma <b>folha de papel</b> (a carta, o comprovante). A <b>pasta</b> é a <b>pasta de papelão</b> onde você junta as folhas do mesmo assunto. Dentro de uma pasta pode haver outras pastas, como em um <b>arquivo de escritório</b> com gavetas, e dentro delas as pastas e os papéis.</p></div></div>
+  <svg class="ill" viewBox="0 0 560 230" role="img" aria-label="Desenho de pastas dentro de pastas: Documentos, Curso, Cartas e Fotos">
+    <rect class="sh" x="20" y="14" width="150" height="40" rx="6"/><text x="95" y="39" text-anchor="middle">📁 Documentos</text>
+    <path class="sl" d="M95 54V104M95 104H200M95 104V176H200"/>
+    <rect class="sh" x="200" y="84" width="150" height="40" rx="6"/><text x="275" y="109" text-anchor="middle">📁 Curso</text>
+    <rect class="sh" x="200" y="156" width="150" height="40" rx="6"/><text x="275" y="181" text-anchor="middle">📁 Fotos</text>
+    <path class="sl" d="M350 104H390M390 70V140M390 70H410M390 140H410"/>
+    <rect class="sh" x="410" y="50" width="130" height="40" rx="6"/><text x="475" y="75" text-anchor="middle">📄 Carta.docx</text>
+    <rect class="sh" x="410" y="120" width="130" height="40" rx="6"/><text x="475" y="145" text-anchor="middle">📄 Notas.xlsx</text>
+  </svg>
+  <h3 style="font-size:21px;margin-top:20px">O nome e o tipo do arquivo</h3>
+  <p>Todo arquivo tem um <b>nome</b> e, no fim, um <b>ponto com três ou quatro letras</b>: a <b>extensão</b>, que mostra o tipo.</p>
+  <table>
+    <tr><th>Termina em</th><th>É um...</th><th>Abre com</th></tr>
+    <tr><td><code>.docx</code></td><td>Texto (carta, trabalho, currículo)</td><td>Word</td></tr>
+    <tr><td><code>.xlsx</code></td><td>Planilha (contas, tabelas)</td><td>Excel</td></tr>
+    <tr><td><code>.pptx</code></td><td>Apresentação (slides)</td><td>PowerPoint</td></tr>
+    <tr><td><code>.pdf</code></td><td>Documento para ler e imprimir</td><td>Navegador ou leitor de PDF</td></tr>
+    <tr><td><code>.jpg</code>, <code>.png</code></td><td>Foto ou imagem</td><td>Fotos</td></tr>
+    <tr><td><code>.mp3</code> / <code>.mp4</code></td><td>Música / vídeo</td><td>Reprodutor de mídia</td></tr>
+    <tr><td><code>.txt</code></td><td>Texto simples, sem enfeites</td><td>Bloco de Notas</td></tr>
+  </table>
+  <h3 style="font-size:21px;margin-top:20px">O Explorador de Arquivos</h3>
+  <p>É o programa que mostra suas pastas e arquivos (o ícone é uma <b>pastinha amarela</b> na barra de tarefas). Veja o que dá para fazer, quase sempre com o <b>botão direito</b> sobre o arquivo:</p>
+  <table>
+    <tr><th>Quero...</th><th>Como faço</th></tr>
+    <tr><td><b>Criar uma pasta</b></td><td>Botão direito em um espaço vazio → <b>Novo</b> → <b>Pasta</b> → digite o nome → Enter.</td></tr>
+    <tr><td><b>Renomear</b></td><td>Botão direito → <b>Renomear</b> → digite o novo nome → Enter.</td></tr>
+    <tr><td><b>Copiar</b></td><td>Botão direito → <b>Copiar</b>; vá ao destino; botão direito → <b>Colar</b>. O original continua no lugar.</td></tr>
+    <tr><td><b>Mover</b></td><td>Botão direito → <b>Recortar</b>; vá ao destino; <b>Colar</b>. Ou arraste.</td></tr>
+    <tr><td><b>Apagar</b></td><td>Botão direito → <b>Excluir</b>. Vai para a <b>Lixeira</b> e dá para recuperar.</td></tr>
+  </table>
+  <div class="box dica"><div class="ic">✅</div><div><h5>Atalhos que salvam o dia</h5><p><b>Ctrl + C</b> copia, <b>Ctrl + V</b> cola, <b>Ctrl + X</b> recorta e <b>Ctrl + Z</b> <b>desfaz</b> o último erro. (Segure a tecla Ctrl e aperte a outra letra.) Você vai usar muito o <b>Ctrl + Z</b>!</p></div></div>
+  <div class="box atencao"><div class="ic">⚠️</div><div><h5>Pendrive: retire com cuidado</h5><p>Um <b>pendrive</b> é uma pequena memória que se liga ao computador para <b>levar arquivos</b> de um lugar a outro. Antes de puxá-lo, clique no ícone <b>“Remover hardware com segurança”</b> (perto do relógio) ou no botão direito sobre o pendrive → <b>Ejetar</b>. Puxar sem avisar pode <b>estragar os arquivos</b>.</p></div></div>
+  <div class="box exemplo"><div class="ic">📌</div><div><h5>“Onde eu salvei?”</h5><p>A frase mais ouvida em aulas de informática. Na hora de <b>salvar</b>, olhe <b>em qual pasta</b> o arquivo vai e dê um <b>nome que você entenda</b> (<i>Curriculo Maria 2026</i>, e não <i>Documento1</i>).</p></div></div>
+
+  <!-- ATIVIDADES / PRÁTICAS -->
+  <div class="lab" id="c1-lab">
+    <h3>🧑‍🤝‍🧑 Atividade sem computador – A cozinha do computador</h3>
+    <p><b>Objetivo:</b> fixar as peças do computador com a analogia da cozinha. <b>Preparação:</b> o professor leva cartões com os nomes das peças (teclado, processador, memória RAM, HD, monitor, caixa de som) e cartões de cozinha (ingredientes chegando, cozinheiro, bancada, despensa, prato servido).</p>
+    <ol class="steps">
+      <li>Em grupos, <b>combinem</b> cada peça do computador com o seu “par” na cozinha.</li>
+      <li>Cada grupo explica um par para a turma, <b>com as suas palavras</b>.</li>
+      <li>O professor pergunta: “e se a luz acabar de repente?” O que some e o que fica guardado?</li>
+    </ol>
+
+    <h3>🧪 Prática 1 – Ligando e conhecendo a área de trabalho</h3>
+    <ol class="steps">
+      <li><b>Ligue</b> o computador e o monitor. Entre com o usuário e a senha que o professor informar.</li>
+      <li><b>Mexa o mouse</b> e observe a setinha. Aponte para a <b>Lixeira</b>, para a <b>barra de tarefas</b> e para o <b>botão Iniciar</b>.</li>
+      <li><b>Abra o menu Iniciar</b> com um clique. Procure o programa <b>Bloco de Notas</b> e abra-o. Observe a janela que apareceu.</li>
+      <li><b>Teste os três botões</b> da janela: minimize (e traga de volta pela barra de tarefas), maximize e restaure ao tamanho anterior.</li>
+      <li><b>Arraste</b> a janela pela barra de título para outro canto da tela.</li>
+      <li><b>Feche</b> o Bloco de Notas pelo ✕.</li>
+    </ol>
+
+    <h3>🧪 Prática 2 – Pastas e arquivos</h3>
+    <ol class="steps">
+      <li><b>Abra o Explorador de Arquivos</b> (a pastinha amarela) e entre em <b>Documentos</b>.</li>
+      <li><b>Crie uma pasta</b> com o seu nome (por exemplo, <code>Maria</code>). Dentro dela, crie outra chamada <code>Atividades</code>.</li>
+      <li><b>Abra o Bloco de Notas</b>, escreva seu nome e uma frase sobre você. Salve em <b>Arquivo → Salvar como</b>, dentro de <code>Atividades</code>, com o nome <code>Apresentação</code>.</li>
+      <li><b>Renomeie</b> o arquivo para <code>Sobre mim</code>.</li>
+      <li><b>Copie</b> o arquivo para a pasta com o seu nome (Ctrl + C e Ctrl + V). Quantos arquivos existem agora?</li>
+      <li><b>Apague</b> a cópia. Abra a <b>Lixeira</b> e <b>restaure</b> o arquivo (botão direito → Restaurar).</li>
+      <li><b>Desafio:</b> se o professor permitir, copie o arquivo para um <b>pendrive</b> e <b>ejete</b> com segurança.</li>
+    </ol>
+
+    <h3>🧪 Prática 3 – Desligando do jeito certo</h3>
+    <ol class="steps">
+      <li>Feche todos os programas (salvando, se perguntar).</li>
+      <li>Abra o <b>menu Iniciar</b> → botão de energia → <b>Desligar</b>. Espere a tela apagar.</li>
+      <li>Desligue o monitor e conte à turma: por que não se deve desligar na tomada?</li>
+    </ol>
+  </div>
+
+  <div class="resumo">
+    <h3>📝 Resumo do capítulo</h3>
+    <ul>
+      <li>O computador recebe informação (<b>entrada</b>), trabalha com ela (<b>processador e memória</b>), guarda (<b>HD ou SSD</b>) e mostra o resultado (<b>saída</b>).</li>
+      <li><b>Hardware</b> é o que se toca; <b>software</b> são os programas. O <b>sistema operacional</b> (Windows) organiza tudo.</li>
+      <li>Ligue e desligue pelo menu Iniciar. <b>Salve o trabalho com frequência.</b></li>
+      <li>Mouse: <b>clique</b> escolhe, <b>duplo clique</b> abre, <b>botão direito</b> mostra opções, <b>arrastar</b> move.</li>
+      <li>Área de trabalho, ícones, barra de tarefas e janelas (minimizar, maximizar, fechar).</li>
+      <li><b>Arquivos</b> ficam em <b>pastas</b>. Dê nomes claros e saiba onde salvou. <b>Ctrl + Z</b> desfaz.</li>
+    </ul>
+  </div>
+
+  <h3 id="c1-quiz">🧠 Quiz do capítulo 1</h3>
+  <p>Clique na resposta que você acha certa. O feedback aparece na hora, e dá para tentar de novo.</p>
+  <div class="quiz">
+    <div class="q"><p>1. O que é <b>hardware</b>?</p>
+      <button class="opt">a) Os programas do computador</button><button class="opt" data-ok="1">b) As peças que podemos tocar, como monitor e teclado</button><button class="opt">c) A internet</button><button class="opt">d) Um tipo de vírus</button>
+      <div class="fb">Hardware é a parte <b>física</b>. Os programas são o <b>software</b>.</div></div>
+    <div class="q"><p>2. Qual peça guarda os arquivos por muito tempo, mesmo com o computador desligado?</p>
+      <button class="opt">a) Memória RAM</button><button class="opt" data-ok="1">b) HD ou SSD</button><button class="opt">c) Monitor</button><button class="opt">d) Mouse</button>
+      <div class="fb">O <b>HD ou SSD</b> é a “despensa”. A RAM é a “bancada” e se esvazia ao desligar.</div></div>
+    <div class="q"><p>3. O monitor é um dispositivo de:</p>
+      <button class="opt">a) Entrada</button><button class="opt" data-ok="1">b) Saída</button><button class="opt">c) Armazenamento</button><button class="opt">d) Energia</button>
+      <div class="fb">O monitor <b>mostra</b> o resultado: é de <b>saída</b>.</div></div>
+    <div class="q"><p>4. Qual é o sistema operacional mais usado em computadores de mesa?</p>
+      <button class="opt">a) WhatsApp</button><button class="opt">b) Word</button><button class="opt" data-ok="1">c) Windows</button><button class="opt">d) Google</button>
+      <div class="fb">O <b>Windows</b> é o sistema operacional. Word e WhatsApp são programas.</div></div>
+    <div class="q"><p>5. Para abrir um arquivo, normalmente fazemos:</p>
+      <button class="opt">a) Um clique com o botão direito</button><button class="opt" data-ok="1">b) Duplo clique com o botão esquerdo</button><button class="opt">c) Apertar a tecla Esc</button><button class="opt">d) Desligar o computador</button>
+      <div class="fb">O <b>duplo clique</b> (esquerdo, duas vezes rápido) abre arquivos e programas.</div></div>
+    <div class="q"><p>6. Qual é o jeito certo de desligar o computador?</p>
+      <button class="opt">a) Tirar da tomada</button><button class="opt">b) Segurar o botão do gabinete</button><button class="opt" data-ok="1">c) Menu Iniciar → botão de energia → Desligar</button><button class="opt">d) Fechar o Word</button>
+      <div class="fb">Pelo menu, o Windows guarda tudo antes de desligar.</div></div>
+    <div class="q"><p>7. Você apagou um arquivo sem querer. O que fazer?</p>
+      <button class="opt">a) Nada: sumiu para sempre</button><button class="opt" data-ok="1">b) Abrir a Lixeira e restaurar o arquivo</button><button class="opt">c) Reiniciar o computador</button><button class="opt">d) Comprar outro computador</button>
+      <div class="fb">Apagados normalmente vão para a <b>Lixeira</b>, de onde dá para <b>restaurar</b>. Se ela já foi esvaziada, é mais difícil.</div></div>
+    <div class="q"><p>8. Que atalho <b>desfaz</b> a última ação?</p>
+      <button class="opt">a) Ctrl + C</button><button class="opt">b) Ctrl + V</button><button class="opt" data-ok="1">c) Ctrl + Z</button><button class="opt">d) Ctrl + X</button>
+      <div class="fb"><b>Ctrl + Z</b> desfaz. C copia, V cola e X recorta.</div></div>
+  </div>
+  <div class="score"></div>
+
+  <h3>✍️ Questões abertas</h3>
+  <div class="open"><p><b>1.</b> Com suas palavras, explique a diferença entre hardware e software e dê um exemplo de cada.</p>
+    <button>Ver resposta</button><div class="answer">Hardware é a parte física do computador, a que podemos tocar (exemplos: monitor, teclado, mouse). Software são os programas e o sistema, que não se tocam (exemplos: Windows, Word).</div></div>
+  <div class="open"><p><b>2.</b> Qual é a diferença entre a memória RAM e o HD (ou SSD)?</p>
+    <button>Ver resposta</button><div class="answer">A RAM guarda o que está sendo usado agora e se apaga quando o computador desliga (a bancada da cozinha). O HD ou SSD guarda os arquivos por muito tempo, mesmo desligado (a despensa).</div></div>
+  <div class="open"><p><b>3.</b> Por que é importante salvar o trabalho com frequência?</p>
+    <button>Ver resposta</button><div class="answer">Porque o que não foi salvo fica só na memória RAM. Se a luz acabar ou o computador travar, o trabalho se perde.</div></div>
+  <div class="open"><p><b>4.</b> Você tem fotos e documentos misturados na mesma pasta. Como você os organizaria?</p>
+    <button>Ver resposta</button><div class="answer">Criando pastas por assunto (por exemplo, “Fotos”, “Documentos”, “Curso”) e dando nomes claros aos arquivos, como em um arquivo de escritório com gavetas.</div></div>
+
+  <div class="box dica" style="margin-top:28px"><div class="ic">📚</div><div><h5>Para saber mais</h5><p>A <b>Central de Ajuda do Windows</b> (support.microsoft.com/pt-br/windows) explica passo a passo cada tarefa, com imagens. Sempre que travar, pesquise a pergunta ali.</p></div></div>
+</section>
+
+<!-- ================= CAPÍTULOS EM BREVE ================= -->
+<section class="chapter soon-ch" id="cap2" style="--cc:var(--c2)"><div class="chap-head"><div class="chap-num" style="background:var(--c2)">2</div><div><small>Capítulo 2</small><h2>Teclado e digitação</h2></div></div><div class="soon-card">⏳ Este capítulo será publicado em breve.</div></section>
+<section class="chapter soon-ch" id="cap3" style="--cc:var(--c3)"><div class="chap-head"><div class="chap-num" style="background:var(--c3)">3</div><div><small>Capítulo 3</small><h2>Word: textos</h2></div></div><div class="soon-card">⏳ Este capítulo será publicado em breve.</div></section>
+<section class="chapter soon-ch" id="cap4" style="--cc:var(--c4)"><div class="chap-head"><div class="chap-num" style="background:var(--c4)">4</div><div><small>Capítulo 4</small><h2>Excel: planilhas</h2></div></div><div class="soon-card">⏳ Este capítulo será publicado em breve.</div></section>
+<section class="chapter soon-ch" id="cap5" style="--cc:var(--c5)"><div class="chap-head"><div class="chap-num" style="background:var(--c5)">5</div><div><small>Capítulo 5</small><h2>PowerPoint: apresentações</h2></div></div><div class="soon-card">⏳ Este capítulo será publicado em breve.</div></section>
+<section class="chapter soon-ch" id="cap6" style="--cc:var(--c6)"><div class="chap-head"><div class="chap-num" style="background:var(--c6)">6</div><div><small>Capítulo 6</small><h2>Internet e comunicação</h2></div></div><div class="soon-card">⏳ Este capítulo será publicado em breve.</div></section>
+<section class="chapter soon-ch" id="cap7" style="--cc:var(--c7)"><div class="chap-head"><div class="chap-num" style="background:var(--c7)">7</div><div><small>Capítulo 7</small><h2>Segurança e cidadania digital</h2></div></div><div class="soon-card">⏳ Este capítulo será publicado em breve.</div></section>
+
+<section id="refs">
+  <h2>📚 Referências</h2>
+  <p class="ref">MICROSOFT. <b>Suporte da Microsoft: Windows</b>. [<i>S. l.</i>], [s.d.]. Disponível em: https://support.microsoft.com/pt-br/windows. Acesso em: 20 nov. 2026.</p>
+  <footer>Apostila de Educação em Tecnologias Digitais · IFRN – Campus João Câmara</footer>
+</section>
+</div>
+</main>
+<button class="back-top" id="top" aria-label="Voltar ao topo">↑</button>
+
+<script src="glossario.js"></script>
+<script src="etd.js"></script>
+<script src="../assets/apostila.js"></script>
+</body>
+</html>

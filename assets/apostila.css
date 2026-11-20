@@ -302,3 +302,4 @@ html[data-theme=dark] .done-box,html[data-theme=dark] .ex-sol{background:#1b2e1f
 html[data-theme=dark] .retry{color:#81c784;border-color:#81c784}
 html[data-theme=dark] #glTip{background:#e5e7eb;color:#111827}
 }
+@media screen and (max-width:700px){table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch;max-width:100%}}

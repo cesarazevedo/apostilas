@@ -84,7 +84,7 @@
     var esc=function(t){return t.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')};
     var sorted=terms.slice().sort(function(a,b){return b.length-a.length});
     var re=new RegExp('(?<![\\p{L}\\p{N}-])('+sorted.map(esc).join('|')+')(?:s|es)?(?![\\p{L}\\p{N}-])','iu');
-    var SKIP='a,code,pre,button,h1,h2,h3,h4,h5,abbr,.lh,.opt,.hot,.nav,.tool,.sw,.enc,.quiz,.open,.mail,.chap-head,.obj,.resumo,.tools,.meta,.hero,.fb,.answer,th';
+    var SKIP='a,svg,code,pre,button,h1,h2,h3,h4,h5,abbr,.lh,.opt,.hot,.nav,.tool,.sw,.enc,.quiz,.open,.mail,.chap-head,.obj,.resumo,.tools,.meta,.hero,.fb,.answer,th';
     chapters.forEach(function(ch){
       var seen={},w=document.createTreeWalker(ch,NodeFilter.SHOW_TEXT,{acceptNode:function(n){
         if(!n.nodeValue.trim())return NodeFilter.FILTER_REJECT;

@@ -4,6 +4,7 @@ Apostilas digitais das disciplinas do Prof. César Azevedo (IFRN – Campus Joã
 
 - [Redes de Computadores](redes/) · [plano de aula (professor)](redes/professor.html)
 - [Sistemas Operacionais de Redes](so/) · [plano de aula (professor)](so/professor.html)
+- [Educação em Tecnologias Digitais](etd/) (EJA, 30 h; em construção: capítulo 1 pronto)
 
 ## Estrutura
 
@@ -14,6 +15,7 @@ assets/apostila.js    recursos compartilhados: tema escuro, quiz, progresso, glo
 sw.js, manifest...    modo offline e instalação como aplicativo
 redes/                index.html (conteúdo), redes.js (simuladores), glossario.js
 so/                   Sistemas Operacionais de Redes (index.html, so.js, glossario.js)
+etd/                  Educação em Tecnologias Digitais (index.html, etd.js, glossario.js)
 ```
 
 ## Nova disciplina
