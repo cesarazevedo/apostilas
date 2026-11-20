@@ -56,5 +56,13 @@ window.GLOSSARIO={
 "PowerPoint":"Programa da Microsoft para criar apresentações.",
 "apresentação":"Conjunto de slides mostrados em sequência para o público.",
 "tema":"Conjunto de cores e estilos que muda o visual de todos os slides.",
-"contraste":"A diferença entre a cor da letra e a do fundo. Quanto maior, mais fácil de ler."
+"contraste":"A diferença entre a cor da letra e a do fundo. Quanto maior, mais fácil de ler.",
+"internet":"Rede que liga milhões de computadores e celulares no mundo todo.",
+"navegador":"Programa para visitar sites, como Chrome, Edge e Firefox.",
+"site":"Conjunto de páginas da internet, com um endereço próprio.",
+"e-mail":"Carta eletrônica, enviada pela internet para um endereço com @.",
+"anexo":"Arquivo enviado junto com o e-mail.",
+"nuvem":"Lugar na internet para guardar arquivos fora do seu computador.",
+"gov.br":"Conta única para usar os serviços digitais do governo federal.",
+"golpe":"Tentativa de enganar alguém para roubar dinheiro ou dados."
 };

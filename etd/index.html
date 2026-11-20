@@ -94,6 +94,13 @@ table.xl tr.res td{font-weight:700;background:rgba(46,125,50,.12)}
 .pg-pair .slide{cursor:pointer;margin:0;font-size:13px;min-width:0}
 .pg-pair .slide:hover{outline:3px solid var(--cc)}
 @media (max-width:560px){.pg-pair{grid-template-columns:1fr}}
+.ul-bar{display:flex;flex-wrap:wrap;font-family:Consolas,"Courier New",monospace;font-size:24px;border:3px solid var(--borda);border-radius:999px;padding:10px 16px;margin:10px 0;overflow-x:auto}
+.ul-bar button{border:0;background:transparent;color:var(--texto);font:inherit;cursor:pointer;padding:6px 4px;border-radius:8px}
+.ul-bar button.on{background:var(--cc);color:#fff}
+.ml-f{margin:8px 0}.ml-f label{display:block;font-size:18px}
+.ml-f input[type=text],.ml-f textarea{width:100%;font-size:18px;padding:10px;border:2px solid var(--borda);border-radius:8px;background:transparent;color:var(--texto);font-family:inherit;box-sizing:border-box}
+.ctl label{display:flex;align-items:center;gap:8px}.ctl input[type=checkbox]{width:22px;height:22px}
+@media (max-width:480px){.ul-bar{font-size:17px}}
 .ok-y{color:#2e7d32;font-weight:700}.ok-n{color:#c62828;font-weight:700}
 @page{@bottom-center{content:"Educação em Tecnologias Digitais – IFRN · página " counter(page);font-size:9pt;color:#777}}
 </style>
@@ -155,7 +162,16 @@ table.xl tr.res td{font-weight:700;background:rgba(46,125,50,.12)}
       <a href="#c5-lab">Atividade e práticas</a>
       <a href="#c5-quiz">Quiz e exercícios</a>
     </div>
-    <a href="#cap6" class="soon"><span class="n" style="background:var(--c6)">6</span>Internet e comunicação</a>
+    <a href="#cap6"><span class="n" style="background:var(--c6)">6</span>Internet e comunicação</a>
+    <div class="sub">
+      <a href="#c6-net">O que é a internet</a>
+      <a href="#c6-pesq">Pesquisando</a>
+      <a href="#c6-email">E-mail</a>
+      <a href="#c6-gov">Serviços do governo</a>
+      <a href="#c6-nuvem">Arquivos na nuvem</a>
+      <a href="#c6-lab">Atividade e práticas</a>
+      <a href="#c6-quiz">Quiz e exercícios</a>
+    </div>
     <a href="#cap7" class="soon"><span class="n" style="background:var(--c7)">7</span>Segurança e cidadania digital</a>
     <a href="#refs"><span class="n" style="background:#455a64">📚</span>Referências</a>
   </nav>
@@ -187,7 +203,7 @@ table.xl tr.res td{font-weight:700;background:rgba(46,125,50,.12)}
     <div class="card" style="--cc:var(--c3)"><b>3 · Word</b><span>Escrever e formatar textos, currículo e cartas.</span><div class="st">✅ Disponível</div></div>
     <div class="card" style="--cc:var(--c4)"><b>4 · Excel</b><span>Planilhas, contas e orçamento da casa.</span><div class="st">✅ Disponível</div></div>
     <div class="card" style="--cc:var(--c5)"><b>5 · PowerPoint</b><span>Montar uma apresentação do zero.</span><div class="st">✅ Disponível</div></div>
-    <div class="card" style="--cc:var(--c6)"><b>6 · Internet e comunicação</b><span>Pesquisar, e-mail, gov.br e arquivos na nuvem.</span><div class="st">⏳ Em breve</div></div>
+    <div class="card" style="--cc:var(--c6)"><b>6 · Internet e comunicação</b><span>Pesquisar, e-mail, gov.br e arquivos na nuvem.</span><div class="st">✅ Disponível</div></div>
     <div class="card" style="--cc:var(--c7)"><b>7 · Segurança e cidadania digital</b><span>Senhas, golpes, privacidade e notícias falsas.</span><div class="st">⏳ Em breve</div></div>
   </div>
 </section>
@@ -1235,12 +1251,183 @@ Profissão: Costureira</code></pre>
 
   <div class="box dica" style="margin-top:28px"><div class="ic">📚</div><div><h5>Para saber mais</h5><p>Na Central de Ajuda da Microsoft (support.microsoft.com/pt-br) há tutoriais do PowerPoint com imagens. Use a caixa <b>“Pesquisar”</b> do próprio programa.</p></div></div>
 </section>
-<section class="chapter soon-ch" id="cap6" style="--cc:var(--c6)"><div class="chap-head"><div class="chap-num" style="background:var(--c6)">6</div><div><small>Capítulo 6</small><h2>Internet e comunicação</h2></div></div><div class="soon-card">⏳ Este capítulo será publicado em breve.</div></section>
+<section class="chapter" id="cap6" style="--cc:var(--c6)">
+  <div class="chap-head"><div class="chap-num" style="background:var(--c6)">6</div><div><small>Capítulo 6</small><h2>Internet e comunicação</h2></div></div>
+
+  <div class="obj"><h4>🎯 Ao final deste capítulo, você será capaz de:</h4>
+    <ul>
+      <li>Explicar o que é a <b>internet</b> e o que é um <b>navegador</b>.</li>
+      <li>Entender um <b>endereço de site</b> e pesquisar com cuidado.</li>
+      <li>Criar e usar um <b>e-mail</b>: escrever, anexar e enviar.</li>
+      <li>Conhecer o <b>gov.br</b> e alguns serviços públicos pela internet.</li>
+      <li>Guardar e enviar arquivos pela <b>nuvem</b>.</li>
+    </ul>
+  </div>
+
+  <h3 id="c6-net">6.1 O que é a internet</h3>
+  <p>A <b>internet</b> é a rede que liga <b>milhões de computadores e celulares</b> no mundo inteiro. Quando você usa o WhatsApp, vê um vídeo ou consulta o saldo do banco no celular, você já está usando a internet. Agora você vai usá-la também no computador.</p>
+  <div class="box analogia"><div class="ic">💡</div><div><h5>Pense assim: a estrada e as casas</h5><p>A <b>internet</b> é uma enorme <b>estrada</b> que liga todas as cidades. Cada <b>site</b> é uma <b>casa</b> com um endereço. O <b>navegador</b> é o <b>carro</b> que leva você até a casa que quer visitar.</p></div></div>
+  <p>Os navegadores mais comuns são o <b>Google Chrome</b>, o <b>Microsoft Edge</b> e o <b>Firefox</b>. Todos funcionam de forma parecida: tem uma <b>barra de endereço</b> em cima, onde você digita o site ou o que quer pesquisar.</p>
+  <h3 style="font-size:22px;margin-top:20px">O endereço de um site</h3>
+  <p>Toque em cada parte do endereço abaixo:</p>
+  <div class="tool" id="ul" style="--cc:var(--c6)">
+    <div class="ul-bar" id="ulBar" role="group" aria-label="Partes do endereço"></div>
+    <div class="box dica"><div class="ic">🔎</div><div class="pinfo" id="ulInfo" aria-live="polite"></div></div>
+  </div>
+  <div class="box atencao"><div class="ic">⚠️</div><div><h5>Olhe o endereço antes de digitar seus dados</h5><p>Golpistas criam sites <b>parecidos</b> com os verdadeiros (<i>gov-br-beneficio.com</i> não é do governo!). Os sites do governo terminam em <b>.gov.br</b>, e o do IFRN, em <b>.edu.br</b>. Confira também o <b>cadeadinho</b> ao lado do endereço.</p></div></div>
+
+  <h3 id="c6-pesq">6.2 Pesquisando na internet</h3>
+  <ol class="steps">
+    <li>Abra o navegador e clique na <b>barra de endereço</b> (ou na caixa de busca do Google).</li>
+    <li>Digite o que você quer saber, <b>como falaria</b>: <i>como emitir carteira de trabalho digital</i>.</li>
+    <li>Aperte <b>Enter</b>. Aparece uma lista de resultados.</li>
+    <li><b>Atenção</b>: os primeiros resultados com a palavra <b>“Anúncio”</b> são <b>propaganda paga</b>, não necessariamente a melhor resposta.</li>
+    <li>Clique em um resultado e, para <b>voltar</b>, use a <b>setinha ←</b> do navegador.</li>
+  </ol>
+  <div class="box dica"><div class="ic">✅</div><div><h5>Dicas para achar melhor</h5><p>Use <b>poucas palavras-chave</b> (<i>receita bolo de milho</i>). Para uma frase exata, use <b>aspas</b>. E, quando precisar de um <b>serviço do governo</b>, procure o site que termina em <b>.gov.br</b>.</p></div></div>
+  <h3 style="font-size:22px;margin-top:20px">Confie, mas confira</h3>
+  <p>Qualquer um pode publicar qualquer coisa na internet. Antes de acreditar ou compartilhar, faça as três perguntas: <b>Quem escreveu?</b> (é um órgão, um jornal conhecido, ou ninguém?) <b>Quando?</b> (é recente?) <b>Outros sites sérios dizem o mesmo?</b> Falaremos mais sobre isso no capítulo 7.</p>
+
+  <h3 id="c6-email">6.3 O e-mail</h3>
+  <p>O <b>e-mail</b> é uma <b>carta eletrônica</b>. Ele é usado para cadastros, <b>vagas de emprego</b>, contato com empresas e recebimento de documentos. Quase todo site pede um e-mail.</p>
+  <table>
+    <tr><th>Parte</th><th>Para que serve</th></tr>
+    <tr><td><b>Endereço</b></td><td>Como o “CEP” da sua caixa de correio. Tem sempre o <b>@</b> (arroba): <code>maria.silva@gmail.com</code>. Antes do @ vai o seu <b>nome de usuário</b>, depois o <b>provedor</b>.</td></tr>
+    <tr><td><b>Para</b></td><td>O endereço de <b>quem vai receber</b>.</td></tr>
+    <tr><td><b>Assunto</b></td><td>O <b>título</b> em poucas palavras: <i>Currículo – Maria Silva</i>.</td></tr>
+    <tr><td><b>Mensagem</b></td><td>O texto. Comece com <i>Olá</i> ou <i>Bom dia</i> e termine com seu nome.</td></tr>
+    <tr><td><b>Anexo</b></td><td>Um <b>arquivo</b> junto, como o currículo em PDF (ícone de clipe 📎).</td></tr>
+  </table>
+  <div class="box exemplo"><div class="ic">📌</div><div><h5>Como criar um e-mail</h5><p>Entre no site do provedor (por exemplo, o do Google) e procure <b>Criar conta</b>. Preencha o nome, escolha um <b>endereço sério</b> (o seu nome, em vez de apelidos) e crie uma <b>senha forte</b> (veja o capítulo 7). <b>Anote o endereço e a senha</b> em lugar seguro. Se já tem Gmail no celular, é a mesma conta: pode usar no computador.</p></div></div>
+  <p>Treine escrevendo um e-mail de pedido de emprego. A ferramenta confere se está tudo certo:</p>
+  <div class="tool" id="ml" style="--cc:var(--c6)">
+    <div class="ml-f"><label>Para: <input type="text" id="mlTo" placeholder="rh@empresa.com.br" aria-label="Para" autocomplete="off"></label></div>
+    <div class="ml-f"><label>Assunto: <input type="text" id="mlSub" placeholder="Currículo – seu nome" aria-label="Assunto" autocomplete="off"></label></div>
+    <div class="ml-f"><label>Mensagem:<textarea id="mlMsg" rows="4" placeholder="Bom dia! Envio meu currículo para a vaga de..." aria-label="Mensagem"></textarea></label></div>
+    <div class="ctl"><label><input type="checkbox" id="mlAt"> 📎 Anexei o currículo (PDF)</label> <button type="button" id="mlSend">✉️ Enviar</button></div>
+    <p class="enc-txt" id="mlTxt" aria-live="polite"></p>
+  </div>
+  <div class="box atencao"><div class="ic">⚠️</div><div><h5>E-mail falso (golpe)</h5><p>Desconfie de e-mail que <b>promete prêmio</b>, <b>cobra uma dívida que você não conhece</b> ou pede para <b>clicar em um link</b> e informar senha ou CPF. Seu banco e o governo <b>não pedem senha</b> por e-mail. Na dúvida, <b>não clique</b> e pergunte a alguém de confiança.</p></div></div>
+
+  <h3 id="c6-gov">6.4 Serviços do governo pela internet</h3>
+  <p>Muita coisa que antes exigia fila hoje se resolve pela internet. A porta de entrada é o <b>gov.br</b>, uma conta única para os serviços públicos federais.</p>
+  <table>
+    <tr><th>Serviço</th><th>Para que serve</th></tr>
+    <tr><td><b>Conta gov.br</b></td><td>É o seu “login” do governo. Usa o <b>CPF</b> e uma senha.</td></tr>
+    <tr><td><b>Meu INSS</b></td><td>Consultar aposentadoria, benefícios e pedir serviços do INSS.</td></tr>
+    <tr><td><b>Carteira de Trabalho Digital</b></td><td>Ver seus contratos de trabalho e emitir a carteira.</td></tr>
+    <tr><td><b>Consulta de situação do CPF e outros</b></td><td>Resolver problemas sem sair de casa.</td></tr>
+  </table>
+  <div class="box atencao"><div class="ic">🔒</div><div><h5>Cuidado com “ajudantes”</h5><p>Não entregue sua <b>senha do gov.br</b> a ninguém, nem a quem diz que vai “resolver rápido”. Quem pede dinheiro para “liberar um benefício” está aplicando golpe: os serviços do governo digital <b>não cobram</b> para você usar o gov.br.</p></div></div>
+
+  <h3 id="c6-nuvem">6.5 Arquivos na nuvem</h3>
+  <p>A <b>nuvem</b> é um lugar na internet para <b>guardar arquivos</b>, em vez de deixá-los só no computador (o Google Drive é um exemplo). Se o computador estragar ou for formatado, o arquivo continua lá, e você pode abrir no celular ou em outro computador, com seu login.</p>
+  <ul>
+    <li><b>Para guardar:</b> entre no serviço, clique em <b>Novo → Upload de arquivo</b> e escolha o arquivo.</li>
+    <li><b>Para enviar a alguém:</b> use o botão <b>Compartilhar</b> e escreva o e-mail da pessoa. Prefira compartilhar <b>só com quem precisa</b>.</li>
+    <li><b>Em computador de uso coletivo</b> (escola, lan house): ao terminar, clique em <b>Sair</b> da conta e feche o navegador. Se não, o próximo usuário vê tudo seu.</li>
+  </ul>
+
+  <div class="lab" id="c6-lab">
+    <h3>🧑‍🤝‍🧑 Atividade sem computador – O endereço certo</h3>
+    <p><b>Objetivo:</b> reconhecer endereços verdadeiros e falsos. <b>Preparação:</b> o professor escreve no quadro 6 endereços, por exemplo: <i>www.gov.br</i>, <i>gov-br-bolsa-gratis.com</i>, <i>www.ifrn.edu.br</i>, <i>ifrn-premio.net</i>, <i>www.inss.gov.br</i>, <i>inss-pagamento-urgente.online</i>.</p>
+    <ol class="steps">
+      <li>Em duplas, marquem quais parecem <b>verdadeiros</b> e quais <b>suspeitos</b>.</li>
+      <li>Discutam: o que fez vocês desconfiarem? (o final do endereço, a palavra “grátis”, a urgência...)</li>
+      <li>Cada dupla inventa <b>um e-mail falso</b> de 3 linhas e a turma tenta apontar os sinais de golpe.</li>
+    </ol>
+    <h3>🧪 Prática 1 – Pesquisar</h3>
+    <ol class="steps">
+      <li>Abra o navegador e pesquise: <code>receita de bolo de milho</code>.</li>
+      <li>Identifique os resultados que são <b>anúncios</b>. Abra um que <b>não</b> seja anúncio.</li>
+      <li>Volte com a <b>setinha ←</b> e abra outro resultado. Os dois dizem a mesma coisa?</li>
+      <li>Pesquise sobre algo da <b>sua vida</b> (um curso, um produto, uma cidade). Anote o endereço do site que você escolheu e <b>por que confiou</b> nele.</li>
+    </ol>
+    <h3>🧪 Prática 2 – Meu e-mail</h3>
+    <ol class="steps">
+      <li>Se ainda não tem, <b>crie um e-mail</b> com o professor, escolhendo um endereço sério. <b>Anote a senha</b> em um papel que fique com você.</li>
+      <li>Entre no e-mail e escreva uma mensagem para o <b>professor</b>: assunto <code>Atividade de informática</code>, texto com <i>Olá</i> e seu nome.</li>
+      <li><b>Anexe</b> o arquivo <code>Curriculo</code> (PDF) que você fez no capítulo 3 (clipe 📎).</li>
+      <li>Envie e confira se o professor recebeu. Depois, <b>saia da conta</b> (Sair).</li>
+    </ol>
+    <h3>🧪 Prática 3 – Conhecendo o gov.br</h3>
+    <ol class="steps">
+      <li>Com ajuda do professor, abra o site <b>gov.br</b> e confira o <b>endereço e o cadeado</b>.</li>
+      <li>Procure o serviço <b>Carteira de Trabalho Digital</b> (sem entrar com senha, só para ver o que ele oferece).</li>
+      <li>Em duplas, expliquem um ao outro <b>quando</b> usariam esse serviço.</li>
+      <li><b>Atenção:</b> não faça login com a senha em computador compartilhado, a não ser com orientação do professor.</li>
+    </ol>
+    <h3>🧪 Prática 4 – Nuvem</h3>
+    <ol class="steps">
+      <li>Entre na sua conta de nuvem (a do Gmail serve, o Google Drive).</li>
+      <li>Faça o <b>upload</b> do arquivo <code>Sobre mim</code> (apresentação do capítulo 5).</li>
+      <li>Abra o arquivo no navegador. Volte e <b>compartilhe</b> com o e-mail do professor.</li>
+      <li>Ao final, clique em <b>Sair</b> da conta e feche o navegador.</li>
+    </ol>
+  </div>
+
+  <div class="resumo">
+    <h3>📝 Resumo do capítulo</h3>
+    <ul>
+      <li>A <b>internet</b> liga computadores do mundo inteiro. O <b>navegador</b> leva você até os <b>sites</b>.</li>
+      <li>Confira o <b>endereço</b> e o <b>cadeado</b> antes de colocar seus dados. Site do governo: <b>.gov.br</b>.</li>
+      <li>Ao pesquisar, use poucas palavras e lembre que <b>“Anúncio”</b> é propaganda.</li>
+      <li>Confira: <b>quem escreveu, quando e se outros sites sérios dizem o mesmo</b>.</li>
+      <li><b>E-mail:</b> Para, Assunto, Mensagem e Anexo. Desconfie de e-mails que pedem senha ou prometem prêmio.</li>
+      <li><b>gov.br</b> é a conta para serviços do governo. Ninguém cobra para você usá-la.</li>
+      <li>A <b>nuvem</b> guarda arquivos na internet. Em computador compartilhado, sempre clique em <b>Sair</b>.</li>
+    </ul>
+  </div>
+
+  <h3 id="c6-quiz">🧠 Quiz do capítulo 6</h3>
+  <p>Clique na resposta que você acha certa.</p>
+  <div class="quiz">
+    <div class="q"><p>1. Para que serve o <b>navegador</b>?</p>
+      <button class="opt">a) Para consertar o computador</button><button class="opt" data-ok="1">b) Para visitar os sites da internet</button><button class="opt">c) Para escrever textos</button><button class="opt">d) Para imprimir</button>
+      <div class="fb">Chrome, Edge e Firefox são navegadores.</div></div>
+    <div class="q"><p>2. Qual destes endereços é de um site do governo?</p>
+      <button class="opt">a) www.gov-br-premio.com</button><button class="opt" data-ok="1">b) www.inss.gov.br</button><button class="opt">c) inss-urgente.online</button><button class="opt">d) www.bolsa-gratis.net</button>
+      <div class="fb">Sites do governo terminam em <b>.gov.br</b>.</div></div>
+    <div class="q"><p>3. O que significa o resultado com a palavra “Anúncio”?</p>
+      <button class="opt">a) É o mais confiável</button><button class="opt" data-ok="1">b) É propaganda paga</button><button class="opt">c) É um vírus</button><button class="opt">d) É do governo</button>
+      <div class="fb">Anúncio é <b>publicidade</b>: nem sempre é a melhor resposta.</div></div>
+    <div class="q"><p>4. Qual símbolo aparece em todo endereço de e-mail?</p>
+      <button class="opt">a) #</button><button class="opt" data-ok="1">b) @</button><button class="opt">c) $</button><button class="opt">d) %</button>
+      <div class="fb">O <b>@</b> (arroba) separa o usuário do provedor.</div></div>
+    <div class="q"><p>5. Para que serve o <b>assunto</b> do e-mail?</p>
+      <button class="opt" data-ok="1">a) É o título da mensagem, em poucas palavras</button><button class="opt">b) É a senha</button><button class="opt">c) É o anexo</button><button class="opt">d) É o endereço de quem envia</button>
+      <div class="fb">Exemplo: <i>Currículo – Maria Silva</i>.</div></div>
+    <div class="q"><p>6. Chegou um e-mail dizendo “você ganhou um prêmio, clique aqui e informe seu CPF e senha”. O que fazer?</p>
+      <button class="opt">a) Clicar e preencher rápido</button><button class="opt" data-ok="1">b) Não clicar: provavelmente é golpe</button><button class="opt">c) Encaminhar a todos os contatos</button><button class="opt">d) Responder com a senha</button>
+      <div class="fb">Prêmio inesperado e pedido de senha são sinais clássicos de <b>golpe</b>.</div></div>
+    <div class="q"><p>7. Alguém oferece ajuda para “liberar” benefício cobrando uma taxa. Isso é:</p>
+      <button class="opt">a) Normal</button><button class="opt" data-ok="1">b) Provável golpe</button><button class="opt">c) Obrigatório</button><button class="opt">d) Um serviço do gov.br</button>
+      <div class="fb">Os serviços do governo digital <b>não cobram</b> para você usar o gov.br.</div></div>
+    <div class="q"><p>8. Ao terminar de usar a nuvem em um computador da escola, você deve:</p>
+      <button class="opt">a) Deixar aberta</button><button class="opt" data-ok="1">b) Clicar em Sair da conta</button><button class="opt">c) Desligar o monitor só</button><button class="opt">d) Anotar a senha na tela</button>
+      <div class="fb">Se não sair, o próximo usuário pode ver seus arquivos.</div></div>
+  </div>
+  <div class="score"></div>
+
+  <h3>✍️ Questões abertas</h3>
+  <div class="open"><p><b>1.</b> Explique, com suas palavras, a diferença entre internet e navegador.</p>
+    <button>Ver resposta</button><div class="answer">A internet é a rede que liga os computadores; o navegador é o programa que usamos para visitar os sites dessa rede.</div></div>
+  <div class="open"><p><b>2.</b> Cite dois sinais de que um site ou e-mail pode ser golpe.</p>
+    <button>Ver resposta</button><div class="answer">Por exemplo: promessa de prêmio ou dinheiro fácil, urgência, endereço estranho (sem .gov.br), pedido de senha ou dados pessoais.</div></div>
+  <div class="open"><p><b>3.</b> Quais são as partes de um e-mail?</p>
+    <button>Ver resposta</button><div class="answer">Para, assunto, mensagem e, se for o caso, anexo.</div></div>
+  <div class="open"><p><b>4.</b> Por que clicar em Sair em um computador de uso coletivo?</p>
+    <button>Ver resposta</button><div class="answer">Para que a próxima pessoa não consiga abrir sua conta, seus e-mails e seus arquivos.</div></div>
+
+  <div class="box dica" style="margin-top:28px"><div class="ic">📚</div><div><h5>Para saber mais</h5><p>A <b>Cartilha de Segurança para Internet</b> do CERT.br (cartilha.cert.br) explica, em linguagem simples, como usar a internet com mais cuidado. Vamos usá-la no próximo capítulo.</p></div></div>
+</section>
 <section class="chapter soon-ch" id="cap7" style="--cc:var(--c7)"><div class="chap-head"><div class="chap-num" style="background:var(--c7)">7</div><div><small>Capítulo 7</small><h2>Segurança e cidadania digital</h2></div></div><div class="soon-card">⏳ Este capítulo será publicado em breve.</div></section>
 
 <section id="refs">
   <h2>📚 Referências</h2>
   <p class="ref">MICROSOFT. <b>Suporte do PowerPoint</b>. [<i>S. l.</i>], [s.d.]. Disponível em: https://support.microsoft.com/pt-br/powerpoint. Acesso em: 20 nov. 2026.</p>
+  <p class="ref">CERT.BR. <b>Cartilha de Segurança para Internet</b>. São Paulo: Comitê Gestor da Internet no Brasil, [s.d.]. Disponível em: https://cartilha.cert.br/. Acesso em: 20 nov. 2026.</p>
+  <p class="ref">BRASIL. Governo Federal. <b>Portal gov.br</b>. Brasília, DF, [s.d.]. Disponível em: https://www.gov.br/. Acesso em: 20 nov. 2026.</p>
   <p class="ref">MICROSOFT. <b>Visão geral de fórmulas no Excel</b>. [<i>S. l.</i>], [s.d.]. Disponível em: https://support.microsoft.com/pt-br/excel. Acesso em: 20 nov. 2026.</p>
   <p class="ref">MICROSOFT. <b>Atalhos de teclado do Word</b>. [<i>S. l.</i>], [s.d.]. Disponível em: https://support.microsoft.com/pt-BR/Accessibility/word/keyboard-shortcuts-in-word. Acesso em: 20 nov. 2026.</p>
   <p class="ref">MICROSOFT. <b>Suporte da Microsoft: Windows</b>. [<i>S. l.</i>], [s.d.]. Disponível em: https://support.microsoft.com/pt-br/windows. Acesso em: 20 nov. 2026.</p>
