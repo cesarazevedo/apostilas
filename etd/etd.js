@@ -430,4 +430,40 @@
       $('mlTxt').innerHTML=p.length?'<span class="ok-n">✘ Ainda não enviado:</span> '+p.join('; ')+'.':'<span class="ok-y">✔ E-mail enviado!</span> Bem escrito: endereço certo, assunto claro, mensagem educada e anexo.';
     };
   })();
+
+  // --- Cap. 7: força da senha ---
+  (function(){
+    var inp=$('sgIn');if(!inp)return;
+    inp.addEventListener('input',function(){
+      var v=inp.value,n=v.length,t=0,fill=$('sgFill'),tx=$('sgTxt'),p=[];
+      if(!n){fill.style.width='0';tx.textContent='Digite algo para ver a força.';return}
+      if(/[a-zà-ú]/.test(v))t++;else p.push('letras minúsculas');
+      if(/[A-ZÀ-Ú]/.test(v))t++;else p.push('uma maiúscula');
+      if(/[0-9]/.test(v))t++;else p.push('um número');
+      if(/[^A-Za-zÀ-ú0-9]/.test(v))t++;else p.push('um símbolo (! ? @ ...)');
+      var common=/^(123456|12345678|senha|password|qwerty|abc123|111111|123123)$/i.test(v)||/^(.)\1+$/.test(v);
+      var score=Math.min(n,20)*4+t*5;if(n<8)score=Math.min(score,35);if(common)score=5;
+      var lvl=score<40?0:score<70?1:2,cor=['#c62828','#ef6c00','#2e7d32'][lvl],nome=['Fraca','Média','Forte'][lvl];
+      fill.style.width=Math.max(8,Math.min(100,score))+'%';fill.style.background=cor;
+      var d=[];if(n<12)d.push('use <b>12 letras ou mais</b>');if(p.length)d.push('falta: '+p.join(', '));
+      tx.innerHTML='<b style="color:'+cor+'">'+nome+'</b> ('+n+' caracteres)'+(common?'. Essa é uma das senhas <b>mais usadas</b>: nunca use':'')+(d.length&&lvl<2?'. Dica: '+d.join('; ')+'.':'. Muito bem!');
+    });
+  })();
+
+  // --- Cap. 7: golpe ou segura? ---
+  (function(){
+    var m=$('phMsg');if(!m)return;
+    var Q=[
+      ['“Parabéns! Você ganhou um iPhone. Clique aqui nas próximas 2 horas e informe seu CPF.”',true,'Prêmio que você não disputou + pressa + pedido de dados.'],
+      ['“Oi, mãe, mudei de número. Estou com problema e preciso de um Pix urgente. Não ligue, estou sem microfone.”',true,'Número novo + urgência + Pix + impede de ligar. Confirme ligando para o número antigo.'],
+      ['“Sua consulta está marcada para amanhã às 9h na UBS do bairro. Para cancelar, responda NÃO.”',false,'Mensagem simples, sem link, sem pedido de dinheiro ou dados. Se tiver dúvida, ligue para a unidade.'],
+      ['“Aqui é do banco. Sua conta foi invadida. Informe a senha e o código que vai chegar por SMS para bloquear.”',true,'O banco <b>nunca</b> pede senha ou código. Desligue e ligue você para o número do cartão.'],
+      ['“Olá, Maria! A reunião de pais é na sexta, às 19h, na escola. Tragam um prato.” (do grupo da turma da escola)',false,'Vem de um grupo conhecido, sem link e sem pedido de dinheiro.'],
+      ['“Seu CPF será cancelado hoje. Regularize pelo link: gov-br-regulariza.com e pague uma taxa de R$ 49,90.”',true,'Ameaça + pressa + endereço que não é .gov.br + cobrança.'],
+      ['“Seu pedido foi enviado. Acompanhe pelo aplicativo da loja onde você comprou.” (você realmente comprou ontem)',false,'Você fez a compra e a mensagem não pede dados. Prefira abrir o app da loja, em vez de clicar em links.']
+    ],cur,ok=0,tot=0,tx=$('phTxt');
+    function next(){var i;do{i=Math.floor(Math.random()*Q.length)}while(Q[i]===cur&&Q.length>1);cur=Q[i];m.innerHTML=cur[0]}
+    function ans(g){tot++;var c=g===cur[1];if(c)ok++;tx.innerHTML=(c?'<span class="ok-y">✔ Certo!</span> ':'<span class="ok-n">✘ Atenção!</span> ')+(cur[1]?'Era <b>golpe</b>: ':'Era <b>segura</b>: ')+cur[2]+' Acertos: '+ok+' de '+tot+'.';next()}
+    $('phG').onclick=function(){ans(true)};$('phS').onclick=function(){ans(false)};next();
+  })();
 })();

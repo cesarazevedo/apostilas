@@ -101,6 +101,9 @@ table.xl tr.res td{font-weight:700;background:rgba(46,125,50,.12)}
 .ml-f input[type=text],.ml-f textarea{width:100%;font-size:18px;padding:10px;border:2px solid var(--borda);border-radius:8px;background:transparent;color:var(--texto);font-family:inherit;box-sizing:border-box}
 .ctl label{display:flex;align-items:center;gap:8px}.ctl input[type=checkbox]{width:22px;height:22px}
 @media (max-width:480px){.ul-bar{font-size:17px}}
+.sg-bar{height:16px;background:rgba(128,128,128,.25);border-radius:999px;overflow:hidden;margin:12px 0}
+#sgFill{height:100%;width:0;background:#c62828;border-radius:999px;transition:width .2s,background .2s}
+.ph-msg{border:3px solid var(--borda);border-radius:16px;padding:16px 20px;font-size:19px;background:rgba(198,40,40,.06);margin:10px 0;min-height:90px}
 .ok-y{color:#2e7d32;font-weight:700}.ok-n{color:#c62828;font-weight:700}
 @page{@bottom-center{content:"Educação em Tecnologias Digitais – IFRN · página " counter(page);font-size:9pt;color:#777}}
 </style>
@@ -172,7 +175,16 @@ table.xl tr.res td{font-weight:700;background:rgba(46,125,50,.12)}
       <a href="#c6-lab">Atividade e práticas</a>
       <a href="#c6-quiz">Quiz e exercícios</a>
     </div>
-    <a href="#cap7" class="soon"><span class="n" style="background:var(--c7)">7</span>Segurança e cidadania digital</a>
+    <a href="#cap7"><span class="n" style="background:var(--c7)">7</span>Segurança e cidadania digital</a>
+    <div class="sub">
+      <a href="#c7-senha">Senhas fortes</a>
+      <a href="#c7-golpe">Golpes comuns</a>
+      <a href="#c7-priv">Privacidade</a>
+      <a href="#c7-fake">Notícias falsas</a>
+      <a href="#c7-cid">Cidadania digital</a>
+      <a href="#c7-lab">Atividade e práticas</a>
+      <a href="#c7-quiz">Quiz e exercícios</a>
+    </div>
     <a href="#refs"><span class="n" style="background:#455a64">📚</span>Referências</a>
   </nav>
   <div class="tools">
@@ -204,7 +216,7 @@ table.xl tr.res td{font-weight:700;background:rgba(46,125,50,.12)}
     <div class="card" style="--cc:var(--c4)"><b>4 · Excel</b><span>Planilhas, contas e orçamento da casa.</span><div class="st">✅ Disponível</div></div>
     <div class="card" style="--cc:var(--c5)"><b>5 · PowerPoint</b><span>Montar uma apresentação do zero.</span><div class="st">✅ Disponível</div></div>
     <div class="card" style="--cc:var(--c6)"><b>6 · Internet e comunicação</b><span>Pesquisar, e-mail, gov.br e arquivos na nuvem.</span><div class="st">✅ Disponível</div></div>
-    <div class="card" style="--cc:var(--c7)"><b>7 · Segurança e cidadania digital</b><span>Senhas, golpes, privacidade e notícias falsas.</span><div class="st">⏳ Em breve</div></div>
+    <div class="card" style="--cc:var(--c7)"><b>7 · Segurança e cidadania digital</b><span>Senhas, golpes, privacidade e notícias falsas.</span><div class="st">✅ Disponível</div></div>
   </div>
 </section>
 
@@ -1421,13 +1433,191 @@ Profissão: Costureira</code></pre>
 
   <div class="box dica" style="margin-top:28px"><div class="ic">📚</div><div><h5>Para saber mais</h5><p>A <b>Cartilha de Segurança para Internet</b> do CERT.br (cartilha.cert.br) explica, em linguagem simples, como usar a internet com mais cuidado. Vamos usá-la no próximo capítulo.</p></div></div>
 </section>
-<section class="chapter soon-ch" id="cap7" style="--cc:var(--c7)"><div class="chap-head"><div class="chap-num" style="background:var(--c7)">7</div><div><small>Capítulo 7</small><h2>Segurança e cidadania digital</h2></div></div><div class="soon-card">⏳ Este capítulo será publicado em breve.</div></section>
+<section class="chapter" id="cap7" style="--cc:var(--c7)">
+  <div class="chap-head"><div class="chap-num" style="background:var(--c7)">7</div><div><small>Capítulo 7</small><h2>Segurança e cidadania digital</h2></div></div>
+
+  <div class="obj"><h4>🎯 Ao final deste capítulo, você será capaz de:</h4>
+    <ul>
+      <li>Criar uma <b>senha forte</b> e guardá-la com cuidado.</li>
+      <li>Reconhecer os <b>golpes</b> mais comuns no celular e no computador.</li>
+      <li>Proteger seus <b>dados pessoais</b> e saber o que fazer se cair em um golpe.</li>
+      <li>Desconfiar de <b>notícias falsas</b> antes de compartilhar.</li>
+      <li>Usar a internet com <b>respeito</b> e responsabilidade.</li>
+    </ul>
+  </div>
+
+  <h3 id="c7-senha">7.1 Senhas fortes</h3>
+  <p>A <b>senha</b> é a <b>chave da sua casa digital</b>. Se alguém pega a chave, entra no seu e-mail, no seu WhatsApp, no seu banco. Por isso a senha precisa ser <b>difícil para os outros</b> e <b>fácil para você lembrar</b>.</p>
+  <div class="box analogia"><div class="ic">💡</div><div><h5>Pense assim: a chave de casa</h5><p>Você usa a <b>mesma chave</b> para a casa, o carro e o cofre? Não! Com senha é igual: <b>uma senha diferente</b> para cada conta importante. Assim, se uma vazar, as outras continuam seguras.</p></div></div>
+  <table>
+    <tr><th>❌ Senha fraca</th><th>✅ Senha forte</th></tr>
+    <tr><td><code>123456</code>, <code>senha</code>, <code>maria123</code></td><td>Uma <b>frase longa</b>: <code>Meu cachorro come 3 bananas!</code></td></tr>
+    <tr><td>Data de nascimento, nome dos filhos, placa do carro</td><td>Letras <b>maiúsculas e minúsculas</b>, números e símbolo</td></tr>
+    <tr><td>A <b>mesma senha</b> em tudo</td><td><b>Uma senha para cada conta</b> importante</td></tr>
+  </table>
+  <p>Teste abaixo como o tamanho e a mistura mudam a força. <b>Não digite sua senha de verdade</b>: invente uma só para testar!</p>
+  <div class="tool" id="sg" style="--cc:var(--c7)">
+    <label for="sgIn" style="font-size:18px">Digite uma senha de teste:</label>
+    <input type="text" id="sgIn" class="tk-in" autocomplete="off" spellcheck="false" style="margin-top:8px" aria-describedby="sgTxt">
+    <div class="sg-bar"><div id="sgFill"></div></div>
+    <p class="enc-txt" id="sgTxt" aria-live="polite">Digite algo para ver a força.</p>
+  </div>
+  <div class="box dica"><div class="ic">✅</div><div><h5>Guardar a senha</h5><p>Anote em um <b>caderninho guardado em casa</b>, longe de todos. <b>Nunca</b> coloque a senha em foto da tela, em papel colado no monitor ou em mensagem para outra pessoa. E ative a <b>verificação em duas etapas</b> (um código que chega no celular) no e-mail e no WhatsApp: mesmo que roubem a senha, o ladrão não passa dessa porta.</p></div></div>
+  <div class="box atencao"><div class="ic">⚠️</div><div><h5>Nunca passe o código que chega por SMS</h5><p>Se alguém pedir o <b>código de 6 números</b> que chegou no seu celular, <b>não passe</b>! É assim que clonam o WhatsApp: o golpista usa o seu número, pede o código a você, e ganha acesso à sua conta.</p></div></div>
+
+  <h3 id="c7-golpe">7.2 Golpes mais comuns</h3>
+  <p>O golpista <b>não invade o computador</b>: ele <b>engana a pessoa</b>. Usa <b>pressa</b>, <b>medo</b> ou <b>vontade de ganhar</b> para você agir sem pensar.</p>
+  <table>
+    <tr><th>Golpe</th><th>Como funciona</th><th>O que fazer</th></tr>
+    <tr><td><b>Mensagem de “parente”</b></td><td>Chega do “número novo” do filho ou irmão pedindo dinheiro urgente.</td><td>Ligue para o número <b>antigo</b> ou faça chamada de vídeo antes de enviar qualquer valor.</td></tr>
+    <tr><td><b>Falso funcionário do banco</b></td><td>Liga dizendo que sua conta foi invadida e pede senha, código ou transferência.</td><td><b>Desligue.</b> O banco nunca pede senha por telefone. Ligue você para o número do cartão.</td></tr>
+    <tr><td><b>Prêmio ou oferta boa demais</b></td><td>“Você ganhou!”, “iPhone por R$ 50”, link para clicar.</td><td>Ninguém ganha o que não disputou. <b>Não clique.</b></td></tr>
+    <tr><td><b>Boleto ou Pix errado</b></td><td>Cobrança de dívida desconhecida, ou “depositei errado, devolve?”.</td><td>Confirme com a empresa ou o banco, pelos <b>canais oficiais</b>.</td></tr>
+    <tr><td><b>Falso benefício</b></td><td>Site ou ajudante que “libera” auxílio mediante pagamento.</td><td>Use só o <b>gov.br</b> oficial. O serviço público não cobra taxa para isso.</td></tr>
+  </table>
+  <p>Os golpes têm sinais em comum. Treine: <b>golpe</b> ou <b>mensagem segura</b>?</p>
+  <div class="tool" id="ph" style="--cc:var(--c7)">
+    <div class="ph-msg" id="phMsg" aria-live="polite"></div>
+    <div class="ctl"><button type="button" id="phG">🚨 É golpe</button><button type="button" id="phS">✅ Parece segura</button></div>
+    <p class="enc-txt" id="phTxt" aria-live="polite"></p>
+  </div>
+  <div class="box exemplo"><div class="ic">📌</div><div><h5>Os 4 sinais de alerta</h5><p><b>1. Pressa</b> (“é urgente”, “últimas horas”). <b>2. Dinheiro ou dados</b> (pedem Pix, senha, CPF). <b>3. Prêmio fácil.</b> <b>4. Remetente estranho</b> (número desconhecido, endereço esquisito). Na dúvida: <b>pare, respire e pergunte</b> a alguém de confiança.</p></div></div>
+  <h3 style="font-size:22px;margin-top:20px">Caí no golpe. E agora?</h3>
+  <ol class="steps">
+    <li><b>Não se envergonhe</b>: golpistas enganam gente de todas as idades e escolaridades.</li>
+    <li><b>Avise o banco</b> imediatamente (pelo telefone do cartão) e peça o bloqueio e a contestação.</li>
+    <li><b>Troque as senhas</b> das contas atingidas e ative a verificação em duas etapas.</li>
+    <li>Registre um <b>boletim de ocorrência</b> (muitas polícias aceitam o registro pela internet).</li>
+    <li><b>Avise seus contatos</b>, se foi o WhatsApp clonado.</li>
+  </ol>
+
+  <h3 id="c7-priv">7.3 Privacidade e dados pessoais</h3>
+  <p><b>Dados pessoais</b> são as informações que identificam você: nome, CPF, endereço, telefone, fotos, onde você trabalha. Valem dinheiro para golpistas e para empresas. A <b>LGPD</b> (Lei Geral de Proteção de Dados, Lei nº 13.709/2018) existe para <b>proteger esses dados</b>: a empresa só pode usá-los para o que você autorizou.</p>
+  <ul>
+    <li><b>Pense antes de postar</b>: foto da fachada de casa, do cartão, da passagem de viagem ou do boleto entrega informações demais.</li>
+    <li><b>Confira as configurações de privacidade</b> do Facebook, Instagram e WhatsApp: quem pode ver suas fotos e seu “visto por último”?</li>
+    <li><b>Desconfie de cadastro que pede demais</b>: por que um joguinho precisa do seu CPF?</li>
+    <li>Mantenha o computador e o celular <b>atualizados</b> e com um <b>antivírus</b> (o do próprio Windows, o Defender, já ajuda).</li>
+    <li><b>Faça cópia</b> (backup) dos arquivos importantes em um pendrive ou na nuvem.</li>
+  </ul>
+  <div class="box atencao"><div class="ic">🔒</div><div><h5>Computador de uso coletivo</h5><p>Escola, lan house, biblioteca: <b>não salve a senha</b> no navegador, <b>saia das contas</b> ao terminar, apague seus arquivos ou leve-os no pendrive e <b>feche o navegador</b>. Se possível, use a janela <b>anônima</b> (Ctrl + Shift + N).</p></div></div>
+
+  <h3 id="c7-fake">7.4 Notícias falsas</h3>
+  <p><b>Notícia falsa</b> (ou <i>fake news</i>) é uma informação <b>inventada ou distorcida</b> que parece verdadeira. Ela se espalha porque <b>mexe com a emoção</b>: medo, raiva, esperança. E quem compartilha sem querer <b>ajuda a espalhar</b>.</p>
+  <div class="box dica"><div class="ic">✅</div><div><h5>Antes de compartilhar, 4 perguntas</h5><p><b>1. Quem publicou?</b> Existe uma fonte, um jornal conhecido? <b>2. Quando?</b> É de hoje ou é antiga? <b>3. Outros veículos sérios noticiaram?</b> Pesquise o título. <b>4. Quer que eu me assuste ou me irrite?</b> Cuidado: é o jeito de fazer você espalhar sem pensar.</p></div></div>
+  <ul>
+    <li>Mensagem com “<b>repasse para todos</b>” é quase sempre boato.</li>
+    <li>Imagens e áudios podem ser <b>manipulados</b>, até com inteligência artificial. Desconfie do que parece “inacreditável”.</li>
+    <li>Na dúvida, <b>não compartilhe</b>. Procure em sites de <b>checagem de fatos</b> (agências de verificação).</li>
+  </ul>
+
+  <h3 id="c7-cid">7.5 Cidadania digital</h3>
+  <p>Ser <b>cidadão digital</b> é usar a tecnologia com <b>respeito, responsabilidade e participação</b>. As regras da boa convivência valem também na tela.</p>
+  <ul>
+    <li><b>Respeito:</b> não ofenda, não humilhe e não exponha ninguém. O que se escreve online <b>pode ser guardado</b> e ter consequências, inclusive legais.</li>
+    <li><b>Cuidado com imagens:</b> só poste <b>foto de outras pessoas</b> com a autorização delas. Nunca compartilhe fotos íntimas de ninguém.</li>
+    <li><b>Direitos:</b> você tem direito a <b>acesso à informação</b> e ao <b>atendimento por canais digitais</b> do governo. Use o gov.br e denuncie abusos.</li>
+    <li><b>Tempo de tela:</b> faça pausas e converse com as pessoas. A tecnologia é ferramenta, e não prisão.</li>
+    <li><b>Crianças e adolescentes:</b> acompanhe o que eles acessam e converse sobre os riscos, sem apenas proibir.</li>
+  </ul>
+
+  <div class="lab" id="c7-lab">
+    <h3>🧑‍🤝‍🧑 Atividade sem computador – Roda de conversa: “Quase caí!”</h3>
+    <p><b>Objetivo:</b> trocar experiências e aprender com elas. <b>Preparação:</b> a turma senta em roda.</p>
+    <ol class="steps">
+      <li>Quem quiser conta uma mensagem ou ligação <b>suspeita</b> que já recebeu (sem citar nomes completos nem números).</li>
+      <li>A turma identifica os <b>sinais de alerta</b> (pressa, dinheiro, prêmio, remetente estranho).</li>
+      <li>Em grupos, criem um <b>cartaz</b> com “3 regras para não cair em golpe”, que ficará na parede do laboratório.</li>
+    </ol>
+    <h3>🧪 Prática 1 – Senha forte</h3>
+    <ol class="steps">
+      <li>No computador, abra o <b>Bloco de Notas</b> e invente (sem usar sua senha real) uma <b>frase-senha</b> com 20 caracteres ou mais, com letra maiúscula, número e símbolo.</li>
+      <li>Teste a força na ferramenta do capítulo e melhore até chegar em <b>forte</b>.</li>
+      <li>Responda no papel: onde você guardaria uma senha de verdade?</li>
+      <li><b>Feche o Bloco de Notas sem salvar.</b> Nunca guarde senhas de verdade em arquivo de computador compartilhado.</li>
+    </ol>
+    <h3>🧪 Prática 2 – Detetive de golpes</h3>
+    <ol class="steps">
+      <li>O professor distribui <b>5 mensagens</b> impressas (inventadas): algumas golpes, outras verdadeiras.</li>
+      <li>Em duplas, marquem os <b>sinais de alerta</b> com caneta.</li>
+      <li>Digam em voz alta o que fariam em cada caso.</li>
+    </ol>
+    <h3>🧪 Prática 3 – Checando uma notícia</h3>
+    <ol class="steps">
+      <li>O professor mostra uma <b>notícia (verdadeira ou boato)</b>.</li>
+      <li>Pesquise no navegador: o título da notícia e a palavra <code>é verdade?</code>.</li>
+      <li>Responda às 4 perguntas da seção 7.4. A turma discute: <b>compartilharia</b> ou não?</li>
+    </ol>
+    <h3>🧪 Prática 4 – Privacidade no celular</h3>
+    <ol class="steps">
+      <li>No <b>seu celular</b>, abra as configurações de privacidade do WhatsApp (Configurações → Privacidade).</li>
+      <li>Confira quem vê sua <b>foto de perfil</b> e seu <b>“visto por último”</b>.</li>
+      <li>Se ainda não ativou, procure a <b>verificação em duas etapas</b> com a ajuda do professor.</li>
+    </ol>
+  </div>
+
+  <div class="resumo">
+    <h3>📝 Resumo do capítulo</h3>
+    <ul>
+      <li><b>Senha forte</b>: frase longa, mistura de tipos, <b>uma para cada conta</b>. Ative a <b>verificação em duas etapas</b>.</li>
+      <li><b>Nunca</b> passe o código de SMS nem a senha a ninguém.</li>
+      <li>Golpes usam <b>pressa, medo e prêmio</b>. Sinais: urgência, pedido de dinheiro ou dados, remetente estranho.</li>
+      <li>Caiu no golpe? <b>Avise o banco, troque as senhas, faça o B.O.</b></li>
+      <li>Proteja os <b>dados pessoais</b> (LGPD) e pense antes de postar.</li>
+      <li>Antes de compartilhar uma notícia: <b>quem, quando, outros veículos e a emoção</b>.</li>
+      <li>Na internet, valem as <b>mesmas regras de respeito</b> da vida real.</li>
+    </ul>
+  </div>
+
+  <h3 id="c7-quiz">🧠 Quiz do capítulo 7</h3>
+  <p>Clique na resposta que você acha certa.</p>
+  <div class="quiz">
+    <div class="q"><p>1. Qual é a senha mais forte?</p>
+      <button class="opt">a) 123456</button><button class="opt">b) maria1980</button><button class="opt" data-ok="1">c) Meu cachorro come 3 bananas!</button><button class="opt">d) senha</button>
+      <div class="fb">Uma <b>frase longa</b> com letras, número e símbolo é mais forte e fácil de lembrar.</div></div>
+    <div class="q"><p>2. Alguém pede o código de 6 números que chegou por SMS. O que fazer?</p>
+      <button class="opt">a) Passar, se a pessoa for educada</button><button class="opt" data-ok="1">b) Não passar: é golpe</button><button class="opt">c) Passar só os 3 primeiros</button><button class="opt">d) Postar no grupo da família</button>
+      <div class="fb">Esse código dá acesso à sua conta: <b>nunca</b> se passa a ninguém.</div></div>
+    <div class="q"><p>3. Uma mensagem de “filho em número novo” pede dinheiro urgente. O melhor é:</p>
+      <button class="opt">a) Fazer o Pix logo</button><button class="opt" data-ok="1">b) Ligar para o número antigo ou chamar por vídeo antes</button><button class="opt">c) Passar a senha</button><button class="opt">d) Ignorar sempre sem checar</button>
+      <div class="fb">Confirmar por <b>outro canal</b> é a melhor proteção.</div></div>
+    <div class="q"><p>4. O banco liga dizendo que sua conta foi invadida e pede sua senha. Isso é:</p>
+      <button class="opt">a) Procedimento normal</button><button class="opt" data-ok="1">b) Golpe: o banco não pede senha</button><button class="opt">c) Uma promoção</button><button class="opt">d) Um erro do telefone</button>
+      <div class="fb">Desligue e ligue você mesmo para o número do cartão.</div></div>
+    <div class="q"><p>5. O que são “dados pessoais”?</p>
+      <button class="opt">a) Só o nome do cachorro</button><button class="opt" data-ok="1">b) Informações que identificam você, como CPF, endereço e telefone</button><button class="opt">c) Só a senha</button><button class="opt">d) Apenas as fotos</button>
+      <div class="fb">A <b>LGPD</b> protege esses dados.</div></div>
+    <div class="q"><p>6. Antes de compartilhar uma notícia, você deve:</p>
+      <button class="opt">a) Repassar rápido</button><button class="opt" data-ok="1">b) Conferir quem publicou, quando e se outros veículos sérios dizem o mesmo</button><button class="opt">c) Responder “falso” sempre</button><button class="opt">d) Apagar o celular</button>
+      <div class="fb">Na dúvida, <b>não compartilhe</b>.</div></div>
+    <div class="q"><p>7. Em um computador da escola, ao terminar você deve:</p>
+      <button class="opt">a) Salvar a senha no navegador</button><button class="opt" data-ok="1">b) Sair das contas e fechar o navegador</button><button class="opt">c) Deixar tudo aberto</button><button class="opt">d) Anotar a senha na parede</button>
+      <div class="fb">Assim o próximo usuário não entra nas suas contas.</div></div>
+    <div class="q"><p>8. Qual atitude é de bom cidadão digital?</p>
+      <button class="opt">a) Postar foto de colega sem pedir</button><button class="opt" data-ok="1">b) Respeitar os outros e pedir autorização antes de postar fotos</button><button class="opt">c) Zombar de erros alheios</button><button class="opt">d) Compartilhar correntes sem ler</button>
+      <div class="fb">No mundo digital valem as mesmas regras de <b>respeito</b>.</div></div>
+  </div>
+  <div class="score"></div>
+
+  <h3>✍️ Questões abertas</h3>
+  <div class="open"><p><b>1.</b> Por que é perigoso usar a mesma senha em todas as contas?</p>
+    <button>Ver resposta</button><div class="answer">Se uma conta vazar, o golpista consegue entrar em todas as outras.</div></div>
+  <div class="open"><p><b>2.</b> Cite três sinais de que uma mensagem pode ser golpe.</p>
+    <button>Ver resposta</button><div class="answer">Pressa, pedido de dinheiro ou dados, prêmio fácil ou remetente estranho.</div></div>
+  <div class="open"><p><b>3.</b> O que fazer ao perceber que caiu em um golpe?</p>
+    <button>Ver resposta</button><div class="answer">Avisar o banco, trocar senhas, registrar boletim de ocorrência e avisar os contatos.</div></div>
+  <div class="open"><p><b>4.</b> Escreva as 4 perguntas para checar uma notícia antes de compartilhar.</p>
+    <button>Ver resposta</button><div class="answer">Quem publicou? Quando? Outros veículos sérios noticiaram? A mensagem quer só me assustar ou irritar?</div></div>
+
+  <div class="box dica" style="margin-top:28px"><div class="ic">🎓</div><div><h5>Você chegou ao fim da apostila!</h5><p>Você aprendeu a usar o computador, o teclado e o mouse, escrever no Word, fazer contas no Excel, montar uma apresentação, usar a internet e se proteger. <b>Continue praticando</b>: use o computador em tarefas do dia a dia, e peça ajuda sempre que precisar. Parabéns!</p></div></div>
+</section>
 
 <section id="refs">
   <h2>📚 Referências</h2>
   <p class="ref">MICROSOFT. <b>Suporte do PowerPoint</b>. [<i>S. l.</i>], [s.d.]. Disponível em: https://support.microsoft.com/pt-br/powerpoint. Acesso em: 20 nov. 2026.</p>
   <p class="ref">CERT.BR. <b>Cartilha de Segurança para Internet</b>. São Paulo: Comitê Gestor da Internet no Brasil, [s.d.]. Disponível em: https://cartilha.cert.br/. Acesso em: 20 nov. 2026.</p>
   <p class="ref">BRASIL. Governo Federal. <b>Portal gov.br</b>. Brasília, DF, [s.d.]. Disponível em: https://www.gov.br/. Acesso em: 20 nov. 2026.</p>
+  <p class="ref">BRASIL. <b>Lei nº 13.709, de 14 de agosto de 2018</b>. Lei Geral de Proteção de Dados Pessoais (LGPD). Brasília, DF: Presidência da República, 2018. Disponível em: https://www.planalto.gov.br/. Acesso em: 20 nov. 2026.</p>
   <p class="ref">MICROSOFT. <b>Visão geral de fórmulas no Excel</b>. [<i>S. l.</i>], [s.d.]. Disponível em: https://support.microsoft.com/pt-br/excel. Acesso em: 20 nov. 2026.</p>
   <p class="ref">MICROSOFT. <b>Atalhos de teclado do Word</b>. [<i>S. l.</i>], [s.d.]. Disponível em: https://support.microsoft.com/pt-BR/Accessibility/word/keyboard-shortcuts-in-word. Acesso em: 20 nov. 2026.</p>
   <p class="ref">MICROSOFT. <b>Suporte da Microsoft: Windows</b>. [<i>S. l.</i>], [s.d.]. Disponível em: https://support.microsoft.com/pt-br/windows. Acesso em: 20 nov. 2026.</p>
