@@ -373,4 +373,44 @@
     };
   })();
 
+  // --- Cap. 9: arquivo de faz de conta ---
+  (function(){
+    var g=$('flG');if(!g)return;var O=$('flO');
+    function esc(x){return String(x).replace(/&/g,'&amp;').replace(/</g,'&lt;')}
+    function rp(x){return "'"+x.replace(/\\/g,'\\\\').replace(/\n/g,'\\n')+"'"}
+    g.onclick=function(){
+      var m=$('flM').value,ex=$('flE').checked,c=$('flC'),t=$('flT').value.replace(/\\n/g,'\n'),h='<span class="c">&gt;&gt;&gt;</span> open("nomes.txt", "'+m+'")<br>';
+      if(m==='r'){
+        if(!ex)h+='<span class="e">FileNotFoundError: [Errno 2] No such file or directory: \'nomes.txt\'</span>';
+        else h+='<span class="c">&gt;&gt;&gt;</span> f.read()<br>'+esc(rp(c.value))+'<br><span class="c">linhas:</span> '+esc(JSON.stringify(c.value.split('\n').filter(function(x,i,a){return x!==''||i<a.length-1})));
+      }else if(m==='w'){
+        h+=(ex?'<span class="o">Atenção: o conteúdo anterior foi apagado.</span><br>':'<span class="o">Arquivo criado.</span><br>')+'<span class="c">&gt;&gt;&gt;</span> f.write('+esc(rp(t))+')';
+        c.value=t;$('flE').checked=true;
+      }else{
+        h+=(ex?'<span class="o">Conteúdo anterior mantido.</span><br>':'<span class="o">Arquivo criado.</span><br>')+'<span class="c">&gt;&gt;&gt;</span> f.write('+esc(rp(t))+')';
+        c.value=(ex?c.value:'')+t;$('flE').checked=true;
+      }
+      O.innerHTML=h;
+    };
+    $('flE').onchange=function(){O.innerHTML='<span class="c">Escolha o modo e clique em Executar.</span>'};
+    O.innerHTML='<span class="c">Escolha o modo e clique em Executar.</span>';
+  })();
+
+  // --- Cap. 9: leitor de CSV ---
+  (function(){
+    var t=$('cvT');if(!t)return;
+    function esc(x){return String(x).replace(/&/g,'&amp;').replace(/</g,'&lt;')}
+    function r(){
+      var d=$('cvD').value,rows=t.value.split('\n').filter(function(x){return x.trim()!==''}).map(function(l){return l.split(d)});
+      if(!rows.length){$('cvTab').innerHTML='';$('cvR').textContent='';return}
+      var w=rows[0].length;
+      $('cvTab').innerHTML=rows.map(function(row,i){return '<tr>'+row.map(function(c){return (i?'<td>':'<th>')+esc(c)+(i?'</td>':'</th>')}).join('')+'</tr>'}).join('');
+      if(w===1){$('cvR').innerHTML='<span class="ok-n">Só uma coluna!</span> Provavelmente o delimitador está errado para este arquivo.';return}
+      var msg=[];
+      for(var j=1;j<w;j++){var s=0,n=0;for(var i=1;i<rows.length;i++){var v=parseFloat((rows[i][j]||'').replace(',','.'));if(!isNaN(v)){s+=v;n++}}if(n)msg.push('média de <b>'+esc(rows[0][j])+'</b>: '+(s/n).toFixed(2))}
+      $('cvR').innerHTML=rows.length-1+' linha(s) de dados, '+w+' colunas.'+(msg.length?'<br>'+msg.join(' · '):'');
+    }
+    t.oninput=r;$('cvD').onchange=r;r();
+  })();
+
 })();

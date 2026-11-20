@@ -105,7 +105,16 @@ html[data-theme=dark]{--verde-claro:#10263a}
       <a href="#c8-tools">Ferramentas</a>
       <a href="#c8-quiz">Quiz e exercícios</a>
     </div>
-    <a href="#cap9" class="soon"><span class="n" style="background:var(--c9)">9</span>Arquivos</a>
+    <a href="#cap9"><span class="n" style="background:var(--c9)">9</span>Arquivos</a>
+    <div class="sub">
+      <a href="#c9-1">9.1 Abrindo e lendo arquivos</a>
+      <a href="#c9-2">9.2 Gravando em arquivos</a>
+      <a href="#c9-3">9.3 Arquivos CSV</a>
+      <a href="#c9-4">9.4 Quando o arquivo não existe</a>
+      <a href="#c9-lab">Exercícios</a>
+      <a href="#c9-tools">Ferramentas</a>
+      <a href="#c9-quiz">Quiz e exercícios</a>
+    </div>
     <a href="#cap10" class="soon"><span class="n" style="background:var(--c10)">10</span>Classes e objetos</a>
     <a href="#cap11" class="soon"><span class="n" style="background:var(--c11)">11</span>Banco de dados</a>
     <a href="#cap12" class="soon"><span class="n" style="background:var(--c12)">12</span>Projeto final</a>
@@ -142,7 +151,7 @@ html[data-theme=dark]{--verde-claro:#10263a}
     <div class="card" style="--cc:var(--c6)" data-ok="1"><b>6 · Listas</b><span>Listas, índices, for, pilhas, filas, ordenação e dicionários.</span><div class="st">✅ Disponível</div></div>
     <div class="card" style="--cc:var(--c7)" data-ok="1"><b>7 · Strings</b><span>Pesquisa, métodos e formatação, com um jogo da forca.</span><div class="st">✅ Disponível</div></div>
     <div class="card" style="--cc:var(--c8)" data-ok="1"><b>8 · Funções</b><span>def, return, escopo, recursão, módulos e random.</span><div class="st">✅ Disponível</div></div>
-    <div class="card" style="--cc:var(--c9)"><b>9 · Arquivos</b><span>Em breve: ler e gravar arquivos, incluindo CSV.</span><div class="st">⏳ Em breve</div></div>
+    <div class="card" style="--cc:var(--c9)" data-ok="1"><b>9 · Arquivos</b><span>Ler e gravar arquivos de texto e CSV.</span><div class="st">✅ Disponível</div></div>
     <div class="card" style="--cc:var(--c10)"><b>10 · Classes e objetos</b><span>Em breve: programação orientada a objetos.</span><div class="st">⏳ Em breve</div></div>
     <div class="card" style="--cc:var(--c11)"><b>11 · Banco de dados</b><span>Em breve: SQLite com Python.</span><div class="st">⏳ Em breve</div></div>
     <div class="card" style="--cc:var(--c12)"><b>12 · Projeto final</b><span>Em breve: juntar tudo em um projeto.</span><div class="st">⏳ Em breve</div></div>
@@ -3879,7 +3888,220 @@ mista = [<span class="number">1</span>, <span class="string">"a"</span>, <span c
 
   <div class="box dica" style="margin-top:28px"><div class="ic">📚</div><div><h5>Para saber mais</h5><p>Documentação oficial: <i>O tutorial de Python</i>, seções “Mais sobre definição de funções” e “Módulos”, em docs.python.org/pt-br/3/tutorial/. Para a biblioteca <code>random</code>: docs.python.org/pt-br/3/library/random.html.</p></div></div>
 </section>
-<section class="chapter soon-ch" id="cap9" style="--cc:var(--c9)"><div class="chap-head"><div class="chap-num" style="background:var(--c9)">9</div><div><small>Capítulo 9</small><h2>Arquivos</h2></div></div><div class="soon-card">⏳ Este capítulo será publicado em breve.</div></section>
+<section class="chapter" id="cap9" style="--cc:var(--c9)">
+  <div class="chap-head"><div class="chap-num" style="background:var(--c9)">9</div><div><small>Capítulo 9</small><h2>Arquivos</h2></div></div>
+  <div class="obj"><h4>🎯 Ao final deste capítulo, você será capaz de:</h4><ul><li>explicar por que usar arquivos e abrir um arquivo com <code>open()</code> e <code>with</code></li><li>ler arquivos de texto linha por linha e converter os valores lidos</li><li>gravar e acrescentar dados com os modos <code>"w"</code> e <code>"a"</code></li><li>ler e gravar arquivos CSV com o módulo <code>csv</code></li><li>tratar o erro de arquivo inexistente com <code>try</code> e <code>except</code></li></ul></div>
+<h3 id="c9-1">9.1 Abrindo e lendo arquivos</h3>
+<p class="sec-sub">O programa conversa com o disco do computador</p>
+<h4 class="pyh">🗄️ Por que usar arquivos?</h4>
+<p>Até agora, tudo que o programa guardava (variáveis, listas) <b>sumia</b> quando ele terminava. Isso acontece porque esses dados ficam na memória do computador, que é temporária. Um <b>arquivo</b> fica guardado no disco, então os dados continuam lá depois que o programa fecha.</p>
+<div class="box analogia"><div class="ic">💬</div><div><h5>Analogia</h5><p>A memória do programa é como um <b>quadro-branco</b>: fácil de usar, mas apagado ao final da aula. O arquivo é como o <b>caderno</b>: o que você escreve fica guardado para a próxima vez.</p></div></div>
+<h4 class="pyh">📂 A função open()</h4>
+<p>Para usar um arquivo, primeiro o programa precisa <b>abri-lo</b> com <code>open(nome, modo)</code>. O <b>modo</b> diz o que você quer fazer:</p>
+<table class="op-table"><tr><th>Modo</th><th>Significado</th><th>Se o arquivo não existe</th></tr><tr><td><code>"r"</code></td><td>ler (read)</td><td>dá erro</td></tr><tr><td><code>"w"</code></td><td>gravar, <b>apagando</b> o que havia (write)</td><td>cria o arquivo</td></tr><tr><td><code>"a"</code></td><td>acrescentar ao final (append)</td><td>cria o arquivo</td></tr></table>
+<p>Imagine que o arquivo <code>nomes.txt</code> está na mesma pasta do programa e contém três linhas: Ana, Bruno e Carla. Veja como ler tudo de uma vez:</p>
+<pre class="py nr"><span class="pylab">Listagem 9.1 — Lendo o arquivo inteiro</span><button class="cp">Copiar</button><code>arquivo = <span class="function">open</span>(<span class="string">"nomes.txt"</span>, <span class="string">"r"</span>, encoding=<span class="string">"utf-8"</span>)
+conteudo = arquivo.<span class="function">read</span>()
+<span class="function">print</span>(conteudo)
+arquivo.<span class="function">close</span>()
+<span class="output">Ana
+Bruno
+Carla</span></code></pre>
+<p>O <code>read()</code> devolve todo o texto em uma única string. O <code>close()</code> fecha o arquivo, como fechar o caderno depois de usar. O <code>encoding="utf-8"</code> garante que acentos como <i>ã</i> e <i>é</i> sejam lidos corretamente.</p>
+<h4 class="pyh">🔒 O bloco with: fecha sozinho</h4>
+<p>É fácil esquecer o <code>close()</code>. Por isso, o jeito mais usado é o bloco <code>with</code>: quando o bloco termina, o Python fecha o arquivo automaticamente.</p>
+<pre class="py nr"><span class="pylab">Listagem 9.2 — Lendo linha por linha com with</span><button class="cp">Copiar</button><code><span class="keyword">with</span> <span class="function">open</span>(<span class="string">"nomes.txt"</span>, encoding=<span class="string">"utf-8"</span>) <span class="keyword">as</span> arquivo:
+    <span class="keyword">for</span> linha <span class="keyword">in</span> arquivo:
+        <span class="function">print</span>(linha.<span class="function">strip</span>())
+<span class="output">Ana
+Bruno
+Carla</span></code></pre>
+<div class="box atencao"><div class="ic">⚠️</div><div><h5>Atenção</h5><p>Cada linha lida vem com o caractere de quebra de linha (<code>\n</code>) no final. Use <code>strip()</code> para tirá-lo. Sem o <code>strip()</code>, o <code>print</code> mostraria uma linha em branco entre os nomes.</p></div></div>
+<p>Também é possível guardar as linhas em uma lista, usando o que você aprendeu no capítulo 6:</p>
+<pre class="py nr"><span class="pylab">Listagem 9.3 — Guardando as linhas em uma lista</span><button class="cp">Copiar</button><code>nomes = []
+<span class="keyword">with</span> <span class="function">open</span>(<span class="string">"nomes.txt"</span>, encoding=<span class="string">"utf-8"</span>) <span class="keyword">as</span> arquivo:
+    <span class="keyword">for</span> linha <span class="keyword">in</span> arquivo:
+        nomes.<span class="function">append</span>(linha.<span class="function">strip</span>())
+<span class="function">print</span>(nomes)
+<span class="output">['Ana', 'Bruno', 'Carla']</span></code></pre>
+<p>Se o arquivo tiver números, converta cada linha com <code>int()</code> ou <code>float()</code>. Suponha que <code>valores.txt</code> tenha os números 10, 20 e 5, um por linha:</p>
+<pre class="py nr"><span class="pylab">Listagem 9.4 — Somando os números de um arquivo</span><button class="cp">Copiar</button><code>soma = <span class="number">0</span>
+<span class="keyword">with</span> <span class="function">open</span>(<span class="string">"valores.txt"</span>, encoding=<span class="string">"utf-8"</span>) <span class="keyword">as</span> arquivo:
+    <span class="keyword">for</span> linha <span class="keyword">in</span> arquivo:
+        soma += <span class="function">int</span>(linha)
+<span class="function">print</span>(<span class="string">"Soma:"</span>, soma)
+<span class="output">Soma: 35</span></code></pre>
+<div class="box dica"><div class="ic">💡</div><div><h5>Dica</h5><p>O <code>int()</code> ignora o espaço e o <code>\n</code> nas pontas, então <code>int("10\n")</code> funciona. Mas uma linha em branco no arquivo causaria <code>ValueError</code>.</p></div></div>
+<h3 id="c9-2">9.2 Gravando em arquivos</h3>
+<p class="sec-sub">Criando e atualizando arquivos de texto</p>
+<h4 class="pyh">✍️ Gravar com o modo "w"</h4>
+<p>Para gravar, abra o arquivo com <code>"w"</code> e use <code>write()</code>. Atenção: o <code>write()</code> <b>não</b> coloca a quebra de linha sozinho; você escreve o <code>\n</code> onde quiser.</p>
+<pre class="py nr"><span class="pylab">Listagem 9.5 — Gravando duas linhas</span><button class="cp">Copiar</button><code><span class="keyword">with</span> <span class="function">open</span>(<span class="string">"saida.txt"</span>, <span class="string">"w"</span>, encoding=<span class="string">"utf-8"</span>) <span class="keyword">as</span> arquivo:
+    arquivo.<span class="function">write</span>(<span class="string">"Primeira linha\n"</span>)
+    arquivo.<span class="function">write</span>(<span class="string">"Segunda linha\n"</span>)</code></pre>
+<div class="box atencao"><div class="ic">⚠️</div><div><h5>Cuidado com o "w"</h5><p>Abrir um arquivo existente com <code>"w"</code> <b>apaga tudo</b> o que havia nele, na hora, antes mesmo de você escrever. É como trocar a folha do caderno por uma em branco.</p></div></div>
+<h4 class="pyh">➕ Acrescentar com o modo "a"</h4>
+<p>Para <b>adicionar</b> ao final sem perder o que já existe, use <code>"a"</code>:</p>
+<pre class="py nr"><span class="pylab">Listagem 9.6 — Acrescentando uma linha</span><button class="cp">Copiar</button><code><span class="keyword">with</span> <span class="function">open</span>(<span class="string">"saida.txt"</span>, <span class="string">"a"</span>, encoding=<span class="string">"utf-8"</span>) <span class="keyword">as</span> arquivo:
+    arquivo.<span class="function">write</span>(<span class="string">"Terceira linha\n"</span>)</code></pre>
+<p>Agora <code>saida.txt</code> tem as três linhas. Rodar o programa de novo acrescentaria a terceira linha outra vez.</p>
+<h4 class="pyh">🔢 Gravando resultados de um programa</h4>
+<p>Misturando com o que você já sabe, dá para gravar uma tabuada inteira em um arquivo:</p>
+<pre class="py nr"><span class="pylab">Listagem 9.7 — Tabuada gravada em arquivo</span><button class="cp">Copiar</button><code>n = <span class="function">int</span>(<span class="function">input</span>(<span class="string">"Tabuada de: "</span>))
+<span class="keyword">with</span> <span class="function">open</span>(<span class="string">"tabuada.txt"</span>, <span class="string">"w"</span>, encoding=<span class="string">"utf-8"</span>) <span class="keyword">as</span> arquivo:
+    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="function">range</span>(<span class="number">1</span>, <span class="number">11</span>):
+        arquivo.<span class="function">write</span>(<span class="string">"%d x %d = %d\n"</span> % (n, i, n * i))
+<span class="function">print</span>(<span class="string">"Arquivo tabuada.txt criado!"</span>)</code></pre>
+<p>Outra opção é usar o <code>print</code> com o parâmetro <code>file</code>. Ele já coloca a quebra de linha:</p>
+<pre class="py nr"><span class="pylab">Listagem 9.8 — print com file</span><button class="cp">Copiar</button><code><span class="keyword">with</span> <span class="function">open</span>(<span class="string">"saida.txt"</span>, <span class="string">"w"</span>, encoding=<span class="string">"utf-8"</span>) <span class="keyword">as</span> arquivo:
+    <span class="function">print</span>(<span class="string">"Olá, arquivo!"</span>, file=arquivo)</code></pre>
+<h3 id="c9-3">9.3 Arquivos CSV</h3>
+<p class="sec-sub">Tabelas simples em texto</p>
+<h4 class="pyh">📊 O que é um CSV?</h4>
+<p><b>CSV</b> (<i>Comma-Separated Values</i>, valores separados por vírgula) é um arquivo de texto que representa uma tabela: cada linha do arquivo é uma linha da tabela, e os valores são separados por um caractere, o <b>delimitador</b>. Planilhas como o Excel e o Google Planilhas abrem e salvam esse formato.</p>
+<div class="box dica"><div class="ic">💡</div><div><h5>No Brasil</h5><p>O Excel em português costuma usar o <b>ponto e vírgula</b> (<code>;</code>) como delimitador, porque a vírgula já é usada nos números decimais. Por isso os exemplos usam <code>;</code>.</p></div></div>
+<p>Veja o arquivo <code>notas.csv</code>, que usaremos a seguir:</p>
+<pre class="py nr"><span class="pylab">Arquivo notas.csv</span><button class="cp">Copiar</button><code><span class="output">nome;nota1;nota2
+Ana;7.5;8.0
+Bruno;5.0;6.5
+Carla;9.0;10.0</span></code></pre>
+<h4 class="pyh">📖 Lendo com csv.reader</h4>
+<p>Poderíamos usar <code>split(";")</code>, mas o módulo <code>csv</code> já cuida dos detalhes (como textos que têm o delimitador dentro de aspas). Cada linha vira uma <b>lista de strings</b>:</p>
+<pre class="py nr"><span class="pylab">Listagem 9.9 — Média das notas de cada aluno</span><button class="cp">Copiar</button><code><span class="keyword">import</span> csv
+
+<span class="keyword">with</span> <span class="function">open</span>(<span class="string">"notas.csv"</span>, encoding=<span class="string">"utf-8"</span>, newline=<span class="string">""</span>) <span class="keyword">as</span> arquivo:
+    leitor = csv.<span class="function">reader</span>(arquivo, delimiter=<span class="string">";"</span>)
+    cabecalho = <span class="function">next</span>(leitor)
+    <span class="keyword">for</span> linha <span class="keyword">in</span> leitor:
+        nome = linha[<span class="number">0</span>]
+        n1 = <span class="function">float</span>(linha[<span class="number">1</span>])
+        n2 = <span class="function">float</span>(linha[<span class="number">2</span>])
+        <span class="function">print</span>(<span class="string">"%s: média %.2f"</span> % (nome, (n1 + n2) / <span class="number">2</span>))
+<span class="output">Ana: média 7.75
+Bruno: média 5.75
+Carla: média 9.50</span></code></pre>
+<p>O <code>next(leitor)</code> lê a primeira linha (o cabeçalho) e a separa, para que o <code>for</code> comece nos dados. O <code>newline=""</code> é recomendado pela documentação ao abrir arquivos CSV.</p>
+<h4 class="pyh">🏷️ Lendo com DictReader</h4>
+<p>Com o <code>DictReader</code>, cada linha vira um <b>dicionário</b> e você acessa os valores pelo nome da coluna, em vez de pelo índice:</p>
+<pre class="py nr"><span class="pylab">Listagem 9.10 — Usando DictReader</span><button class="cp">Copiar</button><code><span class="keyword">import</span> csv
+
+<span class="keyword">with</span> <span class="function">open</span>(<span class="string">"notas.csv"</span>, encoding=<span class="string">"utf-8"</span>, newline=<span class="string">""</span>) <span class="keyword">as</span> arquivo:
+    <span class="keyword">for</span> aluno <span class="keyword">in</span> csv.<span class="function">DictReader</span>(arquivo, delimiter=<span class="string">";"</span>):
+        <span class="function">print</span>(aluno[<span class="string">"nome"</span>], aluno[<span class="string">"nota1"</span>])
+<span class="output">Ana 7.5
+Bruno 5.0
+Carla 9.0</span></code></pre>
+<h4 class="pyh">💾 Gravando com csv.writer</h4>
+<pre class="py nr"><span class="pylab">Listagem 9.11 — Gravando um CSV</span><button class="cp">Copiar</button><code><span class="keyword">import</span> csv
+
+alunos = [[<span class="string">"Ana"</span>, <span class="number">7.75</span>], [<span class="string">"Bruno"</span>, <span class="number">5.75</span>], [<span class="string">"Carla"</span>, <span class="number">9.5</span>]]
+<span class="keyword">with</span> <span class="function">open</span>(<span class="string">"medias.csv"</span>, <span class="string">"w"</span>, encoding=<span class="string">"utf-8"</span>, newline=<span class="string">""</span>) <span class="keyword">as</span> arquivo:
+    escritor = csv.<span class="function">writer</span>(arquivo, delimiter=<span class="string">";"</span>)
+    escritor.<span class="function">writerow</span>([<span class="string">"nome"</span>, <span class="string">"media"</span>])
+    <span class="keyword">for</span> aluno <span class="keyword">in</span> alunos:
+        escritor.<span class="function">writerow</span>(aluno)</code></pre>
+<p>Cada chamada de <code>writerow</code> grava uma linha da tabela. Depois, é só abrir o <code>medias.csv</code> na planilha.</p>
+<h3 id="c9-4">9.4 Quando o arquivo não existe</h3>
+<p class="sec-sub">Erros comuns e como tratá-los</p>
+<h4 class="pyh">🚫 FileNotFoundError</h4>
+<p>Se você tentar ler um arquivo que não existe (ou está em outra pasta, ou com o nome escrito errado), o Python para com um erro:</p>
+<pre class="py nr"><span class="pylab">Listagem 9.12 — Arquivo inexistente</span><button class="cp">Copiar</button><code><span class="keyword">with</span> <span class="function">open</span>(<span class="string">"nomes.txt"</span>, encoding=<span class="string">"utf-8"</span>) <span class="keyword">as</span> arquivo:
+    <span class="function">print</span>(arquivo.<span class="function">read</span>())
+<span class="output">Traceback (most recent call last):
+  File "&lt;stdin&gt;", line 1, in &lt;module&gt;
+FileNotFoundError: [Errno 2] No such file or directory: 'nomes.txt'</span></code></pre>
+<p>Para o programa não "quebrar", use <code>try</code> e <code>except</code>: o Python <b>tenta</b> executar o bloco e, se acontecer o erro indicado, executa o bloco do <code>except</code>.</p>
+<pre class="py nr"><span class="pylab">Listagem 9.13 — Tratando o erro</span><button class="cp">Copiar</button><code><span class="keyword">try</span>:
+    <span class="keyword">with</span> <span class="function">open</span>(<span class="string">"nomes.txt"</span>, encoding=<span class="string">"utf-8"</span>) <span class="keyword">as</span> arquivo:
+        <span class="function">print</span>(arquivo.<span class="function">read</span>())
+<span class="keyword">except</span> FileNotFoundError:
+    <span class="function">print</span>(<span class="string">"Arquivo não encontrado!"</span>)</code></pre>
+<p>Outra forma é perguntar antes, com <code>os.path.exists</code>:</p>
+<pre class="py nr"><span class="pylab">Listagem 9.14 — Verificando se o arquivo existe</span><button class="cp">Copiar</button><code><span class="keyword">import</span> os
+
+<span class="keyword">if</span> os.path.<span class="function">exists</span>(<span class="string">"nomes.txt"</span>):
+    <span class="function">print</span>(<span class="string">"Pode ler!"</span>)
+<span class="keyword">else</span>:
+    <span class="function">print</span>(<span class="string">"Arquivo não encontrado!"</span>)</code></pre>
+<div class="box atencao"><div class="ic">⚠️</div><div><h5>Onde está o arquivo?</h5><p>Quando você escreve só <code>"nomes.txt"</code>, o Python procura na <b>pasta atual</b> do programa. Se o IDLE não achar, confira se o arquivo está na mesma pasta do seu <code>.py</code>.</p></div></div>
+<h4 class="pyh" id="c9-lab">📝 Exercícios do Capítulo 9</h4>
+<div class="lab"><h3>✏ Exercício 9.1</h3><p>Crie um arquivo <code>nomes.txt</code> com cinco nomes, um por linha. Escreva um programa que leia o arquivo e mostre cada nome em letras maiúsculas.</p></div>
+<div class="lab"><h3>✏ Exercício 9.2</h3><p>Crie um arquivo <code>valores.txt</code> com um número por linha. Leia o arquivo e mostre a soma e a média dos valores.</p></div>
+<div class="lab"><h3>✏ Exercício 9.3</h3><p>Faça um programa que peça um nome e uma idade e acrescente os dados, em uma linha, ao arquivo <code>cadastro.txt</code> (modo <code>"a"</code>). Rode o programa três vezes e confira o arquivo.</p></div>
+<div class="lab"><h3>✏ Exercício 9.4</h3><p>Leia o arquivo <code>nomes.txt</code> e grave os nomes em ordem alfabética no arquivo <code>ordenados.txt</code>.</p></div>
+<div class="lab"><h3>✏ Exercício 9.5</h3><p>Usando o arquivo <code>notas.csv</code> da Listagem 9.9, grave um novo CSV <code>resultado.csv</code> com as colunas nome, média e situação (“aprovado” se a média for 7 ou mais, senão “reprovado”).</p></div>
+<div class="lab"><h3>✏ Exercício 9.6</h3><p>Escreva um programa que peça o nome de um arquivo de texto e mostre quantas linhas e quantas palavras ele tem. Se o arquivo não existir, mostre uma mensagem de erro amigável.</p></div>
+
+  <h3 id="c9-tools">🛠️ Ferramentas do capítulo</h3>
+  <div class="tool" id="fl" style="--cc:var(--c9)">
+    <h4 style="margin-top:0">🗂️ Arquivo de faz de conta: r, w e a</h4>
+    <p>Edite o conteúdo do arquivo, escolha o modo e veja o que acontece. (É uma simulação: nada é gravado no seu computador.)</p>
+    <div class="tool-ctl"><label><input type="checkbox" id="flE" checked> o arquivo existe</label>
+    <select id="flM" aria-label="Modo" style="padding:8px;border-radius:8px;font:inherit"><option value="r">"r" (ler)</option><option value="w">"w" (gravar)</option><option value="a">"a" (acrescentar)</option></select></div>
+    <label style="display:block;margin-top:8px"><b>nomes.txt</b></label>
+    <textarea id="flC" rows="4" aria-label="Conteúdo do arquivo" style="width:100%;box-sizing:border-box;padding:8px;border-radius:8px;border:1px solid var(--borda,#ccc);font:15px Consolas,monospace">Ana
+Bruno
+Carla
+</textarea>
+    <label style="display:block;margin-top:8px">Texto para write():</label>
+    <input type="text" id="flT" value="Diego\n" aria-label="Texto para gravar" style="width:100%;box-sizing:border-box;padding:8px;border-radius:8px;border:1px solid var(--borda,#ccc);font:15px Consolas,monospace">
+    <div class="tool-ctl"><button type="button" id="flG">Executar</button></div>
+    <div class="repl"><div class="out" id="flO" aria-live="polite"></div></div>
+  </div>
+  <div class="tool" id="cv" style="--cc:var(--c9)">
+    <h4 style="margin-top:0">📊 Leitor de CSV</h4>
+    <p>Troque o delimitador e veja o que o <code>csv.reader</code> enxergaria. Com o delimitador errado, tudo vira uma coluna só.</p>
+    <textarea id="cvT" rows="5" aria-label="Conteúdo do CSV" style="width:100%;box-sizing:border-box;padding:8px;border-radius:8px;border:1px solid var(--borda,#ccc);font:15px Consolas,monospace">nome;nota1;nota2
+Ana;7.5;8.0
+Bruno;5.0;6.5
+Carla;9.0;10.0</textarea>
+    <div class="tool-ctl"><label>delimitador: <select id="cvD" style="padding:8px;border-radius:8px;font:inherit"><option value=";">; (ponto e vírgula)</option><option value=",">, (vírgula)</option></select></label></div>
+    <div style="overflow-x:auto"><table class="op-table" id="cvTab"></table></div>
+    <p id="cvR" aria-live="polite"></p>
+  </div>
+
+  <div class="resumo"><h3>📝 Resumo do capítulo</h3><ul><li>Arquivos guardam dados no <b>disco</b>, e eles continuam lá depois que o programa termina.</li><li><code>open(nome, modo)</code> abre o arquivo: <code>"r"</code> lê, <code>"w"</code> grava (apagando) e <code>"a"</code> acrescenta.</li><li>O bloco <code>with</code> fecha o arquivo automaticamente ao final.</li><li>Cada linha lida traz o <code>\n</code> no fim: use <code>strip()</code>. Converta números com <code>int()</code> ou <code>float()</code>.</li><li><code>write()</code> não coloca quebra de linha sozinho; o <code>print(..., file=arquivo)</code> coloca.</li><li><b>CSV</b> é uma tabela em texto; o módulo <code>csv</code> oferece <code>reader</code>, <code>writer</code> e <code>DictReader</code>, e o delimitador comum no Brasil é <code>;</code>.</li><li><code>try / except FileNotFoundError</code> evita que o programa quebre quando o arquivo não existe.</li></ul></div>
+  <h3 id="c9-quiz">🧠 Quiz do capítulo 9</h3>
+  <p>Clique na resposta que você acha certa.</p>
+  <div class="quiz">
+    <div class="q"><p>1. Por que usar arquivos?</p>
+      <button class="opt">a) Para o programa rodar mais rápido</button><button class="opt" data-ok="1">b) Para guardar dados que continuem existindo depois que o programa terminar</button><button class="opt">c) Para trocar o nome das variáveis</button><button class="opt">d) Para evitar usar listas</button>
+      <div class="fb">Variáveis somem quando o programa termina. Arquivos ficam no disco.</div></div>
+    <div class="q"><p>2. Qual modo apaga o conteúdo anterior do arquivo?</p>
+      <button class="opt">a) <code>"r"</code></button><button class="opt">b) <code>"a"</code></button><button class="opt" data-ok="1">c) <code>"w"</code></button><button class="opt">d) <code>"x"</code></button>
+      <div class="fb">O modo <code>"w"</code> recria o arquivo vazio ao abri-lo. Para manter o conteúdo, use <code>"a"</code>.</div></div>
+    <div class="q"><p>3. Qual modo adiciona texto ao final sem apagar o que já existe?</p>
+      <button class="opt" data-ok="1">a) <code>"a"</code></button><button class="opt">b) <code>"w"</code></button><button class="opt">c) <code>"r"</code></button><button class="opt">d) <code>"d"</code></button>
+      <div class="fb"><code>"a"</code> vem de <i>append</i> (acrescentar).</div></div>
+    <div class="q"><p>4. Qual a vantagem do bloco <code>with open(...) as f</code>?</p>
+      <button class="opt">a) Deixa o arquivo maior</button><button class="opt" data-ok="1">b) O arquivo é fechado automaticamente ao final do bloco</button><button class="opt">c) Permite ler sem saber o nome</button><button class="opt">d) Apaga o arquivo depois</button>
+      <div class="fb">O <code>with</code> garante o fechamento, mesmo se ocorrer um erro dentro do bloco.</div></div>
+    <div class="q"><p>5. Por que é comum usar <code>linha.strip()</code> ao ler um arquivo?</p>
+      <button class="opt">a) Para deixar o texto em maiúsculas</button><button class="opt" data-ok="1">b) Para remover o <code>\n</code> do fim da linha</button><button class="opt">c) Para converter em número</button><button class="opt">d) Para ordenar as linhas</button>
+      <div class="fb">Cada linha lida termina com <code>\n</code>; o <code>strip()</code> remove essa quebra e espaços nas pontas.</div></div>
+    <div class="q"><p>6. O que o <code>write()</code> NÃO faz sozinho?</p>
+      <button class="opt">a) Gravar texto</button><button class="opt">b) Criar o arquivo no modo <code>"w"</code></button><button class="opt" data-ok="1">c) Colocar a quebra de linha</button><button class="opt">d) Aceitar strings</button>
+      <div class="fb">Você mesmo coloca o <code>\n</code> onde quiser que a linha termine.</div></div>
+    <div class="q"><p>7. O que o <code>csv.reader</code> devolve a cada linha do arquivo?</p>
+      <button class="opt" data-ok="1">a) Uma lista com os valores da linha</button><button class="opt">b) Um número</button><button class="opt">c) Um dicionário sempre</button><button class="opt">d) O arquivo inteiro</button>
+      <div class="fb">Cada linha vira uma lista de strings. Já o <code>DictReader</code> devolve dicionários.</div></div>
+    <div class="q"><p>8. O que acontece ao abrir com <code>"r"</code> um arquivo que não existe?</p>
+      <button class="opt">a) O Python cria o arquivo</button><button class="opt" data-ok="1">b) Ocorre <code>FileNotFoundError</code></button><button class="opt">c) O programa pede o nome certo</button><button class="opt">d) Nada, ele devolve texto vazio</button>
+      <div class="fb">No modo de leitura, arquivo inexistente gera <code>FileNotFoundError</code>. Use <code>try/except</code> para tratar.</div></div>
+  </div>
+  <div class="score"></div>
+  <h3>✍️ Questões abertas</h3>
+  <div class="open"><p><b>1.</b> Qual a diferença entre os modos <code>"w"</code> e <code>"a"</code>?</p>
+    <button>Ver resposta</button><div class="answer">O <code>"w"</code> apaga o conteúdo existente e começa do zero; o <code>"a"</code> mantém o conteúdo e escreve no final. Analogia: trocar a folha do caderno por uma em branco, ou continuar escrevendo na próxima linha.</div></div>
+  <div class="open"><p><b>2.</b> Escreva um programa que mostre, em maiúsculas, cada linha de <code>nomes.txt</code>.</p>
+    <button>Ver resposta</button><div class="answer"><code>with open("nomes.txt", encoding="utf-8") as f:<br>&nbsp;&nbsp;&nbsp;&nbsp;for linha in f:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(linha.strip().upper())</code></div></div>
+  <div class="open"><p><b>3.</b> Por que o arquivo CSV brasileiro costuma usar <code>;</code> em vez de vírgula?</p>
+    <button>Ver resposta</button><div class="answer">Porque no Brasil a vírgula é o separador decimal (7,5). Usar vírgula também como delimitador misturaria as colunas.</div></div>
+  <div class="open"><p><b>4.</b> Como evitar que o programa quebre quando o arquivo não existe?</p>
+    <button>Ver resposta</button><div class="answer">Com <code>try:</code> abrindo o arquivo e <code>except FileNotFoundError:</code> mostrando uma mensagem. Outra opção é testar antes com <code>os.path.exists</code>.</div></div>
+
+  <div class="box dica" style="margin-top:28px"><div class="ic">📚</div><div><h5>Para saber mais</h5><p>Documentação oficial: <i>O tutorial de Python</i>, seção “Leitura e escrita de arquivos”, em docs.python.org/pt-br/3/tutorial/inputoutput.html, e o módulo <code>csv</code> em docs.python.org/pt-br/3/library/csv.html. Dica: faça os exercícios no IDLE, com os arquivos na mesma pasta do programa.</p></div></div>
+</section>
 <section class="chapter soon-ch" id="cap10" style="--cc:var(--c10)"><div class="chap-head"><div class="chap-num" style="background:var(--c10)">10</div><div><small>Capítulo 10</small><h2>Classes e objetos</h2></div></div><div class="soon-card">⏳ Este capítulo será publicado em breve.</div></section>
 <section class="chapter soon-ch" id="cap11" style="--cc:var(--c11)"><div class="chap-head"><div class="chap-num" style="background:var(--c11)">11</div><div><small>Capítulo 11</small><h2>Banco de dados</h2></div></div><div class="soon-card">⏳ Este capítulo será publicado em breve.</div></section>
 <section class="chapter soon-ch" id="cap12" style="--cc:var(--c12)"><div class="chap-head"><div class="chap-num" style="background:var(--c12)">12</div><div><small>Capítulo 12</small><h2>Projeto final</h2></div></div><div class="soon-card">⏳ Este capítulo será publicado em breve.</div></section>
