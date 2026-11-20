@@ -35,7 +35,8 @@ html[data-theme=dark]{--verde-claro:#10263a}
 </head>
 <body data-curso="so" data-root="../">
 <div class="progress" id="progress"></div>
-<div class="topbar"><button class="menu-btn" id="menuBtn" aria-label="Abrir menu">☰</button><b>Sistemas Operacionais de Redes</b><a class="home-link" href="../" style="margin-left:auto">🏠 Apostilas</a></div>
+<button class="theme-btn top" id="themeBtn" type="button">🌙</button>
+<div class="topbar"><button class="menu-btn" id="menuBtn" aria-label="Abrir menu">☰</button><b>Sistemas Operacionais de Redes</b><a class="home-link" href="../" style="margin-left:auto" aria-label="Voltar para todas as apostilas">🏠<span class="hl-t"> Apostilas</span></a></div>
 
 <aside class="sidebar" id="sidebar">
   <a class="home-link" href="../">← Todas as apostilas</a>
@@ -83,7 +84,6 @@ html[data-theme=dark]{--verde-claro:#10263a}
     <a href="#refs"><span class="n" style="background:#455a64">📚</span>Referências</a>
   </nav>
   <div class="tools">
-    <button class="theme-btn" id="themeBtn">🌙 Modo escuro</button>
     <button onclick="window.print()">🖨️ Salvar em PDF</button>
     <label><input type="checkbox" id="ans"> Incluir gabarito no PDF</label>
   </div>

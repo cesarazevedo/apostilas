@@ -163,7 +163,7 @@
   // --- Modo escuro ---
   (function(){
     var b=document.getElementById('themeBtn'),h=document.documentElement;
-    function lab(){b.textContent=h.dataset.theme==='dark'?'☀️ Modo claro':'🌙 Modo escuro';}
+    function lab(){var d=h.dataset.theme==='dark';b.textContent=d?'☀️':'🌙';b.title=b.ariaLabel=d?'Mudar para o modo claro':'Mudar para o modo escuro';b.setAttribute('aria-label',b.title);}
     b.onclick=function(){h.dataset.theme=h.dataset.theme==='dark'?'light':'dark';try{localStorage.setItem('tema',h.dataset.theme)}catch(e){}lab();};
     lab();
   })();
