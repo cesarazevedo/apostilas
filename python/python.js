@@ -444,4 +444,73 @@
     draw();
   })();
 
+  // --- Cap. 11: laboratório de SQL ---
+  (function(){
+    var G=$('sqG');if(!G)return;var T,nid;
+    function esc(x){return String(x).replace(/&/g,'&amp;').replace(/</g,'&lt;')}
+    function reset(){T=[{id:1,nome:'Ana',nota:8.5},{id:2,nome:'Bruno',nota:5},{id:3,nome:'Carla',nota:7},{id:4,nome:'Diego',nota:9.5}];nid=5}
+    function err(m){var e=new Error(m);e.sql=1;throw e}
+    function val(s){s=s.trim();var m=s.match(/^'(.*)'$/);if(m)return m[1];if(/^-?\d+(\.\d+)?$/.test(s))return parseFloat(s);err('valor inválido: '+s)}
+    function col(c){c=c.trim().toLowerCase();if(['id','nome','nota'].indexOf(c)<0)err('no such column: '+c);return c}
+    function cond(w){
+      if(!w)return function(){return true};
+      var P=w.split(/\s+and\s+/i).map(function(x){var m=x.trim().match(/^(\w+)\s*(>=|<=|!=|<>|=|>|<)\s*(.+)$/);if(!m)err('syntax error perto de "'+x.trim()+'"');var c=col(m[1]),o=m[2],v=val(m[3]);return function(r){var a=r[c];switch(o){case '=':return a===v;case '!=':case '<>':return a!==v;case '>':return a>v;case '<':return a<v;case '>=':return a>=v;default:return a<=v}}});
+      return function(r){return P.every(function(f){return f(r)})};
+    }
+    function agg(c,rows){
+      var m=c.trim().match(/^(count|avg|max|min|sum)\(\s*(\*|\w+)\s*\)$/i);if(!m)return null;
+      var f=m[1].toLowerCase(),k=m[2]==='*'?null:col(m[2]),v=k?rows.map(function(r){return r[k]}):rows;
+      if(f==='count')return v.length;if(!v.length)return null;
+      if(f==='sum')return v.reduce(function(a,b){return a+b},0);if(f==='avg')return v.reduce(function(a,b){return a+b},0)/v.length;
+      return f==='max'?Math.max.apply(null,v):Math.min.apply(null,v);
+    }
+    function run(sql){
+      var s=sql.trim().replace(/;$/,''),m;
+      if(m=s.match(/^select\s+(.+?)\s+from\s+alunos(?:\s+where\s+(.+?))?(?:\s+order\s+by\s+(\w+)(?:\s+(asc|desc))?)?$/i)){
+        var rows=T.filter(cond(m[2]));
+        if(m[3]){var k=col(m[3]),d=(m[4]||'').toLowerCase()==='desc'?-1:1;rows=rows.slice().sort(function(a,b){return a[k]<b[k]?-d:a[k]>b[k]?d:0})}
+        var cs=m[1].split(','),res;
+        if(agg(cs[0],rows)!==null||/\(/.test(cs[0])){res={cols:cs.map(function(c){return c.trim()}),rows:[cs.map(function(c){var v=agg(c,rows);if(v===null&&!/count/i.test(c))return 'NULL';return v})]}}
+        else{var ks=m[1].trim()==='*'?['id','nome','nota']:cs.map(col);res={cols:ks,rows:rows.map(function(r){return ks.map(function(k){return r[k]})})}}
+        return {res:res,msg:res.rows.length+' linha(s) no resultado.'};
+      }
+      if(m=s.match(/^insert\s+into\s+alunos\s*\(([^)]+)\)\s*values\s*\((.+)\)$/i)){
+        var cs2=m[1].split(',').map(col),vs=(m[2].match(/'[^']*'|[^,]+/g)||[]).map(val);
+        if(cs2.length!==vs.length)err(cs2.length+' colunas, mas '+vs.length+' valores');
+        var r={id:nid++,nome:null,nota:null};cs2.forEach(function(c,i){if(c==='id')r.id=vs[i];else r[c]=vs[i]});
+        if(r.nome===null)err('NOT NULL constraint failed: alunos.nome');T.push(r);return {msg:'1 linha inserida (id '+r.id+').'};
+      }
+      if(m=s.match(/^update\s+alunos\s+set\s+(\w+)\s*=\s*('[^']*'|[^\s]+)(?:\s+where\s+(.+))?$/i)){
+        var c3=col(m[1]),v3=val(m[2]),f=cond(m[3]),n=0;T.forEach(function(r){if(f(r)){r[c3]=v3;n++}});return {msg:n+' linha(s) alterada(s).'+(m[3]?'':' (sem WHERE: todas as linhas!)')};
+      }
+      if(m=s.match(/^delete\s+from\s+alunos(?:\s+where\s+(.+))?$/i)){
+        var f4=cond(m[1]),b=T.length;T=T.filter(function(r){return !f4(r)});return {msg:(b-T.length)+' linha(s) apagada(s).'+(m[1]?'':' (sem WHERE: todas as linhas!)')};
+      }
+      err('syntax error');
+    }
+    function table(c,rows){return '<tr>'+c.map(function(x){return '<th>'+esc(x)+'</th>'}).join('')+'</tr>'+rows.map(function(r){return '<tr>'+r.map(function(x){return '<td>'+esc(x)+'</td>'}).join('')+'</tr>'}).join('')}
+    function show(){$('sqTab').innerHTML=table(['id','nome','nota'],T.map(function(r){return [r.id,r.nome,r.nota]}))}
+    function go(){
+      try{var o=run($('sqI').value);$('sqM').innerHTML='<span class="ok-y">✔</span> '+esc(o.msg);$('sqRes').innerHTML=o.res?table(o.res.cols,o.res.rows):''}
+      catch(e){$('sqM').innerHTML='<span class="ok-n">✘ Erro:</span> '+esc(e.sql?e.message:'syntax error');$('sqRes').innerHTML=''}
+      show();
+    }
+    var S=["SELECT * FROM alunos","SELECT nome FROM alunos WHERE nota >= 7","SELECT * FROM alunos ORDER BY nota DESC","SELECT AVG(nota), COUNT(*) FROM alunos","INSERT INTO alunos (nome, nota) VALUES ('Eva', 6.5)","UPDATE alunos SET nota = 6 WHERE nome = 'Bruno'","DELETE FROM alunos WHERE id = 2"],sg=$('sqS');
+    S.forEach(function(q){var b=document.createElement('button');b.type='button';b.className='alt';b.style.fontSize='13px';b.textContent=q;b.onclick=function(){$('sqI').value=q;go()};sg.appendChild(b)});
+    G.onclick=go;$('sqI').onkeydown=function(e){if(e.key==='Enter')go()};$('sqR').onclick=function(){reset();$('sqM').textContent='Tabela restaurada.';$('sqRes').innerHTML='';show()};
+    reset();show();
+  })();
+
+  // --- Cap. 11: injeção de SQL ---
+  (function(){
+    var v=$('ijV');if(!v)return;
+    function esc(x){return String(x).replace(/&/g,'&amp;').replace(/</g,'&lt;')}
+    function r(){
+      var t=v.value,bad="SELECT * FROM alunos WHERE nome = '"+t+"'",inj=/'\s*or\s*'?1'?\s*=\s*'?1/i.test(t);
+      var nb=inj?'<span class="e">TODOS os 4 alunos!</span>':(t==='Ana'?'1 aluno':'0 alunos');
+      $('ijO').innerHTML='<span class="o">Juntando textos (errado):</span><br>'+esc(bad)+'<br>→ '+nb+'<br><br><span class="o">Com ? (certo):</span><br>cursor.execute("SELECT * FROM alunos WHERE nome = ?", ('+esc(JSON.stringify(t))+',))<br>→ '+(t==='Ana'?'1 aluno':'0 alunos (nenhum aluno tem esse nome exato)');
+    }
+    v.oninput=r;[].forEach.call(document.querySelectorAll('#ij [data-v]'),function(b){b.onclick=function(){v.value=b.dataset.v;r()}});r();
+  })();
+
 })();

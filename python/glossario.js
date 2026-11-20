@@ -81,5 +81,15 @@ window.GLOSSARIO={
 "self":"Nome usado dentro dos métodos para se referir ao próprio objeto.",
 "construtor":"Método __init__, que roda automaticamente ao criar um objeto.",
 "herança":"Mecanismo em que uma classe reaproveita os atributos e métodos de outra.",
-"instância":"Objeto criado a partir de uma classe."
+"instância":"Objeto criado a partir de uma classe.",
+"banco de dados":"Conjunto organizado de dados, guardado em tabelas, que responde a consultas com rapidez.",
+"tabela":"Estrutura do banco com linhas (registros) e colunas (tipos de informação).",
+"sql":"Linguagem usada para conversar com bancos de dados: SELECT, INSERT, UPDATE e DELETE.",
+"sqlite":"Banco de dados completo guardado em um único arquivo, que já vem com o Python.",
+"chave primária":"Coluna com valor único para cada linha da tabela, como o número da matrícula.",
+"consulta":"Pergunta feita ao banco, em geral com SELECT.",
+"cursor":"Objeto que executa comandos SQL e traz os resultados.",
+"commit":"Comando que grava de forma definitiva as mudanças feitas no banco.",
+"crud":"Sigla para Create, Read, Update e Delete: criar, ler, atualizar e apagar registros.",
+"injeção de sql":"Falha em que o texto digitado pelo usuário altera o comando SQL; evita-se usando ? nos valores."
 };
