@@ -4,40 +4,69 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="manifest" href="manifest.webmanifest">
-<meta name="theme-color" content="#2e7d32">
-<title>Apostilas – Prof. César Azevedo</title>
+<meta name="theme-color" content="#338731">
+<title>Apostilas – Prof. César Azevedo · IFRN Campus João Câmara</title>
 <style>
+:root{--verde:#338731;--verde-esc:#216a28;--verm:#c90c10;--cinza:#2b2b2b;--fundo:#f4f6f3;--card:#fff;--borda:#dde3da;--suave:#5f6b61}
 *{box-sizing:border-box}
-body{margin:0;font-family:"Segoe UI",system-ui,Roboto,Arial,sans-serif;background:#f8faf8;color:#1f2937;line-height:1.6}
-header{background:linear-gradient(135deg,#1b5e20,#2e7d32 55%,#1565c0);color:#fff;padding:48px 20px;text-align:center}
-header h1{margin:0 0 8px;font-size:clamp(28px,5vw,42px)}
-header p{margin:0;opacity:.92}
-main{max-width:900px;margin:0 auto;padding:30px 20px 60px}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px}
-.card{display:block;background:#fff;border:1px solid #e5e7eb;border-top:6px solid var(--c);border-radius:16px;padding:18px;text-decoration:none;color:inherit;box-shadow:0 1px 2px rgba(0,0,0,.04);transition:transform .15s}
-.card:hover{transform:translateY(-3px)}
-.card b{font-size:18px;display:block;margin-bottom:4px}
-.card span{color:#6b7280;font-size:14.5px}
-.card em{display:block;margin-top:10px;font-style:normal;font-size:13px;font-weight:700;color:var(--c)}
+body{margin:0;font-family:"Open Sans","Segoe UI",system-ui,Roboto,Arial,sans-serif;background:var(--fundo);color:var(--cinza);line-height:1.6}
+.skip{position:absolute;left:-999px}.skip:focus{left:8px;top:8px;background:#fff;padding:8px;z-index:9}
+.topo{background:#fff;border-bottom:4px solid var(--verde)}
+.topo .in{max-width:1000px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.topo img{height:64px;width:auto;display:block}
+.topo .sub{font-size:14px;color:var(--suave);text-align:right}
+.topo .sub b{color:var(--cinza)}
+.hero{background:linear-gradient(135deg,var(--verde-esc),var(--verde));color:#fff;position:relative;overflow:hidden}
+.hero .in{max-width:1000px;margin:0 auto;padding:44px 20px 52px;position:relative}
+.hero h1{margin:0 0 8px;font-size:clamp(28px,5vw,42px);line-height:1.15}
+.hero p{margin:0;font-size:clamp(16px,2.4vw,19px);opacity:.95;max-width:640px}
+.hero .dot{position:absolute;right:-30px;top:-30px;width:150px;height:150px;border-radius:50%;background:var(--verm);opacity:.9}
+.hero .qd{position:absolute;right:140px;bottom:-26px;width:70px;height:70px;border-radius:12px;background:rgba(255,255,255,.14)}
+.hero .qd+.qd{right:50px;bottom:-40px;width:56px;height:56px}
+.hero .tag{display:inline-block;background:#fff;color:var(--verde-esc);font-weight:700;font-size:13px;padding:3px 12px;border-radius:999px;margin-bottom:12px;letter-spacing:.3px}
+main{max-width:1000px;margin:0 auto;padding:34px 20px 50px}
+h2{font-size:22px;margin:0 0 16px;display:flex;align-items:center;gap:10px}
+h2:before{content:"";width:10px;height:26px;background:var(--verm);border-radius:3px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:18px}
+.card{display:flex;flex-direction:column;background:var(--card);border:1px solid var(--borda);border-radius:14px;padding:20px;text-decoration:none;color:inherit;box-shadow:0 1px 3px rgba(0,0,0,.06);transition:transform .15s,box-shadow .15s;position:relative;overflow:hidden}
+.card:before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;background:var(--c)}
+.card:hover,.card:focus-visible{transform:translateY(-3px);box-shadow:0 8px 18px rgba(0,0,0,.12)}
+.card:focus-visible{outline:3px solid var(--verde);outline-offset:2px}
+.ico{font-style:normal;font-size:28px;width:52px;height:52px;border-radius:12px;display:grid;place-items:center;background:color-mix(in srgb,var(--c) 14%,#fff);margin-bottom:10px}
+.card b{font-size:18.5px;display:block;margin-bottom:6px;line-height:1.3}
+.card span{color:var(--suave);font-size:15px;flex:1}
+.card em{display:block;margin-top:12px;font-style:normal;font-size:14px;font-weight:700;color:var(--verde-esc)}
 .card.off{opacity:.55;pointer-events:none}
-footer{text-align:center;color:#6b7280;font-size:14px;padding-bottom:30px}
-@media(prefers-color-scheme:dark){body{background:#0f1514;color:#e5e7eb}.card{background:#17201f;border-color:#2f3b3a}.card span,footer{color:#9ca3af}}
+.info{margin-top:28px;background:#fff;border:1px solid var(--borda);border-left:6px solid var(--verde);border-radius:10px;padding:14px 18px;font-size:15px;color:var(--suave)}
+footer{background:var(--cinza);color:#d6d9d4;text-align:center;font-size:14px;padding:22px 20px;border-top:4px solid var(--verm)}
+footer b{color:#fff}
+@media(max-width:560px){.topo .sub{text-align:left}.topo img{height:52px}.hero .dot{width:100px;height:100px}.hero .qd{display:none}}
+@media(prefers-color-scheme:dark){:root{--fundo:#0f1514;--card:#17201f;--borda:#2f3b3a;--cinza:#e5e7eb;--suave:#9ca3af}.topo{background:#fff}.topo .sub,.topo .sub b{color:#444}.info{background:#17201f}.card em{color:#7fd17b}.ico{background:color-mix(in srgb,var(--c) 25%,#17201f)}footer{background:#0b100f}}
 </style>
 </head>
 <body>
-<header>
-  <h1>📚 Apostilas</h1>
-  <p>Prof. César Azevedo · IFRN – Campus João Câmara</p>
-</header>
-<main>
+<a class="skip" href="#cursos">Ir para as apostilas</a>
+<div class="topo"><div class="in">
+  <img src="assets/logo-ifrn-jc.png" alt="Instituto Federal do Rio Grande do Norte, Campus João Câmara" width="500" height="166">
+  <div class="sub"><b>Apostilas digitais</b><br>Prof. César Azevedo</div>
+</div></div>
+<header class="hero"><div class="in">
+  <span class="dot" aria-hidden="true"></span><span class="qd" aria-hidden="true"></span><span class="qd" aria-hidden="true"></span>
+  <span class="tag">Material didático</span>
+  <h1>Aprender fazendo, no seu ritmo</h1>
+  <p>Apostilas interativas com simuladores, quizzes e práticas passo a passo, para estudar no computador ou no celular, e imprimir quando quiser.</p>
+</div></header>
+<main id="cursos">
+  <h2>Escolha a sua disciplina</h2>
   <div class="grid">
-    <a class="card" href="redes/" style="--c:#2e7d32"><b>🌐 Redes de Computadores</b><span>Como o seu celular fala com o mundo? Descubra o caminho de uma mensagem, monte redes, divida endereços IP e proteja tudo, com simuladores, quizzes e laboratórios práticos.</span><em>Começar a explorar →</em></a>
-    <a class="card" href="so/" style="--c:#1565c0"><b>🖥️ Sistemas Operacionais de Redes</b><span>Crie seus próprios servidores sem comprar nenhum! Do computador virtual ao Windows Server, ao Linux e à nuvem, mão na massa em laboratórios e um terminal de treino.</span><em>Colocar a mão na massa →</em></a>
-    <a class="card" href="etd/" style="--c:#ad1457"><b>💻 Educação em Tecnologias Digitais</b><span>Nunca mexeu em um computador? Sem problema! Aprenda do primeiro clique ao Word, ao Excel e à segurança contra golpes, passo a passo e com treino na tela.</span><em>Começar do zero →</em></a>
-    <!-- Para adicionar outra disciplina, copie o bloco acima e troque o link e o texto. -->
+    <a class="card" href="redes/" style="--c:#2e7d32"><i class="ico" aria-hidden="true">🌐</i><b>Redes de Computadores</b><span>Como o seu celular fala com o mundo? Descubra o caminho de uma mensagem, monte redes, divida endereços IP e proteja tudo, com simuladores, quizzes e laboratórios práticos.</span><em>Começar a explorar →</em></a>
+    <a class="card" href="so/" style="--c:#1565c0"><i class="ico" aria-hidden="true">🖥️</i><b>Sistemas Operacionais de Redes</b><span>Crie seus próprios servidores sem comprar nenhum! Do computador virtual ao Windows Server, ao Linux e à nuvem, mão na massa em laboratórios e um terminal de treino.</span><em>Colocar a mão na massa →</em></a>
+    <a class="card" href="etd/" style="--c:#ad1457"><i class="ico" aria-hidden="true">💻</i><b>Educação em Tecnologias Digitais</b><span>Nunca mexeu em um computador? Sem problema! Aprenda do primeiro clique ao Word, ao Excel e à segurança contra golpes, passo a passo e com treino na tela.</span><em>Começar do zero →</em></a>
+    <!-- Para adicionar outra disciplina, copie o bloco acima e troque o link, o ícone e o texto. -->
   </div>
+  <p class="info">💡 Funciona <b>sem internet</b> depois do primeiro acesso, e o seu progresso fica salvo neste navegador. Para imprimir ou salvar em PDF, use <b>Ctrl + P</b> dentro da apostila.</p>
 </main>
-<footer>Material didático de uso livre para os alunos.</footer>
+<footer><b>Instituto Federal do Rio Grande do Norte</b> · Campus João Câmara<br>Material didático de uso livre para os alunos.</footer>
 <script>if('serviceWorker' in navigator&&/^https?:$/.test(location.protocol))addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){})});</script>
 </body>
 </html>

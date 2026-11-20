@@ -1,8 +1,8 @@
 /* Service worker: deixa as apostilas funcionarem sem internet.
    Estratégia: responde do cache e atualiza em segundo plano (a nova versão aparece na visita seguinte). */
-var CACHE='apostilas-v2';
+var CACHE='apostilas-v3';
 var BASE=new URL('./',self.location).pathname;
-var CORE=[BASE,BASE+'index.html',BASE+'redes/',BASE+'redes/redes.js',BASE+'redes/glossario.js',BASE+'so/',BASE+'so/so.js',BASE+'so/glossario.js',BASE+'etd/',BASE+'etd/etd.js',BASE+'etd/glossario.js',BASE+'assets/apostila.css',BASE+'assets/apostila.js',BASE+'manifest.webmanifest',BASE+'icon-192.png'];
+var CORE=[BASE,BASE+'index.html',BASE+'redes/',BASE+'redes/redes.js',BASE+'redes/glossario.js',BASE+'so/',BASE+'so/so.js',BASE+'so/glossario.js',BASE+'etd/',BASE+'etd/etd.js',BASE+'etd/glossario.js',BASE+'assets/apostila.css',BASE+'assets/apostila.js',BASE+'manifest.webmanifest',BASE+'icon-192.png',BASE+'assets/logo-ifrn-jc.png'];
 self.addEventListener('install',function(e){
   e.waitUntil(caches.open(CACHE).then(function(c){return Promise.all(CORE.map(function(u){return c.add(u).catch(function(){})}))}).then(function(){return self.skipWaiting()}));
 });
