@@ -51,5 +51,10 @@ window.GLOSSARIO={
 "função":"Conta pronta do Excel, como SOMA ou MÉDIA.",
 "intervalo":"Um grupo de células, como B2:B6 (de B2 até B6).",
 "gráfico":"Desenho que mostra números, como barras, para comparar mais fácil.",
-"orçamento":"Plano do dinheiro que entra e do que sai de casa."
+"orçamento":"Plano do dinheiro que entra e do que sai de casa.",
+"slide":"Uma “página” da apresentação, como um cartaz.",
+"PowerPoint":"Programa da Microsoft para criar apresentações.",
+"apresentação":"Conjunto de slides mostrados em sequência para o público.",
+"tema":"Conjunto de cores e estilos que muda o visual de todos os slides.",
+"contraste":"A diferença entre a cor da letra e a do fundo. Quanto maior, mais fácil de ler."
 };
