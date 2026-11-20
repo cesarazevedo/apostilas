@@ -1,0 +1,26 @@
+/* Glossário da apostila de Educação em Tecnologias Digitais (termo → explicação simples) */
+window.GLOSSARIO={
+"computador":"Máquina que recebe informações, trabalha com elas e mostra o resultado.",
+"hardware":"As partes físicas do computador, as que se podem tocar.",
+"software":"Os programas e o sistema do computador. Não se tocam.",
+"sistema operacional":"O programa principal que organiza o computador e chama os outros programas. Exemplo: Windows.",
+"Windows":"O sistema operacional da Microsoft, o mais usado em computadores de mesa.",
+"processador":"O 'cérebro' do computador: faz as contas e executa as ordens.",
+"memória RAM":"A memória de trabalho: guarda o que você usa agora e esvazia ao desligar.",
+"HD":"Disco rígido: guarda arquivos e programas por muito tempo.",
+"SSD":"Disco mais moderno e rápido que o HD, que também guarda arquivos.",
+"gabinete":"A caixa do computador, onde ficam as peças de dentro.",
+"pendrive":"Pequena memória que se liga ao computador para levar arquivos de um lugar a outro.",
+"cursor":"A setinha que se move na tela quando você mexe o mouse.",
+"área de trabalho":"A tela principal do Windows, como o tampo de uma mesa.",
+"barra de tarefas":"A faixa na parte de baixo da tela, que mostra programas abertos, hora e data.",
+"menu Iniciar":"O menu que abre ao clicar no botão com o símbolo do Windows.",
+"janela":"A área da tela onde um programa aparece.",
+"lixeira":"Lugar onde ficam os arquivos apagados, até serem esvaziados.",
+"arquivo":"Um documento guardado no computador, como uma carta, uma foto ou uma planilha.",
+"pasta":"Um lugar para juntar arquivos do mesmo assunto.",
+"extensão":"As letras depois do ponto no nome do arquivo (como .docx), que mostram o tipo.",
+"Explorador de Arquivos":"O programa do Windows que mostra suas pastas e arquivos.",
+"Bloco de Notas":"Programa simples do Windows para escrever texto sem enfeites.",
+"atalho":"Uma combinação de teclas que faz uma ação rápida, como Ctrl + C."
+};
