@@ -37,11 +37,22 @@ h2:before{content:"";width:10px;height:26px;background:var(--verm);border-radius
 .card span{color:var(--suave);font-size:15px;flex:1}
 .card em{display:block;margin-top:12px;font-style:normal;font-size:14px;font-weight:700;color:var(--verde-esc)}
 .card.off{opacity:.55;pointer-events:none}
+.lead{color:var(--suave);margin:-6px 0 6px}
+main>h2#ferramentas{margin-top:40px}
+.grp{font-size:17px;margin:22px 0 10px;color:var(--c);display:flex;align-items:center;gap:8px}
+.grp:before{content:"";width:22px;height:4px;border-radius:2px;background:var(--c)}
+.tools{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:12px}
+.tool{display:flex;gap:12px;align-items:flex-start;background:var(--card);border:1px solid var(--borda);border-radius:12px;padding:12px 14px;text-decoration:none;color:inherit;transition:transform .15s,box-shadow .15s}
+.tool:hover,.tool:focus-visible{transform:translateY(-2px);box-shadow:0 6px 14px rgba(0,0,0,.1);border-color:var(--c)}
+.tool:focus-visible{outline:3px solid var(--verde);outline-offset:2px}
+.tool i{font-style:normal;font-size:22px;width:42px;height:42px;flex:none;border-radius:10px;display:grid;place-items:center;background:color-mix(in srgb,var(--c) 13%,#fff)}
+.tool span{font-size:14.5px;color:var(--suave);line-height:1.4}
+.tool b{display:block;color:var(--cinza);font-size:16px;margin-bottom:2px}
 .info{margin-top:28px;background:#fff;border:1px solid var(--borda);border-left:6px solid var(--verde);border-radius:10px;padding:14px 18px;font-size:15px;color:var(--suave)}
 footer{background:var(--cinza);color:#d6d9d4;text-align:center;font-size:14px;padding:22px 20px;border-top:4px solid var(--verm)}
 footer b{color:#fff}
 @media(max-width:560px){.topo .sub{text-align:left}.topo img{height:52px}.hero .dot{width:100px;height:100px}.hero .qd{display:none}}
-@media(prefers-color-scheme:dark){:root{--fundo:#0f1514;--card:#17201f;--borda:#2f3b3a;--cinza:#e5e7eb;--suave:#9ca3af}.topo{background:#fff}.topo .sub,.topo .sub b{color:#444}.info{background:#17201f}.card em{color:#7fd17b}.ico{background:color-mix(in srgb,var(--c) 25%,#17201f)}footer{background:#0b100f}}
+@media(prefers-color-scheme:dark){:root{--fundo:#0f1514;--card:#17201f;--borda:#2f3b3a;--cinza:#e5e7eb;--suave:#9ca3af}.topo{background:#fff}.topo .sub,.topo .sub b{color:#444}.info{background:#17201f}.card em{color:#7fd17b}.ico,.tool i{background:color-mix(in srgb,var(--c) 25%,#17201f)}footer{background:#0b100f}}
 </style>
 </head>
 <body>
@@ -64,7 +75,36 @@ footer b{color:#fff}
     <a class="card" href="etd/" style="--c:#ad1457"><i class="ico" aria-hidden="true">💻</i><b>Educação em Tecnologias Digitais</b><span>Nunca mexeu em um computador? Sem problema! Aprenda do primeiro clique ao Word, ao Excel e à segurança contra golpes, passo a passo e com treino na tela.</span><em>Começar do zero →</em></a>
     <!-- Para adicionar outra disciplina, copie o bloco acima e troque o link, o ícone e o texto. -->
   </div>
-  <p class="info">💡 Funciona <b>sem internet</b> depois do primeiro acesso, e o seu progresso fica salvo neste navegador. Para imprimir ou salvar em PDF, use <b>Ctrl + P</b> dentro da apostila.</p>
+  <h2 id="ferramentas">Ferramentas para o dia a dia</h2>
+  <p class="lead">Recursos que também ficam no site do professor (cesarazevedo.github.io). Abrem em outra página e precisam de internet.</p>
+  <h3 class="grp" style="--c:#338731">Ferramentas de sala</h3>
+  <div class="tools">
+    <a class="tool" href="https://cesarazevedo.github.io/calculadora" style="--c:#338731" rel="noopener"><i aria-hidden="true">🧮</i><span><b>Calculadora de Notas</b>Calcule sua média conforme os Arts. 335 e 336, em regime bimestral ou por créditos.</span></a>
+    <a class="tool" href="https://cesarazevedo.github.io/sorteio" style="--c:#338731" rel="noopener"><i aria-hidden="true">🎲</i><span><b>Sorteio de Grupos</b>Cole uma lista de nomes e sorteie os grupos.</span></a>
+    <a class="tool" href="https://cesarazevedo.github.io/quiz" style="--c:#338731" rel="noopener"><i aria-hidden="true">📝</i><span><b>Quiz / Simulado</b>Perguntas de múltipla escolha ou discursivas para treinar.</span></a>
+    <a class="tool" href="https://cesarazevedo.github.io/flashcards" style="--c:#338731" rel="noopener"><i aria-hidden="true">🗂️</i><span><b>Flashcards</b>Estude com cartões de pergunta e resposta.</span></a>
+    <a class="tool" href="https://cesarazevedo.github.io/associacao" style="--c:#338731" rel="noopener"><i aria-hidden="true">🔗</i><span><b>Jogo de Associação</b>Ligue os pares clicando ou arrastando.</span></a>
+    <a class="tool" href="https://cesarazevedo.github.io/protocolos" style="--c:#338731" rel="noopener"><i aria-hidden="true">📡</i><span><b>Explorador de Protocolos</b>Veja passo a passo as conversas de DNS, TCP, HTTP, TLS e DHCP.</span></a>
+  </div>
+  <h3 class="grp" style="--c:#216a28">Produtividade e estudo</h3>
+  <div class="tools">
+    <a class="tool" href="https://cesarazevedo.github.io/dicas" style="--c:#216a28" rel="noopener"><i aria-hidden="true">💡</i><span><b>Dicas de Estudo</b>46 técnicas para estudar melhor.</span></a>
+    <a class="tool" href="https://cesarazevedo.github.io/pomodoro" style="--c:#216a28" rel="noopener"><i aria-hidden="true">🍅</i><span><b>Pomodoro</b>Temporizador com lista de tarefas e pausas automáticas.</span></a>
+    <a class="tool" href="https://cesarazevedo.github.io/habit-tracker" style="--c:#216a28" rel="noopener"><i aria-hidden="true">✅</i><span><b>Rastreador de Hábitos</b>Crie e imprima um controle mensal de hábitos.</span></a>
+    <a class="tool" href="https://cesarazevedo.github.io/cornell" style="--c:#216a28" rel="noopener"><i aria-hidden="true">📒</i><span><b>Anotações Cornell</b>Gere folhas personalizadas no formato Cornell.</span></a>
+    <a class="tool" href="https://cesarazevedo.github.io/oratoria" style="--c:#216a28" rel="noopener"><i aria-hidden="true">🎤</i><span><b>A Arte de Falar Bem</b>Resumo com dicas de oratória e apresentação.</span></a>
+  </div>
+  <h3 class="grp" style="--c:#c90c10">Referências rápidas</h3>
+  <div class="tools">
+    <a class="tool" href="https://cesarazevedo.github.io/cheatsheet-linux" style="--c:#c90c10" rel="noopener"><i aria-hidden="true">🐧</i><span><b>Linux Cheat Sheet</b>Mais de 100 comandos, com busca e filtro por categoria.</span></a>
+    <a class="tool" href="https://cesarazevedo.github.io/cheatsheet-linux-services" style="--c:#c90c10" rel="noopener"><i aria-hidden="true">🛠️</i><span><b>Serviços de Rede Linux</b>DHCP, DNS, SSH, FTP, Samba, Web, Firewall e VPN.</span></a>
+    <a class="tool" href="https://cesarazevedo.github.io/abnt" style="--c:#c90c10" rel="noopener"><i aria-hidden="true">📚</i><span><b>Referências ABNT</b>Monte referências conforme a NBR 6023:2018.</span></a>
+  </div>
+  <h3 class="grp" style="--c:#1565c0">Fale com o professor</h3>
+  <div class="tools">
+    <a class="tool" href="https://cesarazevedo.github.io/feedback" style="--c:#1565c0" rel="noopener"><i aria-hidden="true">💬</i><span><b>Canal de feedback anônimo</b>Envie sugestões, dúvidas ou críticas sobre as aulas, sem se identificar.</span></a>
+  </div>
+  <p class="info">💡 As apostilas funcionam <b>sem internet</b> depois do primeiro acesso, e o seu progresso fica salvo neste navegador. Para imprimir ou salvar em PDF, use <b>Ctrl + P</b> dentro da apostila.</p>
 </main>
 <footer><b>Instituto Federal do Rio Grande do Norte</b> · Campus João Câmara<br>Material didático de uso livre para os alunos.</footer>
 <script>if('serviceWorker' in navigator&&/^https?:$/.test(location.protocol))addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){})});</script>
