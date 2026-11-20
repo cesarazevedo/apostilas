@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Apostila de Introdução à Programação com Python – IFRN</title>
+<script>try{var t=localStorage.getItem("tema");if(!t)t=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";document.documentElement.dataset.theme=t}catch(e){}</script>
+<link rel="stylesheet" href="../assets/apostila.css">
+<link rel="stylesheet" href="python.css">
+<link rel="manifest" href="../manifest.webmanifest">
+<meta name="theme-color" content="#306998">
+<style>
+:root{--c1:#306998; --c2:#00838f; --c3:#2e7d32; --c4:#ef6c00; --c5:#6a1b9a; --c6:#c62828; --c7:#ad1457; --c8:#455a64; --c9:#5d4037; --c10:#00695c; --c11:#283593; --c12:#f9a825;  --verde:#306998; --verde-claro:#e3f0fa; --primary:#306998}
+html[data-theme=dark]{--verde-claro:#10263a}
+.hero{background:linear-gradient(135deg,#1f4e79,#306998 60%,#4b8bbe)}
+.ok-y{color:#2e7d32;font-weight:700}.ok-n{color:#c62828;font-weight:700}
+@page{@bottom-center{content:"Introdução à Programação com Python – IFRN · página " counter(page);font-size:9pt;color:#777}}
+</style>
+</head>
+<body data-curso="python" data-root="../">
+<div class="progress" id="progress"></div>
+<button class="theme-btn top" id="themeBtn" type="button">🌙</button>
+<div class="topbar"><button class="menu-btn" id="menuBtn" aria-label="Abrir menu">☰</button><b>Programação com Python</b><a class="home-link" href="../" style="margin-left:auto" aria-label="Voltar para todas as apostilas"><span class="hl-i">🏠</span><span class="hl-t"> Apostilas</span></a></div>
+
+<aside class="sidebar" id="sidebar">
+  <a class="home-link" href="../">← Todas as apostilas</a>
+  <div class="brand"><div class="logo">🐍</div><div><strong>Introdução à Programação com Python</strong><small>IFRN · Campus João Câmara</small></div></div>
+  <nav class="nav" id="nav">
+    <a href="#inicio"><span class="n" style="background:#455a64">★</span>Início e mapa</a>
+    <a href="#cap1"><span class="n" style="background:var(--c1)">1</span>Motivação</a>
+    <div class="sub">
+      <a href="#c1-1">1.1 Por que aprender a programar?</a>
+      <a href="#c1-2">1.2 Paciência: a virtude do programador</a>
+      <a href="#c1-3">1.3 Tempo de estudo e ritmo</a>
+      <a href="#c1-4">1.4 Programar para quê?</a>
+      <a href="#c1-5">1.5 Por que Python?</a>
+      <a href="#c1-tools">Ferramentas do capítulo</a>
+      <a href="#c1-quiz">Quiz e exercícios</a>
+    </div>
+    <a href="#cap2" class="soon"><span class="n" style="background:var(--c2)">2</span>Ambiente</a>
+    <a href="#cap3" class="soon"><span class="n" style="background:var(--c3)">3</span>Variáveis e entrada</a>
+    <a href="#cap4" class="soon"><span class="n" style="background:var(--c4)">4</span>Condições</a>
+    <a href="#cap5" class="soon"><span class="n" style="background:var(--c5)">5</span>Repetições</a>
+    <a href="#cap6" class="soon"><span class="n" style="background:var(--c6)">6</span>Listas</a>
+    <a href="#cap7" class="soon"><span class="n" style="background:var(--c7)">7</span>Strings</a>
+    <a href="#cap8" class="soon"><span class="n" style="background:var(--c8)">8</span>Funções</a>
+    <a href="#cap9" class="soon"><span class="n" style="background:var(--c9)">9</span>Arquivos</a>
+    <a href="#cap10" class="soon"><span class="n" style="background:var(--c10)">10</span>Classes e objetos</a>
+    <a href="#cap11" class="soon"><span class="n" style="background:var(--c11)">11</span>Banco de dados</a>
+    <a href="#cap12" class="soon"><span class="n" style="background:var(--c12)">12</span>Projeto final</a>
+    <a href="#refs"><span class="n" style="background:#455a64">📚</span>Referências</a>
+  </nav>
+  <div class="tools">
+    <button onclick="window.print()">🖨️ Salvar em PDF</button>
+    <label><input type="checkbox" id="ans"> Incluir gabarito no PDF</label>
+  </div>
+</aside>
+
+<main>
+<header class="hero" id="inicio">
+  <div class="wrap">
+    <span class="tag">Apostila digital</span>
+    <h1>Introdução à Programação com Python</h1>
+    <p>Do primeiro print aos seus próprios programas, um passo de cada vez</p>
+    <p>Prof. César Azevedo · IFRN – Campus João Câmara</p>
+    <div class="meta"><span>🐍 Python 3</span><span>⌨️ Muita prática</span><span>🧠 Quiz em todos os capítulos</span></div>
+  </div>
+</header>
+
+<div class="wrap">
+<section>
+  <h2>Como usar esta apostila</h2>
+  <p>Aqui você aprende a programar <b>fazendo</b>. Leia cada seção, <b>digite os exemplos</b> no seu computador (não vale só copiar!), mude um valor e veja o que acontece. Os blocos escuros são códigos: use o botão <b>Copiar</b> ou o <b>▶ Executar</b>, que abre o Python Tutor e mostra o programa passo a passo.</p>
+  <p>Cada capítulo termina com <b>resumo, quiz e questões abertas</b>. Errar faz parte: leia a mensagem de erro, ela é uma pista.</p>
+  <div class="map">
+    <div class="card" style="--cc:var(--c1)" data-ok="1"><b>1 · Motivação</b><span>Por que programar, paciência, ritmo de estudo e por que Python.</span><div class="st">✅ Disponível</div></div>
+    <div class="card" style="--cc:var(--c2)"><b>2 · Ambiente</b><span>Instalar o Python, usar o IDLE e escrever os primeiros programas.</span><div class="st">⏳ Em breve</div></div>
+    <div class="card" style="--cc:var(--c3)"><b>3 · Variáveis e entrada</b><span>Tipos, operadores, strings e como pedir dados ao usuário.</span><div class="st">⏳ Em breve</div></div>
+    <div class="card" style="--cc:var(--c4)"><b>4 · Condições</b><span>if, else, condições aninhadas e elif.</span><div class="st">⏳ Em breve</div></div>
+    <div class="card" style="--cc:var(--c5)"><b>5 · Repetições</b><span>while, contadores, acumuladores e laços aninhados.</span><div class="st">⏳ Em breve</div></div>
+    <div class="card" style="--cc:var(--c6)"><b>6 · Listas</b><span>Listas, índices, for, pilhas, filas, ordenação e dicionários.</span><div class="st">⏳ Em breve</div></div>
+    <div class="card" style="--cc:var(--c7)"><b>7 · Strings</b><span>Pesquisa, métodos e formatação, com um jogo da forca.</span><div class="st">⏳ Em breve</div></div>
+    <div class="card" style="--cc:var(--c8)"><b>8 · Funções</b><span>def, return, escopo, recursão, módulos e random.</span><div class="st">⏳ Em breve</div></div>
+    <div class="card" style="--cc:var(--c9)"><b>9 · Arquivos</b><span>Em breve: ler e gravar arquivos, incluindo CSV.</span><div class="st">⏳ Em breve</div></div>
+    <div class="card" style="--cc:var(--c10)"><b>10 · Classes e objetos</b><span>Em breve: programação orientada a objetos.</span><div class="st">⏳ Em breve</div></div>
+    <div class="card" style="--cc:var(--c11)"><b>11 · Banco de dados</b><span>Em breve: SQLite com Python.</span><div class="st">⏳ Em breve</div></div>
+    <div class="card" style="--cc:var(--c12)"><b>12 · Projeto final</b><span>Em breve: juntar tudo em um projeto.</span><div class="st">⏳ Em breve</div></div>
+  </div>
+</section>
+
+<section class="chapter" id="cap1" style="--cc:var(--c1)">
+  <div class="chap-head"><div class="chap-num" style="background:var(--c1)">1</div><div><small>Capítulo 1</small><h2>Motivação</h2></div></div>
+  <div class="obj"><h4>🎯 Ao final deste capítulo, você será capaz de:</h4><ul><li>Explicar por que <b>qualquer pessoa</b> pode aprender a programar.</li><li>Lidar com <b>erros</b> e ter <b>paciência</b> como parte do processo.</li><li>Montar uma rotina de estudo <b>curta e frequente</b>.</li><li>Citar áreas onde a programação está presente no dia a dia.</li><li>Explicar por que <b>Python</b> é uma boa primeira linguagem e escrever o seu primeiro programa.</li></ul></div>
+<h3 id="c1-1">1.1 Por que aprender a programar?</h3>
+<p class="sec-sub">O primeiro passo é querer começar</p>
+<h4 class="pyh">🎯 Tudo começa com vontade</h4>
+<p>Aprender a programar não exige nenhum talento sobrenatural. Não é preciso ser gênio em matemática, ter nascido “sabendo” ou já ter alguma experiência com computadores. O primeiro ingrediente é simples: <strong>vontade</strong>.</p>
+<p>Quando decidimos aprender algo novo, a parte mais difícil costuma ser dar o primeiro passo. Com programação não é diferente. Mas a boa notícia é que qualquer pessoa pode aprender — e o caminho é mais acessível do que parece.</p>
+<h4 class="pyh">💪 Dedicação importa mais que talento</h4>
+<p>Programação se aprende fazendo. Não basta ler ou assistir — você precisa colocar a mão na massa, digitar código, errar, corrigir e tentar de novo. Esse ciclo de tentativa e erro é o verdadeiro motor do aprendizado.</p>
+<div class="box analogia"><div class="ic">💬</div><div>
+<p>“Aprender a programar é como aprender um idioma novo: no começo parece impossível, mas com prática tudo começa a fazer sentido.”</p>
+</div></div>
+<p>O importante é manter a consistência. Um pouco a cada dia é mais eficiente do que tentar aprender tudo de uma vez. A dedicação contínua transforma o difícil em natural.</p>
+<h4 class="pyh">🧠 Programar muda sua forma de pensar</h4>
+<p>Mais do que escrever código, programar ensina você a:</p>
+<ul>
+<li><strong>Decompor problemas</strong> — dividir algo grande em partes menores e resolvíveis</li>
+<li><strong>Pensar logicamente</strong> — encadear passos de forma organizada</li>
+<li><strong>Resolver problemas criativamente</strong> — encontrar soluções que outros não veem</li>
+<li><strong>Comunicar ideias com precisão</strong> — computadores exigem clareza absoluta</li>
+</ul>
+<p>Essas habilidades são úteis em qualquer área da vida, não apenas na computação. Por isso se diz que <strong>programar é a nova alfabetização</strong>.</p>
+<h3 id="c1-2">1.2 Paciência: a virtude do programador</h3>
+<p class="sec-sub">Começar simples é começar certo</p>
+<h4 class="pyh">👶 Comece pelo básico</h4>
+<p>Ao aprender a programar, é tentador querer criar um aplicativo completo logo de cara. Mas assim como não começamos a ler por um romance de 500 páginas, em programação começamos pelo simples.</p>
+<p>Os primeiros programas serão pequenos. Talvez pareçam até “bobos”. Mas cada programa simples ensina um conceito fundamental que será usado para sempre. <strong>Dominar o básico é o que separa quem desiste de quem avança.</strong></p>
+<h4 class="pyh">🔍 Atenção aos detalhes</h4>
+<p>Computadores são extremamente literais. Eles fazem exatamente o que você manda — nem mais, nem menos. Um ponto-e-vírgula fora do lugar, um parêntese esquecido ou uma letra maiúscula onde deveria ser minúscula podem causar erros.</p>
+<p>Isso pode ser frustrante no início, mas desenvolve uma habilidade valiosa: <strong>atenção aos detalhes</strong>. Com o tempo, seus olhos se treinam a identificar problemas rapidamente.</p>
+<div class="box analogia"><div class="ic">💬</div><div>
+<p>“O computador não faz o que você quer — ele faz o que você manda. A diferença entre os dois é onde mora o bug.”</p>
+</div></div>
+<h4 class="pyh">🚨 Errar faz parte (e é bom!)</h4>
+<p>Se tem uma certeza em programação, é esta: <strong>você vai errar</strong>. Muito. E tudo bem.</p>
+<p>Mensagens de erro não são punições — são pistas. Cada erro é uma oportunidade de entender melhor como o computador funciona. Os melhores programadores não são os que não erram, mas os que sabem <strong>interpretar e corrigir erros rapidamente</strong>.</p>
+<p>Dicas para lidar com erros:</p>
+<ul>
+<li><strong>Leia a mensagem de erro inteira</strong> — ela quase sempre diz o que aconteceu e onde</li>
+<li><strong>Não entre em pânico</strong> — respire e releia o código com calma</li>
+<li><strong>Compare com exemplos que funcionam</strong> — encontre a diferença</li>
+<li><strong>Pesquise o erro</strong> — milhões de pessoas já tiveram o mesmo problema</li>
+</ul>
+<h3 id="c1-3">1.3 Tempo de estudo e ritmo</h3>
+<p class="sec-sub">Pouco e frequente vence muito e raro</p>
+<h4 class="pyh">📆 Sessões curtas e frequentes</h4>
+<p>Estudos mostram que o cérebro aprende melhor em sessões curtas e regulares do que em maratonas longas e esporádicas. Para programação, isso é especialmente verdade.</p>
+<p><strong>30 a 45 minutos por dia</strong>, todos os dias, produz resultados melhores do que 5 horas seguidas uma vez por semana. O segredo está na repetição espaçada — seu cérebro precisa de tempo para consolidar o que aprendeu.</p>
+<div class="tip-grid">
+<div class="tip-item">
+<div class="tip-icon">📖</div>
+<strong>Leia</strong>
+<span>10 min de teoria</span>
+</div>
+<div class="tip-item">
+<div class="tip-icon">⌨</div>
+<strong>Pratique</strong>
+<span>20 min digitando código</span>
+</div>
+<div class="tip-item">
+<div class="tip-icon">🧩</div>
+<strong>Resolva</strong>
+<span>10 min de exercícios</span>
+</div>
+</div>
+<h4 class="pyh">🎨 Encontre seu estilo</h4>
+<p>Cada pessoa aprende de um jeito. Alguns preferem ler, outros preferem vídeos, e há quem aprenda melhor fazendo direto. Não existe estilo “certo” ou “errado” — o importante é descobrir o que funciona para você.</p>
+<p>Experimente combinar diferentes abordagens:</p>
+<ul>
+<li><strong>Leitura</strong> — o livro-texto e documentação</li>
+<li><strong>Vídeos</strong> — tutoriais visuais para conceitos difíceis</li>
+<li><strong>Prática guiada</strong> — digitar os exemplos do livro</li>
+<li><strong>Projetos pessoais</strong> — criar algo que você quer resolver</li>
+<li><strong>Estudo em grupo</strong> — explicar para outros reforça seu aprendizado</li>
+</ul>
+<h4 class="pyh">🧘 Mantenha a calma</h4>
+<p>É normal se sentir perdido no início. É normal achar que “todo mundo entende menos eu”. Isso tem até um nome: <strong>síndrome do impostor</strong>. E é muito mais comum do que você imagina.</p>
+<div class="box analogia"><div class="ic">💬</div><div>
+<p>“Não compare seu capítulo 1 com o capítulo 20 de outra pessoa. Todo especialista já foi iniciante.”</p>
+</div></div>
+<p>O aprendizado não é linear. Terá dias bons e dias difíceis. O importante é não desistir nos dias difíceis. Dê uma pausa, respire, e volte depois. O código vai estar lá esperando.</p>
+<h3 id="c1-4">1.4 Programar para quê?</h3>
+<p class="sec-sub">Seções 1.4.1 a 1.4.9 — Programação está em tudo ao seu redor</p>
+<h4 class="pyh">📱 Software está em todo lugar</h4>
+<p>Você já parou para pensar em quantos programas usa por dia? Do despertador do celular ao streaming de música, do GPS ao elevador — tudo funciona com software. Veja nove áreas onde a programação faz a diferença:</p>
+<div class="example-grid">
+<div class="example-item">
+<div class="ex-icon">🌐</div>
+<strong>1.4.1 — Web</strong>
+<span>Sites, redes sociais, e-commerce. A internet inteira é construída com código.</span>
+</div>
+<div class="example-item">
+<div class="ex-icon">⌚</div>
+<strong>1.4.2 — Relógio</strong>
+<span>Smartwatches, cronômetros digitais, alarmes — até o relógio do micro-ondas roda software.</span>
+</div>
+<div class="example-item">
+<div class="ex-icon">🗺</div>
+<strong>1.4.3 — Mapas</strong>
+<span>GPS, Waze, Google Maps. Algoritmos calculam rotas em milissegundos.</span>
+</div>
+<div class="example-item">
+<div class="ex-icon">🍳</div>
+<strong>1.4.4 — Cozinhar</strong>
+<span>Receitas inteligentes, forno programado, apps de delivery — tecnologia na cozinha.</span>
+</div>
+<div class="example-item">
+<div class="ex-icon">🎮</div>
+<strong>1.4.5 — Jogos</strong>
+<span>De Pac-Man a mundos 3D, jogos são software puro. Física, gráficos e lógica em código.</span>
+</div>
+<div class="example-item">
+<div class="ex-icon">🎵</div>
+<strong>1.4.6 — Música</strong>
+<span>Spotify, editores de áudio, sintetizadores. Até a música é processada por algoritmos.</span>
+</div>
+<div class="example-item">
+<div class="ex-icon">📷</div>
+<strong>1.4.7 — Fotografia</strong>
+<span>Filtros, edição, reconhecimento facial. Cada foto passa por milhares de cálculos.</span>
+</div>
+<div class="example-item">
+<div class="ex-icon">🏥</div>
+<strong>1.4.8 — Saúde</strong>
+<span>Diagnósticos, prontuários eletrônicos, equipamentos médicos. Código salva vidas.</span>
+</div>
+<div class="example-item">
+<div class="ex-icon">📦</div>
+<strong>1.4.9 — Software Livre</strong>
+<span>Linux, Firefox, LibreOffice. Comunidades criam software gratuito e aberto para todos.</span>
+</div>
+</div>
+<h4 class="pyh">💡 E o que isso tem a ver com você?</h4>
+<p>Independente da área que você escolher, saber programar será um diferencial. Não porque todo mundo precisa ser desenvolvedor, mas porque <strong>entender como a tecnologia funciona dá poder</strong>.</p>
+<p>Você deixa de ser apenas consumidor e passa a ser <strong>criador</strong>. Em vez de esperar que alguém crie a solução para o seu problema, você mesmo pode criá-la.</p>
+<div class="box analogia"><div class="ic">💬</div><div>
+<p>“No futuro, haverá dois tipos de pessoas: as que mandam nos computadores e as que são mandadas por eles. Programe-se para estar no primeiro grupo.”</p>
+</div></div>
+<h3 id="c1-5">1.5 Por que Python?</h3>
+<p class="sec-sub">A linguagem que conquistou o mundo pela simplicidade</p>
+<h4 class="pyh">✨ Simplicidade e legibilidade</h4>
+<p>Python foi criada por <strong>Guido van Rossum</strong> em 1991 com um objetivo claro: ser uma linguagem <strong>fácil de ler e escrever</strong>. Enquanto outras linguagens usam chaves, ponto-e-vírgula e símbolos complicados, Python usa indentação e palavras que parecem inglês.</p>
+<div class="compare-grid">
+<div class="compare-item python-side">
+<strong>🐍 Python</strong>
+<code>if idade &gt;= 18:
+    print("Maior de idade")
+else:
+    print("Menor de idade")</code>
+</div>
+<div class="compare-item other-side">
+<strong>☕ Java</strong>
+<code>if (idade &gt;= 18) {
+    System.out.println("Maior de idade");
+} else {
+    System.out.println("Menor de idade");
+}</code>
+</div>
+</div>
+<p>Percebeu a diferença? O código Python é mais limpo, mais curto e mais próximo do português. Isso não é acidente — é filosofia de design.</p>
+<h4 class="pyh">🔋 “Batteries Included”</h4>
+<p>Python vem com uma <strong>biblioteca padrão enorme</strong> — isso significa que muita coisa já vem pronta para usar, sem precisar instalar nada extra. Os programadores chamam isso de <em>“batteries included”</em> (pilhas inclusas).</p>
+<div class="feature-list">
+<div class="feature-item">
+<div class="feat-icon">📊</div>
+<strong>Ciência de Dados</strong>
+<span>pandas, numpy, matplotlib</span>
+</div>
+<div class="feature-item">
+<div class="feat-icon">🤖</div>
+<strong>IA e Machine Learning</strong>
+<span>tensorflow, scikit-learn</span>
+</div>
+<div class="feature-item">
+<div class="feat-icon">🌐</div>
+<strong>Web</strong>
+<span>Django, Flask, FastAPI</span>
+</div>
+<div class="feature-item">
+<div class="feat-icon">🤖</div>
+<strong>Automação</strong>
+<span>selenium, requests, scrapy</span>
+</div>
+</div>
+<h4 class="pyh">🚀 Seu primeiro programa</h4>
+<p>Em muitas linguagens, o primeiro programa que um iniciante escreve é o famoso <strong>“Hello World”</strong>. Em Python, é absurdamente simples:</p>
+<pre class="py"><span class="pylab">Python</span><button class="cp">Copiar</button><code><span class="function">print</span>(<span class="string">"Olá, Mundo!"</span>)</code></pre>
+<p>Sim, é só isso. Uma única linha. Execute esse comando e você verá:</p>
+<pre class="py nr"><span class="pylab">Saída</span><button class="cp">Copiar</button><code><span class="output">Olá, Mundo!</span></code></pre>
+<p>Agora vamos um pouco além. Que tal um programa que pergunta seu nome?</p>
+<pre class="py"><span class="pylab">Python</span><button class="cp">Copiar</button><code><span class="comment"># Meu primeiro programa interativo</span>
+nome = <span class="function">input</span>(<span class="string">"Qual é o seu nome? "</span>)
+<span class="function">print</span>(<span class="string">f"Prazer em conhecê-lo, </span>{nome}<span class="string">!"</span>)</code></pre>
+<div class="box analogia"><div class="ic">💬</div><div>
+<p>“Python é a linguagem que mais cresce no mundo. É usada pela Google, Netflix, Instagram, NASA e milhares de empresas. Aprender Python é investir no seu futuro.”</p>
+</div></div>
+
+  <h3 id="c1-tools">🛠️ Ferramentas do capítulo</h3>
+  <div class="tool" id="tw" style="--cc:var(--c1)">
+    <h4 style="margin-top:0">📆 Monte o seu plano de estudos</h4>
+    <div class="tool-ctl"><label>Minutos por dia: <input type="range" id="twMin" min="10" max="180" step="5" value="30"> <b id="twMv">30</b></label>
+    <label>Dias por semana: <input type="range" id="twDays" min="1" max="7" value="5"> <b id="twDv">5</b></label></div>
+    <div class="tw-bar"><div id="twFill"></div></div>
+    <p id="twTxt" aria-live="polite"></p>
+  </div>
+  <div class="tool" id="mt" style="--cc:var(--c1)">
+    <h4 style="margin-top:0">🤔 Mito ou verdade?</h4>
+    <div class="mt-q" id="mtQ" aria-live="polite"></div>
+    <div class="tool-ctl"><button type="button" id="mtV">✅ Verdade</button><button type="button" id="mtM" class="alt">❌ Mito</button></div>
+    <p id="mtTxt" aria-live="polite"></p>
+  </div>
+
+  <div class="resumo"><h3>📝 Resumo do capítulo</h3><ul>
+<li><strong>Qualquer pessoa pode aprender</strong> a programar — basta vontade e dedicação</li>
+<li><strong>Paciência e atenção</strong> são mais importantes que velocidade</li>
+<li><strong>Estudo regular</strong> em sessões curtas é mais eficiente que maratonas</li>
+<li><strong>Programação está em tudo</strong> — da web à saúde, dos jogos à cozinha</li>
+<li><strong>Python</strong> é a escolha ideal para iniciantes: simples, poderosa e versátil</li>
+</ul></div>
+  <h3 id="c1-quiz">🧠 Quiz do capítulo 1</h3>
+  <p>Clique na resposta que você acha certa.</p>
+  <div class="quiz">
+    <div class="q"><p>1. Qual é o primeiro ingrediente para aprender a programar, segundo o capítulo?</p>
+      <button class="opt">a) Ser bom em matemática</button><button class="opt" data-ok="1">b) Vontade</button><button class="opt">c) Ter um computador caro</button><button class="opt">d) Falar inglês</button>
+      <div class="fb">Não é preciso talento sobrenatural: o primeiro ingrediente é a <b>vontade</b>.</div></div>
+    <div class="q"><p>2. Programação se aprende melhor:</p>
+      <button class="opt">a) Só lendo</button><button class="opt">b) Só assistindo vídeos</button><button class="opt" data-ok="1">c) Fazendo: digitando, errando e corrigindo</button><button class="opt">d) Decorando comandos</button>
+      <div class="fb">É o ciclo de <b>tentativa e erro</b> que move o aprendizado.</div></div>
+    <div class="q"><p>3. O que o computador faz com o código que você escreve?</p>
+      <button class="opt">a) O que você quer</button><button class="opt" data-ok="1">b) O que você manda, exatamente</button><button class="opt">c) O que parece mais lógico</button><button class="opt">d) Nada, sem internet</button>
+      <div class="fb">O computador é <b>literal</b>: faz o que você manda, nem mais, nem menos.</div></div>
+    <div class="q"><p>4. Uma mensagem de erro deve ser vista como:</p>
+      <button class="opt">a) Uma punição</button><button class="opt">b) Um defeito do computador</button><button class="opt" data-ok="1">c) Uma pista</button><button class="opt">d) Algo a ser ignorado</button>
+      <div class="fb">Mensagens de erro dizem, quase sempre, o que aconteceu e onde.</div></div>
+    <div class="q"><p>5. Qual rotina o capítulo indica como mais eficiente?</p>
+      <button class="opt">a) 5 horas seguidas uma vez por semana</button><button class="opt" data-ok="1">b) 30 a 45 minutos por dia, todos os dias</button><button class="opt">c) Só nas vésperas da prova</button><button class="opt">d) 1 hora por mês</button>
+      <div class="fb"><b>Pouco e frequente</b> vence muito e raro.</div></div>
+    <div class="q"><p>6. Quem criou a linguagem Python?</p>
+      <button class="opt">a) Bill Gates</button><button class="opt" data-ok="1">b) Guido van Rossum</button><button class="opt">c) Linus Torvalds</button><button class="opt">d) Steve Jobs</button>
+      <div class="fb">Guido van Rossum criou o Python em <b>1991</b>.</div></div>
+    <div class="q"><p>7. O que significa “batteries included” no Python?</p>
+      <button class="opt">a) O Python só roda em notebooks</button><button class="opt" data-ok="1">b) A biblioteca padrão já traz muita coisa pronta</button><button class="opt">c) É preciso instalar tudo à mão</button><button class="opt">d) O Python gasta muita bateria</button>
+      <div class="fb">A <b>biblioteca padrão</b> enorme vem junto com o Python.</div></div>
+    <div class="q"><p>8. Qual comando mostra “Olá, Mundo!” na tela?</p>
+      <button class="opt">a) echo("Olá, Mundo!")</button><button class="opt" data-ok="1">b) print("Olá, Mundo!")</button><button class="opt">c) mostrar Olá, Mundo!</button><button class="opt">d) write Olá, Mundo!</button>
+      <div class="fb">Em Python basta uma linha com <code>print(...)</code>.</div></div>
+  </div>
+  <div class="score"></div>
+  <h3>✍️ Questões abertas</h3>
+  <div class="open"><p><b>1.</b> Por que dedicação importa mais que talento na programação?</p>
+    <button>Ver resposta</button><div class="answer">Porque programação se aprende praticando: digitar, errar, corrigir e tentar de novo. A consistência transforma o difícil em natural.</div></div>
+  <div class="open"><p><b>2.</b> Cite duas dicas para lidar com erros no código.</p>
+    <button>Ver resposta</button><div class="answer">Ler a mensagem de erro inteira, manter a calma, comparar com exemplos que funcionam e pesquisar o erro.</div></div>
+  <div class="open"><p><b>3.</b> Por que estudar um pouco todos os dias é melhor do que muito de vez em quando?</p>
+    <button>Ver resposta</button><div class="answer">O cérebro consolida melhor o que aprende em sessões curtas e regulares (repetição espaçada).</div></div>
+  <div class="open"><p><b>4.</b> Dê dois exemplos de como Python é mais simples que outras linguagens.</p>
+    <button>Ver resposta</button><div class="answer">Usa indentação e palavras próximas do inglês, sem chaves e ponto e vírgula; o “Olá, Mundo!” precisa de uma única linha.</div></div>
+
+  <div class="box dica" style="margin-top:28px"><div class="ic">📚</div><div><h5>Para saber mais</h5><p>O <b>Python Tutor</b> (pythontutor.com), que abre pelo botão <b>▶ Executar</b>, mostra o seu programa linha por linha. Para consultar a linguagem, veja <b>O tutorial de Python</b>, em português, em docs.python.org/pt-br/3/tutorial/.</p></div></div>
+</section>
+<section class="chapter soon-ch" id="cap2" style="--cc:var(--c2)"><div class="chap-head"><div class="chap-num" style="background:var(--c2)">2</div><div><small>Capítulo 2</small><h2>Ambiente</h2></div></div><div class="soon-card">⏳ Este capítulo será publicado em breve.</div></section>
+<section class="chapter soon-ch" id="cap3" style="--cc:var(--c3)"><div class="chap-head"><div class="chap-num" style="background:var(--c3)">3</div><div><small>Capítulo 3</small><h2>Variáveis e entrada</h2></div></div><div class="soon-card">⏳ Este capítulo será publicado em breve.</div></section>
+<section class="chapter soon-ch" id="cap4" style="--cc:var(--c4)"><div class="chap-head"><div class="chap-num" style="background:var(--c4)">4</div><div><small>Capítulo 4</small><h2>Condições</h2></div></div><div class="soon-card">⏳ Este capítulo será publicado em breve.</div></section>
+<section class="chapter soon-ch" id="cap5" style="--cc:var(--c5)"><div class="chap-head"><div class="chap-num" style="background:var(--c5)">5</div><div><small>Capítulo 5</small><h2>Repetições</h2></div></div><div class="soon-card">⏳ Este capítulo será publicado em breve.</div></section>
+<section class="chapter soon-ch" id="cap6" style="--cc:var(--c6)"><div class="chap-head"><div class="chap-num" style="background:var(--c6)">6</div><div><small>Capítulo 6</small><h2>Listas</h2></div></div><div class="soon-card">⏳ Este capítulo será publicado em breve.</div></section>
+<section class="chapter soon-ch" id="cap7" style="--cc:var(--c7)"><div class="chap-head"><div class="chap-num" style="background:var(--c7)">7</div><div><small>Capítulo 7</small><h2>Strings</h2></div></div><div class="soon-card">⏳ Este capítulo será publicado em breve.</div></section>
+<section class="chapter soon-ch" id="cap8" style="--cc:var(--c8)"><div class="chap-head"><div class="chap-num" style="background:var(--c8)">8</div><div><small>Capítulo 8</small><h2>Funções</h2></div></div><div class="soon-card">⏳ Este capítulo será publicado em breve.</div></section>
+<section class="chapter soon-ch" id="cap9" style="--cc:var(--c9)"><div class="chap-head"><div class="chap-num" style="background:var(--c9)">9</div><div><small>Capítulo 9</small><h2>Arquivos</h2></div></div><div class="soon-card">⏳ Este capítulo será publicado em breve.</div></section>
+<section class="chapter soon-ch" id="cap10" style="--cc:var(--c10)"><div class="chap-head"><div class="chap-num" style="background:var(--c10)">10</div><div><small>Capítulo 10</small><h2>Classes e objetos</h2></div></div><div class="soon-card">⏳ Este capítulo será publicado em breve.</div></section>
+<section class="chapter soon-ch" id="cap11" style="--cc:var(--c11)"><div class="chap-head"><div class="chap-num" style="background:var(--c11)">11</div><div><small>Capítulo 11</small><h2>Banco de dados</h2></div></div><div class="soon-card">⏳ Este capítulo será publicado em breve.</div></section>
+<section class="chapter soon-ch" id="cap12" style="--cc:var(--c12)"><div class="chap-head"><div class="chap-num" style="background:var(--c12)">12</div><div><small>Capítulo 12</small><h2>Projeto final</h2></div></div><div class="soon-card">⏳ Este capítulo será publicado em breve.</div></section>
+
+<section id="refs">
+  <h2>📚 Referências</h2>
+  <p class="ref">PYTHON SOFTWARE FOUNDATION. <b>O tutorial de Python</b>. [<i>S. l.</i>], [s.d.]. Disponível em: https://docs.python.org/pt-br/3/tutorial/. Acesso em: 20 nov. 2026.</p>
+  <footer>Apostila de Introdução à Programação com Python · IFRN – Campus João Câmara</footer>
+</section>
+</div>
+</main>
+<button class="back-top" id="top" aria-label="Voltar ao topo">↑</button>
+
+<script src="glossario.js"></script>
+<script src="python.js"></script>
+<script src="../assets/apostila.js"></script>
+</body>
+</html>
