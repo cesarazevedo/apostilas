@@ -38,5 +38,17 @@ window.GLOSSARIO={
 "contador":"Variável que conta quantas vezes algo aconteceu, aumentando de 1 em 1.",
 "acumulador":"Variável que vai somando valores a cada repetição, como soma = soma + valor.",
 "break":"Comando que interrompe a repetição imediatamente.",
-"iteração":"Cada volta (execução do bloco) de uma repetição."
+"iteração":"Cada volta (execução do bloco) de uma repetição.",
+"lista":"Variável que guarda vários valores em sequência, acessados por índice: [15, 8, 9].",
+"elemento":"Cada item guardado dentro de uma lista.",
+"pilha":"Estrutura em que o último elemento a entrar é o primeiro a sair, como pratos empilhados.",
+"fila":"Estrutura em que o primeiro elemento a entrar é o primeiro a sair, como a fila do banco.",
+"for":"Estrutura de repetição que percorre cada elemento de uma sequência.",
+"range":"Função que gera uma sequência de números inteiros, como range(3) → 0, 1, 2.",
+"enumerate":"Função que entrega, a cada volta de um for, o índice e o valor do elemento.",
+"ordenação":"Colocar os elementos de uma lista em ordem, como do menor para o maior.",
+"dicionário":"Estrutura que liga chaves a valores, como {'Alface': 0.45}.",
+"chave":"Nome usado para localizar um valor dentro de um dicionário.",
+"tupla":"Sequência parecida com uma lista, mas que não pode ser alterada depois de criada.",
+"referência":"Endereço que aponta para um dado na memória; copiar a variável de uma lista copia só a referência."
 };
