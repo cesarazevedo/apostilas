@@ -74,5 +74,12 @@ window.GLOSSARIO={
 "csv":"Formato de arquivo de texto que representa uma tabela, com valores separados por um delimitador.",
 "delimitador":"Caractere que separa as colunas em um CSV, como ; ou vírgula.",
 "encoding":"Forma de converter texto em bytes; utf-8 é a mais usada e aceita acentos.",
-"exceção":"Erro que acontece durante a execução e pode ser tratado com try e except."
+"exceção":"Erro que acontece durante a execução e pode ser tratado com try e except.",
+"classe":"Molde que descreve os atributos e os métodos que os objetos terão.",
+"objeto":"Item criado a partir de uma classe, com os seus próprios valores; também chamado de instância.",
+"atributo":"Dado que pertence a um objeto, como o nome ou o saldo.",
+"self":"Nome usado dentro dos métodos para se referir ao próprio objeto.",
+"construtor":"Método __init__, que roda automaticamente ao criar um objeto.",
+"herança":"Mecanismo em que uma classe reaproveita os atributos e métodos de outra.",
+"instância":"Objeto criado a partir de uma classe."
 };

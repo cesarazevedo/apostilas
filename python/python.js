@@ -6,7 +6,8 @@
   [].forEach.call(document.querySelectorAll('pre.py'),function(pre){
     if(pre.classList.contains('nr'))return;
     var code=pre.querySelector('code');if(!code)return;
-    var txt=code.textContent.trim();
+    var cl=code.cloneNode(true);[].forEach.call(cl.querySelectorAll('.output,.user-input,.error'),function(x){x.parentNode.removeChild(x)});
+    var txt=cl.textContent.split('\n').map(function(l){return l.replace(/^(>>>|\.\.\.) ?/,'')}).join('\n').trim();
     var a=document.createElement('a');a.className='pyrun';a.target='_blank';a.rel='noopener noreferrer';a.textContent='▶ Executar';
     a.title='Abre o Python Tutor e mostra o programa passo a passo';
     a.href='https://pythontutor.com/render.html#code='+encodeURIComponent(txt)+'&cumulative=false&curInstr=0&heapPrimitives=nevernest&mode=display&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false';
@@ -411,6 +412,36 @@
       $('cvR').innerHTML=rows.length-1+' linha(s) de dados, '+w+' colunas.'+(msg.length?'<br>'+msg.join(' · '):'');
     }
     t.oninput=r;$('cvD').onchange=r;r();
+  })();
+
+  // --- Cap. 10: duas contas ---
+  (function(){
+    var s=$('ocS');if(!s)return;var C,N=['ana','bruno'];
+    function esc(x){return String(x).replace(/&/g,'&amp;').replace(/</g,'&lt;')}
+    function r(m){s.innerHTML=C.map(function(c,i){return '<span>'+N[i]+'.saldo = <b>'+c.toFixed(2).replace(/\.00$/,'')+'</b></span>'}).join('');$('ocT').innerHTML=m||''}
+    function reset(){C=[100,0];r('Estado inicial: <code>ana = Conta("Ana", 100)</code> e <code>bruno = Conta("Bruno")</code>.')}
+    [].forEach.call(document.querySelectorAll('#oc button[data-o]'),function(b){b.onclick=function(){
+      var k=b.dataset.o;if(k==='rst')return reset();
+      var q=+$('ocQ').value,v=parseFloat($('ocV').value);if(isNaN(v)||v<0){r('Digite um valor válido.');return}
+      if(k==='dep'){C[q]+=v;r('<code>'+N[q]+'.depositar('+v+')</code>')}
+      else if(v>C[q]){r('<code>'+N[q]+'.sacar('+v+')</code> → Saldo insuficiente!')}
+      else{C[q]-=v;r('<code>'+N[q]+'.sacar('+v+')</code>')}}});
+    reset();
+  })();
+
+  // --- Cap. 10: fábrica de objetos ---
+  (function(){
+    var L=$('pfL');if(!L)return;var O=[];
+    function esc(x){return String(x).replace(/&/g,'&amp;').replace(/</g,'&lt;')}
+    function draw(){
+      L.innerHTML=O.length?'':'<em>Nenhum objeto criado ainda.</em>';
+      O.forEach(function(o,i){var b=document.createElement('span');b.innerHTML='pessoa'+(i+1)+'<br><small>nome: '+esc(o.n)+'<br>idade: '+o.i+'</small><br>';
+        var k=document.createElement('button');k.type='button';k.className='alt';k.textContent='apresentar()';k.onclick=function(){$('pfT').innerHTML='<code>pessoa'+(i+1)+'.apresentar()</code> → Olá, eu sou '+esc(o.n)+' e tenho '+o.i+' anos.'};b.appendChild(k);L.appendChild(b)});
+    }
+    $('pfC').onclick=function(){var n=$('pfN').value.trim(),i=parseInt($('pfI').value,10);if(!n||isNaN(i)||i<0){$('pfT').textContent='Preencha o nome e a idade.';return}
+      O.push({n:n,i:i});$('pfN').value='';$('pfI').value='';$('pfT').innerHTML='<code>pessoa'+O.length+' = Pessoa("'+esc(n)+'", '+i+')</code>';draw()};
+    $('pfX').onclick=function(){O=[];$('pfT').textContent='';draw()};
+    draw();
   })();
 
 })();
