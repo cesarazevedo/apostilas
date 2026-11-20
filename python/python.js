@@ -331,4 +331,46 @@
     $('fcR').onclick=reset;reset();
   })();
 
+  // --- Cap. 8: pilha de chamadas ---
+  (function(){
+    var s=$('faS');if(!s)return;var n,ev,k;
+    function build(){
+      n=+$('faN').value;$('faV').textContent=n;ev=[];var i,val={};
+      for(i=n;i>=1;i--)ev.push({st:n-i+1,t:'Chamou <code>fatorial('+i+')</code>.'});
+      val[1]=1;ev.push({st:n,t:'Caso base: <code>fatorial(1)</code> devolve <b>1</b>.',pop:1});
+      for(i=2;i<=n;i++){val[i]=i*val[i-1];ev.push({st:n-i+1,t:'<code>fatorial('+i+')</code> devolve '+i+' × '+val[i-1]+' = <b>'+val[i]+'</b>.',pop:i})}
+      k=0;draw();
+    }
+    function draw(){
+      var cur=k?ev[k-1]:null,depth=cur?cur.st:0,h='';
+      for(var d=1;d<=depth;d++){var f=n-d+1;h+='<span>fatorial('+f+')</span>'}
+      s.innerHTML=h||'<em>Pilha vazia.</em>';
+      $('faT').innerHTML=cur?cur.t+(k===ev.length?' <span class="ok-y">Fim!</span>':''):'Aperte o botão para começar.';
+    }
+    function step(){if(k<ev.length){k++;draw()}}
+    $('faB').onclick=step;$('faR').onclick=build;$('faN').oninput=build;build();
+  })();
+
+  // --- Cap. 8: custo do Fibonacci ---
+  (function(){
+    var r=$('fbN');if(!r)return;
+    function go(){
+      var n=+r.value,a=1,b=1,c,i;for(i=2;i<=n;i++){c=1+a+b;a=b;b=c}
+      var calls=n<=1?1:b;$('fbV').textContent=n;
+      $('fbT').innerHTML='<code>fibonacci('+n+')</code> faz <b>'+calls.toLocaleString('pt-BR')+'</b> chamadas.'+(calls>1e6?' <span class="ok-n">Isso já pesa!</span> Existem jeitos melhores de calcular.':'');
+    }
+    r.oninput=go;go();
+  })();
+
+  // --- Cap. 8: sorteador ---
+  (function(){
+    var g=$('ddG');if(!g)return;
+    g.onclick=function(){
+      var a=parseInt($('ddA').value,10),b=parseInt($('ddB').value,10);
+      if(isNaN(a)||isNaN(b)||a>b){$('ddT').innerHTML='<span class="ok-n">ValueError:</span> a precisa ser menor ou igual a b.';return}
+      var x=a+Math.floor(Math.random()*(b-a+1));
+      $('ddT').innerHTML='<code>random.randint('+a+', '+b+')</code> → <b style="font-size:24px">'+x+'</b>';
+    };
+  })();
+
 })();

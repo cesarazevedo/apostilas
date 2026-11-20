@@ -96,7 +96,15 @@ html[data-theme=dark]{--verde-claro:#10263a}
       <a href="#c7-tools">Ferramentas</a>
       <a href="#c7-quiz">Quiz e exercícios</a>
     </div>
-    <a href="#cap8" class="soon"><span class="n" style="background:var(--c8)">8</span>Funções</a>
+    <a href="#cap8"><span class="n" style="background:var(--c8)">8</span>Funções</a>
+    <div class="sub">
+      <a href="#c8-1">8.1 Funções: Introdução</a>
+      <a href="#c8-2">8.2 Recursão e Validação</a>
+      <a href="#c8-3">8.3 Funções Avançadas</a>
+      <a href="#c8-4">8.4 Módulos, Aleatórios e type()</a>
+      <a href="#c8-tools">Ferramentas</a>
+      <a href="#c8-quiz">Quiz e exercícios</a>
+    </div>
     <a href="#cap9" class="soon"><span class="n" style="background:var(--c9)">9</span>Arquivos</a>
     <a href="#cap10" class="soon"><span class="n" style="background:var(--c10)">10</span>Classes e objetos</a>
     <a href="#cap11" class="soon"><span class="n" style="background:var(--c11)">11</span>Banco de dados</a>
@@ -133,7 +141,7 @@ html[data-theme=dark]{--verde-claro:#10263a}
     <div class="card" style="--cc:var(--c5)" data-ok="1"><b>5 · Repetições</b><span>while, contadores, acumuladores e laços aninhados.</span><div class="st">✅ Disponível</div></div>
     <div class="card" style="--cc:var(--c6)" data-ok="1"><b>6 · Listas</b><span>Listas, índices, for, pilhas, filas, ordenação e dicionários.</span><div class="st">✅ Disponível</div></div>
     <div class="card" style="--cc:var(--c7)" data-ok="1"><b>7 · Strings</b><span>Pesquisa, métodos e formatação, com um jogo da forca.</span><div class="st">✅ Disponível</div></div>
-    <div class="card" style="--cc:var(--c8)"><b>8 · Funções</b><span>def, return, escopo, recursão, módulos e random.</span><div class="st">⏳ Em breve</div></div>
+    <div class="card" style="--cc:var(--c8)" data-ok="1"><b>8 · Funções</b><span>def, return, escopo, recursão, módulos e random.</span><div class="st">✅ Disponível</div></div>
     <div class="card" style="--cc:var(--c9)"><b>9 · Arquivos</b><span>Em breve: ler e gravar arquivos, incluindo CSV.</span><div class="st">⏳ Em breve</div></div>
     <div class="card" style="--cc:var(--c10)"><b>10 · Classes e objetos</b><span>Em breve: programação orientada a objetos.</span><div class="st">⏳ Em breve</div></div>
     <div class="card" style="--cc:var(--c11)"><b>11 · Banco de dados</b><span>Em breve: SQLite com Python.</span><div class="st">⏳ Em breve</div></div>
@@ -3216,7 +3224,661 @@ erros = 0
 
   <div class="box dica" style="margin-top:28px"><div class="ic">📚</div><div><h5>Para saber mais</h5><p>Documentação oficial: <i>Métodos de string</i>, em docs.python.org/pt-br/3/library/stdtypes.html#string-methods, e a seção sobre formatação de strings do <i>O tutorial de Python</i>. Experimente cada método no IDLE.</p></div></div>
 </section>
-<section class="chapter soon-ch" id="cap8" style="--cc:var(--c8)"><div class="chap-head"><div class="chap-num" style="background:var(--c8)">8</div><div><small>Capítulo 8</small><h2>Funções</h2></div></div><div class="soon-card">⏳ Este capítulo será publicado em breve.</div></section>
+<section class="chapter" id="cap8" style="--cc:var(--c8)">
+  <div class="chap-head"><div class="chap-num" style="background:var(--c8)">8</div><div><small>Capítulo 8</small><h2>Funções</h2></div></div>
+  <div class="obj"><h4>🎯 Ao final deste capítulo, você será capaz de:</h4><ul><li>definir funções com <code>def</code>, usar parâmetros e devolver valores com <code>return</code></li><li>diferenciar variáveis locais e globais</li><li>escrever funções recursivas, com caso base e chamada recursiva</li><li>usar parâmetros opcionais, nomeados, <code>*args</code> e funções lambda</li><li>usar módulos, o <code>random</code> e a função <code>type()</code></li></ul></div>
+<h3 id="c8-1">8.1 Funções: Introdução</h3>
+<p class="sec-sub">Seções 8.0–8.1 — Definindo funções, retorno e variáveis locais/globais</p>
+<h4 class="pyh">📖 O que é uma Função?</h4>
+<p>Uma <strong>função</strong> é um trecho de programa que pode ser chamado (executado) várias vezes. Em vez de repetir código, encapsulamos a lógica numa função e a reutilizamos quando necessário.</p>
+<p>Em Python, a definição de funções usa a palavra-chave <code>def</code>, seguida do nome, parâmetros entre parênteses e dois-pontos. O corpo é indentado:</p>
+<pre class="py"><span class="pylab">Listagem 8.1 — Primeira função</span><button class="cp">Copiar</button><code><span class="keyword">def</span> <span class="function">soma</span>(a, b):
+    <span class="function">print</span>(a + b)
+
+<span class="function">soma</span>(<span class="number">2</span>, <span class="number">3</span>)
+<span class="function">soma</span>(<span class="number">10</span>, <span class="number">20</span>)
+<span class="function">soma</span>(<span class="number">-5</span>, <span class="number">8</span>)</code></pre>
+<pre class="py nr"><span class="pylab"></span><button class="cp">Copiar</button><code><span class="output">5
+30
+3</span></code></pre>
+<p>Os valores <code>a</code> e <code>b</code> são <strong>parâmetros</strong> — placeholders que recebem os valores passados na chamada (<strong>argumentos</strong>).</p>
+<div class="box analogia"><div class="ic">💬</div><div>
+<p>💡 Funções permitem dividir um programa grande em partes menores e reutilizáveis. Isso facilita a leitura, o teste e a manutenção do código.</p>
+</div></div>
+<h4 class="pyh">↩️ Retorno de Valores</h4>
+<p>A função anterior imprime o resultado, mas não o “devolve” ao código que a chamou. Para isso, usamos <code>return</code>:</p>
+<pre class="py"><span class="pylab">Listagem 8.2 — Função com retorno</span><button class="cp">Copiar</button><code><span class="keyword">def</span> <span class="function">soma</span>(a, b):
+    <span class="keyword">return</span> a + b
+
+resultado = <span class="function">soma</span>(<span class="number">2</span>, <span class="number">3</span>)
+<span class="function">print</span>(resultado)
+<span class="function">print</span>(<span class="function">soma</span>(<span class="number">10</span>, <span class="number">20</span>))
+<span class="function">print</span>(<span class="function">soma</span>(<span class="number">4</span>, <span class="number">5</span>) * <span class="number">2</span>)</code></pre>
+<pre class="py nr"><span class="pylab"></span><button class="cp">Copiar</button><code><span class="output">5
+30
+18</span></code></pre>
+<p>O <code>return</code> encerra a execução da função e devolve o valor ao chamador. Agora o resultado pode ser armazenado numa variável ou usado em expressões.</p>
+<h3>Funções que retornam booleanos</h3>
+<p>Funções podem retornar qualquer tipo — inclusive <code>True</code>/<code>False</code>. Isso as torna legíveis como expressões condicionais:</p>
+<pre class="py"><span class="pylab">Listagem 8.3 — Função épar</span><button class="cp">Copiar</button><code><span class="keyword">def</span> <span class="function">épar</span>(n):
+    <span class="keyword">return</span> n % <span class="number">2</span> == <span class="number">0</span></code></pre>
+<pre class="py"><span class="pylab">Listagem 8.4 — Usando épar dentro de outra função</span><button class="cp">Copiar</button><code><span class="keyword">def</span> <span class="function">par_ou_impar</span>(n):
+    <span class="keyword">if</span> <span class="function">épar</span>(n):
+        <span class="function">print</span>(<span class="string">f'</span>{n}<span class="string"> é par'</span>)
+    <span class="keyword">else</span>:
+        <span class="function">print</span>(<span class="string">f'</span>{n}<span class="string"> é ímpar'</span>)
+
+<span class="function">par_ou_impar</span>(<span class="number">4</span>)
+<span class="function">par_ou_impar</span>(<span class="number">7</span>)</code></pre>
+<pre class="py nr"><span class="pylab"></span><button class="cp">Copiar</button><code><span class="output">4 é par
+7 é ímpar</span></code></pre>
+<div class="lab">
+<h3>✏️ Exercício 8.1</h3>
+<p>Escreva uma função <code>dobro(n)</code> que receba um número inteiro e retorne o seu dobro. Teste chamando-a com diferentes valores.</p>
+</div>
+<div class="lab">
+<h3>✏️ Exercício 8.2</h3>
+<p>Escreva uma função <code>media(a, b, c)</code> que receba três números reais e retorne a média aritmética entre eles.</p>
+</div>
+<h4 class="pyh">📋 Funções com Listas</h4>
+<p>Funções aceitam qualquer tipo como parâmetro, inclusive listas. Veja uma função que pesquisa um elemento numa lista:</p>
+<pre class="py"><span class="pylab">Listagem 8.5 — Pesquisa em lista</span><button class="cp">Copiar</button><code><span class="keyword">def</span> <span class="function">pesquisa</span>(lista, item):
+    <span class="keyword">for</span> e <span class="keyword">in</span> lista:
+        <span class="keyword">if</span> e == item:
+            <span class="keyword">return</span> <span class="keyword">True</span>
+<span class="keyword">return</span> <span class="keyword">False</span>
+
+nomes = [<span class="string">"Ana"</span>, <span class="string">"Bruno"</span>, <span class="string">"Carla"</span>]
+<span class="function">print</span>(<span class="function">pesquisa</span>(nomes, <span class="string">"Bruno"</span>))
+<span class="function">print</span>(<span class="function">pesquisa</span>(nomes, <span class="string">"Diego"</span>))</code></pre>
+<pre class="py nr"><span class="pylab"></span><button class="cp">Copiar</button><code><span class="output">True
+False</span></code></pre>
+<p>Podemos calcular a média de uma lista de valores:</p>
+<pre class="py"><span class="pylab">Listagem 8.6 — Cálculo de média</span><button class="cp">Copiar</button><code><span class="keyword">def</span> <span class="function">media</span>(lista):
+    soma = <span class="number">0</span>
+<span class="keyword">for</span> e <span class="keyword">in</span> lista:
+        soma += e
+    <span class="keyword">return</span> soma / <span class="function">len</span>(lista)
+
+notas = [<span class="number">7.5</span>, <span class="number">8.0</span>, <span class="number">6.5</span>, <span class="number">9.0</span>]
+<span class="function">print</span>(<span class="function">media</span>(notas))</code></pre>
+<pre class="py nr"><span class="pylab"></span><button class="cp">Copiar</button><code><span class="output">7.75</span></code></pre>
+<p>Funções também podem chamar umas às outras. Abaixo, <code>media</code> usa a função <code>soma</code>:</p>
+<pre class="py"><span class="pylab">Listagem 8.7 — Funções que colaboram</span><button class="cp">Copiar</button><code><span class="keyword">def</span> <span class="function">soma</span>(lista):
+    total = <span class="number">0</span>
+<span class="keyword">for</span> e <span class="keyword">in</span> lista:
+        total += e
+    <span class="keyword">return</span> total
+
+<span class="keyword">def</span> <span class="function">media</span>(lista):
+    <span class="keyword">return</span> <span class="function">soma</span>(lista) / <span class="function">len</span>(lista)
+
+notas = [<span class="number">7.5</span>, <span class="number">8.0</span>, <span class="number">6.5</span>, <span class="number">9.0</span>]
+<span class="function">print</span>(<span class="function">soma</span>(notas))
+<span class="function">print</span>(<span class="function">media</span>(notas))</code></pre>
+<pre class="py nr"><span class="pylab"></span><button class="cp">Copiar</button><code><span class="output">31.0
+7.75</span></code></pre>
+<div class="lab">
+<h3>✏️ Exercício 8.3</h3>
+<p>Escreva uma função <code>maior(lista)</code> que receba uma lista de números e retorne o maior deles, <strong>sem usar</strong> a função embutida <code>max()</code>.</p>
+</div>
+<div class="lab">
+<h3>✏️ Exercício 8.4</h3>
+<p>Escreva uma função <code>conta_pares(lista)</code> que retorne quantos números pares existem na lista.</p>
+</div>
+<h4 class="pyh">⚠️ Boas Práticas — Evite Funções Rígidas</h4>
+<p>Uma função bem projetada deve ser <strong>geral</strong> e <strong>reutilizável</strong>. O exemplo abaixo mostra como <strong>não</strong> escrever uma função de soma:</p>
+<pre class="py"><span class="pylab">Listagem 8.8 — Como NÃO escrever (função rígida)</span><button class="cp">Copiar</button><code><span class="comment"># Errado: depende de variáveis globais específicas</span>
+<span class="keyword">def</span> <span class="function">soma</span>():
+    <span class="keyword">return</span> n1 + n2 + n3 + n4 + n5
+
+<span class="comment"># Correto: recebe os dados como parâmetros</span>
+<span class="keyword">def</span> <span class="function">soma</span>(lista):
+    total = <span class="number">0</span>
+<span class="keyword">for</span> e <span class="keyword">in</span> lista:
+        total += e
+    <span class="keyword">return</span> total</code></pre>
+<h3>Fatorial Iterativo</h3>
+<p>O fatorial de n é o produto 1 × 2 × 3 × … × n. Podemos calculá-lo de duas formas iterativas:</p>
+<pre class="py"><span class="pylab">Listagem 8.9 — Fatorial iterativo (v1)</span><button class="cp">Copiar</button><code><span class="keyword">def</span> <span class="function">fatorial</span>(n):
+    fat = <span class="number">1</span>
+<span class="keyword">for</span> i <span class="keyword">in</span> <span class="function">range</span>(<span class="number">1</span>, n + <span class="number">1</span>):
+        fat *= i
+    <span class="keyword">return</span> fat
+
+<span class="function">print</span>(<span class="function">fatorial</span>(<span class="number">5</span>))   <span class="comment"># 120</span>
+<span class="function">print</span>(<span class="function">fatorial</span>(<span class="number">10</span>))  <span class="comment"># 3628800</span></code></pre>
+<pre class="py"><span class="pylab">Listagem 8.10 — Fatorial iterativo (v2)</span><button class="cp">Copiar</button><code><span class="keyword">def</span> <span class="function">fatorial</span>(n):
+    fat = n
+    <span class="keyword">while</span> n &gt; <span class="number">1</span>:
+        n -= <span class="number">1</span>
+        fat *= n
+    <span class="keyword">return</span> fat
+
+<span class="function">print</span>(<span class="function">fatorial</span>(<span class="number">5</span>))   <span class="comment"># 120</span></code></pre>
+<div class="lab">
+<h3>✏️ Exercício 8.5</h3>
+<p>Escreva uma função <code>potencia(base, exp)</code> que calcule <code>base</code> elevado a <code>exp</code> de forma iterativa, sem usar o operador <code>**</code>.</p>
+</div>
+<div class="lab">
+<h3>✏️ Exercício 8.6</h3>
+<p>Escreva uma função <code>combinacao(n, k)</code> que calcule o número de combinações de <em>n</em> elementos tomados <em>k</em> a <em>k</em>, usando a função <code>fatorial</code>.</p>
+</div>
+<h4 class="pyh">🔐 Variáveis Locais e Globais</h4>
+<p>Variáveis criadas <em>dentro</em> de uma função são <strong>locais</strong> — existem apenas durante a execução da função e não são visíveis fora dela. Variáveis criadas fora de qualquer função são <strong>globais</strong>.</p>
+<pre class="py"><span class="pylab">Exemplo — Variável local</span><button class="cp">Copiar</button><code>EMPRESA = <span class="string">"Python S.A."</span> <span class="comment"># global</span>
+<span class="keyword">def</span> <span class="function">muda_e_imprime</span>():
+    EMPRESA = <span class="string">"Java Ltda."</span> <span class="comment"># local — não altera a global!</span>
+<span class="function">print</span>(EMPRESA)
+
+<span class="function">muda_e_imprime</span>()   <span class="comment"># imprime "Java Ltda."</span>
+<span class="function">print</span>(EMPRESA)     <span class="comment"># imprime "Python S.A." (inalterada)</span></code></pre>
+<pre class="py nr"><span class="pylab"></span><button class="cp">Copiar</button><code><span class="output">Java Ltda.
+Python S.A.</span></code></pre>
+<p>Para que uma função modifique uma variável global, é necessário declará-la com <code>global</code>:</p>
+<pre class="py"><span class="pylab">Listagem — Usando a palavra-chave global</span><button class="cp">Copiar</button><code>EMPRESA = <span class="string">"Python S.A."</span>
+<span class="keyword">def</span> <span class="function">muda_e_imprime</span>():
+    <span class="keyword">global</span> EMPRESA
+    EMPRESA = <span class="string">"Java Ltda."</span>
+<span class="function">print</span>(EMPRESA)
+
+<span class="function">muda_e_imprime</span>()   <span class="comment"># imprime "Java Ltda."</span>
+<span class="function">print</span>(EMPRESA)     <span class="comment"># imprime "Java Ltda." (foi alterada!)</span></code></pre>
+<pre class="py nr"><span class="pylab"></span><button class="cp">Copiar</button><code><span class="output">Java Ltda.
+Java Ltda.</span></code></pre>
+<div class="box atencao"><div class="ic">⚠️</div><div>
+<p>⚠️ <strong>Cuidado:</strong> o uso excessivo de <code>global</code> dificulta a leitura e o teste do código. Prefira sempre passar valores como parâmetros e receber resultados via <code>return</code>.</p>
+</div></div>
+<h3 id="c8-2">8.2 Recursão e Validação</h3>
+<p class="sec-sub">Seções 8.2–8.3 — Funções recursivas e validação de entrada</p>
+<h4 class="pyh">♻️ Funções Recursivas</h4>
+<p>Uma função é <strong>recursiva</strong> quando ela chama a si mesma. Para evitar um loop infinito, toda função recursiva precisa de um <strong>caso base</strong> — uma condição que encerra a recursão sem fazer nova chamada.</p>
+<p>O fatorial é o exemplo clássico: <strong>fat(n) = n × fat(n-1)</strong>, e <strong>fat(1) = 1</strong> (caso base).</p>
+<pre class="py"><span class="pylab">Listagem 8.11 — Fatorial recursivo</span><button class="cp">Copiar</button><code><span class="keyword">def</span> <span class="function">fatorial</span>(n):
+    <span class="keyword">if</span> n &lt;= <span class="number">1</span>:
+        <span class="keyword">return</span> <span class="number">1</span>
+<span class="keyword">return</span> n * <span class="function">fatorial</span>(n - <span class="number">1</span>)
+
+<span class="function">print</span>(<span class="function">fatorial</span>(<span class="number">5</span>))   <span class="comment"># 120</span></code></pre>
+<h3>Rastreando a execução</h3>
+<p>Podemos adicionar um <code>print</code> para visualizar a pilha de chamadas:</p>
+<pre class="py"><span class="pylab">Listagem 8.12 — Fatorial com rastreamento</span><button class="cp">Copiar</button><code><span class="keyword">def</span> <span class="function">fatorial</span>(n):
+    <span class="function">print</span>(<span class="string">f"fatorial(</span>{n}<span class="string">)"</span>)
+    <span class="keyword">if</span> n &lt;= <span class="number">1</span>:
+        <span class="keyword">return</span> <span class="number">1</span>
+<span class="keyword">return</span> n * <span class="function">fatorial</span>(n - <span class="number">1</span>)
+
+<span class="function">fatorial</span>(<span class="number">4</span>)</code></pre>
+<pre class="py nr"><span class="pylab">Listagem 8.13 — Saída do rastreamento</span><button class="cp">Copiar</button><code><span class="output">fatorial(4)
+fatorial(3)
+fatorial(2)
+fatorial(1)</span></code></pre>
+<p>Cada chamada fica “suspensa” esperando o resultado da próxima, formando uma <em>pilha de chamadas</em>. Quando o caso base é atingido, os retornos se propagam:</p>
+<div class="recursion-diagram">
+<span class="call">fatorial(4)  →  4 × fatorial(3)</span>
+<span class="call" style="padding-left:20px">fatorial(3)  →  3 × fatorial(2)</span>
+<span class="call" style="padding-left:40px">fatorial(2)  →  2 × fatorial(1)</span>
+<span class="call" style="padding-left:60px">fatorial(1)  →  1  (caso base)</span>
+<span class="ret" style="padding-left:40px">←  2 × 1 = 2</span>
+<span class="ret" style="padding-left:20px">←  3 × 2 = 6</span>
+<span class="ret">←  4 × 6 = 24</span>
+</div>
+<div class="box analogia"><div class="ic">💬</div><div>
+<p>💡 Toda função recursiva precisa de: (1) um <strong>caso base</strong> que encerra a recursão e (2) uma <strong>chamada recursiva</strong> que aproxima o problema do caso base.</p>
+</div></div>
+<h4 class="pyh">🐀 Sequência de Fibonacci</h4>
+<p>A sequência de Fibonacci é definida como: <strong>F(0) = 0</strong>, <strong>F(1) = 1</strong> e <strong>F(n) = F(n-1) + F(n-2)</strong> para n ≥ 2. A sequência é: 0, 1, 1, 2, 3, 5, 8, 13, 21, …</p>
+<pre class="py"><span class="pylab">Listagem 8.14 — Fibonacci recursivo</span><button class="cp">Copiar</button><code><span class="keyword">def</span> <span class="function">fibonacci</span>(n):
+    <span class="keyword">if</span> n &lt;= <span class="number">1</span>:
+        <span class="keyword">return</span> n
+    <span class="keyword">return</span> <span class="function">fibonacci</span>(n - <span class="number">1</span>) + <span class="function">fibonacci</span>(n - <span class="number">2</span>)
+
+<span class="keyword">for</span> i <span class="keyword">in</span> <span class="function">range</span>(<span class="number">10</span>):
+    <span class="function">print</span>(<span class="function">fibonacci</span>(i), end=<span class="string">" "</span>)</code></pre>
+<pre class="py nr"><span class="pylab"></span><button class="cp">Copiar</button><code><span class="output">0 1 1 2 3 5 8 13 21 34 </span></code></pre>
+<p>Note que a recursão do Fibonacci faz <em>duas</em> chamadas recursivas, tornando o algoritmo exponencial. Para valores grandes de n, prefira a versão iterativa.</p>
+<div class="lab">
+<h3>✏️ Exercício 8.7</h3>
+<p>Escreva uma função recursiva <code>mdc(a, b)</code> que calcule o Máximo Divisor Comum usando o algoritmo de Euclides: <code>mdc(a, b) = mdc(b, a % b)</code>, caso base: <code>mdc(a, 0) = a</code>.</p>
+</div>
+<div class="lab">
+<h3>✏️ Exercício 8.8</h3>
+<p>Escreva uma função <code>mmc(a, b)</code> que calcule o Mínimo Múltiplo Comum usando a relação: <code>mmc(a, b) = a * b // mdc(a, b)</code>.</p>
+</div>
+<div class="lab">
+<h3>✏️ Exercício 8.9</h3>
+<p>Escreva uma função recursiva <code>soma_digitos(n)</code> que retorne a soma dos dígitos de um número inteiro positivo. Por exemplo: <code>soma_digitos(1234) == 10</code>.</p>
+</div>
+<div class="lab">
+<h3>✏️ Exercício 8.10</h3>
+<p>Escreva uma função recursiva <code>potencia(base, exp)</code> que calcule <code>base</code> elevado a <code>exp</code> sem usar o operador <code>**</code>.</p>
+</div>
+<h4 class="pyh">✅ Validação de Entrada</h4>
+<p>Programas robustos precisam validar os dados fornecidos pelo usuário. Sem funções, o código de validação fica repetido em vários lugares:</p>
+<pre class="py"><span class="pylab">Listagem 8.15 — Validação sem função (repetição de código)</span><button class="cp">Copiar</button><code><span class="comment"># Lendo a idade</span>
+<span class="keyword">while</span> <span class="keyword">True</span>:
+    idade = <span class="function">int</span>(<span class="function">input</span>(<span class="string">"Idade (0-120): "</span>))
+    <span class="keyword">if</span> <span class="number">0</span> &lt;= idade &lt;= <span class="number">120</span>:
+        <span class="keyword">break</span>
+<span class="function">print</span>(<span class="string">"Digite um valor entre 0 e 120."</span>)
+
+<span class="comment"># Lendo a nota</span>
+<span class="keyword">while</span> <span class="keyword">True</span>:
+    nota = <span class="function">int</span>(<span class="function">input</span>(<span class="string">"Nota (0-10): "</span>))
+    <span class="keyword">if</span> <span class="number">0</span> &lt;= nota &lt;= <span class="number">10</span>:
+        <span class="keyword">break</span>
+<span class="function">print</span>(<span class="string">"Digite um valor entre 0 e 10."</span>)</code></pre>
+<p>Com uma função de validação genérica, o código fica muito mais limpo:</p>
+<pre class="py"><span class="pylab">Listagem 8.16 — Função faixa_int</span><button class="cp">Copiar</button><code><span class="keyword">def</span> <span class="function">faixa_int</span>(msg, minimo, maximo):
+    <span class="keyword">while</span> <span class="keyword">True</span>:
+        n = <span class="function">int</span>(<span class="function">input</span>(msg))
+        <span class="keyword">if</span> minimo &lt;= n &lt;= maximo:
+            <span class="keyword">return</span> n
+        <span class="function">print</span>(<span class="string">f"Digite um valor entre </span>{minimo}<span class="string"> e </span>{maximo}<span class="string">."</span>)
+
+<span class="comment"># Uso da função</span>
+idade = <span class="function">faixa_int</span>(<span class="string">"Idade (0-120): "</span>, <span class="number">0</span>, <span class="number">120</span>)
+nota  = <span class="function">faixa_int</span>(<span class="string">"Nota (0-10): "</span>, <span class="number">0</span>, <span class="number">10</span>)</code></pre>
+<div class="box analogia"><div class="ic">💬</div><div>
+<p>💡 Funções de validação eliminam a duplicação de código e centralizam a lógica de verificação. Se a regra muda, basta alterar em um único lugar.</p>
+</div></div>
+<div class="lab">
+<h3>✏️ Exercício 8.11</h3>
+<p>Crie uma função <code>faixa_float(msg, minimo, maximo)</code> similar a <code>faixa_int</code>, porém para números reais. Use-a para ler peso (30.0 a 300.0) e altura (0.5 a 2.5).</p>
+</div>
+<div class="lab">
+<h3>✏️ Exercício 8.12</h3>
+<p>Crie uma função <code>le_opcao(msg, opcoes)</code> que exiba uma mensagem e aceite apenas uma das strings contidas na lista <code>opcoes</code>. Por exemplo: <code>le_opcao("S ou N? ", ["S", "N"])</code>.</p>
+</div>
+<h3 id="c8-3">8.3 Funções Avançadas</h3>
+<p class="sec-sub">Seções 8.4–8.9 — Parâmetros opcionais, nomeados, funções de ordem superior, empacotamento e lambda</p>
+<h4 class="pyh">🔧 Parâmetros Opcionais</h4>
+<p>Parâmetros opcionais (ou com <em>valor padrão</em>) tornam certos argumentos opcionários na chamada. Se o argumento não for fornecido, o valor padrão é usado:</p>
+<pre class="py"><span class="pylab">Listagem 8.17 — Função barra simples</span><button class="cp">Copiar</button><code><span class="keyword">def</span> <span class="function">barra</span>(largura):
+    <span class="function">print</span>(<span class="string">"="</span> * largura)</code></pre>
+<pre class="py"><span class="pylab">Listagem 8.18 — Barra com parâmetros opcionais</span><button class="cp">Copiar</button><code><span class="keyword">def</span> <span class="function">barra</span>(largura=<span class="number">40</span>, char=<span class="string">"="</span>):
+    <span class="function">print</span>(char * largura)</code></pre>
+<pre class="py"><span class="pylab">Listagem 8.19 — Chamando barra de várias formas</span><button class="cp">Copiar</button><code><span class="function">barra</span>()           <span class="comment"># usa largura=40, char="="</span>
+<span class="function">barra</span>(<span class="number">20</span>)         <span class="comment"># usa largura=20, char="="</span>
+<span class="function">barra</span>(<span class="number">30</span>, <span class="string">"-"</span>)   <span class="comment"># usa largura=30, char="-"</span></code></pre>
+<pre class="py nr"><span class="pylab"></span><button class="cp">Copiar</button><code><span class="output">========================================
+====================
+------------------------------</span></code></pre>
+<p>Parâmetros opcionais também podem controlar o comportamento da função:</p>
+<pre class="py"><span class="pylab">Listagem 8.20 — Parâmetro booleano opcional</span><button class="cp">Copiar</button><code><span class="keyword">def</span> <span class="function">soma</span>(a, b, imprime=<span class="keyword">False</span>):
+    resultado = a + b
+    <span class="keyword">if</span> imprime:
+        <span class="function">print</span>(<span class="string">f"</span>{a}<span class="string"> + </span>{b}<span class="string"> = </span>{resultado}<span class="string">"</span>)
+    <span class="keyword">return</span> resultado</code></pre>
+<pre class="py"><span class="pylab">Listagem 8.21 — Uso da função soma</span><button class="cp">Copiar</button><code>x = <span class="function">soma</span>(<span class="number">2</span>, <span class="number">3</span>)               <span class="comment"># silencioso</span>
+y = <span class="function">soma</span>(<span class="number">2</span>, <span class="number">3</span>, <span class="keyword">True</span>)          <span class="comment"># imprime</span>
+z = <span class="function">soma</span>(<span class="number">2</span>, <span class="number">3</span>, imprime=<span class="keyword">True</span>)   <span class="comment"># imprime (nomeando)</span></code></pre>
+<pre class="py nr"><span class="pylab"></span><button class="cp">Copiar</button><code><span class="output">2 + 3 = 5
+2 + 3 = 5</span></code></pre>
+<div class="box atencao"><div class="ic">⚠️</div><div>
+<p>⚠️ <strong>Atenção:</strong> parâmetros com valor padrão devem sempre vir <strong>depois</strong> dos parâmetros obrigatórios. O código abaixo causa erro de sintaxe:</p>
+</div></div>
+<pre class="py"><span class="pylab">Listagem 8.22 — Definição INVÁLIDA</span><button class="cp">Copiar</button><code><span class="keyword">def</span> <span class="function">soma</span>(a=<span class="number">0</span>, b):   <span class="comment"># SyntaxError: parâmetro sem padrão após parâmetro com padrão</span>
+<span class="keyword">return</span> a + b</code></pre>
+<h4 class="pyh">🏷️ Nomeando Parâmetros</h4>
+<p>Ao chamar uma função, podemos nomear os argumentos para maior clareza e flexibilidade de ordem:</p>
+<pre class="py"><span class="pylab">Listagem 8.23 — Função retângulo</span><button class="cp">Copiar</button><code><span class="keyword">def</span> <span class="function">retângulo</span>(largura, altura, char=<span class="string">"*"</span>, preenche=<span class="keyword">False</span>):
+    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="function">range</span>(altura):
+        <span class="keyword">if</span> preenche <span class="keyword">or</span> i == <span class="number">0</span> <span class="keyword">or</span> i == altura - <span class="number">1</span>:
+            <span class="function">print</span>(char * largura)
+        <span class="keyword">else</span>:
+            <span class="function">print</span>(char + <span class="string">" "</span> * (largura - <span class="number">2</span>) + char)</code></pre>
+<pre class="py"><span class="pylab">Listagem 8.24 — Chamando com argumentos nomeados</span><button class="cp">Copiar</button><code><span class="function">retângulo</span>(<span class="number">10</span>, <span class="number">4</span>)
+<span class="function">retângulo</span>(<span class="number">10</span>, <span class="number">4</span>, char=<span class="string">"-"</span>)
+<span class="function">retângulo</span>(<span class="number">10</span>, <span class="number">4</span>, preenche=<span class="keyword">True</span>)
+<span class="function">retângulo</span>(altura=<span class="number">4</span>, largura=<span class="number">10</span>)   <span class="comment"># ordem invertida é OK</span></code></pre>
+<pre class="py"><span class="pylab">Listagem 8.25 — Chamadas inválidas</span><button class="cp">Copiar</button><code><span class="function">retângulo</span>(<span class="number">10</span>)               <span class="error"># TypeError: falta 'altura'</span>
+<span class="function">retângulo</span>(<span class="number">10</span>, <span class="number">4</span>, <span class="number">3</span>)          <span class="error"># TypeError: 3 não é str</span></code></pre>
+<div class="box analogia"><div class="ic">💬</div><div>
+<p>💡 Nomear argumentos torna o código mais legível, especialmente quando a função tem muitos parâmetros opcionais. Use nomes claros e descritivos.</p>
+</div></div>
+<h4 class="pyh">🔁 Funções como Parâmetro</h4>
+<p>Em Python, funções são objetos de primeira classe — podem ser passadas como argumentos para outras funções. Isso permite criar código extremamente flexível:</p>
+<pre class="py"><span class="pylab">Listagem 8.26 — Passando função como argumento</span><button class="cp">Copiar</button><code><span class="keyword">def</span> <span class="function">aplica</span>(func, valor):
+    <span class="keyword">return</span> <span class="function">func</span>(valor)
+
+<span class="keyword">def</span> <span class="function">dobro</span>(x):
+    <span class="keyword">return</span> x * <span class="number">2</span>
+<span class="function">print</span>(<span class="function">aplica</span>(dobro, <span class="number">5</span>))    <span class="comment"># 10</span>
+<span class="function">print</span>(<span class="function">aplica</span>(str, <span class="number">42</span>))    <span class="comment"># '42'</span></code></pre>
+<pre class="py nr"><span class="pylab"></span><button class="cp">Copiar</button><code><span class="output">10
+42</span></code></pre>
+<p>Um exemplo mais prático: uma função que imprime elementos de uma lista, com filtro e formato configuráveis:</p>
+<pre class="py"><span class="pylab">Listagem 8.27 — imprime_lista com funções configuráveis</span><button class="cp">Copiar</button><code><span class="keyword">def</span> <span class="function">imprime_lista</span>(lista, fcondição=<span class="keyword">None</span>, fimpressão=<span class="function">print</span>):
+    <span class="keyword">for</span> e <span class="keyword">in</span> lista:
+        <span class="keyword">if</span> fcondição <span class="keyword">is</span> <span class="keyword">None</span> <span class="keyword">or</span> <span class="function">fcondição</span>(e):
+            <span class="function">fimpressão</span>(e)
+
+<span class="keyword">def</span> <span class="function">épar</span>(n):
+    <span class="keyword">return</span> n % <span class="number">2</span> == <span class="number">0</span>
+
+numeros = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]
+<span class="function">imprime_lista</span>(numeros)                        <span class="comment"># imprime todos</span>
+<span class="function">imprime_lista</span>(numeros, fcondição=épar)      <span class="comment"># só os pares</span></code></pre>
+<pre class="py nr"><span class="pylab"></span><button class="cp">Copiar</button><code><span class="output">1
+2
+3
+4
+5
+6
+---
+2
+4
+6</span></code></pre>
+<h4 class="pyh">📦 Empacotamento com *args</h4>
+<p>Quando uma função precisa aceitar um número variável de argumentos, usamos o prefixo <code>*</code> no parâmetro. Os argumentos extras são empacotados numa tupla:</p>
+<pre class="py"><span class="pylab">Listagem 8.28 — soma com *args</span><button class="cp">Copiar</button><code><span class="keyword">def</span> <span class="function">soma</span>(*args):
+    total = <span class="number">0</span>
+<span class="keyword">for</span> n <span class="keyword">in</span> args:
+        total += n
+    <span class="keyword">return</span> total
+
+<span class="function">print</span>(<span class="function">soma</span>(<span class="number">1</span>, <span class="number">2</span>))
+<span class="function">print</span>(<span class="function">soma</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>))
+<span class="function">print</span>(<span class="function">soma</span>())           <span class="comment"># args será uma tupla vazia</span></code></pre>
+<pre class="py nr"><span class="pylab"></span><button class="cp">Copiar</button><code><span class="output">3
+15
+0</span></code></pre>
+<pre class="py"><span class="pylab">Listagem 8.29 — Barra com *args</span><button class="cp">Copiar</button><code><span class="keyword">def</span> <span class="function">barra</span>(*args):
+    <span class="keyword">if</span> <span class="function">len</span>(args) == <span class="number">0</span>:
+        <span class="function">print</span>(<span class="string">"="</span> * <span class="number">40</span>)
+    <span class="keyword">elif</span> <span class="function">len</span>(args) == <span class="number">1</span>:
+        <span class="function">print</span>(<span class="string">"="</span> * args[<span class="number">0</span>])
+    <span class="keyword">else</span>:
+        <span class="function">print</span>(args[<span class="number">1</span>] * args[<span class="number">0</span>])</code></pre>
+<h3>Misturando parâmetros obrigatórios e *args</h3>
+<pre class="py"><span class="pylab">Listagem 8.30 — Parâmetros fixos + *args</span><button class="cp">Copiar</button><code><span class="keyword">def</span> <span class="function">cabecalho</span>(titulo, *subtitulos):
+    <span class="function">print</span>(<span class="string">"==="</span>, titulo, <span class="string">"==="</span>)
+    <span class="keyword">for</span> s <span class="keyword">in</span> subtitulos:
+        <span class="function">print</span>(<span class="string">"  -"</span>, s)
+
+<span class="function">cabecalho</span>(<span class="string">"Python"</span>)
+<span class="function">cabecalho</span>(<span class="string">"Python"</span>, <span class="string">"Rápido"</span>, <span class="string">"Legível"</span>, <span class="string">"Poderoso"</span>)</code></pre>
+<pre class="py nr"><span class="pylab"></span><button class="cp">Copiar</button><code><span class="output">=== Python ===
+=== Python ===
+  - Rápido
+  - Legível
+  - Poderoso</span></code></pre>
+<h4 class="pyh">📤 Desempacotamento</h4>
+<p>O operador <code>*</code> também pode ser usado na <em>chamada</em> de uma função para desempacotar uma lista ou tupla em argumentos separados:</p>
+<pre class="py"><span class="pylab">Listagem 8.31 — Desempacotando lista na chamada</span><button class="cp">Copiar</button><code><span class="keyword">def</span> <span class="function">soma3</span>(a, b, c):
+    <span class="keyword">return</span> a + b + c
+
+numeros = [<span class="number">10</span>, <span class="number">20</span>, <span class="number">30</span>]
+<span class="function">print</span>(<span class="function">soma3</span>(*numeros))   <span class="comment"># equivale a soma3(10, 20, 30)</span></code></pre>
+<pre class="py nr"><span class="pylab"></span><button class="cp">Copiar</button><code><span class="output">60</span></code></pre>
+<div class="box analogia"><div class="ic">💬</div><div>
+<p>💡 <strong>Empacotamento</strong> (na definição): <code>*args</code> agrupa múltiplos argumentos em uma tupla. <strong>Desempacotamento</strong> (na chamada): <code>*lista</code> expande uma seqüência em argumentos separados.</p>
+</div></div>
+<h4 class="pyh">λ Funções Lambda</h4>
+<p>Uma <strong>função lambda</strong> é uma função anônima definida em uma única expressão. A sintaxe é: <code>lambda parâmetros: expressão</code>. São úteis quando precisamos de uma função simples por pouco tempo:</p>
+<pre class="py"><span class="pylab">Listagem 8.32 — Lambda básico</span><button class="cp">Copiar</button><code>dobro = <span class="keyword">lambda</span> x: x * <span class="number">2</span>
+quadrado = <span class="keyword">lambda</span> x: x ** <span class="number">2</span>
+soma = <span class="keyword">lambda</span> a, b: a + b
+
+<span class="function">print</span>(dobro(<span class="number">5</span>))         <span class="comment"># 10</span>
+<span class="function">print</span>(quadrado(<span class="number">4</span>))     <span class="comment"># 16</span>
+<span class="function">print</span>(soma(<span class="number">3</span>, <span class="number">7</span>))      <span class="comment"># 10</span></code></pre>
+<pre class="py nr"><span class="pylab"></span><button class="cp">Copiar</button><code><span class="output">10
+16
+10</span></code></pre>
+<p>O uso mais comum de lambdas é como argumento para funções como <code>sorted()</code>, <code>filter()</code> e <code>map()</code>:</p>
+<pre class="py"><span class="pylab">Listagem 8.33 — Lambda com sorted e filter</span><button class="cp">Copiar</button><code>nomes = [<span class="string">"Bruno"</span>, <span class="string">"Ana"</span>, <span class="string">"Carla"</span>, <span class="string">"Diego"</span>]
+
+<span class="comment"># ordena pelo comprimento do nome</span>
+por_tamanho = <span class="function">sorted</span>(nomes, key=<span class="keyword">lambda</span> n: <span class="function">len</span>(n))
+<span class="function">print</span>(por_tamanho)
+
+<span class="comment"># filtra apenas nomes com mais de 4 letras</span>
+longos = <span class="function">list</span>(<span class="function">filter</span>(<span class="keyword">lambda</span> n: <span class="function">len</span>(n) &gt; <span class="number">4</span>, nomes))
+<span class="function">print</span>(longos)
+
+<span class="comment"># dobra cada elemento</span>
+dobrados = <span class="function">list</span>(<span class="function">map</span>(<span class="keyword">lambda</span> x: x * <span class="number">2</span>, [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]))
+<span class="function">print</span>(dobrados)</code></pre>
+<pre class="py nr"><span class="pylab"></span><button class="cp">Copiar</button><code><span class="output">['Ana', 'Bruno', 'Carla', 'Diego']
+['Bruno', 'Carla', 'Diego']
+[2, 4, 6, 8]</span></code></pre>
+<div class="box analogia"><div class="ic">💬</div><div>
+<p>💡 Para funções simples de uma linha passadas como argumento, lambda é conciso e legível. Para funções mais complexas (com condicionais, loops, etc.), prefira <code>def</code>.</p>
+</div></div>
+<h3 id="c8-4">8.4 Módulos, Aleatórios e type()</h3>
+<p class="sec-sub">Seções 8.10–8.12 — Criando módulos, números aleatórios e a função type</p>
+<h4 class="pyh">🧩 Módulos</h4>
+<p>Um <strong>módulo</strong> é simplesmente um arquivo Python com funções que podem ser importadas em outros programas. Isso permite criar bibliotecas reutilizáveis e organizar o código em arquivos separados.</p>
+<p>Abaixo criamos um módulo chamado <code>entrada.py</code> com funções de validação de entrada:</p>
+<pre class="py"><span class="pylab">Listagem 8.34 — Módulo entrada.py</span><button class="cp">Copiar</button><code><span class="comment"># entrada.py — funções de leitura validada</span>
+<span class="keyword">def</span> <span class="function">lê_int</span>(msg):
+    <span class="string">"""Lê um inteiro do teclado, pedindo novamente em caso de erro."""</span>
+<span class="keyword">while</span> <span class="keyword">True</span>:
+        <span class="keyword">try</span>:
+            <span class="keyword">return</span> <span class="function">int</span>(<span class="function">input</span>(msg))
+        <span class="keyword">except</span> ValueError:
+            <span class="function">print</span>(<span class="string">"Erro: digite um número inteiro."</span>)
+
+<span class="keyword">def</span> <span class="function">lê_float</span>(msg):
+    <span class="string">"""Lê um float do teclado, pedindo novamente em caso de erro."""</span>
+<span class="keyword">while</span> <span class="keyword">True</span>:
+        <span class="keyword">try</span>:
+            <span class="keyword">return</span> <span class="function">float</span>(<span class="function">input</span>(msg))
+        <span class="keyword">except</span> ValueError:
+            <span class="function">print</span>(<span class="string">"Erro: digite um número real."</span>)
+
+<span class="keyword">def</span> <span class="function">faixa_int</span>(msg, minimo, maximo):
+    <span class="string">"""Lê um inteiro dentro de [minimo, maximo]."""</span>
+<span class="keyword">while</span> <span class="keyword">True</span>:
+        n = <span class="function">lê_int</span>(msg)
+        <span class="keyword">if</span> minimo &lt;= n &lt;= maximo:
+            <span class="keyword">return</span> n
+        <span class="function">print</span>(<span class="string">f"Digite entre </span>{minimo}<span class="string"> e </span>{maximo}<span class="string">."</span>)</code></pre>
+<p>Para usar o módulo em outro arquivo, usamos <code>import</code>:</p>
+<pre class="py"><span class="pylab">Listagem 8.35 — Importando e usando o módulo entrada</span><button class="cp">Copiar</button><code><span class="comment"># Forma 1: importar o módulo inteiro</span>
+<span class="keyword">import</span> entrada
+
+n = entrada.<span class="function">lê_int</span>(<span class="string">"Digite um inteiro: "</span>)
+nota = entrada.<span class="function">faixa_int</span>(<span class="string">"Nota (0-10): "</span>, <span class="number">0</span>, <span class="number">10</span>)
+
+<span class="comment"># Forma 2: importar funções específicas</span>
+<span class="keyword">from</span> entrada <span class="keyword">import</span> lê_int, faixa_int
+
+n = <span class="function">lê_int</span>(<span class="string">"Digite um inteiro: "</span>)</code></pre>
+<div class="box analogia"><div class="ic">💬</div><div>
+<p>💡 O arquivo <code>entrada.py</code> deve estar na mesma pasta do programa que o importa, ou num diretório que esteja no <code>PYTHONPATH</code>.</p>
+</div></div>
+<h4 class="pyh">🎲 Números Aleatórios</h4>
+<p>O módulo <code>random</code> da biblioteca padrão do Python oferece funções para gerar números pseudo-aleatórios. É muito útil em jogos, simulações e testes.</p>
+<h3>random.randint(a, b)</h3>
+<p>Retorna um inteiro aleatório entre <code>a</code> e <code>b</code>, <strong>inclusive</strong>:</p>
+<pre class="py"><span class="pylab">Listagem 8.36 — Usando randint</span><button class="cp">Copiar</button><code><span class="keyword">import</span> random
+
+dado = random.<span class="function">randint</span>(<span class="number">1</span>, <span class="number">6</span>)
+<span class="function">print</span>(dado)   <span class="comment"># um número entre 1 e 6</span></code></pre>
+<p>Exemplo completo: jogo de adivinhar o número:</p>
+<pre class="py"><span class="pylab">Listagem 8.37 — Jogo: adivinhe o número</span><button class="cp">Copiar</button><code><span class="keyword">import</span> random
+
+secreto = random.<span class="function">randint</span>(<span class="number">1</span>, <span class="number">10</span>)
+tentativas = <span class="number">0</span>
+<span class="keyword">while</span> <span class="keyword">True</span>:
+    chute = <span class="function">int</span>(<span class="function">input</span>(<span class="string">"Adivinhe o número (1-10): "</span>))
+    tentativas += <span class="number">1</span>
+<span class="keyword">if</span> chute == secreto:
+        <span class="function">print</span>(<span class="string">f"Acertou em </span>{tentativas}<span class="string"> tentativa(s)!"</span>)
+        <span class="keyword">break</span>
+<span class="keyword">elif</span> chute &lt; secreto:
+        <span class="function">print</span>(<span class="string">"Maior!"</span>)
+    <span class="keyword">else</span>:
+        <span class="function">print</span>(<span class="string">"Menor!"</span>)</code></pre>
+<div class="lab">
+<h3>✏️ Exercício 8.13</h3>
+<p>Modifique o jogo de adivinhar para limitar o número de tentativas a 5. Se o jogador errar 5 vezes, o programa deve revelar o número secreto.</p>
+</div>
+<h3>Outras funções do módulo random</h3>
+<pre class="py"><span class="pylab">Listagem 8.38 — random.random()</span><button class="cp">Copiar</button><code><span class="prompt">&gt;&gt;&gt;</span> random.<span class="function">random</span>()
+<span class="output">0.37444887175646646</span> <span class="comment"># float entre 0.0 e 1.0 (exclusive)</span></code></pre>
+<pre class="py"><span class="pylab">Listagem 8.39 — random.uniform(a, b)</span><button class="cp">Copiar</button><code><span class="prompt">&gt;&gt;&gt;</span> random.<span class="function">uniform</span>(<span class="number">1.5</span>, <span class="number">3.5</span>)
+<span class="output">2.847392...</span> <span class="comment"># float aleatório entre 1.5 e 3.5</span></code></pre>
+<pre class="py"><span class="pylab">Listagem 8.40 — random.sample() — loteria</span><button class="cp">Copiar</button><code><span class="keyword">import</span> random
+
+dezenas = random.<span class="function">sample</span>(<span class="function">range</span>(<span class="number">1</span>, <span class="number">61</span>), <span class="number">6</span>)
+dezenas.<span class="function">sort</span>()
+<span class="function">print</span>(dezenas)</code></pre>
+<pre class="py nr"><span class="pylab"></span><button class="cp">Copiar</button><code><span class="output">[3, 17, 24, 38, 45, 59]</span></code></pre>
+<pre class="py"><span class="pylab">Listagem 8.41 — random.shuffle() — embaralhar</span><button class="cp">Copiar</button><code><span class="keyword">import</span> random
+
+cartas = [<span class="string">'A'</span>, <span class="string">'2'</span>, <span class="string">'3'</span>, <span class="string">'4'</span>, <span class="string">'5'</span>,
+          <span class="string">'6'</span>, <span class="string">'7'</span>, <span class="string">'8'</span>, <span class="string">'9'</span>, <span class="string">'10'</span>,
+          <span class="string">'J'</span>, <span class="string">'Q'</span>, <span class="string">'K'</span>]
+
+random.<span class="function">shuffle</span>(cartas)
+<span class="function">print</span>(cartas[:<span class="number">5</span>])   <span class="comment"># primeiras 5 cartas embaralhadas</span></code></pre>
+<pre class="py nr"><span class="pylab"></span><button class="cp">Copiar</button><code><span class="output">['7', 'Q', '2', 'K', 'A']</span></code></pre>
+<table class="method-table">
+<tr>
+<th>Função</th>
+<th>Descrição</th>
+</tr>
+<tr><td>random.randint(a, b)</td><td>Inteiro aleatório em [a, b]</td></tr>
+<tr><td>random.random()</td><td>Float aleatório em [0.0, 1.0)</td></tr>
+<tr><td>random.uniform(a, b)</td><td>Float aleatório em [a, b]</td></tr>
+<tr><td>random.sample(seq, k)</td><td>k elementos distintos aleatórios de seq</td></tr>
+<tr><td>random.shuffle(lista)</td><td>Embaralha a lista no lugar (in-place)</td></tr>
+<tr><td>random.choice(seq)</td><td>Elemento aleatório de uma seqüência</td></tr>
+</table>
+<div class="lab">
+<h3>✏️ Exercício 8.14</h3>
+<p>Escreva um programa de simulação de dados: lança dois dados (1–6) 1000 vezes e conta quantas vezes a soma foi igual a 7. Exiba a porcentagem.</p>
+</div>
+<h4 class="pyh">🔍 A Função type()</h4>
+<p>A função embutida <code>type()</code> retorna o tipo de um objeto. É útil para depurar código e para escrever funções que se comportam diferentemente conforme o tipo do argumento:</p>
+<pre class="py"><span class="pylab">Listagem 8.42 — Exemplos de type()</span><button class="cp">Copiar</button><code><span class="prompt">&gt;&gt;&gt;</span> <span class="function">type</span>(<span class="number">42</span>)
+<span class="output">&lt;class 'int'&gt;</span>
+<span class="prompt">&gt;&gt;&gt;</span> <span class="function">type</span>(<span class="number">3.14</span>)
+<span class="output">&lt;class 'float'&gt;</span>
+<span class="prompt">&gt;&gt;&gt;</span> <span class="function">type</span>(<span class="string">"olá"</span>)
+<span class="output">&lt;class 'str'&gt;</span>
+<span class="prompt">&gt;&gt;&gt;</span> <span class="function">type</span>([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])
+<span class="output">&lt;class 'list'&gt;</span>
+<span class="prompt">&gt;&gt;&gt;</span> <span class="function">type</span>(<span class="keyword">True</span>)
+<span class="output">&lt;class 'bool'&gt;</span></code></pre>
+<p>Podemos usar <code>type()</code> em comparações com <code>==</code>:</p>
+<pre class="py"><span class="pylab">Listagem 8.43 — Função diz_o_tipo</span><button class="cp">Copiar</button><code><span class="keyword">def</span> <span class="function">diz_o_tipo</span>(x):
+    t = <span class="function">type</span>(x)
+    <span class="keyword">if</span> t == <span class="function">int</span>:
+        <span class="function">print</span>(<span class="string">f"</span>{x}<span class="string"> é um inteiro"</span>)
+    <span class="keyword">elif</span> t == <span class="function">float</span>:
+        <span class="function">print</span>(<span class="string">f"</span>{x}<span class="string"> é um real"</span>)
+    <span class="keyword">elif</span> t == <span class="function">str</span>:
+        <span class="function">print</span>(<span class="string">f"</span>{x}<span class="string"> é uma string"</span>)
+    <span class="keyword">elif</span> t == <span class="function">list</span>:
+        <span class="function">print</span>(<span class="string">f"</span>{x}<span class="string"> é uma lista"</span>)
+    <span class="keyword">else</span>:
+        <span class="function">print</span>(<span class="string">f"</span>{x}<span class="string"> é do tipo </span>{t}<span class="string">"</span>)
+
+<span class="function">diz_o_tipo</span>(<span class="number">42</span>)
+<span class="function">diz_o_tipo</span>(<span class="string">"Python"</span>)
+<span class="function">diz_o_tipo</span>([<span class="number">1</span>, <span class="number">2</span>])</code></pre>
+<pre class="py nr"><span class="pylab"></span><button class="cp">Copiar</button><code><span class="output">42 é um inteiro
+Python é uma string
+[1, 2] é uma lista</span></code></pre>
+<h3>Verificando tipos em listas mistas</h3>
+<pre class="py"><span class="pylab">Listagem 8.44 — Tipos dos elementos de uma lista</span><button class="cp">Copiar</button><code>lista = [<span class="number">1</span>, <span class="string">"dois"</span>, <span class="number">3.0</span>, <span class="keyword">True</span>, [<span class="number">4</span>, <span class="number">5</span>]]
+
+<span class="keyword">for</span> e <span class="keyword">in</span> lista:
+    <span class="function">print</span>(<span class="function">type</span>(e).__name__, <span class="string">"→"</span>, e)</code></pre>
+<pre class="py nr"><span class="pylab"></span><button class="cp">Copiar</button><code><span class="output">int → 1
+str → dois
+float → 3.0
+bool → True
+list → [4, 5]</span></code></pre>
+<p>Podemos usar <code>type()</code> para filtrar elementos de um tipo específico:</p>
+<pre class="py"><span class="pylab">Listagem 8.45 — Navegando listas pelo tipo</span><button class="cp">Copiar</button><code><span class="keyword">def</span> <span class="function">só_inteiros</span>(lista):
+    <span class="keyword">return</span> [e <span class="keyword">for</span> e <span class="keyword">in</span> lista <span class="keyword">if</span> <span class="function">type</span>(e) == <span class="function">int</span>]
+
+<span class="keyword">def</span> <span class="function">só_strings</span>(lista):
+    <span class="keyword">return</span> [e <span class="keyword">for</span> e <span class="keyword">in</span> lista <span class="keyword">if</span> <span class="function">type</span>(e) == <span class="function">str</span>]
+
+mista = [<span class="number">1</span>, <span class="string">"a"</span>, <span class="number">2</span>, <span class="string">"b"</span>, <span class="number">3.5</span>, <span class="number">4</span>]
+<span class="function">print</span>(<span class="function">só_inteiros</span>(mista))
+<span class="function">print</span>(<span class="function">só_strings</span>(mista))</code></pre>
+<pre class="py nr"><span class="pylab"></span><button class="cp">Copiar</button><code><span class="output">[1, 2, 4]
+['a', 'b']</span></code></pre>
+<div class="box analogia"><div class="ic">💬</div><div>
+<p>💡 Para verificar tipos de forma mais flexível (respeitando herança), prefira <code>isinstance(x, int)</code> em vez de <code>type(x) == int</code>. O <code>isinstance</code> retorna <code>True</code> também para subclasses.</p>
+</div></div>
+<div class="lab">
+<h3>✏️ Exercício 8.15</h3>
+<p>Escreva uma função <code>soma_por_tipo(lista)</code> que receba uma lista mista e retorne um dicionário com as somas separadas por tipo. Por exemplo: <code>{"int": 6, "float": 3.5}</code> para a lista <code>[1, 2, 3, 3.5]</code>.</p>
+</div>
+
+  <h3 id="c8-tools">🛠️ Ferramentas do capítulo</h3>
+  <div class="tool" id="fa" style="--cc:var(--c8)">
+    <h4 style="margin-top:0">♻️ A pilha de chamadas do fatorial</h4>
+    <div class="tool-ctl"><label>n: <input type="range" id="faN" min="1" max="6" value="4"> <b id="faV">4</b></label></div>
+    <div class="shelf" id="faS" aria-live="polite"></div>
+    <div class="tool-ctl"><button type="button" id="faB">Próximo passo ▶</button><button type="button" id="faR" class="alt">Recomeçar</button></div>
+    <p id="faT" aria-live="polite"></p>
+  </div>
+  <div class="tool" id="fb" style="--cc:var(--c8)">
+    <h4 style="margin-top:0">🐀 Fibonacci recursivo: quantas chamadas?</h4>
+    <p>Cada chamada de <code>fibonacci(n)</code> faz outras duas. Veja o custo crescer.</p>
+    <div class="tool-ctl"><label>n: <input type="range" id="fbN" min="1" max="32" value="10"> <b id="fbV">10</b></label></div>
+    <p id="fbT" aria-live="polite"></p>
+  </div>
+  <div class="tool" id="dd" style="--cc:var(--c8)">
+    <h4 style="margin-top:0">🎲 Sorteador: random.randint(a, b)</h4>
+    <div class="tool-ctl"><label>a: <input type="number" id="ddA" value="1" style="width:70px;padding:6px;border-radius:8px;border:1px solid var(--borda,#ccc);font:inherit"></label>
+    <label>b: <input type="number" id="ddB" value="6" style="width:70px;padding:6px;border-radius:8px;border:1px solid var(--borda,#ccc);font:inherit"></label>
+    <button type="button" id="ddG">Sortear</button></div>
+    <p id="ddT" aria-live="polite"></p>
+  </div>
+
+  <div class="resumo"><h3>📝 Resumo do capítulo</h3><ul><li>Uma <b>função</b> é um trecho de código com nome que pode ser chamado várias vezes; é criada com <code>def</code>.</li><li><b>Parâmetros</b> recebem os <b>argumentos</b> da chamada; <code>return</code> devolve um valor e encerra a função.</li><li><code>print</code> mostra na tela; <code>return</code> entrega o valor para quem chamou a função.</li><li>Variáveis criadas dentro da função são <b>locais</b>; evite <code>global</code> e prefira parâmetros e <code>return</code>.</li><li>Uma função <b>recursiva</b> chama a si mesma e precisa de um <b>caso base</b> para parar.</li><li>Parâmetros podem ter valor padrão, ser nomeados na chamada, empacotados com <code>*args</code> e funções podem ser passadas como argumento.</li><li><code>import random</code> traz funções como <code>randint(a, b)</code>; <code>type(x)</code> informa o tipo de um valor.</li></ul></div>
+  <h3 id="c8-quiz">🧠 Quiz do capítulo 8</h3>
+  <p>Clique na resposta que você acha certa.</p>
+  <div class="quiz">
+    <div class="q"><p>1. Qual palavra-chave define uma função em Python?</p>
+      <button class="opt">a) <code>function</code></button><button class="opt" data-ok="1">b) <code>def</code></button><button class="opt">c) <code>fun</code></button><button class="opt">d) <code>define</code></button>
+      <div class="fb">Funções começam com <code>def</code>, seguido do nome, dos parâmetros entre parênteses e dos dois pontos.</div></div>
+    <div class="q"><p>2. Qual a diferença entre <code>print</code> e <code>return</code> dentro de uma função?</p>
+      <button class="opt">a) Nenhuma</button><button class="opt" data-ok="1">b) <code>print</code> mostra na tela; <code>return</code> devolve o valor a quem chamou</button><button class="opt">c) <code>return</code> mostra na tela; <code>print</code> devolve o valor</button><button class="opt">d) Os dois guardam o valor em variável</button>
+      <div class="fb">Só com <code>return</code> dá para guardar o resultado numa variável ou usá-lo em outra conta.</div></div>
+    <div class="q"><p>3. Em <code>def soma(a, b)</code> chamada como <code>soma(2, 3)</code>, o que são <code>2</code> e <code>3</code>?</p>
+      <button class="opt">a) Parâmetros</button><button class="opt" data-ok="1">b) Argumentos</button><button class="opt">c) Módulos</button><button class="opt">d) Tuplas</button>
+      <div class="fb"><code>a</code> e <code>b</code> são os parâmetros; os valores passados na chamada são os argumentos.</div></div>
+    <div class="q"><p>4. Uma variável criada dentro de uma função existe fora dela?</p>
+      <button class="opt">a) Sim, sempre</button><button class="opt" data-ok="1">b) Não, é local à função</button><button class="opt">c) Só se for número</button><button class="opt">d) Só se for texto</button>
+      <div class="fb">Variáveis locais só existem enquanto a função executa.</div></div>
+    <div class="q"><p>5. Para que serve o caso base de uma função recursiva?</p>
+      <button class="opt">a) Para deixar o código mais bonito</button><button class="opt" data-ok="1">b) Para parar a recursão</button><button class="opt">c) Para criar variáveis globais</button><button class="opt">d) Para importar módulos</button>
+      <div class="fb">Sem caso base, a função chamaria a si mesma sem parar.</div></div>
+    <div class="q"><p>6. Qual é o valor de <code>fatorial(4)</code> (4 × 3 × 2 × 1)?</p>
+      <button class="opt">a) 10</button><button class="opt">b) 16</button><button class="opt" data-ok="1">c) 24</button><button class="opt">d) 12</button>
+      <div class="fb">4 × 3 × 2 × 1 = 24.</div></div>
+    <div class="q"><p>7. O que significa <code>def f(a, b=10)</code>?</p>
+      <button class="opt">a) <code>b</code> é obrigatório e vale 10</button><button class="opt" data-ok="1">b) <code>b</code> é opcional e vale 10 se não for informado</button><button class="opt">c) <code>b</code> só aceita o valor 10</button><button class="opt">d) Erro de sintaxe</button>
+      <div class="fb">Parâmetro com valor padrão é opcional: se omitido, usa o valor padrão.</div></div>
+    <div class="q"><p>8. Qual das opções pode devolver os números 1, 2, 3, 4, 5 ou 6 (como um dado)?</p>
+      <button class="opt" data-ok="1">a) <code>random.randint(1, 6)</code></button><button class="opt">b) <code>random.randint(0, 6)</code></button><button class="opt">c) <code>random.randint(1, 5)</code></button><button class="opt">d) <code>type(6)</code></button>
+      <div class="fb"><code>randint(a, b)</code> inclui os dois extremos.</div></div>
+  </div>
+  <div class="score"></div>
+  <h3>✍️ Questões abertas</h3>
+  <div class="open"><p><b>1.</b> Por que usar funções em vez de repetir o código várias vezes?</p>
+    <button>Ver resposta</button><div class="answer">Para reutilizar, deixar o programa mais curto e legível e corrigir erros em um só lugar. Analogia: uma receita escrita uma vez e usada sempre que precisar.</div></div>
+  <div class="open"><p><b>2.</b> Escreva uma função <code>dobro(n)</code> que devolva o dobro de um número.</p>
+    <button>Ver resposta</button><div class="answer"><code>def dobro(n):<br>&nbsp;&nbsp;&nbsp;&nbsp;return n * 2</code></div></div>
+  <div class="open"><p><b>3.</b> O que acontece se uma função recursiva não tiver caso base?</p>
+    <button>Ver resposta</button><div class="answer">Ela chama a si mesma sem parar, até o Python interromper com um erro de recursão (<code>RecursionError</code>).</div></div>
+  <div class="open"><p><b>4.</b> Escreva uma função <code>é_par(n)</code> que devolva <code>True</code> se o número for par.</p>
+    <button>Ver resposta</button><div class="answer"><code>def é_par(n):<br>&nbsp;&nbsp;&nbsp;&nbsp;return n % 2 == 0</code></div></div>
+
+  <div class="box dica" style="margin-top:28px"><div class="ic">📚</div><div><h5>Para saber mais</h5><p>Documentação oficial: <i>O tutorial de Python</i>, seções “Mais sobre definição de funções” e “Módulos”, em docs.python.org/pt-br/3/tutorial/. Para a biblioteca <code>random</code>: docs.python.org/pt-br/3/library/random.html.</p></div></div>
+</section>
 <section class="chapter soon-ch" id="cap9" style="--cc:var(--c9)"><div class="chap-head"><div class="chap-num" style="background:var(--c9)">9</div><div><small>Capítulo 9</small><h2>Arquivos</h2></div></div><div class="soon-card">⏳ Este capítulo será publicado em breve.</div></section>
 <section class="chapter soon-ch" id="cap10" style="--cc:var(--c10)"><div class="chap-head"><div class="chap-num" style="background:var(--c10)">10</div><div><small>Capítulo 10</small><h2>Classes e objetos</h2></div></div><div class="soon-card">⏳ Este capítulo será publicado em breve.</div></section>
 <section class="chapter soon-ch" id="cap11" style="--cc:var(--c11)"><div class="chap-head"><div class="chap-num" style="background:var(--c11)">11</div><div><small>Capítulo 11</small><h2>Banco de dados</h2></div></div><div class="soon-card">⏳ Este capítulo será publicado em breve.</div></section>

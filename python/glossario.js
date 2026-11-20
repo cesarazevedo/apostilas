@@ -58,5 +58,13 @@ window.GLOSSARIO={
 "join":"Método que junta os elementos de uma lista em uma só string, com um separador entre eles.",
 "strip":"Método que remove os espaços do começo e do fim de uma string.",
 "formatação":"Montar um texto inserindo valores nele, com largura, alinhamento e casas decimais.",
-"continue":"Comando que pula o resto da volta atual do laço e vai para a próxima."
+"continue":"Comando que pula o resto da volta atual do laço e vai para a próxima.",
+"função":"Trecho de código com nome que pode ser chamado várias vezes; criada com def.",
+"parâmetro":"Nome que a função usa para receber um valor, definido entre parênteses no def.",
+"argumento":"Valor que você passa para a função quando a chama.",
+"return":"Comando que encerra a função e devolve um valor para quem a chamou.",
+"recursão":"Técnica em que uma função chama a si mesma até chegar a um caso base.",
+"caso base":"Condição que encerra uma recursão sem fazer nova chamada.",
+"lambda":"Função pequena, sem nome, escrita em uma linha.",
+"módulo":"Arquivo de Python com funções prontas, usado com import, como o random."
 };
