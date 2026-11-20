@@ -125,7 +125,16 @@ html[data-theme=dark]{--verde-claro:#10263a}
       <a href="#c10-tools">Ferramentas</a>
       <a href="#c10-quiz">Quiz e exercícios</a>
     </div>
-    <a href="#cap11" class="soon"><span class="n" style="background:var(--c11)">11</span>Banco de dados</a>
+    <a href="#cap11"><span class="n" style="background:var(--c11)">11</span>Banco de dados</a>
+    <div class="sub">
+      <a href="#c11-1">11.1 Bancos de dados e SQL</a>
+      <a href="#c11-2">11.2 Criando o banco e inserindo dados</a>
+      <a href="#c11-3">11.3 Consultando os dados</a>
+      <a href="#c11-4">11.4 Atualizando, apagando e cuidados</a>
+      <a href="#c11-lab">Exercícios</a>
+      <a href="#c11-tools">Ferramentas</a>
+      <a href="#c11-quiz">Quiz e exercícios</a>
+    </div>
     <a href="#cap12" class="soon"><span class="n" style="background:var(--c12)">12</span>Projeto final</a>
     <a href="#refs"><span class="n" style="background:#455a64">📚</span>Referências</a>
   </nav>
@@ -162,7 +171,7 @@ html[data-theme=dark]{--verde-claro:#10263a}
     <div class="card" style="--cc:var(--c8)" data-ok="1"><b>8 · Funções</b><span>def, return, escopo, recursão, módulos e random.</span><div class="st">✅ Disponível</div></div>
     <div class="card" style="--cc:var(--c9)" data-ok="1"><b>9 · Arquivos</b><span>Ler e gravar arquivos de texto e CSV.</span><div class="st">✅ Disponível</div></div>
     <div class="card" style="--cc:var(--c10)" data-ok="1"><b>10 · Classes e objetos</b><span>Em breve: programação orientada a objetos.</span><div class="st">✅ Disponível</div></div>
-    <div class="card" style="--cc:var(--c11)"><b>11 · Banco de dados</b><span>Em breve: SQLite com Python.</span><div class="st">⏳ Em breve</div></div>
+    <div class="card" style="--cc:var(--c11)" data-ok="1"><b>11 · Banco de dados</b><span>Em breve: SQLite com Python.</span><div class="st">✅ Disponível</div></div>
     <div class="card" style="--cc:var(--c12)"><b>12 · Projeto final</b><span>Em breve: juntar tudo em um projeto.</span><div class="st">⏳ Em breve</div></div>
   </div>
 </section>
@@ -4329,7 +4338,225 @@ Rex diz: Au au!</span></code></pre>
 
   <div class="box dica" style="margin-top:28px"><div class="ic">📚</div><div><h5>Para saber mais</h5><p>Documentação oficial: <i>O tutorial de Python</i>, capítulo “Classes”, em docs.python.org/pt-br/3/tutorial/classes.html. Dica: desenhe o objeto como uma caixa com os atributos dentro; isso ajuda a rastrear o programa no papel.</p></div></div>
 </section>
-<section class="chapter soon-ch" id="cap11" style="--cc:var(--c11)"><div class="chap-head"><div class="chap-num" style="background:var(--c11)">11</div><div><small>Capítulo 11</small><h2>Banco de dados</h2></div></div><div class="soon-card">⏳ Este capítulo será publicado em breve.</div></section>
+<section class="chapter" id="cap11" style="--cc:var(--c11)">
+  <div class="chap-head"><div class="chap-num" style="background:var(--c11)">11</div><div><small>Capítulo 11</small><h2>Banco de dados</h2></div></div>
+  <div class="obj"><h4>🎯 Ao final deste capítulo, você será capaz de:</h4><ul><li>explicar o que são banco de dados, tabelas, linhas, colunas e chave primária</li><li>criar um banco SQLite, uma tabela e inserir registros com <code>sqlite3</code></li><li>consultar dados com <code>SELECT</code>, <code>WHERE</code>, <code>ORDER BY</code> e funções como <code>AVG</code> e <code>COUNT</code></li><li>atualizar e apagar registros com <code>UPDATE</code> e <code>DELETE</code></li><li>proteger o programa de injeção de SQL usando <code>?</code></li></ul></div>
+<h3 id="c11-1">11.1 Bancos de dados e SQL</h3>
+<p class="sec-sub">Guardando muitos dados de forma organizada</p>
+<h4 class="pyh">🗃️ Por que um banco de dados?</h4>
+<p>No capítulo 9, você guardou dados em arquivos de texto e CSV. Funciona bem para listas pequenas. Mas, quando os dados crescem, surgem problemas: como achar rapidamente um registro? Como alterar uma linha sem reescrever o arquivo todo? Como evitar dois cadastros iguais? Um <b>banco de dados</b> resolve isso: ele guarda os dados de forma organizada e responde a perguntas (as <b>consultas</b>) com rapidez.</p>
+<div class="box analogia"><div class="ic">💬</div><div><h5>Analogia</h5><p>Um arquivo CSV é como uma <b>pilha de fichas</b> soltas. Um banco de dados é um <b>arquivo de aço com gavetas etiquetadas</b> e uma secretária muito rápida, que acha, troca ou joga fora qualquer ficha quando você pede.</p></div></div>
+<p>Os bancos de dados mais comuns organizam os dados em <b>tabelas</b>, parecidas com planilhas: cada <b>coluna</b> é um tipo de informação (nome, nota) e cada <b>linha</b> é um registro (um aluno). Veja a tabela <code>alunos</code> que usaremos neste capítulo:</p>
+<table class="op-table"><tr><th>id</th><th>nome</th><th>nota</th></tr><tr><td>1</td><td>Ana</td><td>8.5</td></tr><tr><td>2</td><td>Bruno</td><td>5.0</td></tr><tr><td>3</td><td>Carla</td><td>7.0</td></tr><tr><td>4</td><td>Diego</td><td>9.5</td></tr></table>
+<p>A coluna <code>id</code> é a <b>chave primária</b>: um número único para cada linha, que nunca se repete. É como o número da matrícula do aluno.</p>
+<h4 class="pyh">🗣️ A linguagem SQL</h4>
+<p>Para conversar com o banco, usamos a linguagem <b>SQL</b> (<i>Structured Query Language</i>). Quatro comandos resolvem a maior parte dos casos; juntos, formam o <b>CRUD</b>:</p>
+<table class="op-table"><tr><th>Ação</th><th>Em inglês</th><th>Comando SQL</th></tr><tr><td>Criar um registro</td><td>Create</td><td><code>INSERT</code></td></tr><tr><td>Ler registros</td><td>Read</td><td><code>SELECT</code></td></tr><tr><td>Atualizar um registro</td><td>Update</td><td><code>UPDATE</code></td></tr><tr><td>Apagar um registro</td><td>Delete</td><td><code>DELETE</code></td></tr></table>
+<div class="box dica"><div class="ic">💡</div><div><h5>SQLite</h5><p>O Python já vem com o módulo <code>sqlite3</code>, que usa o <b>SQLite</b>: um banco de dados completo guardado em <b>um único arquivo</b> (como <code>escola.db</code>). Não precisa instalar servidor nenhum, o que o torna ótimo para aprender e para programas pequenos.</p></div></div>
+<h3 id="c11-2">11.2 Criando o banco e inserindo dados</h3>
+<p class="sec-sub">Conexão, cursor e commit</p>
+<h4 class="pyh">🔌 Conectar e criar a tabela</h4>
+<p>O fluxo é sempre o mesmo: <b>conectar</b> ao arquivo do banco, criar um <b>cursor</b> (o “ponteiro” que executa comandos), executar o SQL e gravar com <code>commit()</code>. Se o arquivo não existir, o SQLite o cria.</p>
+<pre class="py nr"><span class="pylab">Listagem 11.1 — Criando a tabela alunos</span><button class="cp">Copiar</button><code><span class="keyword">import</span> sqlite3
+
+conexao = sqlite3.<span class="function">connect</span>(<span class="string">"escola.db"</span>)
+cursor = conexao.<span class="function">cursor</span>()
+cursor.<span class="function">execute</span>(<span class="string">"""
+    CREATE TABLE IF NOT EXISTS alunos (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        nome TEXT NOT NULL,
+        nota REAL
+    )
+"""</span>)
+conexao.<span class="function">commit</span>()
+conexao.<span class="function">close</span>()
+<span class="function">print</span>(<span class="string">"Tabela pronta!"</span>)
+<span class="output">Tabela pronta!</span></code></pre>
+<p>O <code>IF NOT EXISTS</code> evita erro se a tabela já existir. Os tipos mais usados são <code>INTEGER</code> (inteiros), <code>REAL</code> (decimais) e <code>TEXT</code> (textos). O <code>AUTOINCREMENT</code> faz o banco numerar o <code>id</code> sozinho.</p>
+<div class="box atencao"><div class="ic">⚠️</div><div><h5>Não esqueça do commit()</h5><p>Os comandos que <b>mudam</b> o banco (<code>INSERT</code>, <code>UPDATE</code>, <code>DELETE</code>) só ficam gravados depois do <code>commit()</code>. Sem ele, ao fechar a conexão, as mudanças são <b>perdidas</b>. Comandos de leitura (<code>SELECT</code>) não precisam de commit.</p></div></div>
+<h4 class="pyh">➕ Inserindo registros</h4>
+<p>Para inserir, usamos <code>INSERT INTO</code>. Os valores entram pelos pontos de interrogação <code>?</code>, e os dados reais vão em uma <b>tupla</b> (capítulo 6) no segundo argumento:</p>
+<pre class="py nr"><span class="pylab">Listagem 11.2 — Inserindo alunos</span><button class="cp">Copiar</button><code><span class="keyword">import</span> sqlite3
+
+conexao = sqlite3.<span class="function">connect</span>(<span class="string">"escola.db"</span>)
+cursor = conexao.<span class="function">cursor</span>()
+cursor.<span class="function">execute</span>(<span class="string">"CREATE TABLE IF NOT EXISTS alunos (id INTEGER PRIMARY KEY AUTOINCREMENT, nome TEXT NOT NULL, nota REAL)"</span>)
+
+cursor.<span class="function">execute</span>(<span class="string">"INSERT INTO alunos (nome, nota) VALUES (?, ?)"</span>, (<span class="string">"Ana"</span>, <span class="number">8.5</span>))
+
+mais_alunos = [(<span class="string">"Bruno"</span>, <span class="number">5.0</span>), (<span class="string">"Carla"</span>, <span class="number">7.0</span>), (<span class="string">"Diego"</span>, <span class="number">9.5</span>)]
+cursor.<span class="function">executemany</span>(<span class="string">"INSERT INTO alunos (nome, nota) VALUES (?, ?)"</span>, mais_alunos)
+
+conexao.<span class="function">commit</span>()
+<span class="function">print</span>(<span class="string">"Alunos cadastrados!"</span>)
+conexao.<span class="function">close</span>()
+<span class="output">Alunos cadastrados!</span></code></pre>
+<p>O <code>execute</code> roda um comando; o <code>executemany</code> repete o mesmo comando para cada item de uma lista.</p>
+<h3 id="c11-3">11.3 Consultando os dados</h3>
+<p class="sec-sub">SELECT, WHERE e ORDER BY</p>
+<h4 class="pyh">🔎 SELECT</h4>
+<p>O <code>SELECT</code> lê dados. Depois do <code>execute</code>, o <code>fetchall()</code> devolve uma <b>lista de tuplas</b>, uma para cada linha:</p>
+<pre class="py nr"><span class="pylab">Listagem 11.3 — Lendo todos os alunos</span><button class="cp">Copiar</button><code><span class="keyword">import</span> sqlite3
+
+conexao = sqlite3.<span class="function">connect</span>(<span class="string">"escola.db"</span>)
+cursor = conexao.<span class="function">cursor</span>()
+cursor.<span class="function">execute</span>(<span class="string">"SELECT id, nome, nota FROM alunos"</span>)
+<span class="keyword">for</span> linha <span class="keyword">in</span> cursor.<span class="function">fetchall</span>():
+    <span class="function">print</span>(linha)
+conexao.<span class="function">close</span>()
+<span class="output">(1, 'Ana', 8.5)
+(2, 'Bruno', 5.0)
+(3, 'Carla', 7.0)
+(4, 'Diego', 9.5)</span></code></pre>
+<p>Como cada linha é uma tupla, podemos “desempacotar” em variáveis, como você viu com <code>enumerate</code>:</p>
+<pre class="py nr"><span class="pylab">Listagem 11.4 — Desempacotando as linhas</span><button class="cp">Copiar</button><code><span class="keyword">import</span> sqlite3
+
+conexao = sqlite3.<span class="function">connect</span>(<span class="string">"escola.db"</span>)
+cursor = conexao.<span class="function">cursor</span>()
+cursor.<span class="function">execute</span>(<span class="string">"SELECT nome, nota FROM alunos"</span>)
+<span class="keyword">for</span> nome, nota <span class="keyword">in</span> cursor.<span class="function">fetchall</span>():
+    <span class="function">print</span>(<span class="string">"%-8s %5.1f"</span> % (nome, nota))
+conexao.<span class="function">close</span>()
+<span class="output">Ana        8.5
+Bruno      5.0
+Carla      7.0
+Diego      9.5</span></code></pre>
+<h4 class="pyh">🎯 Filtrando e ordenando</h4>
+<p>O <code>WHERE</code> escolhe quais linhas aparecem, com as comparações que você já conhece (<code>=</code>, <code>&gt;</code>, <code>&gt;=</code>, <code>!=</code>) e <code>AND</code>/<code>OR</code>. O <code>ORDER BY</code> ordena o resultado (<code>DESC</code> para decrescente).</p>
+<pre class="py nr"><span class="pylab">Listagem 11.5 — Aprovados, do maior para o menor</span><button class="cp">Copiar</button><code><span class="keyword">import</span> sqlite3
+
+conexao = sqlite3.<span class="function">connect</span>(<span class="string">"escola.db"</span>)
+cursor = conexao.<span class="function">cursor</span>()
+cursor.<span class="function">execute</span>(<span class="string">"SELECT nome, nota FROM alunos WHERE nota &gt;= ? ORDER BY nota DESC"</span>, (<span class="number">7</span>,))
+<span class="keyword">for</span> nome, nota <span class="keyword">in</span> cursor.<span class="function">fetchall</span>():
+    <span class="function">print</span>(nome, nota)
+conexao.<span class="function">close</span>()
+<span class="output">Diego 9.5
+Ana 8.5
+Carla 7.0</span></code></pre>
+<h4 class="pyh">🧮 Contagens e médias</h4>
+<p>O próprio banco calcula resumos, como <code>COUNT</code> (quantidade), <code>AVG</code> (média), <code>MAX</code>, <code>MIN</code> e <code>SUM</code>. Quando a consulta devolve uma linha só, use <code>fetchone()</code>:</p>
+<pre class="py nr"><span class="pylab">Listagem 11.6 — Média e quantidade</span><button class="cp">Copiar</button><code><span class="keyword">import</span> sqlite3
+
+conexao = sqlite3.<span class="function">connect</span>(<span class="string">"escola.db"</span>)
+cursor = conexao.<span class="function">cursor</span>()
+cursor.<span class="function">execute</span>(<span class="string">"SELECT AVG(nota), COUNT(*) FROM alunos"</span>)
+media, total = cursor.<span class="function">fetchone</span>()
+<span class="function">print</span>(<span class="string">"Média: %.2f (%d alunos)"</span> % (media, total))
+conexao.<span class="function">close</span>()
+<span class="output">Média: 7.50 (4 alunos)</span></code></pre>
+<div class="box exemplo"><div class="ic">💡</div><div><h5>Compare</h5><p>No capítulo 9, para calcular a média você leu o arquivo inteiro e somou com um laço. Aqui, uma linha de SQL faz o mesmo trabalho dentro do banco.</p></div></div>
+<h3 id="c11-4">11.4 Atualizando, apagando e cuidados</h3>
+<p class="sec-sub">O ciclo completo do CRUD</p>
+<h4 class="pyh">✏️ UPDATE e DELETE</h4>
+<p><code>UPDATE</code> muda valores de linhas existentes; <code>DELETE</code> apaga linhas. Os dois usam <code>WHERE</code> para dizer <b>quais</b> linhas. O atributo <code>rowcount</code> informa quantas linhas foram afetadas.</p>
+<pre class="py nr"><span class="pylab">Listagem 11.7 — Atualizando e apagando</span><button class="cp">Copiar</button><code><span class="keyword">import</span> sqlite3
+
+conexao = sqlite3.<span class="function">connect</span>(<span class="string">"escola.db"</span>)
+cursor = conexao.<span class="function">cursor</span>()
+
+cursor.<span class="function">execute</span>(<span class="string">"UPDATE alunos SET nota = ? WHERE nome = ?"</span>, (<span class="number">6.0</span>, <span class="string">"Bruno"</span>))
+<span class="function">print</span>(cursor.rowcount, <span class="string">"linha alterada"</span>)
+
+cursor.<span class="function">execute</span>(<span class="string">"DELETE FROM alunos WHERE nome = ?"</span>, (<span class="string">"Diego"</span>,))
+<span class="function">print</span>(cursor.rowcount, <span class="string">"linha apagada"</span>)
+
+conexao.<span class="function">commit</span>()
+
+cursor.<span class="function">execute</span>(<span class="string">"SELECT nome, nota FROM alunos"</span>)
+<span class="function">print</span>(cursor.<span class="function">fetchall</span>())
+conexao.<span class="function">close</span>()
+<span class="output">1 linha alterada
+1 linha apagada
+[('Ana', 8.5), ('Bruno', 6.0), ('Carla', 7.0)]</span></code></pre>
+<div class="box atencao"><div class="ic">⚠️</div><div><h5>Cuidado com o WHERE</h5><p>Um <code>UPDATE</code> ou <code>DELETE</code> <b>sem</b> <code>WHERE</code> age em <b>todas</b> as linhas da tabela. <code>DELETE FROM alunos</code> apaga todos os alunos! Confira sempre o <code>WHERE</code> antes de executar.</p></div></div>
+<h4 class="pyh">🛡️ Por que usar o ponto de interrogação?</h4>
+<p>Você pode se perguntar: por que não montar o SQL juntando textos, como <code>"... WHERE nome = '" + nome + "'"</code>? Porque, se o usuário digitar aspas no texto, ele consegue <b>mudar o comando</b>. Essa falha se chama <b>injeção de SQL</b> e é uma das mais comuns em sistemas reais. Veja o que acontece com um texto malicioso:</p>
+<pre class="py nr"><span class="pylab">Listagem 11.8 — O perigo de juntar textos</span><button class="cp">Copiar</button><code>nome = <span class="string">"x' OR '1'='1"</span>
+
+sql_ruim = <span class="string">"SELECT * FROM alunos WHERE nome = '"</span> + nome + <span class="string">"'"</span>
+<span class="function">print</span>(sql_ruim)
+<span class="output">SELECT * FROM alunos WHERE nome = 'x' OR '1'='1'</span></code></pre>
+<p>O comando ficou <code>WHERE nome = 'x' OR '1'='1'</code>, que é <b>sempre verdadeiro</b>: devolveria todos os alunos. Com o <code>?</code>, o banco trata o texto inteiro como um <b>valor</b>, nunca como parte do comando:</p>
+<pre class="py nr"><span class="pylab">Listagem 11.9 — O jeito certo</span><button class="cp">Copiar</button><code><span class="keyword">import</span> sqlite3
+
+nome = <span class="string">"x' OR '1'='1"</span>
+conexao = sqlite3.<span class="function">connect</span>(<span class="string">"escola.db"</span>)
+cursor = conexao.<span class="function">cursor</span>()
+cursor.<span class="function">execute</span>(<span class="string">"SELECT * FROM alunos WHERE nome = ?"</span>, (nome,))
+<span class="function">print</span>(cursor.<span class="function">fetchall</span>())
+conexao.<span class="function">close</span>()
+<span class="output">[]</span></code></pre>
+<div class="box dica"><div class="ic">💡</div><div><h5>Regra de ouro</h5><p><b>Nunca</b> monte SQL juntando textos que vieram do usuário. Sempre use <code>?</code> e passe os valores em uma tupla.</p></div></div>
+<h4 class="pyh" id="c11-lab">📝 Exercícios do Capítulo 11</h4>
+<div class="lab"><h3>✏ Exercício 11.1</h3><p>Crie um banco <code>loja.db</code> com a tabela <code>produtos</code> (id, nome, preco). Insira cinco produtos.</p></div>
+<div class="lab"><h3>✏ Exercício 11.2</h3><p>Escreva um programa que mostre os produtos do mais caro para o mais barato, com o preço com duas casas decimais.</p></div>
+<div class="lab"><h3>✏ Exercício 11.3</h3><p>Peça ao usuário um valor e mostre apenas os produtos com preço menor ou igual a ele.</p></div>
+<div class="lab"><h3>✏ Exercício 11.4</h3><p>Peça o nome de um produto e o novo preço, e atualize o banco. Mostre quantas linhas foram alteradas (se for zero, avise que o produto não existe).</p></div>
+<div class="lab"><h3>✏ Exercício 11.5</h3><p>Peça o nome de um produto e apague-o do banco. Antes, mostre o produto e pergunte se o usuário confirma.</p></div>
+<div class="lab"><h3>✏ Exercício 11.6</h3><p>Mostre a quantidade de produtos, o preço médio, o mais barato e o mais caro, usando apenas <code>SELECT</code> com funções do SQL.</p></div>
+
+  <h3 id="c11-tools">🛠️ Ferramentas do capítulo</h3>
+  <div class="tool" id="sq" style="--cc:var(--c11)">
+    <h4 style="margin-top:0">🗄️ Laboratório de SQL</h4>
+    <p>Treine comandos em uma tabela <code>alunos</code> de faz de conta (nada é gravado). Aceita <code>SELECT</code> (com <code>WHERE</code> e <code>ORDER BY</code>), <code>INSERT</code>, <code>UPDATE</code> e <code>DELETE</code>.</p>
+    <div class="sugs" id="sqS"></div>
+    <div class="tool-ctl"><input type="text" id="sqI" value="SELECT * FROM alunos WHERE nota &gt;= 7 ORDER BY nota DESC" aria-label="Comando SQL" style="padding:8px 10px;border-radius:8px;border:1px solid var(--borda,#ccc);font:inherit" style="flex:1;min-width:240px;font-family:Consolas,monospace"><button type="button" id="sqG">Executar</button><button type="button" id="sqR" class="alt">Recomeçar</button></div>
+    <p id="sqM" aria-live="polite"></p>
+    <div style="overflow-x:auto"><table class="op-table" id="sqRes"></table></div>
+    <p><b>Tabela alunos agora:</b></p>
+    <div style="overflow-x:auto"><table class="op-table" id="sqTab"></table></div>
+  </div>
+  <div class="tool" id="ij" style="--cc:var(--c11)">
+    <h4 style="margin-top:0">🛡️ Injeção de SQL: juntar texto × usar ?</h4>
+    <p>Digite um nome para pesquisar. Veja como o comando fica nos dois jeitos.</p>
+    <div class="sugs"><button type="button" class="alt" data-v="Ana">Ana</button><button type="button" class="alt" data-v="x' OR '1'='1">x' OR '1'='1</button></div>
+    <div class="tool-ctl"><input type="text" id="ijV" value="Ana" aria-label="Nome" style="padding:8px 10px;border-radius:8px;border:1px solid var(--borda,#ccc);font:inherit" style="flex:1;min-width:200px;font-family:Consolas,monospace"></div>
+    <div class="repl"><div class="out" id="ijO" aria-live="polite"></div></div>
+  </div>
+
+  <div class="resumo"><h3>📝 Resumo do capítulo</h3><ul><li>Um <b>banco de dados</b> guarda dados em <b>tabelas</b> (linhas e colunas) e responde a consultas com rapidez.</li><li><b>SQL</b> é a linguagem do banco; o <b>CRUD</b> usa <code>INSERT</code>, <code>SELECT</code>, <code>UPDATE</code> e <code>DELETE</code>.</li><li>No Python, o módulo <code>sqlite3</code> permite <code>connect</code>, criar o <code>cursor</code>, usar <code>execute</code> e gravar com <code>commit</code>.</li><li><code>fetchall()</code> devolve uma lista de tuplas; <code>fetchone()</code> devolve uma tupla.</li><li><code>WHERE</code> filtra, <code>ORDER BY</code> ordena e <code>COUNT</code>, <code>AVG</code>, <code>MAX</code>, <code>MIN</code> e <code>SUM</code> resumem.</li><li><code>UPDATE</code> e <code>DELETE</code> sem <code>WHERE</code> atingem a tabela inteira: cuidado.</li><li>Use sempre <code>?</code> com uma tupla de valores; juntar textos no SQL abre a porta para <b>injeção de SQL</b>.</li></ul></div>
+  <h3 id="c11-quiz">🧠 Quiz do capítulo 11</h3>
+  <p>Clique na resposta que você acha certa.</p>
+  <div class="quiz">
+    <div class="q"><p>1. O que é uma chave primária?</p>
+      <button class="opt">a) Uma senha do banco</button><button class="opt" data-ok="1">b) Uma coluna com valor único para cada linha</button><button class="opt">c) O nome do arquivo do banco</button><button class="opt">d) Um tipo de gráfico</button>
+      <div class="fb">Ela identifica cada linha sem repetição, como o número da matrícula.</div></div>
+    <div class="q"><p>2. Qual comando SQL lê dados de uma tabela?</p>
+      <button class="opt">a) <code>INSERT</code></button><button class="opt" data-ok="1">b) <code>SELECT</code></button><button class="opt">c) <code>DELETE</code></button><button class="opt">d) <code>UPDATE</code></button>
+      <div class="fb"><code>SELECT</code> é o “R” (Read) do CRUD.</div></div>
+    <div class="q"><p>3. Para que serve o <code>commit()</code>?</p>
+      <button class="opt">a) Fechar o programa</button><button class="opt" data-ok="1">b) Gravar de forma definitiva as mudanças feitas no banco</button><button class="opt">c) Criar a tabela</button><button class="opt">d) Mostrar os dados</button>
+      <div class="fb">Sem <code>commit()</code>, mudanças de <code>INSERT</code>, <code>UPDATE</code> e <code>DELETE</code> se perdem ao fechar a conexão.</div></div>
+    <div class="q"><p>4. O que o <code>fetchall()</code> devolve?</p>
+      <button class="opt">a) Um número</button><button class="opt" data-ok="1">b) Uma lista de tuplas, uma por linha</button><button class="opt">c) Um texto</button><button class="opt">d) Um dicionário</button>
+      <div class="fb">Cada tupla traz os valores de uma linha do resultado.</div></div>
+    <div class="q"><p>5. Qual consulta devolve só os alunos com nota maior ou igual a 7?</p>
+      <button class="opt">a) <code>SELECT * FROM alunos ORDER BY 7</code></button><button class="opt" data-ok="1">b) <code>SELECT * FROM alunos WHERE nota &gt;= 7</code></button><button class="opt">c) <code>DELETE FROM alunos WHERE nota &gt;= 7</code></button><button class="opt">d) <code>UPDATE alunos SET nota = 7</code></button>
+      <div class="fb">O <code>WHERE</code> filtra as linhas pela condição.</div></div>
+    <div class="q"><p>6. O que faz <code>DELETE FROM alunos</code> sem <code>WHERE</code>?</p>
+      <button class="opt">a) Nada</button><button class="opt" data-ok="1">b) Apaga todos os alunos</button><button class="opt">c) Apaga só o primeiro aluno</button><button class="opt">d) Dá erro de sintaxe</button>
+      <div class="fb">Sem <code>WHERE</code>, o comando age em todas as linhas da tabela.</div></div>
+    <div class="q"><p>7. Qual é o resultado de <code>SELECT COUNT(*) FROM alunos</code> com 4 alunos?</p>
+      <button class="opt" data-ok="1">a) 4</button><button class="opt">b) 0</button><button class="opt">c) O nome dos alunos</button><button class="opt">d) A média</button>
+      <div class="fb"><code>COUNT(*)</code> conta as linhas.</div></div>
+    <div class="q"><p>8. Por que usar <code>?</code> em vez de juntar textos no comando SQL?</p>
+      <button class="opt">a) Porque é mais bonito</button><button class="opt" data-ok="1">b) Para evitar injeção de SQL: o valor nunca é tratado como parte do comando</button><button class="opt">c) Porque o SQLite não aceita textos</button><button class="opt">d) Porque deixa o banco mais rápido</button>
+      <div class="fb">Com <code>?</code>, o texto do usuário é só um valor, mesmo que contenha aspas ou palavras do SQL.</div></div>
+  </div>
+  <div class="score"></div>
+  <h3>✍️ Questões abertas</h3>
+  <div class="open"><p><b>1.</b> Qual a vantagem de um banco de dados em relação a um arquivo de texto?</p>
+    <button>Ver resposta</button><div class="answer">Achar, filtrar, ordenar, alterar e apagar registros fica rápido e organizado, sem reescrever o arquivo todo, e o banco ajuda a evitar duplicidades com chaves primárias.</div></div>
+  <div class="open"><p><b>2.</b> Escreva o comando SQL para mudar a nota da aluna Ana para 9.</p>
+    <button>Ver resposta</button><div class="answer"><code>UPDATE alunos SET nota = 9 WHERE nome = 'Ana'</code>. Em Python: <code>cursor.execute("UPDATE alunos SET nota = ? WHERE nome = ?", (9, "Ana"))</code> e depois <code>commit()</code>.</div></div>
+  <div class="open"><p><b>3.</b> O que é injeção de SQL e como evitá-la?</p>
+    <button>Ver resposta</button><div class="answer">É quando o usuário digita um texto que muda o significado do comando SQL, porque o programa o juntou ao comando. Evita-se usando <code>?</code> e passando os valores separados, em uma tupla.</div></div>
+  <div class="open"><p><b>4.</b> Por que <code>SELECT</code> não precisa de <code>commit()</code>?</p>
+    <button>Ver resposta</button><div class="answer">Porque ele só lê; não altera o banco. O <code>commit()</code> serve para gravar mudanças.</div></div>
+
+  <div class="box dica" style="margin-top:28px"><div class="ic">📚</div><div><h5>Para saber mais</h5><p>Documentação oficial: módulo <code>sqlite3</code>, em docs.python.org/pt-br/3/library/sqlite3.html, e a documentação do SQLite em sqlite.org. Para ver o conteúdo do arquivo <code>.db</code> de forma visual, procure o programa gratuito “DB Browser for SQLite”.</p></div></div>
+</section>
 <section class="chapter soon-ch" id="cap12" style="--cc:var(--c12)"><div class="chap-head"><div class="chap-num" style="background:var(--c12)">12</div><div><small>Capítulo 12</small><h2>Projeto final</h2></div></div><div class="soon-card">⏳ Este capítulo será publicado em breve.</div></section>
 
 <section id="refs">
