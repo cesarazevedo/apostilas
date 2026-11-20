@@ -64,5 +64,13 @@ window.GLOSSARIO={
 "anexo":"Arquivo enviado junto com o e-mail.",
 "nuvem":"Lugar na internet para guardar arquivos fora do seu computador.",
 "gov.br":"Conta única para usar os serviços digitais do governo federal.",
-"golpe":"Tentativa de enganar alguém para roubar dinheiro ou dados."
+"golpe":"Tentativa de enganar alguém para roubar dinheiro ou dados.",
+"senha":"Palavra secreta que protege uma conta, como a chave da casa digital.",
+"verificação em duas etapas":"Proteção extra: além da senha, é preciso um código que chega no celular.",
+"LGPD":"Lei Geral de Proteção de Dados, que protege as informações pessoais dos brasileiros.",
+"dados pessoais":"Informações que identificam você, como nome, CPF, endereço e telefone.",
+"notícia falsa":"Informação inventada ou distorcida que parece verdadeira.",
+"backup":"Cópia de segurança dos seus arquivos em outro lugar, como pendrive ou nuvem.",
+"antivírus":"Programa que protege o computador contra programas perigosos.",
+"cidadania digital":"Usar a tecnologia com respeito, responsabilidade e participação."
 };
