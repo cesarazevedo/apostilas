@@ -13,6 +13,7 @@
     {k:'Árvore',n:[[150,40,'SW'],[75,125,'SW'],[225,125,'SW'],[35,225],[115,225],[185,225],[265,225]],e:[[0,1],[0,2],[1,3],[1,4],[2,5],[2,6]],
       p:'Organiza bem redes grandes em níveis (como em prédios).',c:'Se o nó de cima falha, os de baixo ficam isolados.'}
   ];
+  var P=[];
   var tabs=document.getElementById('topoTabs'),panels=document.getElementById('topoPanels');
   T.forEach(function(t,i){
     var b=document.createElement('button');b.textContent=t.k;if(!i)b.className='on';tabs.appendChild(b);
@@ -23,16 +24,72 @@
       var sw=n[2]==='SW';
       if(t.bus)svg+='<line x1="'+n[0]+'" y1="150" x2="'+n[0]+'" y2="'+(j%2?200:100)+'" stroke="#90a4ae" stroke-width="3"/>';
       var y=t.bus?(j%2?215:85):n[1],x=n[0];
-      svg+= sw? '<rect x="'+(x-20)+'" y="'+(y-14)+'" width="40" height="28" rx="6" fill="#2e7d32"/><text x="'+x+'" y="'+(y+5)+'" text-anchor="middle" font-size="12" fill="#fff" font-weight="700">SW</text>'
-              : '<circle cx="'+x+'" cy="'+y+'" r="17" fill="#e3f2fd" stroke="#1565c0" stroke-width="3"/><text x="'+x+'" y="'+(y+5)+'" text-anchor="middle" font-size="13">💻</text>';
+      svg+= sw? '<rect data-n="'+j+'" x="'+(x-20)+'" y="'+(y-14)+'" width="40" height="28" rx="6" fill="#2e7d32"/><text x="'+x+'" y="'+(y+5)+'" text-anchor="middle" font-size="12" fill="#fff" font-weight="700">SW</text>'
+              : '<circle data-n="'+j+'" cx="'+x+'" cy="'+y+'" r="17" fill="#e3f2fd" stroke="#1565c0" stroke-width="3"/><text x="'+x+'" y="'+(y+5)+'" text-anchor="middle" font-size="13">💻</text>';
     });
-    svg+='</svg>';
+    svg+='<g class="msgs"></g></svg>';
     var d=document.createElement('div');d.className='topo-panel'+(i?'':' on');
     d.innerHTML='<h4 style="margin:0 0 6px">'+t.k+'</h4>'+svg+'<div class="pc"><div class="pro"><b>👍 Vantagens</b><br>'+t.p+'</div><div class="con"><b>👎 Desvantagens</b><br>'+t.c+'</div></div>';
-    panels.appendChild(d);
+    panels.appendChild(d);P.push({t:t,d:d,svg:d.querySelector('svg'),msgs:[],next:0,marks:[]});
     b.onclick=function(){[].forEach.call(tabs.children,function(x){x.classList.remove('on')});[].forEach.call(panels.children,function(x){x.classList.remove('on')});b.classList.add('on');d.classList.add('on');};
   });
 
+  // --- Animação dos dados (0s e 1s) nas topologias ---
+  (function(){
+    var NS='http://www.w3.org/2000/svg',SPEED=110,rm=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches,run=!rm,last=0;
+    var note=document.createElement('p');note.style.cssText='display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:6px 0';
+    var btn=document.createElement('button');btn.type='button';btn.className='alt';btn.textContent=run?'⏸ Pausar animação':'▶ Animar';
+    btn.onclick=function(){run=!run;btn.textContent=run?'⏸ Pausar animação':'▶ Animar'};
+    note.appendChild(document.createTextNode('As caixinhas laranja com 0 e 1 são os dados viajando pela rede.'));note.appendChild(btn);
+    tabs.parentNode.insertBefore(note,tabs);
+    function pos(t,j){var n=t.n[j];return [n[0],t.bus?(j%2?215:85):n[1]]}
+    function hosts(t){var h=[];t.n.forEach(function(n,j){if(n[2]!=='SW')h.push(j)});return h}
+    function bfs(t,a,b){var adj={},q=[a],prev={};prev[a]=-1;t.e.forEach(function(e){(adj[e[0]]=adj[e[0]]||[]).push(e[1]);(adj[e[1]]=adj[e[1]]||[]).push(e[0])});
+      while(q.length){var u=q.shift();if(u===b)break;(adj[u]||[]).forEach(function(v){if(!(v in prev)){prev[v]=u;q.push(v)}})}
+      var r=[],c=b;while(c!==-1&&c!==undefined){r.unshift(c);c=prev[c]}return r}
+    function route(t,a,b){
+      if(t.bus){var xa=t.n[a][0],xb=t.n[b][0];return [pos(t,a),[xa,150],[xb,150],pos(t,b)]}
+      var idx;
+      if(t.k==='Anel'){idx=[a];var c=a;while(c!==b){c=(c+1)%t.n.length;idx.push(c)}}else idx=bfs(t,a,b);
+      return idx.map(function(j){return pos(t,j)});
+    }
+    function mark(p,j,col){var el=p.svg.querySelector('[data-n="'+j+'"]');if(!el)return;if(el.tagName==='circle')el.setAttribute('stroke',col);else el.setAttribute('fill',col);p.marks.push(j)}
+    function unmark(p){p.marks.forEach(function(j){var el=p.svg.querySelector('[data-n="'+j+'"]');if(!el)return;if(el.tagName==='circle')el.setAttribute('stroke','#1565c0');else el.setAttribute('fill','#2e7d32')});p.marks=[]}
+    function bits(){var s='';for(var i=0;i<4;i++)s+=Math.random()<.5?'0':'1';return s}
+    function mk(p,path,dest){
+      var g=document.createElementNS(NS,'g'),r=document.createElementNS(NS,'rect'),x=document.createElementNS(NS,'text');
+      r.setAttribute('x',-19);r.setAttribute('y',-9);r.setAttribute('width',38);r.setAttribute('height',18);r.setAttribute('rx',9);r.setAttribute('fill','#fff3e0');r.setAttribute('stroke','#ef6c00');r.setAttribute('stroke-width',2);
+      x.setAttribute('text-anchor','middle');x.setAttribute('y',4);x.setAttribute('font-size',11);x.setAttribute('font-weight',700);x.setAttribute('font-family','Consolas,monospace');x.setAttribute('fill','#e65100');x.textContent=bits();
+      g.appendChild(r);g.appendChild(x);p.svg.querySelector('.msgs').appendChild(g);
+      var L=[0],tot=0;for(var i=1;i<path.length;i++){tot+=Math.hypot(path[i][0]-path[i-1][0],path[i][1]-path[i-1][1]);L.push(tot)}
+      p.msgs.push({g:g,x:x,path:path,L:L,tot:tot,s:0,flip:0,dest:dest});
+    }
+    function place(m){
+      var s=Math.min(m.s,m.tot),i=1;while(i<m.L.length-1&&m.L[i]<s)i++;
+      var a=m.path[i-1],b=m.path[i],seg=m.L[i]-m.L[i-1]||1,f=(s-m.L[i-1])/seg;
+      m.g.setAttribute('transform','translate('+(a[0]+(b[0]-a[0])*f)+','+(a[1]+(b[1]-a[1])*f)+')');
+    }
+    function spawn(p){
+      unmark(p);var h=hosts(p.t),a=h[Math.floor(Math.random()*h.length)],b;
+      do{b=h[Math.floor(Math.random()*h.length)]}while(b===a);
+      mark(p,a,'#ef6c00');p.dest=b;
+      if(p.t.bus){h.forEach(function(j){if(j!==a)mk(p,route(p.t,a,j),j===b)})}
+      else mk(p,route(p.t,a,b),true);
+    }
+    function frame(ts){
+      var dt=Math.min(.05,(ts-last)/1000);last=ts;
+      if(run&&!document.hidden){P.forEach(function(p){
+        if(!p.d.classList.contains('on'))return;
+        if(!p.msgs.length){if(ts>=p.next)spawn(p);else return}
+        p.msgs=p.msgs.filter(function(m){
+          m.s+=SPEED*dt;if(ts>m.flip){m.x.textContent=bits();m.flip=ts+140}place(m);
+          if(m.s>=m.tot){m.g.parentNode.removeChild(m.g);if(m.dest)mark(p,p.dest,'#2e7d32');return false}return true});
+        if(!p.msgs.length)p.next=ts+1100;
+      })}
+      requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+  })();
 
   // --- Camadas OSI (sanfona) ---
   [].forEach.call(document.querySelectorAll('.lh'),function(b){
