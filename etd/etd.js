@@ -308,4 +308,53 @@
     }
     next();
   })();
+
+  // --- Cap. 4: endereços da planilha ---
+  (function(){
+    var g=$('xgGrid');if(!g)return;
+    var L=['A','B','C','D','E'],play=false,target=null,ok=0,tot=0,txt=$('xgTxt');
+    g.appendChild(document.createElement('div'));
+    L.forEach(function(l){var d=document.createElement('div');d.className='h';d.textContent=l;g.appendChild(d)});
+    for(var r=1;r<=5;r++){
+      var h=document.createElement('div');h.className='h';h.textContent=r;g.appendChild(h);
+      L.forEach(function(l){var d=document.createElement('div');d.className='c';d.setAttribute('role','gridcell');d.tabIndex=0;d.setAttribute('data-a',l+r);
+        function act(){
+          [].forEach.call(g.querySelectorAll('.c'),function(x){x.classList.remove('on')});d.classList.add('on');
+          var a=d.getAttribute('data-a');
+          if(!play){txt.innerHTML='Você clicou na célula <b>'+a+'</b>: coluna <b>'+a[0]+'</b>, linha <b>'+a[1]+'</b>.';return}
+          tot++;
+          if(a===target){ok++;txt.innerHTML='<span class="ok-y">✔ Isso!</span> ('+ok+' de '+tot+') '}else{txt.innerHTML='<span class="ok-n">✘ Essa é a '+a+'.</span> ('+ok+' de '+tot+') '}
+          nextT();
+        }
+        d.onclick=act;d.onkeydown=function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();act()}};g.appendChild(d)});
+    }
+    function nextT(){var a;do{a=L[Math.floor(Math.random()*5)]+(1+Math.floor(Math.random()*5))}while(a===target);target=a;txt.innerHTML+='Ache a célula <b>'+target+'</b>.'}
+    $('xgPlay').onclick=function(){play=!play;this.textContent=play?'⏹ Parar o jogo':'🎯 Jogar: achar a célula';ok=0;tot=0;if(play){target=null;txt.innerHTML='';nextT()}else txt.innerHTML='Clique em uma célula.'};
+  })();
+
+  // --- Cap. 4: mini-planilha com fórmulas ---
+  (function(){
+    var tab=$('xsTab');if(!tab)return;
+    var D=[['Arroz',2,6],['Feijão',1,8],['Leite',3,5],['Óleo',1,7]];
+    var fns=['SOMA','MÉDIA','MÁXIMO','MÍNIMO'],fn=0,rows=[];
+    function money(v){return 'R$ '+v.toFixed(2).replace('.',',')}
+    var h='<tr><th></th><th>A</th><th>B</th><th>C</th><th>D</th></tr><tr><th>1</th><td><b>Produto</b></td><td><b>Qtd</b></td><td><b>Preço</b></td><td><b>Total</b></td></tr>';
+    D.forEach(function(d,i){h+='<tr><th>'+(i+2)+'</th><td>'+d[0]+'</td><td><input type="number" min="0" value="'+d[1]+'" data-i="'+i+'" data-c="1" aria-label="Quantidade de '+d[0]+'"></td><td><input type="number" min="0" step="0.5" value="'+d[2]+'" data-i="'+i+'" data-c="2" aria-label="Preço de '+d[0]+'"></td><td id="xsT'+i+'"></td></tr>'});
+    h+='<tr class="res"><th>6</th><td id="xsLb"></td><td></td><td></td><td id="xsRes"></td></tr>';
+    tab.innerHTML=h;
+    function calc(){
+      var tot=[];
+      D.forEach(function(d,i){
+        var q=parseFloat(tab.querySelector('[data-i="'+i+'"][data-c="1"]').value)||0,p=parseFloat(tab.querySelector('[data-i="'+i+'"][data-c="2"]').value)||0;
+        tot.push(q*p);$('xsT'+i).textContent=money(q*p);
+      });
+      var r=[tot.reduce(function(a,b){return a+b},0),0,Math.max.apply(null,tot),Math.min.apply(null,tot)];r[1]=r[0]/tot.length;
+      $('xsLb').textContent='D6: =' +fns[fn]+'(D2:D5)';$('xsRes').textContent=money(r[fn]);
+      $('xsTxt').innerHTML='Fórmula nos totais: <b>=B2*C2</b> (e igual nas outras linhas). Em D6: <b>='+fns[fn]+'(D2:D5)</b> = <b>'+money(r[fn])+'</b>.';
+    }
+    tab.addEventListener('input',calc);
+    mkBtns($('xsFn'),fns,function(i,b,bs){fn=i;bs.forEach(function(x,j){x.classList.toggle('on',j===i);x.setAttribute('aria-pressed',j===i)});calc()});
+    $('xsFn').children[0].classList.add('on');
+    calc();
+  })();
 })();

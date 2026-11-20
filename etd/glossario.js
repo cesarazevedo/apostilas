@@ -43,5 +43,13 @@ window.GLOSSARIO={
 "parágrafo":"Bloco de texto que termina quando você aperta Enter.",
 "PDF":"Tipo de arquivo que abre igual em qualquer computador ou celular.",
 "currículo":"Documento que apresenta quem você é, o que estudou e onde trabalhou.",
-"selecionar":"Marcar um trecho do texto para depois mudar ou copiar."
+"selecionar":"Marcar um trecho do texto para depois mudar ou copiar.",
+"Excel":"Programa da Microsoft para fazer tabelas e contas.",
+"planilha":"Tabela com linhas e colunas, onde se digitam dados e se fazem contas.",
+"célula":"O quadradinho da planilha onde se digita uma informação.",
+"fórmula":"Uma conta escrita na célula. Começa sempre com o sinal de igual (=).",
+"função":"Conta pronta do Excel, como SOMA ou MÉDIA.",
+"intervalo":"Um grupo de células, como B2:B6 (de B2 até B6).",
+"gráfico":"Desenho que mostra números, como barras, para comparar mais fácil.",
+"orçamento":"Plano do dinheiro que entra e do que sai de casa."
 };
