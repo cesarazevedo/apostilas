@@ -402,4 +402,32 @@
     }
     next();$('pgTxt').textContent='Clique no slide que você acha melhor.';
   })();
+
+  // --- Cap. 6: partes do endereço ---
+  (function(){
+    var bar=$('ulBar');if(!bar)return;
+    var P=[['https://','Protocolo','Mostra como o site conversa com você. <b>https</b> (com “s”) é conexão protegida. Procure também o cadeadinho.'],
+      ['www.','Prefixo','Costuma indicar a “página principal” da internet. Em muitos sites, pode ser omitido.'],
+      ['ifrn','Nome do site','O nome da organização. <b>Leia com atenção</b>: golpistas trocam uma letra para enganar.'],
+      ['.edu.br','Tipo e país','Mostra o tipo: <b>.edu</b> = educação, <b>.gov</b> = governo, <b>.com</b> = comércio. <b>.br</b> = Brasil.'],
+      ['/cursos','Página dentro do site','Indica a “sala” do site que você está visitando, como a seção de cursos.']];
+    var info=$('ulInfo');
+    function sel(i){[].forEach.call(bar.children,function(b,j){b.classList.toggle('on',j===i);b.setAttribute('aria-pressed',j===i)});info.innerHTML='<b>'+P[i][1]+'</b><br><code>'+P[i][0]+'</code>: '+P[i][2]}
+    P.forEach(function(p,i){var b=document.createElement('button');b.type='button';b.textContent=p[0];b.setAttribute('aria-pressed','false');b.onclick=function(){sel(i)};bar.appendChild(b)});
+    sel(0);
+  })();
+
+  // --- Cap. 6: simulador de e-mail ---
+  (function(){
+    var b=$('mlSend');if(!b)return;
+    b.onclick=function(){
+      var to=$('mlTo').value.trim(),su=$('mlSub').value.trim(),ms=$('mlMsg').value.trim(),at=$('mlAt').checked,p=[];
+      if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(to))p.push('o endereço em <b>Para</b> precisa ter @ e terminar em algo como .com.br');
+      if(su.length<4)p.push('escreva um <b>Assunto</b> (ex.: Currículo – seu nome)');
+      if(ms.length<15)p.push('a <b>Mensagem</b> está curta: cumprimente, diga o que quer e assine com o seu nome');
+      else if(!/(ol[aá]|bom dia|boa tarde|boa noite|prezad)/i.test(ms))p.push('comece a mensagem com um cumprimento (<i>Olá</i>, <i>Bom dia</i>...)');
+      if(!at)p.push('marque que você <b>anexou o currículo</b> (clipe 📎)');
+      $('mlTxt').innerHTML=p.length?'<span class="ok-n">✘ Ainda não enviado:</span> '+p.join('; ')+'.':'<span class="ok-y">✔ E-mail enviado!</span> Bem escrito: endereço certo, assunto claro, mensagem educada e anexo.';
+    };
+  })();
 })();
