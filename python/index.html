@@ -69,7 +69,15 @@ html[data-theme=dark]{--verde-claro:#10263a}
       <a href="#c4-tools">Ferramentas</a>
       <a href="#c4-quiz">Quiz e exercícios</a>
     </div>
-    <a href="#cap5" class="soon"><span class="n" style="background:var(--c5)">5</span>Repetições</a>
+    <a href="#cap5"><span class="n" style="background:var(--c5)">5</span>Repetições</a>
+    <div class="sub">
+      <a href="#c5-1">5.1 A Estrutura while</a>
+      <a href="#c5-2">5.2 Contadores</a>
+      <a href="#c5-3">5.3 Acumuladores e break</a>
+      <a href="#c5-4">5.4 Repetições Aninhadas</a>
+      <a href="#c5-tools">Ferramentas</a>
+      <a href="#c5-quiz">Quiz e exercícios</a>
+    </div>
     <a href="#cap6" class="soon"><span class="n" style="background:var(--c6)">6</span>Listas</a>
     <a href="#cap7" class="soon"><span class="n" style="background:var(--c7)">7</span>Strings</a>
     <a href="#cap8" class="soon"><span class="n" style="background:var(--c8)">8</span>Funções</a>
@@ -106,7 +114,7 @@ html[data-theme=dark]{--verde-claro:#10263a}
     <div class="card" style="--cc:var(--c2)" data-ok="1"><b>2 · Ambiente</b><span>Instalar o Python, usar o IDLE e escrever os primeiros programas.</span><div class="st">✅ Disponível</div></div>
     <div class="card" style="--cc:var(--c3)" data-ok="1"><b>3 · Variáveis e entrada</b><span>Tipos, operadores, strings e como pedir dados ao usuário.</span><div class="st">✅ Disponível</div></div>
     <div class="card" style="--cc:var(--c4)" data-ok="1"><b>4 · Condições</b><span>if, else, condições aninhadas e elif.</span><div class="st">✅ Disponível</div></div>
-    <div class="card" style="--cc:var(--c5)"><b>5 · Repetições</b><span>while, contadores, acumuladores e laços aninhados.</span><div class="st">⏳ Em breve</div></div>
+    <div class="card" style="--cc:var(--c5)" data-ok="1"><b>5 · Repetições</b><span>while, contadores, acumuladores e laços aninhados.</span><div class="st">✅ Disponível</div></div>
     <div class="card" style="--cc:var(--c6)"><b>6 · Listas</b><span>Listas, índices, for, pilhas, filas, ordenação e dicionários.</span><div class="st">⏳ Em breve</div></div>
     <div class="card" style="--cc:var(--c7)"><b>7 · Strings</b><span>Pesquisa, métodos e formatação, com um jogo da forca.</span><div class="st">⏳ Em breve</div></div>
     <div class="card" style="--cc:var(--c8)"><b>8 · Funções</b><span>def, return, escopo, recursão, módulos e random.</span><div class="st">⏳ Em breve</div></div>
@@ -1499,7 +1507,382 @@ imposto = 0
 
   <div class="box dica" style="margin-top:28px"><div class="ic">📚</div><div><h5>Para saber mais</h5><p>Documentação oficial: <i>O tutorial de Python</i>, seção “Mais ferramentas de controle de fluxo” (instrução <code>if</code>), em docs.python.org/pt-br/3/tutorial/. Resolva os exercícios de cada seção antes de seguir.</p></div></div>
 </section>
-<section class="chapter soon-ch" id="cap5" style="--cc:var(--c5)"><div class="chap-head"><div class="chap-num" style="background:var(--c5)">5</div><div><small>Capítulo 5</small><h2>Repetições</h2></div></div><div class="soon-card">⏳ Este capítulo será publicado em breve.</div></section>
+<section class="chapter" id="cap5" style="--cc:var(--c5)">
+  <div class="chap-head"><div class="chap-num" style="background:var(--c5)">5</div><div><small>Capítulo 5</small><h2>Repetições</h2></div></div>
+  <div class="obj"><h4>🎯 Ao final deste capítulo, você será capaz de:</h4><ul><li>repetir blocos com <code>while</code> e evitar o loop infinito</li><li>usar contadores e acumuladores</li><li>interromper uma repetição com <code>break</code></li><li>combinar <code>while</code> com <code>if</code> e <code>elif</code></li><li>aninhar repetições (um <code>while</code> dentro de outro)</li></ul></div>
+<h3 id="c5-1">5.1 A Estrutura while</h3>
+<p class="sec-sub">Repetições e o laço while</p>
+<h4 class="pyh">🤔 O problema das repetições</h4>
+<p>Repetições representam a base de vários programas. São utilizadas para executar a mesma parte de um programa várias vezes, normalmente dependendo de uma condição. Por exemplo, para imprimir os números de 1 a 3, poderíamos escrever:</p>
+<pre class="py"><span class="pylab">Listagem 5.1 — Imprimindo de 1 a 3</span><button class="cp">Copiar</button><code><span class="function">print</span>(1)
+<span class="function">print</span>(2)
+<span class="function">print</span>(3)</code></pre>
+<p>Mas se quisermos usar uma variável <code>x</code> e variar seu valor, poderíamos fazer:</p>
+<pre class="py"><span class="pylab">Listagem 5.2 — Usando variável</span><button class="cp">Copiar</button><code>x = 1
+<span class="function">print</span>(x)
+x = 2
+<span class="function">print</span>(x)
+x = 3
+<span class="function">print</span>(x)</code></pre>
+<p>Ainda melhor: <strong>incrementar</strong> x a cada passo, em vez de reatribuir:</p>
+<pre class="py"><span class="pylab">Listagem 5.3 — Incrementando x</span><button class="cp">Copiar</button><code>x = 1
+<span class="function">print</span>(x)
+x = x + 1
+<span class="function">print</span>(x)
+x = x + 1
+<span class="function">print</span>(x)</code></pre>
+<p>Porém, se o objetivo fosse escrever 100 números, teríamos que escrever pelo menos 200 linhas! A estrutura de repetição <code>while</code> resolve esse problema.</p>
+<h4 class="pyh">🔄 A estrutura while</h4>
+<p>O <code>while</code> repete um bloco de código <strong>enquanto a condição for verdadeira</strong>. Seu formato é:</p>
+<pre class="py"><span class="pylab">Listagem 5.4 — Formato do while</span><button class="cp">Copiar</button><code><span class="keyword">while</span> <span class="placeholder">&lt;condição&gt;</span>:
+    <span class="placeholder">bloco</span></code></pre>
+<p>Para resolver o problema de imprimir de 1 a 3 usando <code>while</code>:</p>
+<pre class="py"><span class="pylab">Listagem 5.5 — Imprimindo de 1 a 3 com while</span><button class="cp">Copiar</button><code>x = 1
+<span class="keyword">while</span> x &lt;= 3:
+    <span class="function">print</span>(x)
+    x = x + 1</code></pre>
+<p>Execução passo a passo:</p>
+<ol>
+<li><code>x = 1</code> — x é inicializado com 1</li>
+<li>Condição <code>x &lt;= 3</code>: True → executa o bloco: imprime 1, x vira 2</li>
+<li>Condição <code>x &lt;= 3</code>: True → executa o bloco: imprime 2, x vira 3</li>
+<li>Condição <code>x &lt;= 3</code>: True → executa o bloco: imprime 3, x vira 4</li>
+<li>Condição <code>x &lt;= 3</code>: False → repetição termina</li>
+</ol>
+<div class="box analogia"><div class="ic">💬</div><div>
+<p>💡 A linha <code>x = x + 1</code> é essencial! Sem ela, a condição nunca se tornaria False e o programa rodaria para sempre — um <strong>loop infinito</strong>.</p>
+</div></div>
+<h4 class="pyh">🔢 Imprimindo até um número digitado</h4>
+<p>A verdadeira vantagem do <code>while</code> é combinar com entrada do usuário. O <strong>contador</strong> <code>x</code> controla quantas repetições já foram feitas:</p>
+<pre class="py"><span class="pylab">Listagem 5.6 — Impressão até um limite digitado</span><button class="cp">Copiar</button><code>fim = <span class="function">int</span>(<span class="function">input</span>(<span class="string">"Digite o último número a imprimir: "</span>))
+x = 1
+<span class="keyword">while</span> x &lt;= fim:
+    <span class="function">print</span>(x)
+    x = x + 1</code></pre>
+<p>Um <strong>contador</strong> é uma variável utilizada para contar o número de ocorrências de um determinado evento. Aqui, <code>x</code> conta quantas repetições já foram executadas. Note que se o usuário digitar 0, a condição <code>1 &lt;= 0</code> é falsa desde a primeira verificação e nada é impresso.</p>
+<h4 class="pyh">✏ Exercícios</h4>
+<div class="lab">
+<h3>Exercício 5.1</h3>
+<p>Modifique o programa da Listagem 5.5 para exibir os números de 1 a 100.</p>
+</div>
+<div class="lab">
+<h3>Exercício 5.2</h3>
+<p>Modifique o programa para exibir os números de 50 a 100.</p>
+</div>
+<div class="lab">
+<h3>Exercício 5.3</h3>
+<p>Faça um programa para escrever a contagem regressiva do lançamento de um foguete. O programa deve imprimir 10, 9, 8, ..., 1, 0 e <strong>Fogo!</strong> na tela.</p>
+</div>
+<h3 id="c5-2">5.2 Contadores</h3>
+<p class="sec-sub">Contando ocorrências com while</p>
+<h4 class="pyh">📊 Números pares com if dentro do while</h4>
+<p>O poder das repetições é muito mais interessante quando combinamos <code>while</code> com <code>if</code>. Imagine imprimir apenas os números pares entre 0 e um valor digitado. Podemos usar o operador <code>%</code> (resto da divisão) para verificar se um número é par:</p>
+<pre class="py"><span class="pylab">Listagem 5.7 — Pares com if</span><button class="cp">Copiar</button><code>fim = <span class="function">int</span>(<span class="function">input</span>(<span class="string">"Digite o último número a imprimir: "</span>))
+x = 0
+<span class="keyword">while</span> x &lt;= fim:
+    <span class="keyword">if</span> x % 2 == 0:
+        <span class="function">print</span>(x)
+    x = x + 1</code></pre>
+<p>Note que o <code>if</code> dentro do bloco do <code>while</code> precisa de recuo adicional. O <code>x = x + 1</code> é executado em toda repetição, independentemente do <code>if</code>.</p>
+<p>Uma solução mais simples: em vez de verificar se é par, já avançar de 2 em 2:</p>
+<pre class="py"><span class="pylab">Listagem 5.8 — Pares sem if</span><button class="cp">Copiar</button><code>fim = <span class="function">int</span>(<span class="function">input</span>(<span class="string">"Digite o último número a imprimir: "</span>))
+x = 0
+<span class="keyword">while</span> x &lt;= fim:
+    <span class="function">print</span>(x)
+    x = x + 2</code></pre>
+<p>Isso mostra que existe mais de uma solução para o mesmo problema. Podemos escrever programas diferentes e obter a mesma saída.</p>
+<h4 class="pyh">✖ Tabuada simples</h4>
+<p>Veja um programa que imprime a tabuada de um número digitado pelo usuário:</p>
+<pre class="py"><span class="pylab">Listagem 5.9 — Tabuada simples</span><button class="cp">Copiar</button><code>n = <span class="function">int</span>(<span class="function">input</span>(<span class="string">"Tabuada de: "</span>))
+x = 1
+<span class="keyword">while</span> x &lt;= 10:
+    <span class="function">print</span>(n * x)
+    x = x + 1</code></pre>
+<h4 class="pyh">❓ Contagem de questões corretas</h4>
+<p>Contadores também são úteis dentro de condições. Vejamos um programa que corrige um teste de múltipla escolha com 3 questões. A resposta da questão 1 é <code>"b"</code>, da 2 é <code>"a"</code> e da 3 é <code>"d"</code>:</p>
+<pre class="py"><span class="pylab">Listagem 5.10 — Contagem de questões corretas</span><button class="cp">Copiar</button><code>pontos = 0
+questão = 1
+<span class="keyword">while</span> questão &lt;= 3:
+    resposta = <span class="function">input</span>(<span class="string">"Resposta da questão %d: "</span> % questão)
+    <span class="keyword">if</span> questão == 1 <span class="keyword">and</span> resposta == <span class="string">"b"</span>:
+        pontos = pontos + 1
+    <span class="keyword">if</span> questão == 2 <span class="keyword">and</span> resposta == <span class="string">"a"</span>:
+        pontos = pontos + 1
+    <span class="keyword">if</span> questão == 3 <span class="keyword">and</span> resposta == <span class="string">"d"</span>:
+        pontos = pontos + 1
+    questão += 1
+<span class="function">print</span>(<span class="string">"O aluno fez %d ponto(s)"</span> % pontos)</code></pre>
+<div class="box analogia"><div class="ic">💬</div><div>
+<p>💡 O operador <code>+=</code> é uma abreviatura: <code>questão += 1</code> é o mesmo que <code>questão = questão + 1</code>. Em Python, letras minúsculas e maiúsculas são diferentes: <code>"b"</code> ≠ <code>"B"</code>. Por isso, o programa não aceita respostas em maiúsculas.</p>
+</div></div>
+<h4 class="pyh">✏ Exercícios</h4>
+<div class="lab">
+<h3>Exercício 5.4</h3>
+<p>Modifique a Listagem 5.8 para imprimir de 1 até o número digitado pelo usuário, mas, dessa vez, apenas os números <strong>ímpares</strong>.</p>
+</div>
+<div class="lab">
+<h3>Exercício 5.5</h3>
+<p>Reescreva o programa anterior para escrever os 10 primeiros múltiplos de 3.</p>
+</div>
+<div class="lab">
+<h3>Exercício 5.6</h3>
+<p>Altere a Listagem 5.9 para exibir os resultados no mesmo formato de uma tabuada: <code>2x1 = 2</code>, <code>2x2 = 4</code>, ...</p>
+</div>
+<div class="lab">
+<h3>Exercício 5.7</h3>
+<p>Modifique a Listagem 5.9 de forma que o usuário também digite o início e o fim da tabuada, em vez de começar com 1 e terminar com 10.</p>
+</div>
+<div class="lab">
+<h3>Exercício 5.8</h3>
+<p>Escreva um programa que leia dois números. Imprima o resultado da <strong>multiplicação</strong> do primeiro pelo segundo. Utilize apenas os operadores de <strong>soma e subtração</strong> para calcular o resultado. (Dica: multiplicação é uma soma repetida.)</p>
+</div>
+<div class="lab">
+<h3>Exercício 5.9</h3>
+<p>Escreva um programa que leia dois números. Imprima a <strong>divisão inteira</strong> do primeiro pelo segundo, assim como o <strong>resto</strong> da divisão. Utilize apenas os operadores de soma e subtração para calcular o resultado. (Dica: a divisão inteira é quantas vezes subtraimos o divisor do dividendo até ficar menor que ele.)</p>
+</div>
+<div class="lab">
+<h3>Exercício 5.10</h3>
+<p>Modifique o programa da Listagem 5.10 para que aceite respostas com letras maiúsculas e minúsculas em todas as questões. (Dica: use o operador <code>or</code>.)</p>
+</div>
+<h3 id="c5-3">5.3 Acumuladores e break</h3>
+<p class="sec-sub">Seção 5.2–5.3 — Acumulando valores e interrompendo repetições</p>
+<h4 class="pyh">📦 Acumuladores</h4>
+<p>Nem só de contadores precisamos. Em programas para calcular o total de uma soma, precisaremos de <strong>acumuladores</strong>. A diferença entre um contador e um acumulador é que nos contadores o valor adicionado é constante e, nos acumuladores, variável.</p>
+<p>Vejamos um programa que calcula a soma de 10 números digitados pelo usuário. Nesse caso, <code>soma</code> é o acumulador e <code>n</code> é o contador:</p>
+<pre class="py"><span class="pylab">Listagem 5.11 — Soma de 10 números</span><button class="cp">Copiar</button><code>n = 1
+soma = 0
+<span class="keyword">while</span> n &lt;= 10:
+    x = <span class="function">int</span>(<span class="function">input</span>(<span class="string">"Digite o %d número: "</span> % n))
+    soma = soma + x
+    n = n + 1
+<span class="function">print</span>(<span class="string">"Soma: %d"</span> % soma)</code></pre>
+<p>Diferentemente de <code>n</code>, que recebe 1 a cada passagem, a variável <code>soma</code> é adicionada do valor digitado pelo usuário. O incremento de <code>soma</code> não é constante — ela <em>acumula</em> os valores digitados a cada repetição.</p>
+<p>Vejamos um programa que calcula a média de cinco números digitados:</p>
+<pre class="py"><span class="pylab">Listagem 5.12 — Cálculo de média com acumulador</span><button class="cp">Copiar</button><code>x = 1
+soma = 0
+<span class="keyword">while</span> x &lt;= 5:
+    n = <span class="function">int</span>(<span class="function">input</span>(<span class="string">"%d Digite o número: "</span> % x))
+    soma = soma + n
+    x = x + 1
+<span class="function">print</span>(<span class="string">"Média: %5.2f"</span> % (soma / 5))</code></pre>
+<p>A média aritmética é (n1 + n2 + n3 + n4 + n5) / 5. Em vez de usar cinco variáveis separadas, acumulamos os valores em <code>soma</code> conforme são lidos.</p>
+<div class="box analogia"><div class="ic">💬</div><div>
+<p>💡 Acumuladores são muito úteis quando não sabemos ou não conseguimos obter o total da soma pela simples multiplicação de dois números. No cálculo da média, o valor de <code>n</code> pode ser diferente a cada vez que o usuário digitar um valor.</p>
+</div></div>
+<h4 class="pyh">⏹ Interrompendo a repetição</h4>
+<p>Embora muito útil, a estrutura <code>while</code> só verifica sua condição de parada no início de cada repetição. Às vezes, é interessante poder terminar o <code>while</code> de dentro do bloco.</p>
+<p>A instrução <code>break</code> é utilizada para interromper a execução do <code>while</code> independentemente do valor atual de sua condição. Vejamos um programa que lê valores e os soma até que o usuário digite 0:</p>
+<pre class="py"><span class="pylab">Listagem 5.13 — Interrompendo a repetição</span><button class="cp">Copiar</button><code>s = 0
+<span class="keyword">while</span> <span class="keyword">True</span>:
+    v = <span class="function">int</span>(<span class="function">input</span>(<span class="string">"Digite um número a somar ou 0 para sair: "</span>))
+    <span class="keyword">if</span> v == 0:
+        <span class="keyword">break</span>
+    s = s + v
+<span class="function">print</span>(s)</code></pre>
+<p>Substituímos a condição do <code>while</code> por <code>True</code>, tornando-o infinito. A instrução <code>break</code> só é ativada dentro do <code>if</code>, quando <code>v</code> vale zero. Enquanto <code>v</code> for diferente de zero, a repetição continua somando <code>v</code> a <code>s</code>.</p>
+<div class="box analogia"><div class="ic">💬</div><div>
+<p>💡 O <code>break</code> transfere imediatamente a execução para a primeira linha após o bloco do <code>while</code>. É especialmente útil quando a condição de parada só pode ser verificada <em>dentro</em> do laço, e não no início.</p>
+</div></div>
+<h4 class="pyh">✏ Exercícios</h4>
+<div class="lab">
+<h3>Exercício 5.11</h3>
+<p>Escreva um programa que pergunte o depósito inicial e a taxa de juros de uma poupança. Exiba os valores mês a mês para os 24 primeiros meses. Escreva o total ganho com juros no período.</p>
+</div>
+<div class="lab">
+<h3>Exercício 5.12</h3>
+<p>Altere o programa anterior de forma a perguntar também o valor depositado mensalmente. Esse valor será depositado no início de cada mês, e você deve considerá-lo para o cálculo de juros do mês seguinte.</p>
+</div>
+<div class="lab">
+<h3>Exercício 5.13</h3>
+<p>Escreva um programa que pergunte o valor inicial de uma dívida e o juro mensal. Pergunte também o valor mensal que será pago. Imprima o número de meses para que a dívida seja paga, o total pago e o total de juros pago.</p>
+</div>
+<div class="lab">
+<h3>Exercício 5.14</h3>
+<p>Escreva um programa que leia números inteiros do teclado. O programa deve ler os números até que o usuário digite 0 (zero). No final da execução, exiba a quantidade de números digitados, assim como a soma e a média aritmética.</p>
+</div>
+<h3 id="c5-4">5.4 Repetições Aninhadas</h3>
+<p class="sec-sub">break avançado e while dentro de while</p>
+<h4 class="pyh">💵 Cédulas com break</h4>
+<p>O <code>break</code> pode ser combinado com <code>if/elif</code> para criar lógicas mais complexas. Um exemplo clássico é calcular quantas cédulas (R$ 50, R$ 20, R$ 10, R$ 5 e R$ 1) são necessárias para pagar um determinado valor:</p>
+<pre class="py"><span class="pylab">Listagem 5.14 — Contagem de cédulas</span><button class="cp">Copiar</button><code>valor = <span class="function">int</span>(<span class="function">input</span>(<span class="string">"Digite o valor a pagar: "</span>))
+cédulas = 0
+atual = 50
+apagar = valor
+<span class="keyword">while</span> <span class="keyword">True</span>:
+    <span class="keyword">if</span> atual &lt;= apagar:
+        apagar -= atual
+        cédulas += 1
+    <span class="keyword">else</span>:
+        <span class="function">print</span>(<span class="string">"%d cédula(s) de R$%d"</span> % (cédulas, atual))
+        <span class="keyword">if</span> apagar == 0:
+            <span class="keyword">break</span>
+<span class="keyword">if</span> atual == 50:
+            atual = 20
+        <span class="keyword">elif</span> atual == 20:
+            atual = 10
+        <span class="keyword">elif</span> atual == 10:
+            atual = 5
+        <span class="keyword">elif</span> atual == 5:
+            atual = 1
+        cédulas = 0</code></pre>
+<p>O programa subtrai repetidamente o valor da cédula atual de <code>apagar</code> contando quantas vezes cabe (<code>cédulas</code>). Quando não cabe mais, imprime a quantidade e passa para a cédula menor. O <code>break</code> é ativado quando não há mais nada a pagar (<code>apagar == 0</code>).</p>
+<div class="box analogia"><div class="ic">💬</div><div>
+<p>💡 Execute o programa com os valores: 501, 745, 384, 2, 7 e 1 para verificar se os resultados estão corretos (Exercício 5.16).</p>
+</div></div>
+<h4 class="pyh">🌀 Repetições aninhadas</h4>
+<p>Podemos combinar vários <code>while</code> de forma a obter resultados mais interessantes. Imagine imprimir as tabuadas de multiplicação de 1 a 10. Podemos fazer isso com um <code>while</code> dentro de outro:</p>
+<pre class="py"><span class="pylab">Listagem 5.15 — Impressão de tabuadas</span><button class="cp">Copiar</button><code>tabuada = 1
+<span class="keyword">while</span> tabuada &lt;= 10:
+    número = 1
+    <span class="keyword">while</span> número &lt;= 10:
+        <span class="function">print</span>(<span class="string">"%d x %d = %d"</span> % (tabuada, número, tabuada * número))
+        número += 1
+    tabuada += 1</code></pre>
+<p>O <code>while</code> externo controla a tabuada (de 1 a 10). O <code>while</code> interno imprime os 10 termos de cada tabuada. Note que <code>número</code> é reinicializado com 1 a cada nova tabuada — por isso fica dentro do bloco externo, mas antes do while interno.</p>
+<p>Vejamos o mesmo problema sem usar repetições aninhadas, com apenas um <code>while</code>:</p>
+<pre class="py"><span class="pylab">Listagem 5.16 — Tabuadas sem repetições aninhadas</span><button class="cp">Copiar</button><code>tabuada = 1
+número = 1
+<span class="keyword">while</span> tabuada &lt;= 10:
+    <span class="function">print</span>(<span class="string">"%d x %d = %d"</span> % (tabuada, número, tabuada * número))
+    número += 1
+    <span class="keyword">if</span> número == 11:
+        número = 1
+        tabuada += 1</code></pre>
+<p>Quando <code>número</code> chega a 11, ele é reinicializado para 1 e <code>tabuada</code> avança. Essa solução usa apenas um laço, mas é menos intuitiva que a versão aninhada.</p>
+<div class="box analogia"><div class="ic">💬</div><div>
+<p>💡 Repetições aninhadas são naturais quando o problema tem duas dimensões: por exemplo, linhas e colunas de uma tabela. O while interno executa completamente a cada iteração do while externo.</p>
+</div></div>
+<h4 class="pyh">✏ Exercícios</h4>
+<div class="lab">
+<h3>Exercício 5.15</h3>
+<p>Escreva um programa para controlar uma pequena máquina registradora. Solicite ao usuário que digite o código do produto e a quantidade comprada. Utilize a tabela abaixo para obter o preço:</p>
+<table class="op-table">
+<thead><tr><th>Código</th><th>Preço</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>R$ 0,50</td></tr>
+<tr><td>2</td><td>R$ 1,00</td></tr>
+<tr><td>3</td><td>R$ 4,00</td></tr>
+<tr><td>5</td><td>R$ 7,00</td></tr>
+<tr><td>9</td><td>R$ 8,00</td></tr>
+</tbody>
+</table>
+<p>Exiba o total das compras depois que o usuário digitar 0. Qualquer outro código deve gerar a mensagem de erro <code>"Código inválido"</code>.</p>
+</div>
+<div class="lab">
+<h3>Exercício 5.16</h3>
+<p>Execute o programa da Listagem 5.14 para os seguintes valores: 501, 745, 384, 2, 7 e 1. Verifique se os resultados estão corretos.</p>
+</div>
+<div class="lab">
+<h3>Exercício 5.17</h3>
+<p>O que acontece se digitarmos 0 (zero) no valor a pagar do programa da Listagem 5.14?</p>
+</div>
+<div class="lab">
+<h3>Exercício 5.18</h3>
+<p>Modifique o programa da Listagem 5.14 para também trabalhar com notas de R$ 100.</p>
+</div>
+<div class="lab">
+<h3>Exercício 5.19</h3>
+<p>Modifique o programa para aceitar valores decimais, ou seja, também contar moedas de R$ 0,01, R$ 0,02, R$ 0,05, R$ 0,10 e R$ 0,50.</p>
+</div>
+<div class="lab">
+<h3>Exercício 5.20</h3>
+<p>O que acontece se digitarmos 0,01 no programa anterior? Caso ele não funcione, altere-o de forma a corrigir o problema.</p>
+</div>
+<div class="lab">
+<h3>Exercício 5.21</h3>
+<p>Reescreva o programa da Listagem 5.14 de forma a continuar executando até que o valor digitado seja 0. Utilize repetições aninhadas.</p>
+</div>
+<div class="lab">
+<h3>Exercício 5.22</h3>
+<p>Escreva um programa que exiba uma lista de opções (menu): adição, subtração, divisão, multiplicação e sair. Imprima a tabuada da operação escolhida. Repita até que a opção saída seja escolhida.</p>
+</div>
+<div class="lab">
+<h3>Exercício 5.23</h3>
+<p>Escreva um programa que leia um número e verifique se é ou não um número primo. Para isso, calcule o resto da divisão do número por 2 e depois por todos os números ímpares até o número lido. Se o resto de uma dessas divisões for igual a zero, o número não é primo. Observe que 0 e 1 não são primos e que 2 é o único número primo que é par.</p>
+</div>
+<div class="lab">
+<h3>Exercício 5.24</h3>
+<p>Modifique o programa anterior de forma a ler um número <em>n</em>. Imprima os <em>n</em> primeiros números primos.</p>
+</div>
+<div class="lab">
+<h3>Exercício 5.25</h3>
+<p>Escreva um programa que calcule a raiz quadrada de um número usando o método de Newton. Sendo <em>n</em> o número, considere a base <em>b</em> = 2. Calcule <em>p</em> usando a fórmula <em>p</em> = (<em>b</em> + (<em>n</em> / <em>b</em>)) / 2. A cada passo, faça <em>b</em> = <em>p</em> e recalcule. Pare quando a diferença absoluta entre <em>n</em> e o quadrado de <em>p</em> for menor que 0,0001.</p>
+</div>
+<div class="lab">
+<h3>Exercício 5.26</h3>
+<p>Escreva um programa que calcule o resto da divisão inteira entre dois números. Utilize apenas as operações de soma e subtração para calcular o resultado.</p>
+</div>
+<div class="lab">
+<h3>Exercício 5.27</h3>
+<p>Escreva um programa que verifique se um número é palíndromo. Um número é palíndromo se continua o mesmo caso seus dígitos sejam invertidos. Exemplos: 454, 10501.</p>
+</div>
+
+  <h3 id="c5-tools">🛠️ Ferramentas do capítulo</h3>
+  <div class="tool" id="wl" style="--cc:var(--c5)">
+    <h4 style="margin-top:0">🔄 O while, passo a passo</h4>
+    <p>Escolha o <b>fim</b> e aperte <b>Próximo passo</b>: veja o teste da condição, o <code>print</code> e o incremento.</p>
+    <div class="tool-ctl"><label>fim: <input type="range" id="wlF" min="0" max="6" value="3"> <b id="wlFv">3</b></label></div>
+    <pre class="py nr"><code id="wlC"></code></pre>
+    <div class="shelf" id="wlV"></div>
+    <div class="tool-ctl"><button type="button" id="wlN">Próximo passo ▶</button><button type="button" id="wlR" class="alt">Recomeçar</button></div>
+    <p id="wlT" aria-live="polite"></p>
+  </div>
+  <div class="tool" id="ns" style="--cc:var(--c5)">
+    <h4 style="margin-top:0">🌀 Laços aninhados: tabuada</h4>
+    <p>O laço de fora escolhe a tabuada; o de dentro percorre os números. Aperte e acompanhe.</p>
+    <div class="repl"><div class="out" id="nsO" aria-live="polite"></div></div>
+    <div class="shelf" id="nsV"></div>
+    <div class="tool-ctl"><button type="button" id="nsN">Próximo ▶</button><button type="button" id="nsR" class="alt">Recomeçar</button></div>
+  </div>
+  <div class="tool" id="cd" style="--cc:var(--c5)">
+    <h4 style="margin-top:0">💵 Quantas cédulas?</h4>
+    <p>Digite um valor inteiro em reais (como no programa das cédulas).</p>
+    <div class="tool-ctl"><input type="number" id="cdV" min="0" max="100000" value="384" aria-label="Valor em reais" style="padding:8px 10px;border-radius:8px;border:1px solid var(--borda,#ccc);font:inherit;width:140px"></div>
+    <p id="cdT" aria-live="polite"></p>
+  </div>
+
+  <div class="resumo"><h3>📝 Resumo do capítulo</h3><ul><li>O <code>while</code> repete um bloco <b>enquanto</b> a condição for verdadeira.</li><li>Sem alterar a variável da condição (como <code>x = x + 1</code>), o laço nunca termina: é o <b>loop infinito</b>.</li><li>Um <b>contador</b> conta ocorrências; um <b>acumulador</b> soma valores ao longo das repetições.</li><li><code>break</code> interrompe o laço na hora, mesmo que a condição ainda seja verdadeira.</li><li>Laços <b>aninhados</b>: o interno roda por completo a cada volta do externo; reinicie suas variáveis antes dele.</li><li>Há mais de uma solução para o mesmo problema: o importante é que o resultado esteja correto e o código, legível.</li></ul></div>
+  <h3 id="c5-quiz">🧠 Quiz do capítulo 5</h3>
+  <p>Clique na resposta que você acha certa.</p>
+  <div class="quiz">
+    <div class="q"><p>1. O que o <code>while</code> faz?</p>
+      <button class="opt">a) Executa um bloco uma única vez</button><button class="opt" data-ok="1">b) Repete um bloco enquanto a condição for verdadeira</button><button class="opt">c) Lê um valor do teclado</button><button class="opt">d) Define uma variável</button>
+      <div class="fb"><code>while</code> significa “enquanto”: o bloco se repete até a condição virar <code>False</code>.</div></div>
+    <div class="q"><p>2. O que acontece em <code>x = 1</code> / <code>while x &lt;= 3: print(x)</code> (sem alterar x)?</p>
+      <button class="opt">a) Imprime 1, 2 e 3</button><button class="opt">b) Imprime 1 uma vez</button><button class="opt" data-ok="1">c) Imprime 1 sem parar (loop infinito)</button><button class="opt">d) Dá erro de sintaxe</button>
+      <div class="fb">Como x nunca muda, a condição fica sempre verdadeira. Falta o <code>x = x + 1</code>.</div></div>
+    <div class="q"><p>3. Quantas linhas imprime: <code>x = 1</code> / <code>while x &lt;= 3: print(x); x = x + 1</code>?</p>
+      <button class="opt">a) 2</button><button class="opt" data-ok="1">b) 3</button><button class="opt">c) 4</button><button class="opt">d) 0</button>
+      <div class="fb">Imprime 1, 2 e 3. Quando x vira 4, a condição fica falsa.</div></div>
+    <div class="q"><p>4. Para que serve um contador?</p>
+      <button class="opt">a) Para guardar textos</button><button class="opt" data-ok="1">b) Para contar quantas vezes algo aconteceu</button><button class="opt">c) Para apagar variáveis</button><button class="opt">d) Para somar sempre valores diferentes</button>
+      <div class="fb">Contador é uma variável que aumenta em 1 (ou outro passo) a cada ocorrência.</div></div>
+    <div class="q"><p>5. Qual a diferença entre contador e acumulador?</p>
+      <button class="opt">a) Nenhuma</button><button class="opt" data-ok="1">b) O contador soma 1 a cada vez; o acumulador soma valores quaisquer</button><button class="opt">c) O acumulador só funciona com texto</button><button class="opt">d) O contador só roda uma vez</button>
+      <div class="fb">Contador: <code>c = c + 1</code>. Acumulador: <code>soma = soma + valor</code>.</div></div>
+    <div class="q"><p>6. O que faz o <code>break</code>?</p>
+      <button class="opt">a) Pula para a próxima volta</button><button class="opt" data-ok="1">b) Interrompe o laço imediatamente</button><button class="opt">c) Reinicia o programa</button><button class="opt">d) Mostra uma mensagem</button>
+      <div class="fb"><code>break</code> sai do laço na hora, mesmo que a condição ainda seja verdadeira.</div></div>
+    <div class="q"><p>7. Em <code>while True:</code>, como o laço termina?</p>
+      <button class="opt">a) Nunca termina, não há saída</button><button class="opt" data-ok="1">b) Por meio de um <code>break</code> dentro do bloco</button><button class="opt">c) Quando o programa é salvo</button><button class="opt">d) Sozinho, após 10 voltas</button>
+      <div class="fb"><code>while True</code> é infinito por natureza; o <code>break</code> (geralmente dentro de um <code>if</code>) é a saída.</div></div>
+    <div class="q"><p>8. Em laços aninhados, quantas vezes roda o bloco interno se o externo roda 3 vezes e o interno 4 vezes por volta?</p>
+      <button class="opt">a) 7</button><button class="opt" data-ok="1">b) 12</button><button class="opt">c) 4</button><button class="opt">d) 3</button>
+      <div class="fb">3 × 4 = 12 execuções do bloco interno.</div></div>
+  </div>
+  <div class="score"></div>
+  <h3>✍️ Questões abertas</h3>
+  <div class="open"><p><b>1.</b> Por que usar <code>while</code> em vez de escrever 100 <code>print</code>?</p>
+    <button>Ver resposta</button><div class="answer">O <code>while</code> faz o computador repetir o trabalho. Muda um número no programa em vez de escrever centenas de linhas. Analogia: pedir “dê 100 voltas” em vez de dizer “dê uma volta” 100 vezes.</div></div>
+  <div class="open"><p><b>2.</b> Escreva um programa que mostre a contagem regressiva de 10 a 0 e depois “Fogo!”.</p>
+    <button>Ver resposta</button><div class="answer"><code>x = 10<br>while x &gt;= 0:<br>&nbsp;&nbsp;&nbsp;&nbsp;print(x)<br>&nbsp;&nbsp;&nbsp;&nbsp;x = x - 1<br>print("Fogo!")</code></div></div>
+  <div class="open"><p><b>3.</b> Escreva um programa que leia números até o usuário digitar 0 e mostre a soma.</p>
+    <button>Ver resposta</button><div class="answer"><code>soma = 0<br>while True:<br>&nbsp;&nbsp;&nbsp;&nbsp;n = int(input("Número (0 para sair): "))<br>&nbsp;&nbsp;&nbsp;&nbsp;if n == 0:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break<br>&nbsp;&nbsp;&nbsp;&nbsp;soma = soma + n<br>print(soma)</code></div></div>
+  <div class="open"><p><b>4.</b> Por que, na tabuada com laços aninhados, o contador interno é reiniciado dentro do laço externo?</p>
+    <button>Ver resposta</button><div class="answer">Porque a cada nova tabuada o interno precisa recomeçar do 1. Se ficasse fora, só funcionaria na primeira tabuada.</div></div>
+
+  <div class="box dica" style="margin-top:28px"><div class="ic">📚</div><div><h5>Para saber mais</h5><p>Documentação oficial: <i>O tutorial de Python</i>, seção sobre a instrução <code>while</code> e <code>break</code>, em docs.python.org/pt-br/3/tutorial/. Dica: use o rastreamento do capítulo 3 para entender cada laço no papel.</p></div></div>
+</section>
 <section class="chapter soon-ch" id="cap6" style="--cc:var(--c6)"><div class="chap-head"><div class="chap-num" style="background:var(--c6)">6</div><div><small>Capítulo 6</small><h2>Listas</h2></div></div><div class="soon-card">⏳ Este capítulo será publicado em breve.</div></section>
 <section class="chapter soon-ch" id="cap7" style="--cc:var(--c7)"><div class="chap-head"><div class="chap-num" style="background:var(--c7)">7</div><div><small>Capítulo 7</small><h2>Strings</h2></div></div><div class="soon-card">⏳ Este capítulo será publicado em breve.</div></section>
 <section class="chapter soon-ch" id="cap8" style="--cc:var(--c8)"><div class="chap-head"><div class="chap-num" style="background:var(--c8)">8</div><div><small>Capítulo 8</small><h2>Funções</h2></div></div><div class="soon-card">⏳ Este capítulo será publicado em breve.</div></section>

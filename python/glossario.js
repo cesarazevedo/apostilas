@@ -31,5 +31,12 @@ window.GLOSSARIO={
 "else":"Parte do if que cuida do caso contrário, quando a condição é falsa.",
 "elif":"Abreviação de “else if”: testa outra condição só se as anteriores foram falsas.",
 "bloco":"Conjunto de linhas com o mesmo recuo que pertencem a um if, else, elif ou laço.",
-"aninhamento":"Colocar uma estrutura dentro de outra, como um if dentro de um else."
+"aninhamento":"Colocar uma estrutura dentro de outra, como um if dentro de um else.",
+"while":"Estrutura de repetição: repete um bloco enquanto a condição for verdadeira.",
+"laço":"Estrutura que repete um bloco de código, como o while.",
+"loop infinito":"Repetição que nunca termina, geralmente porque a condição nunca fica falsa.",
+"contador":"Variável que conta quantas vezes algo aconteceu, aumentando de 1 em 1.",
+"acumulador":"Variável que vai somando valores a cada repetição, como soma = soma + valor.",
+"break":"Comando que interrompe a repetição imediatamente.",
+"iteração":"Cada volta (execução do bloco) de uma repetição."
 };

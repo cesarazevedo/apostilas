@@ -186,4 +186,57 @@
     s.oninput=r;r();
   })();
 
+  // --- Cap. 5: while passo a passo ---
+  (function(){
+    var c=$('wlC');if(!c)return;var fe=$('wlF');
+    var L=['x = 1','while x &lt;= fim:','    print(x)','    x = x + 1'];
+    var x,ph,tela,msg;
+    function reset(){x=null;ph=0;tela=[];msg='';draw()}
+    function draw(){
+      var act=ph===0?-1:({1:0,2:1,3:2,4:3,5:1,6:-2})[ph];
+      c.innerHTML=L.map(function(t,i){return '<span style="display:block;padding:0 6px;border-radius:4px;'+(i===act?'background:rgba(239,108,0,.25)':'')+'">'+t+'</span>'}).join('');
+      $('wlFv').textContent=fe.value;
+      $('wlV').innerHTML='<em>Variáveis:</em><span>fim = '+fe.value+'</span>'+(x===null?'':'<span>x = '+x+'</span>')+'<span>Tela: '+(tela.join(' ')||'(vazia)')+'</span>';
+      $('wlT').innerHTML=msg;
+    }
+    function step(){
+      var fim=+fe.value;
+      if(ph===0){x=1;ph=1;msg='x começa valendo 1.'}
+      else if(ph===1||ph===5){var ok=x<=fim;msg='Teste: '+x+' &lt;= '+fim+' é <b>'+(ok?'True':'False')+'</b>.';if(ok)ph=2;else{ph=6;msg+=' O laço termina.'}}
+      else if(ph===2){tela.push(x);msg='print('+x+')';ph=3}
+      else if(ph===3){x=x+1;msg='x agora vale '+x+'.';ph=5}
+      draw();
+    }
+    $('wlN').onclick=step;$('wlR').onclick=reset;fe.oninput=reset;reset();
+  })();
+
+  // --- Cap. 5: laços aninhados ---
+  (function(){
+    var o=$('nsO');if(!o)return;var a,b,n;
+    function reset(){a=1;b=0;n=0;o.innerHTML='<span class="c">Aperte “Próximo”.</span>';info()}
+    function info(){$('nsV').innerHTML='<span>tabuada = '+a+'</span><span>número = '+(b||'-')+'</span><span>vezes que o bloco interno rodou: '+n+'</span>'}
+    function step(){
+      if(a>3){return}
+      if(b===0)o.innerHTML='';
+      b++;n++;
+      var d=document.createElement('div');d.textContent=a+' x '+b+' = '+(a*b);o.appendChild(d);
+      if(b===4){var e=document.createElement('div');e.className='c';e.textContent='— fim da tabuada do '+a+'; o número volta a 1 —';o.appendChild(e);a++;b=0}
+      o.scrollTop=o.scrollHeight;
+      if(a>3){var f=document.createElement('div');f.className='o';f.textContent='Fim: 3 tabuadas × 4 números = 12 linhas.';o.appendChild(f)}
+      info();
+    }
+    $('nsN').onclick=step;$('nsR').onclick=reset;reset();
+  })();
+
+  // --- Cap. 5: cédulas ---
+  (function(){
+    var v=$('cdV');if(!v)return;
+    function r(){
+      var n=parseInt(v.value,10);if(isNaN(n)||n<0){$('cdT').textContent='Digite um número inteiro, zero ou maior.';return}
+      var rest=n,out=[];[50,20,10,5,1].forEach(function(c){var q=Math.floor(rest/c);rest-=q*c;if(q)out.push('<b>'+q+'</b> cédula(s) de R$ '+c)});
+      $('cdT').innerHTML=out.length?out.join('<br>'):'Nenhuma cédula (valor zero).';
+    }
+    v.oninput=r;r();
+  })();
+
 })();
