@@ -21,3 +21,7 @@ so/                   Sistemas Operacionais de Redes (index.html, so.js, glossar
 2. Ajuste `data-curso` no `<body>` (identifica o progresso salvo) e as cores `--c1…--c7`.
 3. Escreva o `glossario.js` da disciplina e os simuladores próprios em um `.js` à parte.
 4. Adicione o card em `index.html` da raiz.
+
+## Referências
+
+As referências de cada apostila seguem a **ABNT NBR 6023** (ordem alfabética, título em negrito, "Disponível em" e "Acesso em" para páginas da web). Ao incluir um site, confira o link e atualize a data de acesso.
