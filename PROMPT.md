@@ -49,3 +49,25 @@ Processo:
 - Avise o que não pôde testar (laboratórios em VMs reais, links das
   referências) e peça para conferir antes da aula.
 ```
+
+## Variante: público básico ou EJA (modelo: Educação em Tecnologias Digitais)
+
+Acrescente ao prompt acima quando a turma for iniciante, adulta ou sem
+costume com computador:
+
+```
+Público: [EJA / iniciantes], [X] h, nível básico. Muitos alunos usam só
+o celular. Use letra maior (cerca de 19-20 px), muito espaço entre as
+linhas e frases curtas.
+- Exemplos do cotidiano adulto: mercado, boleto, currículo, WhatsApp,
+  gov.br, orçamento da casa.
+- Explicações passo a passo, com desenhos (SVG) e peças clicáveis.
+- Um treinador interativo quando o conteúdo for motor (ex.: teclado e
+  mouse), com lições curtas e melhor resultado salvo no navegador.
+- Ferramentas interativas simples em cada capítulo (simulador, jogo de
+  reconhecimento, conferência automática) e práticas no computador do
+  laboratório, com dados inventados quando houver dados pessoais.
+- Segurança sem culpar a vítima: golpes, senhas, LGPD e notícias falsas.
+- Avise que os nomes de botões e atalhos do Office variam por versão e
+  idioma (no Word em português, por exemplo, salvar é Ctrl+B).
+```
