@@ -95,7 +95,7 @@ ol.steps>li::before{content:counter(s);position:absolute;left:0;top:2px;width:32
 .open button{border:1px solid var(--verde);color:var(--verde);background:#fff;border-radius:8px;padding:5px 12px;cursor:pointer;font-size:14px}
 .answer{display:none;margin-top:10px;padding:10px 14px;background:#f1f8e9;border-radius:10px}
 .answer.show{display:block}
-.ref{font-size:15px;padding-left:2em;text-indent:-2em;margin:8px 0}
+.ref{font-size:15px;margin:10px 0;text-align:left}
 .osi{margin:16px 0}
 .layer{background:#fff;border:1px solid var(--borda);border-left:8px solid var(--lc);border-radius:12px;margin:8px 0;overflow:hidden}
 .lh{display:flex;gap:12px;align-items:center;width:100%;border:0;background:none;padding:12px 14px;font-size:16px;cursor:pointer;text-align:left;font-family:inherit}
