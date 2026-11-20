@@ -91,5 +91,11 @@ window.GLOSSARIO={
 "cursor":"Objeto que executa comandos SQL e traz os resultados.",
 "commit":"Comando que grava de forma definitiva as mudanças feitas no banco.",
 "crud":"Sigla para Create, Read, Update e Delete: criar, ler, atualizar e apagar registros.",
-"injeção de sql":"Falha em que o texto digitado pelo usuário altera o comando SQL; evita-se usando ? nos valores."
+"injeção de sql":"Falha em que o texto digitado pelo usuário altera o comando SQL; evita-se usando ? nos valores.",
+"projeto":"Programa completo, construído em etapas a partir de requisitos.",
+"requisito":"Frase que descreve o que o programa precisa fazer.",
+"depuração":"Processo de achar e corrigir erros (bugs) em um programa.",
+"caso de teste":"Situação preparada para verificar se o programa funciona como esperado.",
+"modularização":"Dividir um programa em partes pequenas (funções, classes, módulos), cada uma com uma tarefa.",
+"validação":"Verificar se o que o usuário digitou é aceitável antes de usar."
 };

@@ -513,4 +513,23 @@
     v.oninput=r;[].forEach.call(document.querySelectorAll('#ij [data-v]'),function(b){b.onclick=function(){v.value=b.dataset.v;r()}});r();
   })();
 
+  // --- Cap. 12: checklist ---
+  (function(){
+    var L=$('ckL');if(!L)return;
+    var I=['Escrevi os requisitos em frases simples','Dividi o programa em classes e funções','Escrevi a lista de casos de teste','Programei e testei a primeira etapa','Validei as entradas do usuário','Guardei os dados em arquivo ou banco','Testei os casos normais e os de borda','Usei nomes claros e comentei o que não era óbvio','Mostrei o programa para outra pessoa testar'],K='pyChecklist12',S=[];
+    try{S=JSON.parse(localStorage.getItem(K)||'[]')}catch(e){S=[]}
+    function save(){try{localStorage.setItem(K,JSON.stringify(S))}catch(e){}}
+    function upd(){var n=S.length;$('ckF').style.width=Math.round(n/I.length*100)+'%';$('ckT').innerHTML=n===I.length?'<span class="ok-y">Projeto completo! Parabéns!</span>':n+' de '+I.length+' passos concluídos.'}
+    I.forEach(function(t,i){var l=document.createElement('label');l.style.display='block';l.style.margin='6px 0';var c=document.createElement('input');c.type='checkbox';c.checked=S.indexOf(i)>=0;c.onchange=function(){var k=S.indexOf(i);if(c.checked&&k<0)S.push(i);if(!c.checked&&k>=0)S.splice(k,1);save();upd()};l.appendChild(c);l.appendChild(document.createTextNode(' '+t));L.appendChild(l)});
+    upd();
+  })();
+
+  // --- Cap. 12: ideias de projeto ---
+  (function(){
+    var q=$('idQ');if(!q)return;var cur;
+    var D=[['Agenda de contatos','nome, telefone e e-mail; busca por nome; arquivo CSV.'],['Controle de gastos','registrar despesas por categoria; total do mês; gráfico em texto.'],['Jogo de adivinhação','o computador sorteia um número; dicas de maior ou menor; placar.'],['Cadastro de livros','título, autor, ano; empréstimo e devolução; SQLite.'],['Lista de tarefas','adicionar, concluir e remover tarefas; salvar em arquivo.'],['Quiz de perguntas','perguntas em um arquivo; pontuação; ranking dos melhores.'],['Estoque de uma lojinha','produtos, quantidade e preço; alerta de estoque baixo.'],['Conversor de unidades','menu de conversões (temperatura, distância, moeda).'],['Diário de estudos','registrar minutos estudados por dia; média semanal.'],['Sorteio de times','lê nomes de um arquivo e divide em equipes aleatórias.']];
+    function next(){var i;do{i=Math.floor(Math.random()*D.length)}while(D[i]===cur);cur=D[i];q.textContent=cur[0];$('idT').innerHTML='<b>Ideia de requisitos:</b> '+cur[1]}
+    $('idN').onclick=next;next();
+  })();
+
 })();
