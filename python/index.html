@@ -135,7 +135,17 @@ html[data-theme=dark]{--verde-claro:#10263a}
       <a href="#c11-tools">Ferramentas</a>
       <a href="#c11-quiz">Quiz e exercícios</a>
     </div>
-    <a href="#cap12" class="soon"><span class="n" style="background:var(--c12)">12</span>Projeto final</a>
+    <a href="#cap12"><span class="n" style="background:var(--c12)">12</span>Projeto final</a>
+    <div class="sub">
+      <a href="#c12-1">12.1 Planejando o projeto</a>
+      <a href="#c12-2">12.2 Etapa 1: a classe e o cadastro</a>
+      <a href="#c12-3">12.3 Etapa 2: guardando em arquivo</a>
+      <a href="#c12-4">12.4 O programa completo</a>
+      <a href="#c12-5">12.5 Testando e melhorando</a>
+      <a href="#c12-lab">Desafios</a>
+      <a href="#c12-tools">Ferramentas</a>
+      <a href="#c12-quiz">Quiz e exercícios</a>
+    </div>
     <a href="#refs"><span class="n" style="background:#455a64">📚</span>Referências</a>
   </nav>
   <div class="tools">
@@ -170,9 +180,9 @@ html[data-theme=dark]{--verde-claro:#10263a}
     <div class="card" style="--cc:var(--c7)" data-ok="1"><b>7 · Strings</b><span>Pesquisa, métodos e formatação, com um jogo da forca.</span><div class="st">✅ Disponível</div></div>
     <div class="card" style="--cc:var(--c8)" data-ok="1"><b>8 · Funções</b><span>def, return, escopo, recursão, módulos e random.</span><div class="st">✅ Disponível</div></div>
     <div class="card" style="--cc:var(--c9)" data-ok="1"><b>9 · Arquivos</b><span>Ler e gravar arquivos de texto e CSV.</span><div class="st">✅ Disponível</div></div>
-    <div class="card" style="--cc:var(--c10)" data-ok="1"><b>10 · Classes e objetos</b><span>Em breve: programação orientada a objetos.</span><div class="st">✅ Disponível</div></div>
-    <div class="card" style="--cc:var(--c11)" data-ok="1"><b>11 · Banco de dados</b><span>Em breve: SQLite com Python.</span><div class="st">✅ Disponível</div></div>
-    <div class="card" style="--cc:var(--c12)"><b>12 · Projeto final</b><span>Em breve: juntar tudo em um projeto.</span><div class="st">⏳ Em breve</div></div>
+    <div class="card" style="--cc:var(--c10)" data-ok="1"><b>10 · Classes e objetos</b><span>Classes, objetos, métodos e herança.</span><div class="st">✅ Disponível</div></div>
+    <div class="card" style="--cc:var(--c11)" data-ok="1"><b>11 · Banco de dados</b><span>Banco de dados SQLite, SQL e CRUD.</span><div class="st">✅ Disponível</div></div>
+    <div class="card" style="--cc:var(--c12)" data-ok="1"><b>12 · Projeto final</b><span>Juntar tudo em um programa completo.</span><div class="st">✅ Disponível</div></div>
   </div>
 </section>
 
@@ -4557,7 +4567,487 @@ conexao.<span class="function">close</span>()
 
   <div class="box dica" style="margin-top:28px"><div class="ic">📚</div><div><h5>Para saber mais</h5><p>Documentação oficial: módulo <code>sqlite3</code>, em docs.python.org/pt-br/3/library/sqlite3.html, e a documentação do SQLite em sqlite.org. Para ver o conteúdo do arquivo <code>.db</code> de forma visual, procure o programa gratuito “DB Browser for SQLite”.</p></div></div>
 </section>
-<section class="chapter soon-ch" id="cap12" style="--cc:var(--c12)"><div class="chap-head"><div class="chap-num" style="background:var(--c12)">12</div><div><small>Capítulo 12</small><h2>Projeto final</h2></div></div><div class="soon-card">⏳ Este capítulo será publicado em breve.</div></section>
+<section class="chapter" id="cap12" style="--cc:var(--c12)">
+  <div class="chap-head"><div class="chap-num" style="background:var(--c12)">12</div><div><small>Capítulo 12</small><h2>Projeto final</h2></div></div>
+  <div class="obj"><h4>🎯 Ao final deste capítulo, você será capaz de:</h4><ul><li>planejar um programa: escrever requisitos e dividir em classes e funções</li><li>construir o programa em etapas, testando cada peça</li><li>validar a entrada do usuário e tratar erros previsíveis</li><li>guardar e recuperar dados em arquivo CSV</li><li>testar com casos normais e de borda e corrigir erros com método</li></ul></div>
+<h3 id="c12-1">12.1 Planejando o projeto</h3>
+<p class="sec-sub">Antes de digitar, pense</p>
+<h4 class="pyh">🏗️ Hora de juntar tudo</h4>
+<p>Você chegou ao capítulo final. Nele não há matéria nova: vamos <b>construir um programa completo</b> usando quase tudo que você aprendeu. Um programa de verdade não nasce de uma vez; ele é montado em etapas, testando cada pedaço.</p>
+<div class="box analogia"><div class="ic">💬</div><div><h5>Analogia</h5><p>Construir um programa é como construir uma casa. Primeiro vem a <b>planta</b> (o que a casa terá), depois as <b>paredes</b> (as funções e classes), e só no fim os <b>acabamentos</b> (mensagens, validações). Quem começa pelos acabamentos acaba refazendo tudo.</p></div></div>
+<h4 class="pyh">📋 O que o programa deve fazer?</h4>
+<p>Nosso projeto será um <b>Controle de Notas</b> para o professor de uma turma. Escrevemos os <b>requisitos</b>, isto é, o que o programa precisa fazer, em frases simples:</p>
+<ul class="feature-list"><li>Cadastrar um aluno com nome e três notas.</li><li>Listar os alunos, com a média e a situação (aprovado com média 7 ou mais).</li><li>Buscar um aluno pelo nome.</li><li>Mostrar a média da turma.</li><li>Guardar os dados em um arquivo e recuperá-los na próxima vez.</li><li>Não quebrar quando o usuário digitar algo errado.</li></ul>
+<h4 class="pyh">🧩 Dividindo o problema</h4>
+<p>Um problema grande fica fácil quando dividido em pedaços pequenos. Cada pedaço vira uma <b>função</b> ou uma <b>classe</b>, com uma responsabilidade só:</p>
+<table class="op-table"><tr><th>Peça</th><th>Responsabilidade</th><th>Capítulo</th></tr><tr><td><code>Aluno</code> (classe)</td><td>guardar nome e notas; calcular média e situação</td><td>10</td></tr><tr><td><code>ler_nota</code></td><td>pedir uma nota e validar</td><td>3, 5, 8, 9</td></tr><tr><td><code>cadastrar</code>, <code>listar</code>, <code>buscar</code></td><td>as operações do menu</td><td>4, 6, 7, 8</td></tr><tr><td><code>salvar</code>, <code>carregar</code></td><td>ler e gravar o arquivo CSV</td><td>9</td></tr><tr><td><code>menu</code> e <code>main</code></td><td>repetir o menu e chamar a função certa</td><td>4, 5</td></tr></table>
+<div class="box dica"><div class="ic">💡</div><div><h5>Dica</h5><p>Se você anda com vontade de usar o banco de dados do capítulo 11, tudo bem: só as funções <code>salvar</code> e <code>carregar</code> mudariam. Esse é o ganho de separar o programa em peças.</p></div></div>
+<h3 id="c12-2">12.2 Etapa 1: a classe e o cadastro</h3>
+<p class="sec-sub">Começando pelo mais importante</p>
+<h4 class="pyh">🧱 A classe Aluno</h4>
+<p>Começamos pelo coração do programa: o aluno. Ele sabe calcular a própria média e dizer se está aprovado. Testamos logo, antes de seguir:</p>
+<pre class="py"><span class="pylab">Listagem 12.1 — A classe Aluno, com um teste</span><button class="cp">Copiar</button><code><span class="keyword">class</span> Aluno:
+    <span class="keyword">def</span> __init__(self, nome, notas):
+        self.nome = nome
+        self.notas = notas
+
+    <span class="keyword">def</span> media(self):
+        <span class="keyword">if</span> <span class="function">len</span>(self.notas) == <span class="number">0</span>:
+            <span class="keyword">return</span> <span class="number">0</span>
+        <span class="keyword">return</span> <span class="function">sum</span>(self.notas) / <span class="function">len</span>(self.notas)
+
+    <span class="keyword">def</span> situacao(self):
+        <span class="keyword">return</span> <span class="string">"aprovado"</span> <span class="keyword">if</span> self.<span class="function">media</span>() &gt;= <span class="number">7</span> <span class="keyword">else</span> <span class="string">"reprovado"</span>
+
+    <span class="keyword">def</span> __str__(self):
+        <span class="keyword">return</span> <span class="string">"%-8s média %5.2f  %s"</span> % (self.nome, self.<span class="function">media</span>(), self.<span class="function">situacao</span>())
+
+
+ana = Aluno(<span class="string">"Ana"</span>, [<span class="number">8.0</span>, <span class="number">9.0</span>, <span class="number">7.5</span>])
+bruno = Aluno(<span class="string">"Bruno"</span>, [<span class="number">5.0</span>, <span class="number">6.5</span>, <span class="number">6.0</span>])
+<span class="function">print</span>(ana)
+<span class="function">print</span>(bruno)
+<span class="output">Ana      média  8.17  aprovado
+Bruno    média  5.83  reprovado</span></code></pre>
+<div class="box atencao"><div class="ic">⚠️</div><div><h5>Teste cedo</h5><p>Rodar um pedaço pequeno logo depois de escrevê-lo é a melhor defesa contra erros. Se algo quebrar, você sabe que o problema está nas poucas linhas novas.</p></div></div>
+<h4 class="pyh">🛡️ Lendo notas com validação</h4>
+<p>Quem digita erra: letra no lugar de número, nota 11, vírgula no lugar do ponto. A função <code>ler_nota</code> insiste (com <code>while</code>) até receber um valor válido. O <code>try / except ValueError</code> pega o erro de conversão (capítulos 3 e 9), e o <code>replace</code> aceita a vírgula (capítulo 7):</p>
+<pre class="py"><span class="pylab">Listagem 12.2 — Entrada validada</span><button class="cp">Copiar</button><code><span class="keyword">def</span> ler_nota(mensagem):
+    <span class="keyword">while</span> <span class="keyword">True</span>:
+        <span class="keyword">try</span>:
+            nota = <span class="function">float</span>(<span class="function">input</span>(mensagem).<span class="function">replace</span>(<span class="string">","</span>, <span class="string">"."</span>))
+        <span class="keyword">except</span> ValueError:
+            <span class="function">print</span>(<span class="string">"Digite um número, como 7.5"</span>)
+            <span class="keyword">continue</span>
+        <span class="keyword">if</span> <span class="number">0</span> &lt;= nota &lt;= <span class="number">10</span>:
+            <span class="keyword">return</span> nota
+        <span class="function">print</span>(<span class="string">"A nota deve estar entre 0 e 10."</span>)
+
+
+nota = ler_nota(<span class="string">"Nota: "</span>)
+<span class="function">print</span>(<span class="string">"Nota aceita:"</span>, nota)
+<span class="output">Nota: abc
+Digite um número, como 7.5
+Nota: 11
+A nota deve estar entre 0 e 10.
+Nota: 7,5
+Nota aceita: 7.5</span></code></pre>
+<p>Repare no teste: o programa recusou <code>abc</code> e <code>11</code>, e aceitou <code>7,5</code>. O <code>continue</code> (capítulo 7) volta ao início do laço sem passar pela verificação da faixa.</p>
+<h4 class="pyh">📝 Cadastro, listagem e menu</h4>
+<p>Agora montamos a primeira versão <b>completa</b>, sem arquivo ainda. A função <code>menu</code> mostra as opções e devolve o que o usuário digitou; a <code>main</code> repete o menu e chama a função certa. O teste abaixo cadastra dois alunos (um com nota inválida no meio), lista e sai:</p>
+<pre class="py"><span class="pylab">Listagem 12.3 — Versão 1 do programa</span><button class="cp">Copiar</button><code><span class="keyword">import</span> csv
+
+
+<span class="keyword">class</span> Aluno:
+    <span class="keyword">def</span> __init__(self, nome, notas):
+        self.nome = nome
+        self.notas = notas
+
+    <span class="keyword">def</span> media(self):
+        <span class="keyword">if</span> <span class="function">len</span>(self.notas) == <span class="number">0</span>:
+            <span class="keyword">return</span> <span class="number">0</span>
+        <span class="keyword">return</span> <span class="function">sum</span>(self.notas) / <span class="function">len</span>(self.notas)
+
+    <span class="keyword">def</span> situacao(self):
+        <span class="keyword">return</span> <span class="string">"aprovado"</span> <span class="keyword">if</span> self.<span class="function">media</span>() &gt;= <span class="number">7</span> <span class="keyword">else</span> <span class="string">"reprovado"</span>
+
+    <span class="keyword">def</span> __str__(self):
+        <span class="keyword">return</span> <span class="string">"%-8s média %5.2f  %s"</span> % (self.nome, self.<span class="function">media</span>(), self.<span class="function">situacao</span>())
+
+
+<span class="keyword">def</span> ler_nota(mensagem):
+    <span class="keyword">while</span> <span class="keyword">True</span>:
+        <span class="keyword">try</span>:
+            nota = <span class="function">float</span>(<span class="function">input</span>(mensagem).<span class="function">replace</span>(<span class="string">","</span>, <span class="string">"."</span>))
+        <span class="keyword">except</span> ValueError:
+            <span class="function">print</span>(<span class="string">"Digite um número, como 7.5"</span>)
+            <span class="keyword">continue</span>
+        <span class="keyword">if</span> <span class="number">0</span> &lt;= nota &lt;= <span class="number">10</span>:
+            <span class="keyword">return</span> nota
+        <span class="function">print</span>(<span class="string">"A nota deve estar entre 0 e 10."</span>)
+
+
+<span class="keyword">def</span> cadastrar(turma):
+    nome = <span class="function">input</span>(<span class="string">"Nome do aluno: "</span>).<span class="function">strip</span>()
+    <span class="keyword">if</span> nome == <span class="string">""</span>:
+        <span class="function">print</span>(<span class="string">"Nome vazio!"</span>)
+        <span class="keyword">return</span>
+    notas = []
+    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="function">range</span>(<span class="number">1</span>, <span class="number">4</span>):
+        notas.<span class="function">append</span>(ler_nota(<span class="string">"Nota %d: "</span> % i))
+    turma.<span class="function">append</span>(Aluno(nome, notas))
+    <span class="function">print</span>(<span class="string">"Aluno cadastrado!"</span>)
+
+
+<span class="keyword">def</span> listar(turma):
+    <span class="keyword">if</span> <span class="function">len</span>(turma) == <span class="number">0</span>:
+        <span class="function">print</span>(<span class="string">"Nenhum aluno cadastrado."</span>)
+    <span class="keyword">for</span> aluno <span class="keyword">in</span> turma:
+        <span class="function">print</span>(aluno)
+
+
+<span class="keyword">def</span> menu():
+    <span class="function">print</span>()
+    <span class="function">print</span>(<span class="string">"=== Controle de Notas ==="</span>)
+    <span class="function">print</span>(<span class="string">"1 - Cadastrar aluno"</span>)
+    <span class="function">print</span>(<span class="string">"2 - Listar alunos"</span>)
+    <span class="function">print</span>(<span class="string">"0 - Sair"</span>)
+    <span class="keyword">return</span> <span class="function">input</span>(<span class="string">"Opção: "</span>)
+
+
+<span class="keyword">def</span> main():
+    turma = []
+    <span class="keyword">while</span> <span class="keyword">True</span>:
+        opcao = menu()
+        <span class="keyword">if</span> opcao == <span class="string">"1"</span>:
+            cadastrar(turma)
+        <span class="keyword">elif</span> opcao == <span class="string">"2"</span>:
+            listar(turma)
+        <span class="keyword">elif</span> opcao == <span class="string">"0"</span>:
+            <span class="function">print</span>(<span class="string">"Até logo!"</span>)
+            <span class="keyword">break</span>
+        <span class="keyword">else</span>:
+            <span class="function">print</span>(<span class="string">"Opção inválida!"</span>)
+
+
+main()
+<span class="output">
+=== Controle de Notas ===
+1 - Cadastrar aluno
+2 - Listar alunos
+0 - Sair
+Opção: 1
+Nome do aluno: Ana
+Nota 1: 8
+Nota 2: 9
+Nota 3: 7,5
+Aluno cadastrado!
+
+=== Controle de Notas ===
+1 - Cadastrar aluno
+2 - Listar alunos
+0 - Sair
+Opção: 1
+Nome do aluno: Bruno
+Nota 1: 5
+Nota 2: abc
+Digite um número, como 7.5
+Nota 2: 6.5
+Nota 3: 6
+Aluno cadastrado!
+
+=== Controle de Notas ===
+1 - Cadastrar aluno
+2 - Listar alunos
+0 - Sair
+Opção: 2
+Ana      média  8.17  aprovado
+Bruno    média  5.83  reprovado
+
+=== Controle de Notas ===
+1 - Cadastrar aluno
+2 - Listar alunos
+0 - Sair
+Opção: 9
+Opção inválida!
+
+=== Controle de Notas ===
+1 - Cadastrar aluno
+2 - Listar alunos
+0 - Sair
+Opção: 0
+Até logo!</span></code></pre>
+<h3 id="c12-3">12.3 Etapa 2: guardando em arquivo</h3>
+<p class="sec-sub">Os dados não podem sumir</p>
+<h4 class="pyh">💾 Salvar e carregar</h4>
+<p>Na versão 1, tudo some ao fechar o programa, como o quadro-branco do capítulo 9. Vamos usar CSV: uma linha por aluno, com o nome e as três notas. A <code>salvar</code> grava a turma; a <code>carregar</code> lê o arquivo ao iniciar e, se ele ainda não existir, começa uma turma vazia:</p>
+<pre class="py nr"><span class="pylab">Listagem 12.4 — Salvar e carregar em CSV</span><button class="cp">Copiar</button><code><span class="keyword">import</span> csv
+
+ARQUIVO = <span class="string">"turma.csv"</span>
+
+
+<span class="keyword">def</span> salvar(turma):
+    <span class="keyword">with</span> <span class="function">open</span>(ARQUIVO, <span class="string">"w"</span>, encoding=<span class="string">"utf-8"</span>, newline=<span class="string">""</span>) <span class="keyword">as</span> arquivo:
+        escritor = csv.<span class="function">writer</span>(arquivo, delimiter=<span class="string">";"</span>)
+        <span class="keyword">for</span> aluno <span class="keyword">in</span> turma:
+            escritor.<span class="function">writerow</span>([aluno.nome] + aluno.notas)
+
+
+<span class="keyword">def</span> carregar():
+    turma = []
+    <span class="keyword">try</span>:
+        <span class="keyword">with</span> <span class="function">open</span>(ARQUIVO, encoding=<span class="string">"utf-8"</span>, newline=<span class="string">""</span>) <span class="keyword">as</span> arquivo:
+            <span class="keyword">for</span> linha <span class="keyword">in</span> csv.<span class="function">reader</span>(arquivo, delimiter=<span class="string">";"</span>):
+                notas = []
+                <span class="keyword">for</span> n <span class="keyword">in</span> linha[<span class="number">1</span>:]:
+                    notas.<span class="function">append</span>(<span class="function">float</span>(n))
+                turma.<span class="function">append</span>(Aluno(linha[<span class="number">0</span>], notas))
+    <span class="keyword">except</span> FileNotFoundError:
+        <span class="function">print</span>(<span class="string">"Começando uma turma nova."</span>)
+    <span class="keyword">return</span> turma</code></pre>
+<p>Observe que <code>[aluno.nome] + aluno.notas</code> junta duas listas (capítulo 6) para formar a linha <code>["Ana", 8.0, 9.0, 7.5]</code>. Na leitura, <code>linha[1:]</code> pega tudo depois do nome (fatiamento, capítulos 3 e 6) e cada nota volta a ser <code>float</code>, porque o CSV guarda só texto.</p>
+<div class="box atencao"><div class="ic">⚠️</div><div><h5>Salvar na hora certa</h5><p>No nosso programa, o salvamento acontece na opção <b>0 – Salvar e sair</b>. Se o programa for fechado de outro jeito (a janela, uma falha de energia), os dados novos se perdem. Uma melhoria possível é salvar após cada cadastro (veja os desafios).</p></div></div>
+<h3 id="c12-4">12.4 O programa completo</h3>
+<p class="sec-sub">Juntando as peças</p>
+<h4 class="pyh">🚀 Controle de Notas, versão final</h4>
+<p>Com a busca e a média da turma acrescentadas, o programa completo fica assim. Você pode copiar o código, salvar como <code>notas.py</code> e rodar no IDLE (F5). Na primeira vez, o arquivo <code>turma.csv</code> ainda não existe:</p>
+<pre class="py nr"><span class="pylab">Listagem 12.5 — Controle de Notas (completo)</span><button class="cp">Copiar</button><code><span class="keyword">import</span> csv
+
+
+<span class="keyword">class</span> Aluno:
+    <span class="keyword">def</span> __init__(self, nome, notas):
+        self.nome = nome
+        self.notas = notas
+
+    <span class="keyword">def</span> media(self):
+        <span class="keyword">if</span> <span class="function">len</span>(self.notas) == <span class="number">0</span>:
+            <span class="keyword">return</span> <span class="number">0</span>
+        <span class="keyword">return</span> <span class="function">sum</span>(self.notas) / <span class="function">len</span>(self.notas)
+
+    <span class="keyword">def</span> situacao(self):
+        <span class="keyword">return</span> <span class="string">"aprovado"</span> <span class="keyword">if</span> self.<span class="function">media</span>() &gt;= <span class="number">7</span> <span class="keyword">else</span> <span class="string">"reprovado"</span>
+
+    <span class="keyword">def</span> __str__(self):
+        <span class="keyword">return</span> <span class="string">"%-8s média %5.2f  %s"</span> % (self.nome, self.<span class="function">media</span>(), self.<span class="function">situacao</span>())
+
+
+<span class="keyword">def</span> ler_nota(mensagem):
+    <span class="keyword">while</span> <span class="keyword">True</span>:
+        <span class="keyword">try</span>:
+            nota = <span class="function">float</span>(<span class="function">input</span>(mensagem).<span class="function">replace</span>(<span class="string">","</span>, <span class="string">"."</span>))
+        <span class="keyword">except</span> ValueError:
+            <span class="function">print</span>(<span class="string">"Digite um número, como 7.5"</span>)
+            <span class="keyword">continue</span>
+        <span class="keyword">if</span> <span class="number">0</span> &lt;= nota &lt;= <span class="number">10</span>:
+            <span class="keyword">return</span> nota
+        <span class="function">print</span>(<span class="string">"A nota deve estar entre 0 e 10."</span>)
+
+
+<span class="keyword">def</span> cadastrar(turma):
+    nome = <span class="function">input</span>(<span class="string">"Nome do aluno: "</span>).<span class="function">strip</span>()
+    <span class="keyword">if</span> nome == <span class="string">""</span>:
+        <span class="function">print</span>(<span class="string">"Nome vazio!"</span>)
+        <span class="keyword">return</span>
+    notas = []
+    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="function">range</span>(<span class="number">1</span>, <span class="number">4</span>):
+        notas.<span class="function">append</span>(ler_nota(<span class="string">"Nota %d: "</span> % i))
+    turma.<span class="function">append</span>(Aluno(nome, notas))
+    <span class="function">print</span>(<span class="string">"Aluno cadastrado!"</span>)
+
+
+<span class="keyword">def</span> listar(turma):
+    <span class="keyword">if</span> <span class="function">len</span>(turma) == <span class="number">0</span>:
+        <span class="function">print</span>(<span class="string">"Nenhum aluno cadastrado."</span>)
+    <span class="keyword">for</span> aluno <span class="keyword">in</span> turma:
+        <span class="function">print</span>(aluno)
+
+
+<span class="keyword">def</span> buscar(turma):
+    termo = <span class="function">input</span>(<span class="string">"Buscar nome: "</span>).<span class="function">strip</span>().<span class="function">lower</span>()
+    achou = <span class="keyword">False</span>
+    <span class="keyword">for</span> aluno <span class="keyword">in</span> turma:
+        <span class="keyword">if</span> termo <span class="keyword">in</span> aluno.nome.<span class="function">lower</span>():
+            <span class="function">print</span>(aluno)
+            achou = <span class="keyword">True</span>
+    <span class="keyword">if</span> <span class="keyword">not</span> achou:
+        <span class="function">print</span>(<span class="string">"Ninguém encontrado."</span>)
+
+
+<span class="keyword">def</span> media_da_turma(turma):
+    <span class="keyword">if</span> <span class="function">len</span>(turma) == <span class="number">0</span>:
+        <span class="function">print</span>(<span class="string">"Nenhum aluno cadastrado."</span>)
+        <span class="keyword">return</span>
+    soma = <span class="number">0</span>
+    <span class="keyword">for</span> aluno <span class="keyword">in</span> turma:
+        soma += aluno.<span class="function">media</span>()
+    <span class="function">print</span>(<span class="string">"Média da turma: %.2f"</span> % (soma / <span class="function">len</span>(turma)))
+
+
+ARQUIVO = <span class="string">"turma.csv"</span>
+
+
+<span class="keyword">def</span> salvar(turma):
+    <span class="keyword">with</span> <span class="function">open</span>(ARQUIVO, <span class="string">"w"</span>, encoding=<span class="string">"utf-8"</span>, newline=<span class="string">""</span>) <span class="keyword">as</span> arquivo:
+        escritor = csv.<span class="function">writer</span>(arquivo, delimiter=<span class="string">";"</span>)
+        <span class="keyword">for</span> aluno <span class="keyword">in</span> turma:
+            escritor.<span class="function">writerow</span>([aluno.nome] + aluno.notas)
+
+
+<span class="keyword">def</span> carregar():
+    turma = []
+    <span class="keyword">try</span>:
+        <span class="keyword">with</span> <span class="function">open</span>(ARQUIVO, encoding=<span class="string">"utf-8"</span>, newline=<span class="string">""</span>) <span class="keyword">as</span> arquivo:
+            <span class="keyword">for</span> linha <span class="keyword">in</span> csv.<span class="function">reader</span>(arquivo, delimiter=<span class="string">";"</span>):
+                notas = []
+                <span class="keyword">for</span> n <span class="keyword">in</span> linha[<span class="number">1</span>:]:
+                    notas.<span class="function">append</span>(<span class="function">float</span>(n))
+                turma.<span class="function">append</span>(Aluno(linha[<span class="number">0</span>], notas))
+    <span class="keyword">except</span> FileNotFoundError:
+        <span class="function">print</span>(<span class="string">"Começando uma turma nova."</span>)
+    <span class="keyword">return</span> turma
+
+
+<span class="keyword">def</span> menu():
+    <span class="function">print</span>()
+    <span class="function">print</span>(<span class="string">"=== Controle de Notas ==="</span>)
+    <span class="function">print</span>(<span class="string">"1 - Cadastrar aluno"</span>)
+    <span class="function">print</span>(<span class="string">"2 - Listar alunos"</span>)
+    <span class="function">print</span>(<span class="string">"3 - Buscar aluno"</span>)
+    <span class="function">print</span>(<span class="string">"4 - Média da turma"</span>)
+    <span class="function">print</span>(<span class="string">"0 - Salvar e sair"</span>)
+    <span class="keyword">return</span> <span class="function">input</span>(<span class="string">"Opção: "</span>)
+
+
+<span class="keyword">def</span> main():
+    turma = carregar()
+    <span class="keyword">while</span> <span class="keyword">True</span>:
+        opcao = menu()
+        <span class="keyword">if</span> opcao == <span class="string">"1"</span>:
+            cadastrar(turma)
+        <span class="keyword">elif</span> opcao == <span class="string">"2"</span>:
+            listar(turma)
+        <span class="keyword">elif</span> opcao == <span class="string">"3"</span>:
+            buscar(turma)
+        <span class="keyword">elif</span> opcao == <span class="string">"4"</span>:
+            media_da_turma(turma)
+        <span class="keyword">elif</span> opcao == <span class="string">"0"</span>:
+            salvar(turma)
+            <span class="function">print</span>(<span class="string">"Até logo!"</span>)
+            <span class="keyword">break</span>
+        <span class="keyword">else</span>:
+            <span class="function">print</span>(<span class="string">"Opção inválida!"</span>)
+
+
+main()</code></pre>
+<p>Veja uma execução, com a turma já salva em uma execução anterior (Ana e Bruno no arquivo), procurando um aluno e pedindo a média:</p>
+<pre class="py nr"><span class="pylab">Execução do programa (saída)</span><button class="cp">Copiar</button><code><span class="output">
+=== Controle de Notas ===
+1 - Cadastrar aluno
+2 - Listar alunos
+3 - Buscar aluno
+4 - Média da turma
+0 - Salvar e sair
+Opção: 2
+Ana      média  8.17  aprovado
+Bruno    média  5.83  reprovado
+
+=== Controle de Notas ===
+1 - Cadastrar aluno
+2 - Listar alunos
+3 - Buscar aluno
+4 - Média da turma
+0 - Salvar e sair
+Opção: 3
+Buscar nome: br
+Bruno    média  5.83  reprovado
+
+=== Controle de Notas ===
+1 - Cadastrar aluno
+2 - Listar alunos
+3 - Buscar aluno
+4 - Média da turma
+0 - Salvar e sair
+Opção: 4
+Média da turma: 7.00
+
+=== Controle de Notas ===
+1 - Cadastrar aluno
+2 - Listar alunos
+3 - Buscar aluno
+4 - Média da turma
+0 - Salvar e sair
+Opção: 1
+Nome do aluno: Carla
+Nota 1: 9
+Nota 2: 10
+Nota 3: 8
+Aluno cadastrado!
+
+=== Controle de Notas ===
+1 - Cadastrar aluno
+2 - Listar alunos
+3 - Buscar aluno
+4 - Média da turma
+0 - Salvar e sair
+Opção: 0
+Até logo!</span></code></pre>
+<h4 class="pyh">🔬 Como o programa foi pensado</h4>
+<p>Observe as boas práticas aplicadas:</p>
+<ul class="feature-list"><li><b>Cada função faz uma coisa.</b> Isso facilita testar e corrigir.</li><li><b>Nomes claros.</b> <code>media_da_turma</code> explica o que faz sem precisar de comentário.</li><li><b>Dados e regras juntos.</b> A média e a situação estão na classe <code>Aluno</code>, e não espalhadas.</li><li><b>Validação na entrada.</b> Erros do usuário são tratados no ponto onde aparecem.</li><li><b>Constante no topo.</b> O nome do arquivo está em <code>ARQUIVO</code>, e mudar é fácil.</li></ul>
+<h3 id="c12-5">12.5 Testando e melhorando</h3>
+<p class="sec-sub">Um programa nunca está “terminado”</p>
+<h4 class="pyh">🐞 Como achar e corrigir erros</h4>
+<p>Programas têm erros, mesmo os feitos por profissionais. O que muda é o método para achá-los. Siga esta ordem:</p>
+<ol class="step-list"><li><b>Leia a mensagem de erro</b> de baixo para cima: a última linha diz o tipo do erro, e a anterior mostra a linha do código.</li><li><b>Reproduza o erro</b> com a menor entrada possível.</li><li><b>Rastreie</b> o programa no papel (capítulo 3) ou use <code>print</code> para ver os valores das variáveis.</li><li><b>Corrija uma coisa de cada vez</b> e rode de novo.</li></ol>
+<h4 class="pyh">✅ Casos de teste</h4>
+<p>Antes de dizer que o programa está pronto, teste situações <b>normais</b> e situações <b>de borda</b>. Para o nosso projeto:</p>
+<table class="op-table"><tr><th>Situação</th><th>O que deve acontecer</th></tr><tr><td>Opção <code>9</code> no menu</td><td>“Opção inválida!” e o menu volta</td></tr><tr><td>Nota <code>abc</code> ou <code>11</code></td><td>pede a nota de novo</td></tr><tr><td>Nota <code>7,5</code> (com vírgula)</td><td>aceita como 7.5</td></tr><tr><td>Nome vazio</td><td>“Nome vazio!” e volta ao menu</td></tr><tr><td>Listar sem alunos</td><td>“Nenhum aluno cadastrado.”</td></tr><tr><td>Primeira execução (sem <code>turma.csv</code>)</td><td>“Começando uma turma nova.”</td></tr></table>
+<div class="box dica"><div class="ic">💡</div><div><h5>Para seu projeto</h5><p>Escreva a lista de casos de teste <b>antes</b> de programar. Ela funciona como a prova que seu programa vai fazer.</p></div></div>
+<h4 class="pyh" id="c12-lab">📝 Exercícios do Capítulo 12</h4>
+<div class="lab"><h3>✏ Exercício 12.1</h3><p><b>Remover aluno.</b> Acrescente a opção “5 – Remover aluno”, que peça o nome e apague o aluno da lista.</p></div>
+<div class="lab"><h3>✏ Exercício 12.2</h3><p><b>Ordenar.</b> Acrescente uma opção que liste os alunos do maior para o menor pela média. Dica: o capítulo 6 mostra a ordenação.</p></div>
+<div class="lab"><h3>✏ Exercício 12.3</h3><p><b>Melhor e pior.</b> Mostre, na opção de média da turma, também o aluno com a maior e a menor média.</p></div>
+<div class="lab"><h3>✏ Exercício 12.4</h3><p><b>Salvar sempre.</b> Faça o programa salvar o arquivo logo após cada cadastro, para não perder dados se a janela for fechada.</p></div>
+<div class="lab"><h3>✏ Exercício 12.5</h3><p><b>Banco de dados.</b> Troque as funções <code>salvar</code> e <code>carregar</code> por uma versão com SQLite (capítulo 11). O resto do programa deve continuar igual.</p></div>
+<div class="lab"><h3>✏ Exercício 12.6</h3><p><b>Seu projeto.</b> Escolha uma ideia (use o sorteador de ideias abaixo, se quiser), escreva os requisitos, divida em funções e classes, faça a lista de testes e construa o programa em etapas.</p></div>
+
+  <h3 id="c12-tools">🛠️ Ferramentas do capítulo</h3>
+  <div class="tool" id="ck" style="--cc:var(--c12)">
+    <h4 style="margin-top:0">✅ Checklist do seu projeto</h4>
+    <p>Marque o que já fez. Seu progresso fica guardado neste navegador.</p>
+    <div id="ckL"></div>
+    <div class="tw-bar"><div id="ckF"></div></div>
+    <p id="ckT" aria-live="polite"></p>
+  </div>
+  <div class="tool" id="id" style="--cc:var(--c12)">
+    <h4 style="margin-top:0">💡 Sorteador de ideias de projeto</h4>
+    <div class="mt-q" id="idQ" aria-live="polite"></div>
+    <p id="idT"></p>
+    <div class="tool-ctl"><button type="button" id="idN">Outra ideia</button></div>
+  </div>
+
+  <div class="resumo"><h3>📝 Resumo do capítulo</h3><ul><li>Todo projeto começa pela <b>planta</b>: os requisitos escritos em frases simples.</li><li>Divida o problema em peças pequenas: cada <b>classe</b> ou <b>função</b> com uma responsabilidade só.</li><li>Construa em <b>etapas</b> e teste cada pedaço assim que ele estiver pronto.</li><li>Valide a entrada com <code>while</code> e <code>try / except</code> para o programa não quebrar.</li><li>Arquivos CSV (ou um banco de dados) fazem os dados <b>sobreviver</b> ao fim do programa.</li><li>Para corrigir erros: leia a mensagem, reproduza o problema, rastreie, corrija uma coisa de cada vez.</li><li>Liste casos de teste <b>normais</b> e <b>de borda</b>, de preferência antes de programar.</li></ul></div>
+  <h3 id="c12-quiz">🧠 Quiz do capítulo 12</h3>
+  <p>Clique na resposta que você acha certa.</p>
+  <div class="quiz">
+    <div class="q"><p>1. O que são os requisitos de um programa?</p>
+      <button class="opt">a) As linhas de código que ele terá</button><button class="opt" data-ok="1">b) Frases que descrevem o que o programa precisa fazer</button><button class="opt">c) Os arquivos que ele usa</button><button class="opt">d) Os erros que ele pode ter</button>
+      <div class="fb">Requisitos são a “planta”: descrevem o que o programa deve fazer, antes de programá-lo.</div></div>
+    <div class="q"><p>2. Por que dividir o programa em funções e classes?</p>
+      <button class="opt">a) Para o código ficar mais longo</button><button class="opt" data-ok="1">b) Porque cada peça fica simples de entender, testar e corrigir</button><button class="opt">c) Porque o Python exige</button><button class="opt">d) Para usar menos memória</button>
+      <div class="fb">Peças pequenas e com uma responsabilidade só facilitam testar e reaproveitar.</div></div>
+    <div class="q"><p>3. Na classe <code>Aluno</code>, por que o cálculo da média fica dentro dela?</p>
+      <button class="opt">a) Porque o Python não aceita fora</button><button class="opt" data-ok="1">b) Para os dados e as regras ficarem juntos, em um só lugar</button><button class="opt">c) Para o programa rodar mais rápido</button><button class="opt">d) Porque funções não calculam média</button>
+      <div class="fb">Se a regra da média mudar, basta alterar a classe.</div></div>
+    <div class="q"><p>4. Qual é o papel do <code>while True</code> dentro de <code>ler_nota</code>?</p>
+      <button class="opt" data-ok="1">a) Repetir o pedido até receber uma nota válida</button><button class="opt">b) Contar as notas</button><button class="opt">c) Abrir um arquivo</button><button class="opt">d) Ordenar as notas</button>
+      <div class="fb">O laço só termina (com <code>return</code>) quando a nota é válida.</div></div>
+    <div class="q"><p>5. Por que o <code>carregar()</code> usa <code>try / except FileNotFoundError</code>?</p>
+      <button class="opt" data-ok="1">a) Para o programa funcionar na primeira vez, quando o arquivo ainda não existe</button><button class="opt">b) Para apagar o arquivo</button><button class="opt">c) Para converter notas em texto</button><button class="opt">d) Para ordenar os alunos</button>
+      <div class="fb">Sem o tratamento, a primeira execução quebraria porque ainda não há <code>turma.csv</code>.</div></div>
+    <div class="q"><p>6. Por que as notas lidas do CSV precisam de <code>float()</code>?</p>
+      <button class="opt" data-ok="1">a) Porque o CSV guarda tudo como texto</button><button class="opt">b) Porque o CSV só aceita inteiros</button><button class="opt">c) Porque o <code>csv</code> converte para lista</button><button class="opt">d) Não precisam</button>
+      <div class="fb">O arquivo é texto; ao ler, cada valor chega como string.</div></div>
+    <div class="q"><p>7. Qual é a primeira coisa a fazer ao ver uma mensagem de erro?</p>
+      <button class="opt">a) Apagar o programa</button><button class="opt" data-ok="1">b) Ler a mensagem, da última linha para cima</button><button class="opt">c) Trocar de computador</button><button class="opt">d) Reescrever tudo</button>
+      <div class="fb">A última linha diz o tipo do erro, e as de cima mostram onde ele aconteceu.</div></div>
+    <div class="q"><p>8. O que é um caso de teste “de borda”?</p>
+      <button class="opt">a) Um teste feito na borda da tela</button><button class="opt" data-ok="1">b) Uma situação extrema ou incomum, como lista vazia ou nota 10 e 0</button><button class="opt">c) Um teste feito só no final</button><button class="opt">d) Um erro de sintaxe</button>
+      <div class="fb">Os problemas costumam aparecer nos extremos: vazio, zero, valor máximo, entrada inválida.</div></div>
+  </div>
+  <div class="score"></div>
+  <h3>✍️ Questões abertas</h3>
+  <div class="open"><p><b>1.</b> Escreva três requisitos para um programa de agenda de contatos.</p>
+    <button>Ver resposta</button><div class="answer">Exemplos: cadastrar contato com nome e telefone; buscar contato pelo nome; guardar os contatos em arquivo para a próxima execução.</div></div>
+  <div class="open"><p><b>2.</b> Por que é importante testar cada etapa antes de seguir para a próxima?</p>
+    <button>Ver resposta</button><div class="answer">Se algo falhar, o erro está nas poucas linhas novas, o que torna a correção mais fácil. Testar só no final mistura vários problemas.</div></div>
+  <div class="open"><p><b>3.</b> Cite duas vantagens de separar <code>salvar</code> e <code>carregar</code> do restante do programa.</p>
+    <button>Ver resposta</button><div class="answer">Podem ser testadas à parte; dá para trocar CSV por banco de dados mexendo só nessas funções; o resto do programa fica mais limpo.</div></div>
+  <div class="open"><p><b>4.</b> Que casos de teste você faria para uma função que calcula a média de uma lista?</p>
+    <button>Ver resposta</button><div class="answer">Lista normal; lista com um só elemento; lista vazia (para não dividir por zero); valores iguais; valores zero.</div></div>
+
+  <div class="box dica" style="margin-top:28px"><div class="ic">📚</div><div><h5>Para saber mais</h5><p>Para continuar aprendendo: refaça o projeto trocando o CSV por SQLite, depois crie uma versão com janelas usando a biblioteca <code>tkinter</code> (veja o tutorial oficial em docs.python.org/pt-br/3/library/tkinter.html) ou transforme-o em um site simples. A melhor forma de aprender a programar é construir projetos seus.</p></div></div>
+</section>
 
 <section id="refs">
   <h2>📚 Referências</h2>

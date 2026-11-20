@@ -4,7 +4,7 @@ Apostilas digitais das disciplinas do Prof. César Azevedo (IFRN – Campus Joã
 
 - [Redes de Computadores](redes/) · [plano de aula (professor)](redes/professor.html)
 - [Sistemas Operacionais de Redes](so/) · [plano de aula (professor)](so/professor.html)
-- [Introdução à Programação com Python](python/) (em migração; o card da página inicial já aponta para ela)
+- [Introdução à Programação com Python](python/) (12 capítulos, do ambiente ao projeto final)
 - [Educação em Tecnologias Digitais](etd/) · [plano de aula (professor)](etd/professor.html) (EJA, 30 h; 7 capítulos prontos)
 
 ## Estrutura
