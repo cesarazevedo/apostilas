@@ -4,7 +4,7 @@ Apostilas digitais das disciplinas do Prof. César Azevedo (IFRN – Campus Joã
 
 - [Redes de Computadores](redes/) · [plano de aula (professor)](redes/professor.html)
 - [Sistemas Operacionais de Redes](so/) · [plano de aula (professor)](so/professor.html)
-- [Educação em Tecnologias Digitais](etd/) (EJA, 30 h; 7 capítulos prontos)
+- [Educação em Tecnologias Digitais](etd/) · [plano de aula (professor)](etd/professor.html) (EJA, 30 h; 7 capítulos prontos)
 
 ## Estrutura
 
