@@ -115,7 +115,16 @@ html[data-theme=dark]{--verde-claro:#10263a}
       <a href="#c9-tools">Ferramentas</a>
       <a href="#c9-quiz">Quiz e exercícios</a>
     </div>
-    <a href="#cap10" class="soon"><span class="n" style="background:var(--c10)">10</span>Classes e objetos</a>
+    <a href="#cap10"><span class="n" style="background:var(--c10)">10</span>Classes e objetos</a>
+    <div class="sub">
+      <a href="#c10-1">10.1 Classes e objetos</a>
+      <a href="#c10-2">10.2 Métodos que mudam o objeto</a>
+      <a href="#c10-3">10.3 Vários objetos e listas</a>
+      <a href="#c10-4">10.4 Herança</a>
+      <a href="#c10-lab">Exercícios</a>
+      <a href="#c10-tools">Ferramentas</a>
+      <a href="#c10-quiz">Quiz e exercícios</a>
+    </div>
     <a href="#cap11" class="soon"><span class="n" style="background:var(--c11)">11</span>Banco de dados</a>
     <a href="#cap12" class="soon"><span class="n" style="background:var(--c12)">12</span>Projeto final</a>
     <a href="#refs"><span class="n" style="background:#455a64">📚</span>Referências</a>
@@ -152,7 +161,7 @@ html[data-theme=dark]{--verde-claro:#10263a}
     <div class="card" style="--cc:var(--c7)" data-ok="1"><b>7 · Strings</b><span>Pesquisa, métodos e formatação, com um jogo da forca.</span><div class="st">✅ Disponível</div></div>
     <div class="card" style="--cc:var(--c8)" data-ok="1"><b>8 · Funções</b><span>def, return, escopo, recursão, módulos e random.</span><div class="st">✅ Disponível</div></div>
     <div class="card" style="--cc:var(--c9)" data-ok="1"><b>9 · Arquivos</b><span>Ler e gravar arquivos de texto e CSV.</span><div class="st">✅ Disponível</div></div>
-    <div class="card" style="--cc:var(--c10)"><b>10 · Classes e objetos</b><span>Em breve: programação orientada a objetos.</span><div class="st">⏳ Em breve</div></div>
+    <div class="card" style="--cc:var(--c10)" data-ok="1"><b>10 · Classes e objetos</b><span>Em breve: programação orientada a objetos.</span><div class="st">✅ Disponível</div></div>
     <div class="card" style="--cc:var(--c11)"><b>11 · Banco de dados</b><span>Em breve: SQLite com Python.</span><div class="st">⏳ Em breve</div></div>
     <div class="card" style="--cc:var(--c12)"><b>12 · Projeto final</b><span>Em breve: juntar tudo em um projeto.</span><div class="st">⏳ Em breve</div></div>
   </div>
@@ -4102,7 +4111,224 @@ Carla;9.0;10.0</textarea>
 
   <div class="box dica" style="margin-top:28px"><div class="ic">📚</div><div><h5>Para saber mais</h5><p>Documentação oficial: <i>O tutorial de Python</i>, seção “Leitura e escrita de arquivos”, em docs.python.org/pt-br/3/tutorial/inputoutput.html, e o módulo <code>csv</code> em docs.python.org/pt-br/3/library/csv.html. Dica: faça os exercícios no IDLE, com os arquivos na mesma pasta do programa.</p></div></div>
 </section>
-<section class="chapter soon-ch" id="cap10" style="--cc:var(--c10)"><div class="chap-head"><div class="chap-num" style="background:var(--c10)">10</div><div><small>Capítulo 10</small><h2>Classes e objetos</h2></div></div><div class="soon-card">⏳ Este capítulo será publicado em breve.</div></section>
+<section class="chapter" id="cap10" style="--cc:var(--c10)">
+  <div class="chap-head"><div class="chap-num" style="background:var(--c10)">10</div><div><small>Capítulo 10</small><h2>Classes e objetos</h2></div></div>
+  <div class="obj"><h4>🎯 Ao final deste capítulo, você será capaz de:</h4><ul><li>explicar a diferença entre classe e objeto e criar uma classe com <code>__init__</code></li><li>usar atributos e métodos, entendendo o papel do <code>self</code></li><li>escrever métodos que alteram o estado do objeto e o método <code>__str__</code></li><li>trabalhar com listas de objetos</li><li>criar uma classe filha usando herança</li></ul></div>
+<h3 id="c10-1">10.1 Classes e objetos</h3>
+<p class="sec-sub">Organizando dados e ações em um só lugar</p>
+<h4 class="pyh">🧁 Molde e bolo</h4>
+<p>Até aqui, guardamos dados em variáveis, listas e dicionários, e escrevemos funções para trabalhar com eles. Mas, quando o programa cresce, fica difícil lembrar qual função usa quais dados. A <b>programação orientada a objetos</b> (POO) resolve isso juntando <b>dados</b> e <b>ações</b> em uma coisa só: o <b>objeto</b>.</p>
+<div class="box analogia"><div class="ic">💬</div><div><h5>Analogia</h5><p>A <b>classe</b> é a <b>forma de bolo</b>: define como o bolo é. Os <b>objetos</b> são os <b>bolos</b> feitos com ela. Com uma forma, você faz quantos bolos quiser, e cada um pode ter um recheio diferente.</p></div></div>
+<p>Na prática, a classe descreve o que todo objeto dela terá: <b>atributos</b> (os dados, como nome e idade) e <b>métodos</b> (as ações, como latir). Veja uma classe simples:</p>
+<pre class="py"><span class="pylab">Listagem 10.1 — Uma classe e dois objetos</span><button class="cp">Copiar</button><code><span class="keyword">class</span> Cachorro:
+    <span class="keyword">def</span> __init__(self, nome, idade):
+        self.nome = nome
+        self.idade = idade
+
+    <span class="keyword">def</span> latir(self):
+        <span class="function">print</span>(self.nome, <span class="string">"diz: Au au!"</span>)
+
+rex = Cachorro(<span class="string">"Rex"</span>, <span class="number">3</span>)
+mel = Cachorro(<span class="string">"Mel"</span>, <span class="number">5</span>)
+rex.<span class="function">latir</span>()
+mel.<span class="function">latir</span>()
+<span class="function">print</span>(rex.idade, mel.idade)
+<span class="output">Rex diz: Au au!
+Mel diz: Au au!
+3 5</span></code></pre>
+<p>Vamos por partes:</p>
+<ul class="feature-list"><li><code>class Cachorro:</code> cria o molde. Por convenção, o nome de uma classe começa com letra maiúscula.</li><li><code>__init__</code> é o método que roda automaticamente quando um objeto é criado. Ele é o <b>construtor</b>: recebe os dados iniciais.</li><li><code>self</code> representa o próprio objeto. Em <code>self.nome = nome</code>, o dado que veio de fora vira um atributo do objeto.</li><li><code>Cachorro("Rex", 3)</code> cria um objeto (uma <b>instância</b>) e o guarda em <code>rex</code>.</li><li><code>rex.latir()</code> chama o método do objeto <code>rex</code>.</li></ul>
+<div class="box atencao"><div class="ic">⚠️</div><div><h5>O self</h5><p>Todo método dentro da classe recebe <code>self</code> como <b>primeiro parâmetro</b>, mas você <b>não</b> o escreve na chamada: <code>rex.latir()</code>, e não <code>rex.latir(rex)</code>. O Python passa o objeto sozinho.</p></div></div>
+<h4 class="pyh">🔍 Cada objeto tem os seus dados</h4>
+<p>Os atributos pertencem a cada objeto. Mudar o de um não muda o do outro:</p>
+<pre class="py"><span class="pylab">Listagem 10.2 — Objetos independentes</span><button class="cp">Copiar</button><code><span class="keyword">class</span> Cachorro:
+    <span class="keyword">def</span> __init__(self, nome, idade):
+        self.nome = nome
+        self.idade = idade
+
+rex = Cachorro(<span class="string">"Rex"</span>, <span class="number">3</span>)
+mel = Cachorro(<span class="string">"Mel"</span>, <span class="number">5</span>)
+rex.idade = rex.idade + <span class="number">1</span>
+<span class="function">print</span>(rex.idade)
+<span class="function">print</span>(mel.idade)
+<span class="output">4
+5</span></code></pre>
+<h3 id="c10-2">10.2 Métodos que mudam o objeto</h3>
+<p class="sec-sub">Atributos com estado e comportamento</p>
+<h4 class="pyh">🏦 Uma conta bancária</h4>
+<p>Métodos podem ler e <b>modificar</b> os atributos do objeto. O exemplo clássico é uma conta bancária: o saldo muda a cada depósito ou saque.</p>
+<pre class="py"><span class="pylab">Listagem 10.3 — A classe Conta</span><button class="cp">Copiar</button><code><span class="keyword">class</span> Conta:
+    <span class="keyword">def</span> __init__(self, titular, saldo=<span class="number">0</span>):
+        self.titular = titular
+        self.saldo = saldo
+
+    <span class="keyword">def</span> depositar(self, valor):
+        self.saldo += valor
+
+    <span class="keyword">def</span> sacar(self, valor):
+        <span class="keyword">if</span> valor &gt; self.saldo:
+            <span class="function">print</span>(<span class="string">"Saldo insuficiente!"</span>)
+        <span class="keyword">else</span>:
+            self.saldo -= valor
+
+ana = Conta(<span class="string">"Ana"</span>, <span class="number">100</span>)
+bruno = Conta(<span class="string">"Bruno"</span>)
+ana.<span class="function">depositar</span>(<span class="number">50</span>)
+bruno.<span class="function">depositar</span>(<span class="number">20</span>)
+ana.<span class="function">sacar</span>(<span class="number">500</span>)
+<span class="function">print</span>(ana.titular, ana.saldo)
+<span class="function">print</span>(bruno.titular, bruno.saldo)
+<span class="output">Saldo insuficiente!
+Ana 150
+Bruno 20</span></code></pre>
+<p>Repare que <code>saldo=0</code> é um parâmetro opcional (você viu isso no capítulo 8): se não informarmos o saldo, a conta começa zerada. Também repare que <code>ana</code> e <code>bruno</code> têm saldos <b>separados</b>.</p>
+<div class="box dica"><div class="ic">💡</div><div><h5>Dica</h5><p>Se a regra do saque (não deixar a conta negativa) estivesse espalhada pelo programa, seria fácil esquecer dela em algum lugar. Dentro da classe, a regra fica <b>em um só lugar</b>. Essa é uma das grandes vantagens da POO.</p></div></div>
+<h4 class="pyh">🖨️ Mostrando o objeto: __str__</h4>
+<p>Se você der <code>print</code> em um objeto, o Python mostra algo pouco útil, como o endereço de memória. Para escolher como o objeto aparece no texto, crie o método especial <code>__str__</code>, que deve <b>devolver</b> uma string:</p>
+<pre class="py"><span class="pylab">Listagem 10.4 — O método __str__</span><button class="cp">Copiar</button><code><span class="keyword">class</span> Produto:
+    <span class="keyword">def</span> __init__(self, nome, preco):
+        self.nome = nome
+        self.preco = preco
+
+    <span class="keyword">def</span> __str__(self):
+        <span class="keyword">return</span> <span class="string">"%s - R$ %.2f"</span> % (self.nome, self.preco)
+
+caneta = Produto(<span class="string">"Caneta"</span>, <span class="number">2.5</span>)
+<span class="function">print</span>(caneta)
+<span class="output">Caneta - R$ 2.50</span></code></pre>
+<h3 id="c10-3">10.3 Vários objetos e listas</h3>
+<p class="sec-sub">Juntando com o que você já aprendeu</p>
+<h4 class="pyh">📦 Lista de objetos</h4>
+<p>Objetos são valores como outros quaisquer: podem ir para listas, dicionários e funções. Isso permite organizar dados de verdade, como um carrinho de compras:</p>
+<pre class="py"><span class="pylab">Listagem 10.5 — Lista de produtos</span><button class="cp">Copiar</button><code><span class="keyword">class</span> Produto:
+    <span class="keyword">def</span> __init__(self, nome, preco):
+        self.nome = nome
+        self.preco = preco
+
+    <span class="keyword">def</span> __str__(self):
+        <span class="keyword">return</span> <span class="string">"%s - R$ %.2f"</span> % (self.nome, self.preco)
+
+carrinho = [Produto(<span class="string">"Caneta"</span>, <span class="number">2.5</span>), Produto(<span class="string">"Caderno"</span>, <span class="number">18</span>), Produto(<span class="string">"Borracha"</span>, <span class="number">1.2</span>)]
+total = <span class="number">0</span>
+<span class="keyword">for</span> produto <span class="keyword">in</span> carrinho:
+    <span class="function">print</span>(produto)
+    total += produto.preco
+<span class="function">print</span>(<span class="string">"Total: R$ %.2f"</span> % total)
+<span class="output">Caneta - R$ 2.50
+Caderno - R$ 18.00
+Borracha - R$ 1.20
+Total: R$ 21.70</span></code></pre>
+<p>Como o objeto guarda o seu próprio nome e preço, o laço fica curto e fácil de ler. Você também pode procurar um objeto na lista, como fez com números e textos:</p>
+<pre class="py"><span class="pylab">Listagem 10.6 — Procurando um objeto</span><button class="cp">Copiar</button><code><span class="keyword">class</span> Aluno:
+    <span class="keyword">def</span> __init__(self, nome, nota):
+        self.nome = nome
+        self.nota = nota
+
+    <span class="keyword">def</span> aprovado(self):
+        <span class="keyword">return</span> self.nota &gt;= <span class="number">7</span>
+
+turma = [Aluno(<span class="string">"Ana"</span>, <span class="number">8.5</span>), Aluno(<span class="string">"Bruno"</span>, <span class="number">5.0</span>), Aluno(<span class="string">"Carla"</span>, <span class="number">7.0</span>)]
+<span class="keyword">for</span> aluno <span class="keyword">in</span> turma:
+    situacao = <span class="string">"aprovado"</span> <span class="keyword">if</span> aluno.<span class="function">aprovado</span>() <span class="keyword">else</span> <span class="string">"reprovado"</span>
+    <span class="function">print</span>(aluno.nome, situacao)
+<span class="output">Ana aprovado
+Bruno reprovado
+Carla aprovado</span></code></pre>
+<p>O método <code>aprovado()</code> devolve <code>True</code> ou <code>False</code>, como as funções do capítulo 8. A diferença é que ele já sabe de qual aluno está falando: o <code>self</code>.</p>
+<h3 id="c10-4">10.4 Herança</h3>
+<p class="sec-sub">Reaproveitando uma classe para criar outra</p>
+<h4 class="pyh">👪 Classe filha</h4>
+<p>Às vezes uma classe é uma <b>versão especial</b> de outra. Um gato é um animal; um aluno é uma pessoa. Em vez de copiar o código, a nova classe <b>herda</b> tudo da classe original e muda só o que for diferente. Escrevemos a classe-mãe entre parênteses:</p>
+<pre class="py"><span class="pylab">Listagem 10.7 — Herança</span><button class="cp">Copiar</button><code><span class="keyword">class</span> Animal:
+    <span class="keyword">def</span> __init__(self, nome):
+        self.nome = nome
+
+    <span class="keyword">def</span> falar(self):
+        <span class="function">print</span>(self.nome, <span class="string">"faz um som"</span>)
+
+<span class="keyword">class</span> Gato(Animal):
+    <span class="keyword">def</span> falar(self):
+        <span class="function">print</span>(self.nome, <span class="string">"diz: Miau!"</span>)
+
+<span class="keyword">class</span> Cachorro(Animal):
+    <span class="keyword">def</span> falar(self):
+        <span class="function">print</span>(self.nome, <span class="string">"diz: Au au!"</span>)
+
+<span class="keyword">for</span> animal <span class="keyword">in</span> [Animal(<span class="string">"Bicho"</span>), Gato(<span class="string">"Mimi"</span>), Cachorro(<span class="string">"Rex"</span>)]:
+    animal.<span class="function">falar</span>()
+<span class="output">Bicho faz um som
+Mimi diz: Miau!
+Rex diz: Au au!</span></code></pre>
+<p><code>Gato</code> e <code>Cachorro</code> não escreveram o <code>__init__</code>: usam o da classe <code>Animal</code>. Mas cada um trocou o método <code>falar</code>. Mesmo chamando <code>animal.falar()</code> do mesmo jeito, cada objeto responde à sua maneira.</p>
+<div class="box exemplo"><div class="ic">💡</div><div><h5>Quando usar</h5><p>Herança é ótima quando a frase “X <b>é um</b> Y” faz sentido (“um gato <b>é um</b> animal”). Se for “X <b>tem um</b> Y” (“uma conta <b>tem um</b> titular”), use um atributo, não herança.</p></div></div>
+<h4 class="pyh" id="c10-lab">📝 Exercícios do Capítulo 10</h4>
+<div class="lab"><h3>✏ Exercício 10.1</h3><p>Crie uma classe <code>Retangulo</code> com os atributos <code>largura</code> e <code>altura</code> e os métodos <code>area()</code> e <code>perimetro()</code>. Crie dois retângulos e mostre os resultados.</p></div>
+<div class="lab"><h3>✏ Exercício 10.2</h3><p>Na classe <code>Conta</code> da Listagem 10.3, acrescente um método <code>extrato()</code> que mostre o titular e o saldo, e outro <code>transferir(destino, valor)</code> que tire o valor desta conta e coloque na conta de destino (sem deixar o saldo ficar negativo).</p></div>
+<div class="lab"><h3>✏ Exercício 10.3</h3><p>Crie uma classe <code>Aluno</code> com <code>nome</code> e uma lista de <code>notas</code>. Escreva o método <code>media()</code> e o método <code>__str__</code>. Mostre três alunos.</p></div>
+<div class="lab"><h3>✏ Exercício 10.4</h3><p>Crie uma lista com objetos <code>Produto</code> lidos do teclado (nome e preço, até o usuário digitar <code>fim</code>) e mostre o produto mais caro.</p></div>
+<div class="lab"><h3>✏ Exercício 10.5</h3><p>Crie a classe <code>Funcionario</code> (nome e salário) com o método <code>aumento(percentual)</code>. Depois crie a classe <code>Gerente</code>, que herda de <code>Funcionario</code> e dá um bônus fixo de R$ 500 no método <code>salario_total()</code>.</p></div>
+<div class="lab"><h3>✏ Exercício 10.6</h3><p>Reescreva o jogo da forca do capítulo 7 usando uma classe <code>Forca</code>, com a palavra, as letras acertadas e o número de erros como atributos.</p></div>
+
+  <h3 id="c10-tools">🛠️ Ferramentas do capítulo</h3>
+  <div class="tool" id="oc" style="--cc:var(--c10)">
+    <h4 style="margin-top:0">🏦 Duas contas, dois objetos</h4>
+    <p>Cada conta é um objeto da classe <code>Conta</code>, com saldo próprio. Faça operações e veja que uma não interfere na outra.</p>
+    <div class="tool-ctl"><input type="number" id="ocV" value="50" min="0" aria-label="Valor" style="padding:8px 10px;border-radius:8px;border:1px solid var(--borda,#ccc);font:inherit" style="width:100px">
+    <select id="ocQ" aria-label="Conta" style="padding:8px 10px;border-radius:8px;border:1px solid var(--borda,#ccc);font:inherit"><option value="0">ana</option><option value="1">bruno</option></select>
+    <button type="button" data-o="dep">depositar(valor)</button><button type="button" data-o="sac">sacar(valor)</button><button type="button" data-o="rst" class="alt">Recomeçar</button></div>
+    <div class="shelf" id="ocS" aria-live="polite"></div>
+    <p id="ocT" aria-live="polite"></p>
+  </div>
+  <div class="tool" id="pf" style="--cc:var(--c10)">
+    <h4 style="margin-top:0">🧁 Fábrica de objetos</h4>
+    <p>A classe <code>Pessoa</code> é o molde. Preencha os dados e crie objetos. Depois chame o método <code>apresentar()</code> de cada um.</p>
+    <div class="tool-ctl"><input type="text" id="pfN" placeholder="nome" aria-label="Nome" style="padding:8px 10px;border-radius:8px;border:1px solid var(--borda,#ccc);font:inherit" style="width:140px"><input type="number" id="pfI" placeholder="idade" aria-label="Idade" style="padding:8px 10px;border-radius:8px;border:1px solid var(--borda,#ccc);font:inherit" style="width:90px"><button type="button" id="pfC">Criar objeto</button><button type="button" id="pfX" class="alt">Limpar</button></div>
+    <div class="shelf" id="pfL" aria-live="polite"></div>
+    <p id="pfT" aria-live="polite"></p>
+  </div>
+
+  <div class="resumo"><h3>📝 Resumo do capítulo</h3><ul><li>Uma <b>classe</b> é o molde; um <b>objeto</b> (instância) é o que se cria a partir dele.</li><li><b>Atributos</b> são os dados do objeto; <b>métodos</b> são as ações, escritas como funções dentro da classe.</li><li><code>__init__</code> é o construtor: roda ao criar o objeto e guarda os dados iniciais em <code>self</code>.</li><li>O <code>self</code> é o próprio objeto e é o primeiro parâmetro de todo método, mas não aparece na chamada.</li><li>Cada objeto tem os seus próprios atributos; mudar um não muda os outros.</li><li><code>__str__</code> define como o objeto aparece no <code>print</code>.</li><li>Objetos podem ficar em listas; na <b>herança</b>, a classe filha reaproveita a classe-mãe e redefine só o que for diferente.</li></ul></div>
+  <h3 id="c10-quiz">🧠 Quiz do capítulo 10</h3>
+  <p>Clique na resposta que você acha certa.</p>
+  <div class="quiz">
+    <div class="q"><p>1. Qual a relação entre classe e objeto?</p>
+      <button class="opt">a) São sinônimos</button><button class="opt" data-ok="1">b) A classe é o molde; o objeto é um item criado a partir dele</button><button class="opt">c) O objeto é o molde; a classe é o item</button><button class="opt">d) Classe só existe em listas</button>
+      <div class="fb">Uma classe descreve como são os objetos. Dela você cria quantos objetos quiser.</div></div>
+    <div class="q"><p>2. Para que serve o método <code>__init__</code>?</p>
+      <button class="opt">a) Apagar o objeto</button><button class="opt" data-ok="1">b) Rodar automaticamente na criação do objeto e guardar os dados iniciais</button><button class="opt">c) Mostrar o objeto na tela</button><button class="opt">d) Importar módulos</button>
+      <div class="fb"><code>__init__</code> é o construtor: roda quando você escreve <code>Cachorro("Rex", 3)</code>.</div></div>
+    <div class="q"><p>3. O que é o <code>self</code> dentro de um método?</p>
+      <button class="opt">a) Uma variável global</button><button class="opt" data-ok="1">b) O próprio objeto que está executando o método</button><button class="opt">c) O nome da classe</button><button class="opt">d) Um módulo</button>
+      <div class="fb"><code>self</code> permite acessar os atributos e métodos do objeto atual.</div></div>
+    <div class="q"><p>4. Em <code>rex.latir()</code>, o que você deve passar para o parâmetro <code>self</code>?</p>
+      <button class="opt">a) <code>rex</code>, escrito entre parênteses</button><button class="opt" data-ok="1">b) Nada: o Python passa o objeto sozinho</button><button class="opt">c) O nome da classe</button><button class="opt">d) Um número</button>
+      <div class="fb">Ao chamar <code>rex.latir()</code>, o Python já envia <code>rex</code> como <code>self</code>.</div></div>
+    <div class="q"><p>5. Se <code>a = Conta("Ana", 100)</code> e <code>b = Conta("Bruno", 50)</code>, e fazemos <code>a.depositar(10)</code>, quanto vale <code>b.saldo</code>?</p>
+      <button class="opt">a) 60</button><button class="opt">b) 110</button><button class="opt" data-ok="1">c) 50</button><button class="opt">d) 0</button>
+      <div class="fb">Os objetos são independentes: o depósito mudou só o saldo de <code>a</code>.</div></div>
+    <div class="q"><p>6. O que o método <code>__str__</code> deve fazer?</p>
+      <button class="opt">a) Imprimir direto e não devolver nada</button><button class="opt" data-ok="1">b) Devolver uma string que representa o objeto</button><button class="opt">c) Apagar atributos</button><button class="opt">d) Criar uma lista</button>
+      <div class="fb">O <code>print(objeto)</code> usa o texto devolvido por <code>__str__</code>.</div></div>
+    <div class="q"><p>7. Em <code>class Gato(Animal):</code>, o que significa <code>(Animal)</code>?</p>
+      <button class="opt">a) Gato é uma lista de animais</button><button class="opt" data-ok="1">b) Gato herda de Animal</button><button class="opt">c) Gato apaga a classe Animal</button><button class="opt">d) Gato importa Animal de um arquivo</button>
+      <div class="fb">A classe entre parênteses é a classe-mãe: <code>Gato</code> herda os atributos e métodos dela.</div></div>
+    <div class="q"><p>8. Qual destas frases justifica o uso de herança?</p>
+      <button class="opt">a) “Uma conta <b>tem um</b> titular”</button><button class="opt" data-ok="1">b) “Um gato <b>é um</b> animal”</button><button class="opt">c) “Uma lista <b>tem</b> um tamanho”</button><button class="opt">d) “Um aluno <b>usa</b> o teclado”</button>
+      <div class="fb">Herança modela a relação “é um”. A relação “tem um” normalmente vira um atributo.</div></div>
+  </div>
+  <div class="score"></div>
+  <h3>✍️ Questões abertas</h3>
+  <div class="open"><p><b>1.</b> Explique com suas palavras a diferença entre classe e objeto.</p>
+    <button>Ver resposta</button><div class="answer">A classe é a descrição, o molde: diz quais dados e ações os objetos terão. O objeto é uma coisa concreta criada a partir dessa descrição, com seus próprios valores. Analogia: forma de bolo e bolos.</div></div>
+  <div class="open"><p><b>2.</b> Por que usar uma classe <code>Conta</code> em vez de variáveis soltas para saldo e titular?</p>
+    <button>Ver resposta</button><div class="answer">Porque os dados e as regras (como não sacar mais do que o saldo) ficam juntos. Dá para criar várias contas sem repetir código, e cada uma tem o seu saldo.</div></div>
+  <div class="open"><p><b>3.</b> Escreva uma classe <code>Pessoa</code> com <code>nome</code> e um método <code>apresentar()</code> que mostre “Olá, eu sou ...”.</p>
+    <button>Ver resposta</button><div class="answer"><code>class Pessoa:<br>&nbsp;&nbsp;&nbsp;&nbsp;def __init__(self, nome):<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.nome = nome<br><br>&nbsp;&nbsp;&nbsp;&nbsp;def apresentar(self):<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print("Olá, eu sou", self.nome)</code></div></div>
+  <div class="open"><p><b>4.</b> O que acontece se esquecermos o <code>self</code> na definição de um método, como em <code>def latir():</code>?</p>
+    <button>Ver resposta</button><div class="answer">Ao chamar <code>rex.latir()</code>, o Python tenta enviar o objeto como primeiro argumento, mas o método não tem parâmetro para recebê-lo. Ocorre um <code>TypeError</code>.</div></div>
+
+  <div class="box dica" style="margin-top:28px"><div class="ic">📚</div><div><h5>Para saber mais</h5><p>Documentação oficial: <i>O tutorial de Python</i>, capítulo “Classes”, em docs.python.org/pt-br/3/tutorial/classes.html. Dica: desenhe o objeto como uma caixa com os atributos dentro; isso ajuda a rastrear o programa no papel.</p></div></div>
+</section>
 <section class="chapter soon-ch" id="cap11" style="--cc:var(--c11)"><div class="chap-head"><div class="chap-num" style="background:var(--c11)">11</div><div><small>Capítulo 11</small><h2>Banco de dados</h2></div></div><div class="soon-card">⏳ Este capítulo será publicado em breve.</div></section>
 <section class="chapter soon-ch" id="cap12" style="--cc:var(--c12)"><div class="chap-head"><div class="chap-num" style="background:var(--c12)">12</div><div><small>Capítulo 12</small><h2>Projeto final</h2></div></div><div class="soon-card">⏳ Este capítulo será publicado em breve.</div></section>
 
