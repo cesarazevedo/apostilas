@@ -3,7 +3,7 @@
 Apostilas digitais das disciplinas do Prof. César Azevedo (IFRN – Campus João Câmara).
 
 - [Redes de Computadores](redes/) · [plano de aula (professor)](redes/professor.html)
-- [Sistemas Operacionais de Redes](so/) (4 capítulos, completa)
+- [Sistemas Operacionais de Redes](so/) · [plano de aula (professor)](so/professor.html)
 
 ## Estrutura
 
