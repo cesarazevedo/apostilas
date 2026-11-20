@@ -16,5 +16,14 @@ window.GLOSSARIO={
 "operador":"Símbolo que faz uma operação, como + (soma) ou * (multiplicação).",
 "precedência":"Ordem em que as operações são feitas: primeiro **, depois * / %, depois + -.",
 "prompt":"Sinal (&gt;&gt;&gt;) que indica que o interpretador está esperando você digitar.",
-"case-sensitive":"Que diferencia maiúsculas de minúsculas: Nome e nome são coisas diferentes."
+"case-sensitive":"Que diferencia maiúsculas de minúsculas: Nome e nome são coisas diferentes.",
+"booleano":"Tipo de valor que só pode ser True (verdadeiro) ou False (falso).",
+"string":"Texto: uma sequência de caracteres entre aspas.",
+"índice":"Número que indica a posição de um caractere (ou item) em uma sequência; começa em 0.",
+"concatenação":"Juntar dois textos em um só, usando o +.",
+"fatiamento":"Extrair um pedaço de uma string usando [início:fim].",
+"rastreamento":"Acompanhar, linha a linha, o valor de cada variável de um programa, geralmente no papel.",
+"input":"Função que mostra uma mensagem e espera o usuário digitar algo; devolve sempre texto.",
+"operador relacional":"Símbolo que compara valores e dá True ou False, como ==, !=, &gt;, &lt;, &gt;= e &lt;=.",
+"comentário":"Trecho depois do # que o Python ignora; serve para explicar o código."
 };

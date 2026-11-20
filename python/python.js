@@ -113,4 +113,52 @@
     $('pcB').onclick=ck;$('pcN').onclick=next;$('pcA').onkeydown=function(e){if(e.key==='Enter')ck()};next();
   })();
 
+  // --- Cap. 3: rastreamento ---
+  (function(){
+    var c=$('stCode');if(!c)return;
+    var L=['divida = 0','compra = 100','divida = divida + compra','compra = 200','divida = divida + compra','compra = 300','divida = divida + compra','compra = 0','print(divida)'];
+    var i=0,env={},tela='';
+    function show(){
+      c.innerHTML=L.map(function(t,k){return '<span style="display:block;padding:0 6px;border-radius:4px;'+(k===i-1?'background:rgba(239,108,0,.25)':'')+'">'+(k+1)+'  '+t+'</span>'}).join('');
+      var ks=Object.keys(env);
+      $('stV').innerHTML=ks.length?'<em>Variáveis:</em>'+ks.map(function(n){return '<span>'+n+' = '+env[n]+'</span>'}).join('')+(tela?'<span>Tela: '+tela+'</span>':''):'<em>Nada executado ainda.</em>';
+      $('stT').innerHTML=i>=L.length?'<span class="ok-y">Fim!</span> A tela mostrou '+tela+'.':(i?'Executada a linha '+i+'.':'');
+    }
+    function step(){
+      if(i>=L.length)return;var t=L[i];i++;
+      if(t==='divida = 0')env.divida=0;
+      else if(/^compra = /.test(t))env.compra=+t.split('= ')[1];
+      else if(/divida \+ compra/.test(t))env.divida=env.divida+env.compra;
+      else tela=env.divida;
+      show();
+    }
+    $('stN').onclick=step;$('stR').onclick=function(){i=0;env={};tela='';show()};show();
+  })();
+
+  // --- Cap. 3: lógica ao vivo ---
+  (function(){
+    var o=$('lgO');if(!o)return;var A=true,B=true;
+    function f(v){return v?'True':'False'}
+    function r(){
+      $('lgA').textContent='A = '+f(A);$('lgB').textContent='B = '+f(B);
+      o.innerHTML=['not A|'+f(!A),'not B|'+f(!B),'A and B|'+f(A&&B),'A or B|'+f(A||B),'not A or B|'+f(!A||B)].map(function(s){var p=s.split('|');return '<span>'+p[0]+' → <b>'+p[1]+'</b></span>'}).join('');
+    }
+    $('lgA').onclick=function(){A=!A;r()};$('lgB').onclick=function(){B=!B;r()};r();
+  })();
+
+  // --- Cap. 3: fatiador de strings ---
+  (function(){
+    var s=$('slS');if(!s)return;var a=$('slA'),b=$('slB');
+    function esc(x){return x.replace(/&/g,'&amp;').replace(/</g,'&lt;')}
+    function r(){
+      var t=s.value,n=t.length,x=parseInt(a.value,10),y=parseInt(b.value,10);
+      if(isNaN(x))x=0;if(isNaN(y))y=n;
+      var st=x<0?Math.max(0,n+x):Math.min(x,n),en=y<0?Math.max(0,n+y):Math.min(y,n);
+      $('slV').innerHTML=t.split('').map(function(ch,k){var on=k>=st&&k<en;return '<span style="'+(on?'background:#ef6c00;color:#fff;border-color:#ef6c00':'')+'">'+esc(ch)+'<sub style="font-size:10px"> '+k+'</sub></span>'}).join('');
+      var res=en>st?t.slice(st,en):'';
+      $('slT').innerHTML='<code>s['+x+':'+y+']</code> → <b>'+(res?"'"+esc(res)+"'":"'' (vazio)")+'</b>';
+    }
+    s.oninput=r;a.oninput=r;b.oninput=r;r();
+  })();
+
 })();

@@ -48,7 +48,18 @@ html[data-theme=dark]{--verde-claro:#10263a}
       <a href="#c2-tools">Ferramentas</a>
       <a href="#c2-quiz">Quiz e exercícios</a>
     </div>
-    <a href="#cap3" class="soon"><span class="n" style="background:var(--c3)">3</span>Variáveis e entrada</a>
+    <a href="#cap3"><span class="n" style="background:var(--c3)">3</span>Variáveis e entrada</a>
+    <div class="sub">
+      <a href="#c3-1">3.1 Nomes de Variáveis e Tipos Numéricos</a>
+      <a href="#c3-2">3.2 Variáveis do Tipo Lógico</a>
+      <a href="#c3-3">3.3 Operadores Lógicos: not, and, or</a>
+      <a href="#c3-4">3.4 Variáveis String</a>
+      <a href="#c3-5">3.5 Sequências, Tempo e Rastreamento</a>
+      <a href="#c3-6">3.6 Entrada de Dados: input()</a>
+      <a href="#c3-lab">Exercícios</a>
+      <a href="#c3-tools">Ferramentas</a>
+      <a href="#c3-quiz">Quiz e exercícios</a>
+    </div>
     <a href="#cap4" class="soon"><span class="n" style="background:var(--c4)">4</span>Condições</a>
     <a href="#cap5" class="soon"><span class="n" style="background:var(--c5)">5</span>Repetições</a>
     <a href="#cap6" class="soon"><span class="n" style="background:var(--c6)">6</span>Listas</a>
@@ -85,7 +96,7 @@ html[data-theme=dark]{--verde-claro:#10263a}
   <div class="map">
     <div class="card" style="--cc:var(--c1)" data-ok="1"><b>1 · Motivação</b><span>Por que programar, paciência, ritmo de estudo e por que Python.</span><div class="st">✅ Disponível</div></div>
     <div class="card" style="--cc:var(--c2)" data-ok="1"><b>2 · Ambiente</b><span>Instalar o Python, usar o IDLE e escrever os primeiros programas.</span><div class="st">✅ Disponível</div></div>
-    <div class="card" style="--cc:var(--c3)"><b>3 · Variáveis e entrada</b><span>Tipos, operadores, strings e como pedir dados ao usuário.</span><div class="st">⏳ Em breve</div></div>
+    <div class="card" style="--cc:var(--c3)" data-ok="1"><b>3 · Variáveis e entrada</b><span>Tipos, operadores, strings e como pedir dados ao usuário.</span><div class="st">✅ Disponível</div></div>
     <div class="card" style="--cc:var(--c4)"><b>4 · Condições</b><span>if, else, condições aninhadas e elif.</span><div class="st">⏳ Em breve</div></div>
     <div class="card" style="--cc:var(--c5)"><b>5 · Repetições</b><span>while, contadores, acumuladores e laços aninhados.</span><div class="st">⏳ Em breve</div></div>
     <div class="card" style="--cc:var(--c6)"><b>6 · Listas</b><span>Listas, índices, for, pilhas, filas, ordenação e dicionários.</span><div class="st">⏳ Em breve</div></div>
@@ -662,7 +673,557 @@ aumento = <span class="number">5</span>
 
   <div class="box dica" style="margin-top:28px"><div class="ic">📚</div><div><h5>Para saber mais</h5><p>Documentação oficial: <i>O tutorial de Python</i>, seção “Usando o interpretador Python”, em docs.python.org/pt-br/3/tutorial/. Teste também o IDLE no seu computador: aprender a digitar e errar é a melhor parte.</p></div></div>
 </section>
-<section class="chapter soon-ch" id="cap3" style="--cc:var(--c3)"><div class="chap-head"><div class="chap-num" style="background:var(--c3)">3</div><div><small>Capítulo 3</small><h2>Variáveis e entrada</h2></div></div><div class="soon-card">⏳ Este capítulo será publicado em breve.</div></section>
+<section class="chapter" id="cap3" style="--cc:var(--c3)">
+  <div class="chap-head"><div class="chap-num" style="background:var(--c3)">3</div><div><small>Capítulo 3</small><h2>Variáveis e entrada</h2></div></div>
+  <div class="obj"><h4>🎯 Ao final deste capítulo, você será capaz de:</h4><ul><li>escolher nomes válidos para variáveis e diferenciar <code>int</code> de <code>float</code></li><li>usar o tipo lógico (<code>True</code> e <code>False</code>), os operadores relacionais e <code>not</code>, <code>and</code>, <code>or</code></li><li>trabalhar com strings: tamanho, índices, concatenação, composição com <code>%</code> e fatiamento</li><li>rastrear um programa no papel, linha a linha</li><li>ler dados do usuário com <code>input()</code> e converter com <code>int()</code> e <code>float()</code></li></ul></div>
+<h3 id="c3-1">3.1 Nomes de Variáveis e Tipos Numéricos</h3>
+<p class="sec-sub">Seções 3.1 e 3.2 — Como batizar suas variáveis e os tipos de números</p>
+<h4 class="pyh">📛 Regras para nomes de variáveis</h4>
+<p>Em Python, nomes de variáveis devem começar obrigatoriamente com uma <strong>letra</strong>, mas podem conter números e o símbolo sublinha (<code>_</code>).</p>
+<table class="op-table">
+<thead><tr><th>Nome</th><th>Válido?</th><th>Comentário</th></tr></thead>
+<tbody>
+<tr><td><code>a1</code></td><td class="valid">Sim</td><td>Embora contenha número, começa com letra</td></tr>
+<tr><td><code>velocidade</code></td><td class="valid">Sim</td><td>Nome formado por letras</td></tr>
+<tr><td><code>velocidade90</code></td><td class="valid">Sim</td><td>Letras e números, inicia com letra</td></tr>
+<tr><td><code>salário_médio</code></td><td class="valid">Sim</td><td>O sublinha (<code>_</code>) é permitido e facilita a leitura</td></tr>
+<tr><td><code>salário médio</code></td><td class="invalid">Não</td><td>Não pode conter espaços</td></tr>
+<tr><td><code>_b</code></td><td class="valid">Sim</td><td>Sublinha é aceito no início</td></tr>
+<tr><td><code>1a</code></td><td class="invalid">Não</td><td>Não pode começar com número</td></tr>
+</tbody>
+</table>
+<div class="box analogia"><div class="ic">💬</div><div>
+<p>💡 Dica: Python 3 aceita acentos em nomes de variáveis (como <code>salário</code>), pois usa codificação UTF-8. Mas muitos programadores preferem evitar acentos por compatibilidade.</p>
+</div></div>
+<h4 class="pyh">🔢 Variáveis numéricas</h4>
+<p>Python tem dois tipos principais de números:</p>
+<ul>
+<li><strong>Inteiros (int)</strong> — números sem parte decimal: <code>1, 0, -5, 550, 30000</code></li>
+<li><strong>Ponto flutuante (float)</strong> — números com casa decimal: <code>1.0, 5478, 10.478, 3.14</code></li>
+</ul>
+<pre class="py nr"><span class="pylab">Exemplos</span><button class="cp">Copiar</button><code><span class="prompt">&gt;&gt;&gt;</span> type(5)
+<span class="output">&lt;class 'int'&gt;</span>
+<span class="prompt">&gt;&gt;&gt;</span> type(5.0)
+<span class="output">&lt;class 'float'&gt;</span>
+<span class="prompt">&gt;&gt;&gt;</span> type(-2)
+<span class="output">&lt;class 'int'&gt;</span>
+<span class="prompt">&gt;&gt;&gt;</span> type(1.333)
+<span class="output">&lt;class 'float'&gt;</span></code></pre>
+<p><strong>Atenção:</strong> Em Python usamos o <strong>ponto</strong> como separador decimal, não a vírgula. Então é <code>3.14</code> e não <code>3,14</code>. Também não usamos separador de milhar: um milhão é <code>1000000</code>.</p>
+<h4 class="pyh">💻 Representação binária</h4>
+<p>Internamente, o computador representa todos os números no <strong>sistema binário</strong> (base 2), usando apenas os dígitos 0 e 1.</p>
+<p>Por exemplo, o número <strong>1010</strong> em binário representa:</p>
+<pre class="py nr"><span class="pylab">Base 2 → Base 10</span><button class="cp">Copiar</button><code>1010 = 1×2<sup>3</sup> + 0×2<sup>2</sup> + 1×2<sup>1</sup> + 0×2<sup>0</sup>
+     = 1×8 + 0×4 + 1×2 + 0×1
+     = 8 + 2
+     = <span class="output">10</span></code></pre>
+<p>Para números inteiros, Python tem precisão ilimitada — pode trabalhar com números enormes sem problemas. Para ponto flutuante, existem limites de precisão (por isso <code>3 * 0.1</code> pode dar <code>0.30000000000000004</code>).</p>
+<h4 class="pyh">✏ Exercício</h4>
+<div class="lab">
+<h3>Exercício 3.1</h3>
+<p>Complete a tabela a seguir, marcando <strong>inteiro</strong> ou <strong>ponto flutuante</strong> dependendo do número apresentado.</p>
+<table class="op-table">
+<thead><tr><th>Número</th><th>Tipo numérico</th></tr></thead>
+<tbody>
+<tr><td><code>5</code></td><td>○ inteiro    ○ ponto flutuante</td></tr>
+<tr><td><code>5.0</code></td><td>○ inteiro    ○ ponto flutuante</td></tr>
+<tr><td><code>4.3</code></td><td>○ inteiro    ○ ponto flutuante</td></tr>
+<tr><td><code>-2</code></td><td>○ inteiro    ○ ponto flutuante</td></tr>
+<tr><td><code>100</code></td><td>○ inteiro    ○ ponto flutuante</td></tr>
+<tr><td><code>1.333</code></td><td>○ inteiro    ○ ponto flutuante</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="c3-2">3.2 Variáveis do Tipo Lógico</h3>
+<p class="sec-sub">Seções 3.3 e 3.3.1 — True, False e operadores relacionais</p>
+<h4 class="pyh">✅ True e False</h4>
+<p>Muitas vezes queremos armazenar algo simples: <strong>verdadeiro ou falso</strong>. Em Python, usamos o tipo <strong>booleano</strong> (<code>bool</code>):</p>
+<pre class="py"><span class="pylab">Listagem 3.1</span><button class="cp">Copiar</button><code>resultado = <span class="keyword">True</span>
+aprovado = <span class="keyword">False</span></code></pre>
+<p>Observe que <code>True</code> e <code>False</code> são escritos com a <strong>primeira letra maiúscula</strong>. São palavras reservadas do Python.</p>
+<h4 class="pyh">🔍 Operadores relacionais</h4>
+<p>Para fazer comparações, usamos <strong>operadores relacionais</strong>. O resultado é sempre <code>True</code> ou <code>False</code>:</p>
+<table class="op-table">
+<thead><tr><th>Operador</th><th>Operação</th><th>Símbolo matemático</th></tr></thead>
+<tbody>
+<tr><td>==</td><td>Igualdade</td><td>=</td></tr>
+<tr><td>&gt;</td><td>Maior que</td><td>&gt;</td></tr>
+<tr><td>&lt;</td><td>Menor que</td><td>&lt;</td></tr>
+<tr><td>!=</td><td>Diferente</td><td>≠</td></tr>
+<tr><td>&gt;=</td><td>Maior ou igual</td><td>≥</td></tr>
+<tr><td>&lt;=</td><td>Menor ou igual</td><td>≤</td></tr>
+</tbody>
+</table>
+<div class="box analogia"><div class="ic">💬</div><div>
+<p>⚠ Cuidado: <code>=</code> é atribuição (guardar valor). <code>==</code> (dois iguais) é comparação. Confundir os dois é um dos erros mais comuns!</p>
+</div></div>
+<h4 class="pyh">🧪 Exemplos práticos</h4>
+<pre class="py nr"><span class="pylab">Listagem 3.2</span><button class="cp">Copiar</button><code><span class="prompt">&gt;&gt;&gt;</span> a = 1       <span class="comment"># a recebe 1</span>
+<span class="prompt">&gt;&gt;&gt;</span> b = 5       <span class="comment"># b recebe 5</span>
+<span class="prompt">&gt;&gt;&gt;</span> c = 2       <span class="comment"># c recebe 2</span>
+<span class="prompt">&gt;&gt;&gt;</span> d = 1       <span class="comment"># d recebe 1</span>
+<span class="prompt">&gt;&gt;&gt;</span> a == b      <span class="comment"># a é igual a b?</span>
+<span class="output">False</span>
+<span class="prompt">&gt;&gt;&gt;</span> b &gt; a       <span class="comment"># b é maior que a?</span>
+<span class="output">True</span>
+<span class="prompt">&gt;&gt;&gt;</span> a &lt; b       <span class="comment"># a é menor que b?</span>
+<span class="output">True</span>
+<span class="prompt">&gt;&gt;&gt;</span> a == d      <span class="comment"># a é igual a d?</span>
+<span class="output">True</span>
+<span class="prompt">&gt;&gt;&gt;</span> b &gt;= a      <span class="comment"># b é maior ou igual a a?</span>
+<span class="output">True</span>
+<span class="prompt">&gt;&gt;&gt;</span> d != a      <span class="comment"># d é diferente de a?</span>
+<span class="output">False</span>
+<span class="prompt">&gt;&gt;&gt;</span> d != b      <span class="comment"># d é diferente de b?</span>
+<span class="output">True</span></code></pre>
+<p>Podemos também armazenar o resultado de uma comparação em uma variável:</p>
+<pre class="py nr"><span class="pylab">Listagem 3.3</span><button class="cp">Copiar</button><code>nota = 8
+média = 7
+aprovado = nota &gt; média
+print(aprovado)    <span class="comment"># True</span></code></pre>
+<p>O <code>#</code> (cerquilha) inicia um <strong>comentário</strong>. Tudo após o <code>#</code> na mesma linha é ignorado pelo Python. Use comentários para explicar seu código!</p>
+<h4 class="pyh">✏ Exercício</h4>
+<div class="lab">
+<h3>Exercício 3.2</h3>
+<p>Complete a tabela abaixo, respondendo True ou False. Considere <code>a = 4</code>, <code>b = 10</code>, <code>c = 5.0</code>, <code>d = 1</code> e <code>f = 5</code>.</p>
+<table class="op-table">
+<thead><tr><th>Expressão</th><th>Resultado</th></tr></thead>
+<tbody>
+<tr><td><code>a == c</code></td><td>○ True    ○ False</td></tr>
+<tr><td><code>a &lt; b</code></td><td>○ True    ○ False</td></tr>
+<tr><td><code>d &gt; b</code></td><td>○ True    ○ False</td></tr>
+<tr><td><code>d == f</code></td><td>○ True    ○ False</td></tr>
+<tr><td><code>a == b</code></td><td>○ True    ○ False</td></tr>
+<tr><td><code>c &lt; d</code></td><td>○ True    ○ False</td></tr>
+<tr><td><code>b &gt; a</code></td><td>○ True    ○ False</td></tr>
+<tr><td><code>b &gt;= f</code></td><td>○ True    ○ False</td></tr>
+<tr><td><code>f &gt;= c</code></td><td>○ True    ○ False</td></tr>
+<tr><td><code>c &lt;= c</code></td><td>○ True    ○ False</td></tr>
+<tr><td><code>c &lt;= f</code></td><td>○ True    ○ False</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="c3-3">3.3 Operadores Lógicos: not, and, or</h3>
+<p class="sec-sub">Seções 3.3.2 e 3.3.3 — Combinando condições com lógica booleana</p>
+<h4 class="pyh">📋 Tabelas Verdade</h4>
+<p>Python tem três operadores lógicos: <code>not</code> (não), <code>and</code> (e) e <code>or</code> (ou). Cada um segue uma <strong>tabela verdade</strong>:</p>
+<div class="truth-tables">
+<table class="truth-table">
+<caption>not (não)</caption>
+<thead><tr><th>V</th><th>not V</th></tr></thead>
+<tbody>
+<tr><td class="t">V</td><td class="f">F</td></tr>
+<tr><td class="f">F</td><td class="t">V</td></tr>
+</tbody>
+</table>
+<table class="truth-table">
+<caption>and (e)</caption>
+<thead><tr><th>V1</th><th>V2</th><th>V1 and V2</th></tr></thead>
+<tbody>
+<tr><td class="t">V</td><td class="t">V</td><td class="t">V</td></tr>
+<tr><td class="t">V</td><td class="f">F</td><td class="f">F</td></tr>
+<tr><td class="f">F</td><td class="t">V</td><td class="f">F</td></tr>
+<tr><td class="f">F</td><td class="f">F</td><td class="f">F</td></tr>
+</tbody>
+</table>
+<table class="truth-table">
+<caption>or (ou)</caption>
+<thead><tr><th>V1</th><th>V2</th><th>V1 or V2</th></tr></thead>
+<tbody>
+<tr><td class="t">V</td><td class="t">V</td><td class="t">V</td></tr>
+<tr><td class="t">V</td><td class="f">F</td><td class="t">V</td></tr>
+<tr><td class="f">F</td><td class="t">V</td><td class="t">V</td></tr>
+<tr><td class="f">F</td><td class="f">F</td><td class="f">F</td></tr>
+</tbody>
+</table>
+</div>
+<p>Resumindo: <code>not</code> inverte. <code>and</code> só é True se <strong>ambos</strong> forem True. <code>or</code> é True se <strong>pelo menos um</strong> for True.</p>
+<h4 class="pyh">💻 Exemplos no interpretador</h4>
+<pre class="py"><span class="pylab">not</span><button class="cp">Copiar</button><code><span class="prompt">&gt;&gt;&gt;</span> <span class="keyword">not</span> True
+<span class="output">False</span>
+<span class="prompt">&gt;&gt;&gt;</span> <span class="keyword">not</span> False
+<span class="output">True</span></code></pre>
+<pre class="py"><span class="pylab">and</span><button class="cp">Copiar</button><code><span class="prompt">&gt;&gt;&gt;</span> True <span class="keyword">and</span> True
+<span class="output">True</span>
+<span class="prompt">&gt;&gt;&gt;</span> True <span class="keyword">and</span> False
+<span class="output">False</span>
+<span class="prompt">&gt;&gt;&gt;</span> False <span class="keyword">and</span> True
+<span class="output">False</span></code></pre>
+<pre class="py"><span class="pylab">or</span><button class="cp">Copiar</button><code><span class="prompt">&gt;&gt;&gt;</span> True <span class="keyword">or</span> False
+<span class="output">True</span>
+<span class="prompt">&gt;&gt;&gt;</span> False <span class="keyword">or</span> True
+<span class="output">True</span>
+<span class="prompt">&gt;&gt;&gt;</span> False <span class="keyword">or</span> False
+<span class="output">False</span></code></pre>
+<h4 class="pyh">🎯 Expressões lógicas combinadas</h4>
+<p>Podemos combinar operadores relacionais com lógicos. A <strong>precedência</strong> é: <code>not</code> primeiro, depois <code>and</code>, depois <code>or</code>.</p>
+<p><strong>Exemplo prático:</strong> Uma pessoa pode fazer empréstimo se ganhar mais de R$ 1000 <strong>e</strong> tiver mais de 18 anos:</p>
+<pre class="py"><span class="pylab">Exemplo</span><button class="cp">Copiar</button><code>salário &gt; 1000 <span class="keyword">and</span> idade &gt; 18</code></pre>
+<p>Se <code>salário = 100</code> e <code>idade = 20</code>:</p>
+<pre class="py"><span class="pylab"></span><button class="cp">Copiar</button><code>100 &gt; 1000 <span class="keyword">and</span> 20 &gt; 18
+  False    <span class="keyword">and</span>  True
+         <span class="output">False</span></code></pre>
+<p>Se <code>salário = 2000</code> e <code>idade = 30</code>:</p>
+<pre class="py"><span class="pylab"></span><button class="cp">Copiar</button><code>2000 &gt; 1000 <span class="keyword">and</span> 30 &gt; 18
+   True     <span class="keyword">and</span>  True
+          <span class="output">True</span></code></pre>
+<div class="box analogia"><div class="ic">💬</div><div>
+<p>💡 Expressões com mais de um operador lógico: avalie primeiro <code>not</code>, depois <code>and</code>, por último <code>or</code>. Na dúvida, use parênteses para deixar claro.</p>
+</div></div>
+<h4 class="pyh">✏ Exercícios</h4>
+<div class="lab">
+<h3>Exercício 3.3</h3>
+<p>Complete a tabela a seguir utilizando <code>a = True</code>, <code>b = False</code> e <code>c = True</code>.</p>
+<table class="exercise-table">
+<thead><tr><th>Expressão</th><th>Resultado</th></tr></thead>
+<tbody>
+<tr><td>a and a</td><td>○ True   ○ False</td></tr>
+<tr><td>b and b</td><td>○ True   ○ False</td></tr>
+<tr><td>not c</td><td>○ True   ○ False</td></tr>
+<tr><td>not b</td><td>○ True   ○ False</td></tr>
+<tr><td>not a</td><td>○ True   ○ False</td></tr>
+<tr><td>a and b</td><td>○ True   ○ False</td></tr>
+<tr><td>b and c</td><td>○ True   ○ False</td></tr>
+<tr><td>a or c</td><td>○ True   ○ False</td></tr>
+<tr><td>b or c</td><td>○ True   ○ False</td></tr>
+<tr><td>c or a</td><td>○ True   ○ False</td></tr>
+<tr><td>c or b</td><td>○ True   ○ False</td></tr>
+<tr><td>c or c</td><td>○ True   ○ False</td></tr>
+<tr><td>b or b</td><td>○ True   ○ False</td></tr>
+</tbody>
+</table>
+</div>
+<div class="lab">
+<h3>Exercício 3.4</h3>
+<p>Escreva uma expressão para determinar se uma pessoa deve ou não pagar imposto. Considere que pagam imposto pessoas cujo salário é maior que R$ 1.200,00.</p>
+</div>
+<div class="lab">
+<h3>Exercício 3.5</h3>
+<p>Calcule o resultado da expressão <code>A &gt; B and C or D</code>, utilizando os valores da tabela a seguir.</p>
+<table class="exercise-table">
+<thead><tr><th>A</th><th>B</th><th>C</th><th>D</th><th>Resultado</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>2</td><td>True</td><td>False</td><td> </td></tr>
+<tr><td>10</td><td>3</td><td>False</td><td>False</td><td> </td></tr>
+<tr><td>5</td><td>1</td><td>False</td><td>True</td><td> </td></tr>
+</tbody>
+</table>
+</div>
+<div class="lab">
+<h3>Exercício 3.6</h3>
+<p>Escreva uma expressão que será utilizada para decidir se um aluno foi ou não aprovado. Para ser aprovado, todas as médias do aluno devem ser maiores que 7. Considere que o aluno cursa apenas três matérias, e que a nota de cada uma está armazenada nas seguintes variáveis: <code>matéria1</code>, <code>matéria2</code> e <code>matéria3</code>.</p>
+</div>
+<h3 id="c3-4">3.4 Variáveis String</h3>
+<p class="sec-sub">Textos, índices, concatenação, composição e fatiamento</p>
+<h4 class="pyh">📝 O que são strings?</h4>
+<p>Strings armazenam <strong>cadeias de caracteres</strong>: letras, números, símbolos, espaços. Imagine como uma sequência de blocos, onde cada caractere ocupa uma posição:</p>
+<div class="string-visual">
+<div class="boxes">
+<div class="pybox">J</div><div class="pybox">o</div><div class="pybox">ã</div><div class="pybox">o</div><div class="pybox"> </div><div class="pybox">e</div><div class="pybox"> </div><div class="pybox">M</div><div class="pybox">a</div><div class="pybox">r</div><div class="pybox">i</div><div class="pybox">a</div>
+</div>
+<div class="indices">
+<div class="idx">0</div><div class="idx">1</div><div class="idx">2</div><div class="idx">3</div><div class="idx">4</div><div class="idx">5</div><div class="idx">6</div><div class="idx">7</div><div class="idx">8</div><div class="idx">9</div><div class="idx">10</div><div class="idx">11</div>
+</div>
+</div>
+<p>Os índices começam em <strong>0</strong>, não em 1! A função <code>len()</code> retorna o tamanho:</p>
+<pre class="py nr"><span class="pylab">len()</span><button class="cp">Copiar</button><code><span class="prompt">&gt;&gt;&gt;</span> print(len(<span class="string">"A"</span>))
+<span class="output">1</span>
+<span class="prompt">&gt;&gt;&gt;</span> print(len(<span class="string">"AB"</span>))
+<span class="output">2</span>
+<span class="prompt">&gt;&gt;&gt;</span> print(len(<span class="string">""</span>))      <span class="comment"># string vazia</span>
+<span class="output">0</span>
+<span class="prompt">&gt;&gt;&gt;</span> print(len(<span class="string">"O rato roeu a roupa"</span>))
+<span class="output">19</span></code></pre>
+<h4 class="pyh">📍 Acessando caracteres por índice</h4>
+<p>Você pode acessar um caractere individual usando seu índice entre colchetes: <code>variavel[indice]</code>. Se tentar um índice fora do intervalo, Python gera um erro:</p>
+<pre class="py nr"><span class="pylab">Listagem 3.8</span><button class="cp">Copiar</button><code><span class="prompt">&gt;&gt;&gt;</span> a = <span class="string">"ABCDEF"</span>
+<span class="prompt">&gt;&gt;&gt;</span> print(a[0])
+<span class="output">A</span>
+<span class="prompt">&gt;&gt;&gt;</span> print(a[1])
+<span class="output">B</span>
+<span class="prompt">&gt;&gt;&gt;</span> print(a[5])
+<span class="output">F</span>
+<span class="prompt">&gt;&gt;&gt;</span> print(a[6])
+<span class="error">Traceback (most recent call last):
+  File "&lt;stdin&gt;", line 1, in &lt;module&gt;
+IndexError: string index out of range</span>
+<span class="prompt">&gt;&gt;&gt;</span> print(len(a))
+<span class="output">6</span></code></pre>
+<p>A string <code>"ABCDEF"</code> tem 6 caracteres (posições 0 a 5). Tentar acessar a posição 6 — que não existe — gera um <code>IndexError</code>.</p>
+<h4 class="pyh">🔗 Concatenação e repetição</h4>
+<p>Use <code>+</code> para juntar strings e <code>*</code> para repetir:</p>
+<pre class="py nr"><span class="pylab">Listagem 3.9</span><button class="cp">Copiar</button><code><span class="prompt">&gt;&gt;&gt;</span> s = <span class="string">"ABC"</span>
+<span class="prompt">&gt;&gt;&gt;</span> print(s + <span class="string">"C"</span>)
+<span class="output">ABCC</span>
+<span class="prompt">&gt;&gt;&gt;</span> print(s + <span class="string">"D"</span> * 4)
+<span class="output">ABCDDDD</span>
+<span class="prompt">&gt;&gt;&gt;</span> print(<span class="string">"X"</span> + <span class="string">"-"</span> * 10 + <span class="string">"X"</span>)
+<span class="output">X----------X</span>
+<span class="prompt">&gt;&gt;&gt;</span> print(<span class="string">"A"</span> * 3)
+<span class="output">AAA</span></code></pre>
+<h4 class="pyh">🎨 Composição com %</h4>
+<p>Para montar mensagens com variáveis, usamos <strong>marcadores de posição</strong>:</p>
+<table class="op-table">
+<thead><tr><th>Marcador</th><th>Tipo</th></tr></thead>
+<tbody>
+<tr><td>%d</td><td>Números inteiros</td></tr>
+<tr><td>%s</td><td>Strings (textos)</td></tr>
+<tr><td>%f</td><td>Números decimais</td></tr>
+</tbody>
+</table>
+<p>Para inteiros, o marcador <code>%d</code> aceita modificações: <code>%03d</code> preenche com zeros à esquerda, <code>%3d</code> preenche com espaços, <code>%-3d</code> alinha à esquerda:</p>
+<pre class="py nr"><span class="pylab">Listagem 3.10</span><button class="cp">Copiar</button><code><span class="prompt">&gt;&gt;&gt;</span> idade = 22
+<span class="prompt">&gt;&gt;&gt;</span> print(<span class="string">"[%d]"</span> % idade)
+<span class="output">[22]</span>
+<span class="prompt">&gt;&gt;&gt;</span> print(<span class="string">"[%03d]"</span> % idade)
+<span class="output">[022]</span>
+<span class="prompt">&gt;&gt;&gt;</span> print(<span class="string">"[%3d]"</span> % idade)
+<span class="output">[ 22]</span>
+<span class="prompt">&gt;&gt;&gt;</span> print(<span class="string">"[%-3d]"</span> % idade)
+<span class="output">[22 ]</span></code></pre>
+<p>Para números decimais, <code>%5f</code> reserva 5 posições no total e <code>%5.2f</code> reserva 5 posições com 2 casas decimais:</p>
+<pre class="py nr"><span class="pylab">Listagem 3.11</span><button class="cp">Copiar</button><code><span class="prompt">&gt;&gt;&gt;</span> print(<span class="string">"%5f"</span> % 5)
+<span class="output">5.000000</span>
+<span class="prompt">&gt;&gt;&gt;</span> print(<span class="string">"%5.2f"</span> % 5)
+<span class="output"> 5.00</span>
+<span class="prompt">&gt;&gt;&gt;</span> print(<span class="string">"%10.5f"</span> % 5)
+<span class="output">   5.00000</span></code></pre>
+<p>Combinando tudo, podemos montar mensagens completas com várias variáveis de tipos diferentes:</p>
+<pre class="py nr"><span class="pylab">Listagem 3.12</span><button class="cp">Copiar</button><code><span class="prompt">&gt;&gt;&gt;</span> nome = <span class="string">"João"</span>
+<span class="prompt">&gt;&gt;&gt;</span> idade = 22
+<span class="prompt">&gt;&gt;&gt;</span> grana = 51.34
+<span class="prompt">&gt;&gt;&gt;</span> print(<span class="string">"%s tem %d anos e R$%5.2f no bolso."</span> % (nome, idade, grana))
+<span class="output">João tem 22 anos e R$51.34 no bolso.</span></code></pre>
+<p>O <code>%5.2f</code> significa: reserve 5 posições, com 2 casas decimais. Muito útil para valores monetários!</p>
+<h4 class="pyh">✂ Fatiamento (slicing)</h4>
+<p>Extraia pedaços de uma string usando <code>[início:fim]</code>. O caractere na posição <code>fim</code> <strong>não é incluído</strong>:</p>
+<pre class="py nr"><span class="pylab">Listagem 3.13-3.14</span><button class="cp">Copiar</button><code><span class="prompt">&gt;&gt;&gt;</span> s = <span class="string">"ABCDEFGHI"</span>
+<span class="prompt">&gt;&gt;&gt;</span> print(s[0:2])     <span class="comment"># posições 0 e 1</span>
+<span class="output">AB</span>
+<span class="prompt">&gt;&gt;&gt;</span> print(s[2:4])     <span class="comment"># posições 2 e 3</span>
+<span class="output">CD</span>
+<span class="prompt">&gt;&gt;&gt;</span> print(s[:2])      <span class="comment"># do início até 2</span>
+<span class="output">AB</span>
+<span class="prompt">&gt;&gt;&gt;</span> print(s[1:])      <span class="comment"># de 1 até o fim</span>
+<span class="output">BCDEFGHI</span>
+<span class="prompt">&gt;&gt;&gt;</span> print(s[:])       <span class="comment"># cópia completa</span>
+<span class="output">ABCDEFGHI</span>
+<span class="prompt">&gt;&gt;&gt;</span> print(s[-1:])     <span class="comment"># último caractere</span>
+<span class="output">I</span>
+<span class="prompt">&gt;&gt;&gt;</span> print(s[-5:7])    <span class="comment"># índices negativos!</span>
+<span class="output">EFG</span></code></pre>
+<div class="box analogia"><div class="ic">💬</div><div>
+<p>💡 Índices negativos contam de trás para frente: <code>-1</code> é o último, <code>-2</code> o penúltimo, etc.</p>
+</div></div>
+<h3 id="c3-5">3.5 Sequências, Tempo e Rastreamento</h3>
+<p class="sec-sub">Seções 3.5 e 3.6 — Entendendo como o programa executa linha a linha</p>
+<h4 class="pyh">⏱ Variáveis mudam no tempo</h4>
+<p>Um programa é executado <strong>linha por linha</strong>, de cima para baixo. O valor de uma variável pode mudar ao longo da execução — o valor anterior é substituído pelo novo.</p>
+<p>Observe o programa abaixo que registra compras e calcula uma dívida:</p>
+<pre class="py"><span class="pylab">Listagem 3.15</span><button class="cp">Copiar</button><code>dívida = <span class="number">0</span> <span class="comment"># linha 1</span>
+compra = <span class="number">100</span> <span class="comment"># linha 2</span>
+dívida = dívida + compra  <span class="comment"># linha 3</span>
+compra = <span class="number">200</span> <span class="comment"># linha 4</span>
+dívida = dívida + compra  <span class="comment"># linha 5</span>
+compra = <span class="number">300</span> <span class="comment"># linha 6</span>
+dívida = dívida + compra  <span class="comment"># linha 7</span>
+compra = <span class="number">0</span> <span class="comment"># linha 8</span>
+<span class="function">print</span>(dívida)         <span class="comment"># linha 9</span></code></pre>
+<p>O resultado é <strong>600</strong> (100 + 200 + 300). Mas como chegamos lá?</p>
+<h4 class="pyh">📋 Rastreamento: a arte de debugar no papel</h4>
+<p><strong>Rastrear</strong> um programa é acompanhar o valor de cada variável após cada linha. Use lápis e papel, criando colunas para cada variável:</p>
+<table class="trace-table">
+<thead><tr><th>Linha</th><th>dívida</th><th>compra</th><th>Tela</th></tr></thead>
+<tbody>
+<tr><td class="line-num">1</td><td>0</td><td>—</td><td></td></tr>
+<tr><td class="line-num">2</td><td>0</td><td>100</td><td></td></tr>
+<tr><td class="line-num">3</td><td>100</td><td>100</td><td></td></tr>
+<tr><td class="line-num">4</td><td>100</td><td>200</td><td></td></tr>
+<tr><td class="line-num">5</td><td>300</td><td>200</td><td></td></tr>
+<tr><td class="line-num">6</td><td>300</td><td>300</td><td></td></tr>
+<tr><td class="line-num">7</td><td>600</td><td>300</td><td></td></tr>
+<tr><td class="line-num">8</td><td>600</td><td>0</td><td></td></tr>
+<tr><td class="line-num">9</td><td>600</td><td>0</td><td>600</td></tr>
+</tbody>
+</table>
+<p>Veja como <code>dívida</code> acumula os valores e <code>compra</code> é substituída a cada nova atribuição.</p>
+<h4 class="pyh">💡 Por que rastrear?</h4>
+<p>Dominar o rastreamento é <strong>essencial</strong> para programar. Ele ajuda a:</p>
+<ul>
+<li><strong>Entender</strong> como programas realmente funcionam</li>
+<li><strong>Encontrar erros</strong> (bugs) quando algo dá errado</li>
+<li><strong>Verificar</strong> se seu programa faz o que você espera</li>
+</ul>
+<div class="box analogia"><div class="ic">💬</div><div>
+<p>“Um programa não pode ser lido como um texto. Deve ser analisado cuidadosamente, linha a linha, verificando os efeitos e mudanças no valor de cada variável.”</p>
+</div></div>
+<p><strong>Dicas para rastrear:</strong></p>
+<ul>
+<li>Use lápis e borracha (ou uma tabela no caderno)</li>
+<li>Crie uma coluna para cada variável e uma para a “Tela”</li>
+<li>Leia uma linha por vez e anote o novo valor</li>
+<li>Se o valor mudar, risque o anterior e escreva o novo</li>
+<li>Comece do início sempre que encontrar um erro</li>
+</ul>
+<h3 id="c3-6">3.6 Entrada de Dados: input()</h3>
+<p class="sec-sub">Programas que conversam com o usuário</p>
+<h4 class="pyh">💬 A função input()</h4>
+<p>Até agora, todos os valores estavam escritos no próprio programa. Mas o melhor da programação é poder <strong>receber dados do usuário</strong> durante a execução.</p>
+<p>A função <code>input()</code> exibe uma mensagem e espera o usuário digitar algo:</p>
+<pre class="py"><span class="pylab">Listagem 3.16</span><button class="cp">Copiar</button><code>x = <span class="function">input</span>(<span class="string">"Digite um número: "</span>)
+<span class="function">print</span>(x)</code></pre>
+<pre class="py nr"><span class="pylab">Saída</span><button class="cp">Copiar</button><code><span class="output">Digite um número: </span><span class="user-input">5</span>
+<span class="output">5</span></code></pre>
+<h4 class="pyh">📝 Exemplo interativo</h4>
+<pre class="py"><span class="pylab">Listagem 3.18</span><button class="cp">Copiar</button><code>nome = <span class="function">input</span>(<span class="string">"Digite seu nome: "</span>)
+<span class="function">print</span>(<span class="string">"Você digitou %s"</span> % nome)
+<span class="function">print</span>(<span class="string">"Olá, %s!"</span> % nome)</code></pre>
+<pre class="py nr"><span class="pylab">Saída</span><button class="cp">Copiar</button><code><span class="output">Digite seu nome: </span><span class="user-input">João</span>
+<span class="output">Você digitou João</span>
+<span class="output">Olá, João!</span></code></pre>
+<p>O programa funciona com qualquer nome — ele não se importa com o que o usuário digita (por enquanto).</p>
+<h4 class="pyh">🔄 Conversão de tipos: int() e float()</h4>
+<p>A função <code>input()</code> <strong>sempre retorna uma string</strong>. Se você precisa de um número, deve converter:</p>
+<ul>
+<li><code>int()</code> — converte para número inteiro</li>
+<li><code>float()</code> — converte para número decimal</li>
+</ul>
+<pre class="py"><span class="pylab">Listagem 3.20 — Bônus por tempo de serviço</span><button class="cp">Copiar</button><code>anos = <span class="function">int</span>(<span class="function">input</span>(<span class="string">"Anos de serviço: "</span>))
+valor_por_ano = <span class="function">float</span>(<span class="function">input</span>(<span class="string">"Valor por ano: "</span>))
+bônus = anos * valor_por_ano
+<span class="function">print</span>(<span class="string">"Bônus de R$ %5.2f"</span> % bônus)</code></pre>
+<pre class="py nr"><span class="pylab">Saída</span><button class="cp">Copiar</button><code><span class="output">Anos de serviço: </span><span class="user-input">10</span>
+<span class="output">Valor por ano: </span><span class="user-input">25</span>
+<span class="output">Bônus de R$ 250.00</span></code></pre>
+<h4 class="pyh">📋 Combinando os três tipos</h4>
+<p>Podemos combinar <code>input()</code>, <code>int()</code> e <code>float()</code> no mesmo programa para ler dados de tipos diferentes:</p>
+<pre class="py"><span class="pylab">Listagem 3.22</span><button class="cp">Copiar</button><code>nome = <span class="function">input</span>(<span class="string">"Digite seu nome: "</span>)
+idade = <span class="function">int</span>(<span class="function">input</span>(<span class="string">"Digite sua idade: "</span>))
+saldo = <span class="function">float</span>(<span class="function">input</span>(<span class="string">"Digite o saldo da sua conta bancária: "</span>))
+<span class="function">print</span>(nome)
+<span class="function">print</span>(idade)
+<span class="function">print</span>(saldo)</code></pre>
+<pre class="py nr"><span class="pylab">Saída</span><button class="cp">Copiar</button><code><span class="output">Digite seu nome: </span><span class="user-input">João</span>
+<span class="output">Digite sua idade: </span><span class="user-input">42</span>
+<span class="output">Digite o saldo da sua conta bancária: </span><span class="user-input">15756.34</span>
+<span class="output">João</span>
+<span class="output">42</span>
+<span class="output">15756.34</span></code></pre>
+<p>Note que <code>print(saldo)</code> exibe <code>15756.34</code> e não <code>15756.340000</code>, pois o Python remove zeros desnecessários ao exibir floats diretamente.</p>
+<h4 class="pyh">⚠ Erros comuns na entrada de dados</h4>
+<p>Se o usuário digitar algo que não pode ser convertido, o programa dá erro:</p>
+<pre class="py nr"><span class="pylab">Erro: letras onde esperava número</span><button class="cp">Copiar</button><code><span class="output">Digite sua idade: </span><span class="user-input">abc</span>
+<span class="error">ValueError: invalid literal for int() with base 10: 'abc'</span></code></pre>
+<pre class="py nr"><span class="pylab">Erro: vírgula no lugar do ponto</span><button class="cp">Copiar</button><code><span class="output">Digite o saldo: </span><span class="user-input">17,4</span>
+<span class="error">ValueError: could not convert string to float: '17,4'</span></code></pre>
+<div class="box atencao"><div class="ic">⚠️</div><div>
+<p>⚠ Em Python, o separador decimal é o <strong>ponto</strong> (17.4), não a vírgula (17,4). Esse é um erro muito comum para brasileiros! Por enquanto, nossos programas ainda não tratam esses erros — veremos isso mais adiante.</p>
+</div></div>
+<h4 class="pyh" id="c3-lab">📝 Exercícios do Capítulo 3</h4>
+<div class="lab">
+<h3>✏ Exercício 3.7</h3>
+<p>Faça um programa que peça dois números inteiros. Imprima a soma deles na tela.</p>
+</div>
+<div class="lab">
+<h3>✏ Exercício 3.8</h3>
+<p>Escreva um programa que leia um valor em metros e o exiba convertido em milímetros.</p>
+</div>
+<div class="lab">
+<h3>✏ Exercício 3.9</h3>
+<p>Escreva um programa que leia a quantidade de dias, horas, minutos e segundos. Calcule o total em segundos.</p>
+</div>
+<div class="lab">
+<h3>✏ Exercício 3.10</h3>
+<p>Faça um programa que calcule o aumento de um salário. Solicite o valor do salário e a porcentagem de aumento. Exiba o valor do aumento e o novo salário.</p>
+</div>
+<div class="lab">
+<h3>✏ Exercício 3.11</h3>
+<p>Faça um programa que solicite o preço de uma mercadoria e o percentual de desconto. Exiba o valor do desconto e o preço a pagar.</p>
+</div>
+<div class="lab">
+<h3>✏ Exercício 3.12</h3>
+<p>Escreva um programa que calcule o tempo de uma viagem de carro. Pergunte a distância a percorrer e a velocidade média esperada para a viagem.</p>
+</div>
+<div class="lab">
+<h3>✏ Exercício 3.13</h3>
+<p>Escreva um programa que converta uma temperatura digitada em °C para °F. Fórmula: <strong>F = (9 × C / 5) + 32</strong></p>
+</div>
+<div class="lab">
+<h3>✏ Exercício 3.14</h3>
+<p>Escreva um programa que pergunte a quantidade de km percorridos por um carro alugado pelo usuário, assim como a quantidade de dias pelos quais o carro foi alugado. Calcule o preço a pagar, sabendo que o carro custa R$ 60 por dia e R$ 0,15 por km rodado.</p>
+</div>
+<div class="lab">
+<h3>✏ Exercício 3.15</h3>
+<p>Escreva um programa para calcular a redução do tempo de vida de um fumante. Pergunte a quantidade de cigarros fumados por dia e quantos anos ele já fumou. Considere que um fumante perde 10 minutos de vida a cada cigarro; calcule quantos dias de vida um fumante perderá. Exiba o total em dias.</p>
+</div>
+
+  <h3 id="c3-tools">🛠️ Ferramentas do capítulo</h3>
+  <div class="tool" id="st" style="--cc:var(--c3)">
+    <h4 style="margin-top:0">🔍 Rastreamento passo a passo</h4>
+    <p>Aperte <b>Próxima linha</b> e veja as variáveis mudarem, como no rastreamento feito no papel.</p>
+    <pre class="py nr"><code id="stCode"></code></pre>
+    <div class="shelf" id="stV"></div>
+    <div class="tool-ctl"><button type="button" id="stN">Próxima linha ▶</button><button type="button" id="stR" class="alt">Recomeçar</button></div>
+    <p id="stT" aria-live="polite"></p>
+  </div>
+  <div class="tool" id="lg" style="--cc:var(--c3)">
+    <h4 style="margin-top:0">💡 Lógica ao vivo: not, and, or</h4>
+    <p>Clique nos valores de <b>A</b> e <b>B</b> para trocá-los e veja os resultados.</p>
+    <div class="tool-ctl"><button type="button" id="lgA">A = True</button><button type="button" id="lgB">B = True</button></div>
+    <div class="shelf" id="lgO" aria-live="polite"></div>
+  </div>
+  <div class="tool" id="sl" style="--cc:var(--c3)">
+    <h4 style="margin-top:0">✂️ Fatiador de strings</h4>
+    <p>Digite um texto e escolha o início e o fim. O caractere da posição <b>fim</b> não entra.</p>
+    <div class="tool-ctl"><input type="text" id="slS" value="PROGRAMAR" maxlength="20" aria-label="Texto" style="padding:8px 10px;border-radius:8px;border:1px solid var(--borda,#ccc);font:inherit;width:170px">
+    <label>início: <input type="number" id="slA" value="0" style="width:64px;padding:6px;border-radius:8px;border:1px solid var(--borda,#ccc);font:inherit"></label>
+    <label>fim: <input type="number" id="slB" value="3" style="width:64px;padding:6px;border-radius:8px;border:1px solid var(--borda,#ccc);font:inherit"></label></div>
+    <div class="shelf" id="slV"></div>
+    <p id="slT" aria-live="polite"></p>
+  </div>
+
+  <div class="resumo"><h3>📝 Resumo do capítulo</h3><ul><li>Nomes de variáveis começam com <b>letra</b> (ou sublinha), não têm espaços e não podem começar com número.</li><li><code>int</code> guarda números inteiros e <code>float</code> guarda números com ponto decimal (usa-se <b>ponto</b>, não vírgula).</li><li><code>True</code> e <code>False</code> são valores lógicos; <code>==</code> compara e <code>=</code> atribui.</li><li><code>not</code> inverte, <code>and</code> exige as duas condições verdadeiras e <code>or</code> exige pelo menos uma; a ordem é <code>not</code>, <code>and</code>, <code>or</code>.</li><li>Strings são sequências de caracteres: índices começam em <b>0</b>, <code>len()</code> dá o tamanho, <code>+</code> junta, <code>*</code> repete e <code>[a:b]</code> fatia.</li><li><code>%d</code>, <code>%s</code> e <code>%f</code> montam mensagens com variáveis; <code>%5.2f</code> reserva 5 posições com 2 casas decimais.</li><li><b>Rastrear</b> é acompanhar o valor de cada variável a cada linha; ajuda a achar bugs.</li><li><code>input()</code> sempre devolve <b>texto</b>; use <code>int()</code> ou <code>float()</code> para obter números.</li></ul></div>
+  <h3 id="c3-quiz">🧠 Quiz do capítulo 3</h3>
+  <p>Clique na resposta que você acha certa.</p>
+  <div class="quiz">
+    <div class="q"><p>1. Qual destes nomes de variável é válido em Python?</p>
+      <button class="opt">a) 1a</button><button class="opt">b) salário médio</button><button class="opt" data-ok="1">c) velocidade90</button><button class="opt">d) a-b</button>
+      <div class="fb"><code>velocidade90</code> começa com letra e só tem letras e números. Os outros começam com número, têm espaço ou hífen.</div></div>
+    <div class="q"><p>2. Qual é o tipo de <code>5.0</code>?</p>
+      <button class="opt">a) int</button><button class="opt" data-ok="1">b) float</button><button class="opt">c) str</button><button class="opt">d) bool</button>
+      <div class="fb">Número com ponto decimal é <code>float</code>, mesmo que a parte decimal seja zero.</div></div>
+    <div class="q"><p>3. Qual é o resultado de <code>5 &gt; 8</code>?</p>
+      <button class="opt">a) True</button><button class="opt" data-ok="1">b) False</button><button class="opt">c) 5</button><button class="opt">d) Erro</button>
+      <div class="fb">5 não é maior que 8, então o resultado é <code>False</code>.</div></div>
+    <div class="q"><p>4. Qual a diferença entre <code>=</code> e <code>==</code>?</p>
+      <button class="opt">a) Nenhuma</button><button class="opt" data-ok="1">b) <code>=</code> atribui um valor e <code>==</code> compara dois valores</button><button class="opt">c) <code>=</code> compara e <code>==</code> atribui</button><button class="opt">d) <code>==</code> só funciona com strings</button>
+      <div class="fb">Um igual guarda um valor na variável; dois iguais perguntam se os valores são iguais.</div></div>
+    <div class="q"><p>5. Qual é o resultado de <code>True and False</code>?</p>
+      <button class="opt">a) True</button><button class="opt" data-ok="1">b) False</button><button class="opt">c) Erro</button><button class="opt">d) None</button>
+      <div class="fb"><code>and</code> só dá <code>True</code> se os dois lados forem verdadeiros.</div></div>
+    <div class="q"><p>6. Se <code>s = "ABCDEF"</code>, o que mostra <code>print(s[1:3])</code>?</p>
+      <button class="opt">a) AB</button><button class="opt" data-ok="1">b) BC</button><button class="opt">c) BCD</button><button class="opt">d) ABC</button>
+      <div class="fb">O fatiamento começa na posição 1 e termina antes da 3: pega as posições 1 e 2, ou seja, <code>BC</code>.</div></div>
+    <div class="q"><p>7. O que a função <code>input()</code> devolve?</p>
+      <button class="opt">a) Sempre um número inteiro</button><button class="opt" data-ok="1">b) Sempre um texto (string)</button><button class="opt">c) Um número decimal</button><button class="opt">d) Um valor lógico</button>
+      <div class="fb"><code>input()</code> devolve texto. Para fazer contas, converta com <code>int()</code> ou <code>float()</code>.</div></div>
+    <div class="q"><p>8. O que acontece com <code>int(input("Idade: "))</code> se o usuário digitar <code>abc</code>?</p>
+      <button class="opt">a) O Python converte para 0</button><button class="opt" data-ok="1">b) O programa para com um ValueError</button><button class="opt">c) Aparece True</button><button class="opt">d) Nada, o programa segue</button>
+      <div class="fb">Texto que não parece número não pode ser convertido: o Python mostra <code>ValueError</code>.</div></div>
+  </div>
+  <div class="score"></div>
+  <h3>✍️ Questões abertas</h3>
+  <div class="open"><p><b>1.</b> Por que <code>3 * 0.1</code> pode dar <code>0.30000000000000004</code>?</p>
+    <button>Ver resposta</button><div class="answer">O computador guarda números decimais em binário, e alguns valores (como 0,1) não cabem exatamente. Fica um erro minúsculo. Com inteiros isso não acontece.</div></div>
+  <div class="open"><p><b>2.</b> Para ser aprovado, o aluno precisa de média maior que 7 nas três matérias. Escreva a expressão.</p>
+    <button>Ver resposta</button><div class="answer"><code>matéria1 &gt; 7 and matéria2 &gt; 7 and matéria3 &gt; 7</code>. O <code>and</code> exige que as três condições sejam verdadeiras.</div></div>
+  <div class="open"><p><b>3.</b> Por que o índice de uma string começa em 0?</p>
+    <button>Ver resposta</button><div class="answer">Porque o índice mostra quantos caracteres existem <i>antes</i> daquele. O primeiro caractere tem zero antes dele. Analogia: o andar térreo é o 0.</div></div>
+  <div class="open"><p><b>4.</b> Escreva um programa que leia o preço e o percentual de desconto e mostre o preço a pagar.</p>
+    <button>Ver resposta</button><div class="answer"><code>preco = float(input("Preço: "))<br>desc = float(input("Desconto (%): "))<br>pagar = preco - preco * desc / 100<br>print("Pagar: R$ %5.2f" % pagar)</code></div></div>
+
+  <div class="box dica" style="margin-top:28px"><div class="ic">📚</div><div><h5>Para saber mais</h5><p>Documentação oficial: <i>O tutorial de Python</i>, seções sobre números, strings e entrada de dados, em docs.python.org/pt-br/3/tutorial/. Resolva os exercícios no IDLE antes de olhar qualquer resposta.</p></div></div>
+</section>
 <section class="chapter soon-ch" id="cap4" style="--cc:var(--c4)"><div class="chap-head"><div class="chap-num" style="background:var(--c4)">4</div><div><small>Capítulo 4</small><h2>Condições</h2></div></div><div class="soon-card">⏳ Este capítulo será publicado em breve.</div></section>
 <section class="chapter soon-ch" id="cap5" style="--cc:var(--c5)"><div class="chap-head"><div class="chap-num" style="background:var(--c5)">5</div><div><small>Capítulo 5</small><h2>Repetições</h2></div></div><div class="soon-card">⏳ Este capítulo será publicado em breve.</div></section>
 <section class="chapter soon-ch" id="cap6" style="--cc:var(--c6)"><div class="chap-head"><div class="chap-num" style="background:var(--c6)">6</div><div><small>Capítulo 6</small><h2>Listas</h2></div></div><div class="soon-card">⏳ Este capítulo será publicado em breve.</div></section>
