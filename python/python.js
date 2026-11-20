@@ -161,4 +161,29 @@
     s.oninput=r;a.oninput=r;b.oninput=r;r();
   })();
 
+  // --- Cap. 4: caminhos do if ---
+  (function(){
+    var m=$('tfM');if(!m)return;
+    var L=['if minutos &lt; 200:','    preço = 0.20','elif minutos &lt; 400:','    preço = 0.18','else:','    preço = 0.15'];
+    function r(){
+      var v=+m.value,k=v<200?0:(v<400?1:2),pr=[0.20,0.18,0.15][k];
+      $('tfV').textContent=v;
+      $('tfC').innerHTML=L.map(function(t,i){var on=Math.floor(i/2)===k;return '<span style="display:block;padding:0 6px;border-radius:4px;'+(on?'background:rgba(239,108,0,.25)':'opacity:.45')+'">'+t+'</span>'}).join('');
+      $('tfT').innerHTML='Com <b>'+v+'</b> minutos, o preço é <b>R$ '+pr.toFixed(2).replace('.',',')+'</b> por minuto. Total: <b>R$ '+(v*pr).toFixed(2).replace('.',',')+'</b>.';
+    }
+    m.oninput=r;r();
+  })();
+
+  // --- Cap. 4: imposto por faixas ---
+  (function(){
+    var s=$('irS');if(!s)return;
+    function f(x){return 'R$ '+x.toFixed(2).replace('.',',')}
+    function r(){
+      var v=+s.value,a=Math.max(0,Math.min(v,3000)-1000)*0.2,b=Math.max(0,v-3000)*0.35;
+      $('irV').textContent=v;
+      $('irT').innerHTML='Faixa de 20%: <b>'+f(a)+'</b><br>Faixa de 35%: <b>'+f(b)+'</b><br>Imposto total: <b>'+f(a+b)+'</b>';
+    }
+    s.oninput=r;r();
+  })();
+
 })();

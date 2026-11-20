@@ -60,7 +60,15 @@ html[data-theme=dark]{--verde-claro:#10263a}
       <a href="#c3-tools">Ferramentas</a>
       <a href="#c3-quiz">Quiz e exercícios</a>
     </div>
-    <a href="#cap4" class="soon"><span class="n" style="background:var(--c4)">4</span>Condições</a>
+    <a href="#cap4"><span class="n" style="background:var(--c4)">4</span>Condições</a>
+    <div class="sub">
+      <a href="#c4-1">4.1 A Estrutura if</a>
+      <a href="#c4-2">4.2 A Cláusula else</a>
+      <a href="#c4-3">4.3 Estruturas Aninhadas</a>
+      <a href="#c4-4">4.4 A Cláusula elif</a>
+      <a href="#c4-tools">Ferramentas</a>
+      <a href="#c4-quiz">Quiz e exercícios</a>
+    </div>
     <a href="#cap5" class="soon"><span class="n" style="background:var(--c5)">5</span>Repetições</a>
     <a href="#cap6" class="soon"><span class="n" style="background:var(--c6)">6</span>Listas</a>
     <a href="#cap7" class="soon"><span class="n" style="background:var(--c7)">7</span>Strings</a>
@@ -97,7 +105,7 @@ html[data-theme=dark]{--verde-claro:#10263a}
     <div class="card" style="--cc:var(--c1)" data-ok="1"><b>1 · Motivação</b><span>Por que programar, paciência, ritmo de estudo e por que Python.</span><div class="st">✅ Disponível</div></div>
     <div class="card" style="--cc:var(--c2)" data-ok="1"><b>2 · Ambiente</b><span>Instalar o Python, usar o IDLE e escrever os primeiros programas.</span><div class="st">✅ Disponível</div></div>
     <div class="card" style="--cc:var(--c3)" data-ok="1"><b>3 · Variáveis e entrada</b><span>Tipos, operadores, strings e como pedir dados ao usuário.</span><div class="st">✅ Disponível</div></div>
-    <div class="card" style="--cc:var(--c4)"><b>4 · Condições</b><span>if, else, condições aninhadas e elif.</span><div class="st">⏳ Em breve</div></div>
+    <div class="card" style="--cc:var(--c4)" data-ok="1"><b>4 · Condições</b><span>if, else, condições aninhadas e elif.</span><div class="st">✅ Disponível</div></div>
     <div class="card" style="--cc:var(--c5)"><b>5 · Repetições</b><span>while, contadores, acumuladores e laços aninhados.</span><div class="st">⏳ Em breve</div></div>
     <div class="card" style="--cc:var(--c6)"><b>6 · Listas</b><span>Listas, índices, for, pilhas, filas, ordenação e dicionários.</span><div class="st">⏳ Em breve</div></div>
     <div class="card" style="--cc:var(--c7)"><b>7 · Strings</b><span>Pesquisa, métodos e formatação, com um jogo da forca.</span><div class="st">⏳ Em breve</div></div>
@@ -1224,7 +1232,273 @@ saldo = <span class="function">float</span>(<span class="function">input</span>(
 
   <div class="box dica" style="margin-top:28px"><div class="ic">📚</div><div><h5>Para saber mais</h5><p>Documentação oficial: <i>O tutorial de Python</i>, seções sobre números, strings e entrada de dados, em docs.python.org/pt-br/3/tutorial/. Resolva os exercícios no IDLE antes de olhar qualquer resposta.</p></div></div>
 </section>
-<section class="chapter soon-ch" id="cap4" style="--cc:var(--c4)"><div class="chap-head"><div class="chap-num" style="background:var(--c4)">4</div><div><small>Capítulo 4</small><h2>Condições</h2></div></div><div class="soon-card">⏳ Este capítulo será publicado em breve.</div></section>
+<section class="chapter" id="cap4" style="--cc:var(--c4)">
+  <div class="chap-head"><div class="chap-num" style="background:var(--c4)">4</div><div><small>Capítulo 4</small><h2>Condições</h2></div></div>
+  <div class="obj"><h4>🎯 Ao final deste capítulo, você será capaz de:</h4><ul><li>usar <code>if</code> para executar um bloco só quando a condição for verdadeira</li><li>escolher entre dois caminhos com <code>if ... else</code></li><li>combinar decisões com estruturas aninhadas</li><li>simplificar várias faixas de decisão com <code>elif</code></li><li>respeitar os dois pontos e a indentação que delimitam os blocos</li></ul></div>
+<h3 id="c4-1">4.1 A Estrutura if</h3>
+<p class="sec-sub">Condições simples e blocos de código</p>
+<h4 class="pyh">🔀 Executar ou não executar?</h4>
+<p>Nem sempre todas as linhas dos programas serão executadas. Muitas vezes, será mais interessante decidir que partes do programa devem ser executadas com base no resultado de uma condição. A base dessas decisões consistirá em expressões lógicas que permitam representar escolhas em programas.</p>
+<p>As condições servem para selecionar quando uma parte do programa deve ser ativada e quando deve ser simplesmente ignorada. Em Python, a estrutura de decisão é o <code>if</code>. Seu formato é:</p>
+<pre class="py"><span class="pylab">Listagem 4.1 — Formato do if</span><button class="cp">Copiar</button><code><span class="keyword">if</span> <span class="placeholder">&lt;condição&gt;</span>:
+    <span class="placeholder">bloco verdadeiro</span></code></pre>
+<p>O <code>if</code> nada mais é que o nosso <em>"se"</em>: se a condição for verdadeira, faça alguma coisa. O bloco de código dentro do <code>if</code> é indicado pelo <strong>recuo</strong> (indentação) — use 4 espaços ou 1 tab.</p>
+<div class="box exemplo"><div class="ic">💡</div><div><h5>Trivia: Indentação em Python</h5><p>Python é uma das poucas linguagens que utiliza o deslocamento do texto à direita (recuo) para marcar o início e o fim de um bloco. Outras linguagens usam palavras especiais como <code>BEGIN</code>/<code>END</code> (Pascal) ou chaves <code>{ }</code> (C e Java).</p></div></div>
+<h4 class="pyh">🔢 Comparando dois valores</h4>
+<p>Vamos ler dois números e verificar qual é o maior. Cada <code>if</code> é avaliado de forma independente:</p>
+<pre class="py"><span class="pylab">Listagem 4.2 — Condições</span><button class="cp">Copiar</button><code>a = <span class="function">int</span>(<span class="function">input</span>(<span class="string">"Primeiro valor: "</span>))
+b = <span class="function">int</span>(<span class="function">input</span>(<span class="string">"Segundo valor: "</span>))
+<span class="keyword">if</span> a &gt; b:
+    <span class="function">print</span>(<span class="string">"O primeiro número é o maior!"</span>)
+<span class="keyword">if</span> b &gt; a:
+    <span class="function">print</span>(<span class="string">"O segundo número é o maior!"</span>)</code></pre>
+<p>A expressão <code>a &gt; b</code> será avaliada, e se o resultado for <code>True</code>, a linha do <code>print</code> será executada. Se for <code>False</code>, será ignorada. O mesmo acontece para <code>b &gt; a</code>. Note que as linhas com <code>if</code> foram terminadas com <strong>dois pontos (:)</strong> — isso é obrigatório em Python.</p>
+<h4 class="pyh">🚗 Carro novo ou velho</h4>
+<p>Outro exemplo: solicitar a idade do carro e exibir se é novo ou velho. Carros com até 3 anos são considerados novos:</p>
+<pre class="py"><span class="pylab">Listagem 4.3 — Carro novo ou velho</span><button class="cp">Copiar</button><code>idade = <span class="function">int</span>(<span class="function">input</span>(<span class="string">"Digite a idade do seu carro: "</span>))
+<span class="keyword">if</span> idade &lt;= 3:
+    <span class="function">print</span>(<span class="string">"Seu carro é novo"</span>)
+<span class="keyword">if</span> idade &gt; 3:
+    <span class="function">print</span>(<span class="string">"Seu carro é velho"</span>)</code></pre>
+<p>Note que as duas condições são sempre opostas: se uma for verdadeira, a outra será necessariamente falsa. Veremos uma maneira mais elegante de expressar isso na próxima aula com o <code>else</code>.</p>
+<h4 class="pyh">💰 Cálculo do Imposto de Renda</h4>
+<p>Um exemplo mais avançado: calcular o imposto de renda em faixas. Salários até R$ 1.000 estão isentos; entre R$ 1.000 e R$ 3.000 pagam 20%; acima de R$ 3.000 pagam 35% sobre o excedente:</p>
+<pre class="py"><span class="pylab">Listagem 4.4 — Cálculo do Imposto de Renda</span><button class="cp">Copiar</button><code>salário = <span class="function">float</span>(<span class="function">input</span>(<span class="string">"Digite o salário para cálculo do imposto: "</span>))
+base = salário
+imposto = 0
+<span class="keyword">if</span> base &gt; 3000:
+    imposto = imposto + ((base - 3000) * 0.35)
+    base = 3000
+<span class="keyword">if</span> base &gt; 1000:
+    imposto = imposto + ((base - 1000) * 0.20)
+<span class="function">print</span>(<span class="string">"Salário: R$%6.2f  Imposto a pagar: R$%6.2f"</span> % (salário, imposto))</code></pre>
+<div class="box analogia"><div class="ic">💬</div><div>
+<p>💡 A variável <code>base</code> guarda uma cópia do salário. Isso é necessário porque vamos modificar <code>base</code> durante o cálculo, mas precisamos do valor original de <code>salário</code> para exibi-lo no final. Os dois <code>if</code>s são independentes e ambos serão avaliados.</p>
+</div></div>
+<h4 class="pyh">✏ Exercícios</h4>
+<div class="lab">
+<h3>Exercício 4.1</h3>
+<p>Analise o programa da Listagem 4.2. Responda: o que acontece se o primeiro e o segundo valores forem iguais? Explique.</p>
+</div>
+<div class="lab">
+<h3>Exercício 4.2</h3>
+<p>Escreva um programa que pergunte a velocidade do carro de um usuário. Caso ultrapasse 80 km/h, exiba uma mensagem dizendo que o usuário foi multado. Nesse caso, exiba o valor da multa, cobrando R$ 5 por km acima de 80 km/h.</p>
+</div>
+<div class="lab">
+<h3>Exercício 4.3</h3>
+<p>Escreva um programa que leia três números e que imprima o maior e o menor.</p>
+</div>
+<div class="lab">
+<h3>Exercício 4.4</h3>
+<p>Escreva um programa que pergunte o salário do funcionário e calcule o valor do aumento. Para salários superiores a R$ 1.250,00, calcule um aumento de 10%. Para os inferiores ou iguais, de 15%.</p>
+</div>
+<h3 id="c4-2">4.2 A Cláusula else</h3>
+<p class="sec-sub">O caminho alternativo</p>
+<h4 class="pyh">↔ if ... else</h4>
+<p>Muitas vezes temos dois caminhos bem definidos: uma ação quando a condição é verdadeira e outra quando é falsa. Podemos usar o <code>else</code> para simplificar isso, sem precisar de um segundo <code>if</code> com a condição oposta:</p>
+<pre class="py"><span class="pylab">Formato</span><button class="cp">Copiar</button><code><span class="keyword">if</span> <span style="color:#fb923c;font-style:italic">&lt;condição&gt;</span>:
+    bloco verdadeiro
+<span class="keyword">else</span>:
+    bloco falso</code></pre>
+<p>Veja o programa do carro novo ou velho reescrito com <code>else</code>:</p>
+<pre class="py"><span class="pylab">Listagem 4.5 — Carro novo ou velho com else</span><button class="cp">Copiar</button><code>idade = <span class="function">int</span>(<span class="function">input</span>(<span class="string">"Digite a idade de seu carro: "</span>))
+<span class="keyword">if</span> idade &lt;= 3:
+    <span class="function">print</span>(<span class="string">"Seu carro é novo"</span>)
+<span class="keyword">else</span>:
+    <span class="function">print</span>(<span class="string">"Seu carro é velho"</span>)</code></pre>
+<p>Note que usamos <strong>dois pontos (:)</strong> após o <code>else</code>, e que o <code>else</code> deve estar na mesma coluna que o <code>if</code> correspondente. O bloco do <code>else</code> só é executado quando a condição <code>idade &lt;= 3</code> for falsa.</p>
+<div class="box analogia"><div class="ic">💬</div><div>
+<p>💡 A vantagem do <code>else</code> é deixar os programas mais claros: expressamos o que fazer quando a condição especificada no <code>if</code> for falsa, sem precisar escrever uma condição inversa.</p>
+</div></div>
+<h4 class="pyh">🚦 Velocidade e multa</h4>
+<p>Outro exemplo: exibir se um carro está dentro do limite ou foi multado:</p>
+<pre class="py"><span class="pylab">Exemplo — Velocidade</span><button class="cp">Copiar</button><code>velocidade = <span class="function">float</span>(<span class="function">input</span>(<span class="string">"Digite a velocidade do veículo (km/h): "</span>))
+<span class="keyword">if</span> velocidade &gt; 80:
+    multa = (velocidade - 80) * 5
+    <span class="function">print</span>(<span class="string">"Você foi multado! Valor da multa: R$ %.2f"</span> % multa)
+<span class="keyword">else</span>:
+    <span class="function">print</span>(<span class="string">"Você está dentro do limite de velocidade."</span>)</code></pre>
+<p>Um bloco de código Python pode ter mais de uma linha. O bloco do <code>if</code> aqui tem duas linhas (o cálculo da multa e o <code>print</code>), ambas com o mesmo recuo.</p>
+<h4 class="pyh">✏ Exercícios</h4>
+<div class="lab">
+<h3>Exercício 4.5</h3>
+<p>Execute o programa da Listagem 4.5 e experimente alguns valores. Verifique se os resultados foram os mesmos do programa anterior (Listagem 4.3, com dois <code>if</code>s).</p>
+</div>
+<div class="lab">
+<h3>Exercício 4.6</h3>
+<p>Escreva um programa que pergunte a distância que um passageiro deseja percorrer em km. Calcule o preço da passagem, cobrando R$ 0,50 por km para viagens de até 200 km, e R$ 0,45 para viagens mais longas.</p>
+</div>
+<h3 id="c4-3">4.3 Estruturas Aninhadas</h3>
+<p class="sec-sub">if dentro de else: combinando condições</p>
+<h4 class="pyh">📞 Conta de telefone com três faixas</h4>
+<p>Nem sempre nossos programas serão tão simples. Muitas vezes, precisaremos aninhar vários <code>if</code>s para obter o comportamento desejado. Aninhar, nesse caso, é utilizar um <code>if</code> dentro de outro.</p>
+<p>Imagine uma operadora de telefonia com três faixas de preço: até 200 minutos custa R$ 0,20/min; entre 200 e 400 minutos, R$ 0,18/min; acima de 400 minutos, R$ 0,15/min:</p>
+<pre class="py"><span class="pylab">Listagem 4.6 — Conta de telefone</span><button class="cp">Copiar</button><code>minutos = <span class="function">int</span>(<span class="function">input</span>(<span class="string">"Quantos minutos você utilizou este mês: "</span>))
+<span class="keyword">if</span> minutos &lt; 200:
+    preço = 0.20
+<span class="keyword">else</span>:
+    <span class="keyword">if</span> minutos &lt; 400:
+        preço = 0.18
+    <span class="keyword">else</span>:
+        preço = 0.15
+<span class="function">print</span>(<span class="string">"Você vai pagar este mês: R$%6.2f"</span> % (minutos * preço))</code></pre>
+<p>Observe que o segundo <code>if</code> está <strong>dentro do bloco do primeiro <code>else</code></strong> — por isso ele tem mais recuo. A condição <code>minutos &lt; 400</code> só será avaliada se a primeira (<code>minutos &lt; 200</code>) for falsa.</p>
+<div class="box analogia"><div class="ic">💬</div><div>
+<p>💡 O alinhamento do texto é muito importante em Python. Um <code>if</code> dentro de um <code>else</code> precisa ter recuo adicional. Erros de indentação causam comportamento inesperado ou erros de execução.</p>
+</div></div>
+<h4 class="pyh">🛒 Categorias de produto</h4>
+<p>Vejamos um exemplo com cinco categorias, onde cada uma tem um preço diferente:</p>
+<table class="op-table">
+<thead><tr><th>Categoria</th><th>Preço</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>R$ 10,00</td></tr>
+<tr><td>2</td><td>R$ 18,00</td></tr>
+<tr><td>3</td><td>R$ 23,00</td></tr>
+<tr><td>4</td><td>R$ 26,00</td></tr>
+<tr><td>5</td><td>R$ 31,00</td></tr>
+</tbody>
+</table>
+<pre class="py"><span class="pylab">Listagem 4.7 — Categoria x preço (aninhado)</span><button class="cp">Copiar</button><code>categoria = <span class="function">int</span>(<span class="function">input</span>(<span class="string">"Digite a categoria do produto: "</span>))
+<span class="keyword">if</span> categoria == 1:
+    preço = 10
+<span class="keyword">else</span>:
+    <span class="keyword">if</span> categoria == 2:
+        preço = 18
+    <span class="keyword">else</span>:
+        <span class="keyword">if</span> categoria == 3:
+            preço = 23
+        <span class="keyword">else</span>:
+            <span class="keyword">if</span> categoria == 4:
+                preço = 26
+            <span class="keyword">else</span>:
+                <span class="keyword">if</span> categoria == 5:
+                    preço = 31
+                <span class="keyword">else</span>:
+                    <span class="function">print</span>(<span class="error">"Categoria inválida, digite um valor entre 1 e 5!"</span>)
+                    preço = 0
+<span class="function">print</span>(<span class="string">"O preço do produto é: R$%6.2f"</span> % preço)</code></pre>
+<p>Note como o programa vai se deslocando cada vez mais para a direita a cada <code>else</code>. Isso é chamado de <strong>problema do deslocamento</strong> (ou "pirâmide da morte") e torna o código difícil de ler. A próxima aula mostra a solução elegante com <code>elif</code>.</p>
+<h4 class="pyh">✏ Exercício</h4>
+<div class="lab">
+<h3>Exercício 4.7</h3>
+<p>Rastreie o programa da Listagem 4.7. Para cada categoria digitada (1 a 5 e um valor inválido), anote quais linhas do programa serão executadas. Verifique a tabela abaixo:</p>
+<table class="op-table">
+<thead><tr><th>Categoria</th><th>Linhas executadas</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>1, 2, 3, 19</td></tr>
+<tr><td>2</td><td>1, 2, 4, 5, 6, 19</td></tr>
+<tr><td>3</td><td>1, 2, 4, 5, 7, 8, 9, 19</td></tr>
+<tr><td>4</td><td>1, 2, 4, 5, 7, 8, 10, 11, 12, 19</td></tr>
+<tr><td>5</td><td>1, 2, 4, 5, 7, 8, 10, 11, 13, 14, 15, 19</td></tr>
+<tr><td>outras</td><td>1, 2, 4, 5, 7, 8, 10, 11, 13, 14, 16, 17, 18, 19</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="c4-4">4.4 A Cláusula elif</h3>
+<p class="sec-sub">Simplificando condições aninhadas</p>
+<h4 class="pyh">🔄 elif: a solução elegante</h4>
+<p>Python apresenta uma solução muito interessante ao problema de múltiplos <code>if</code>s aninhados. A cláusula <code>elif</code> substitui um par <code>else</code>/<code>if</code>, sem criar outro nível de estrutura, evitando o deslocamento excessivo para a direita.</p>
+<p>Veja o mesmo programa de categorias da aula anterior, agora reescrito com <code>elif</code>:</p>
+<pre class="py"><span class="pylab">Listagem 4.8 — Categoria x preço com elif</span><button class="cp">Copiar</button><code>categoria = <span class="function">int</span>(<span class="function">input</span>(<span class="string">"Digite a categoria do produto: "</span>))
+<span class="keyword">if</span> categoria == 1:
+    preço = 10
+<span class="keyword">elif</span> categoria == 2:
+    preço = 18
+<span class="keyword">elif</span> categoria == 3:
+    preço = 23
+<span class="keyword">elif</span> categoria == 4:
+    preço = 26
+<span class="keyword">elif</span> categoria == 5:
+    preço = 31
+<span class="keyword">else</span>:
+    <span class="function">print</span>(<span class="string">"Categoria inválida, digite um valor entre 1 e 5!"</span>)
+    preço = 0
+<span class="function">print</span>(<span class="string">"O preço do produto é: R$%6.2f"</span> % preço)</code></pre>
+<p>Compare com a Listagem 4.7: o resultado é idêntico, mas o código é muito mais legível. Todos os <code>elif</code>s ficam no mesmo nível do <code>if</code> inicial, sem deslocamentos adicionais.</p>
+<div class="box analogia"><div class="ic">💬</div><div>
+<p>💡 O <code>elif</code> é uma abreviatura de <em>else if</em>. Em uma cadeia <code>if / elif / elif / else</code>, apenas o primeiro bloco cuja condição for verdadeira será executado; os demais são ignorados.</p>
+</div></div>
+<h4 class="pyh">✏ Exercícios</h4>
+<div class="lab">
+<h3>Exercício 4.8</h3>
+<p>Escreva um programa que leia dois números e pergunte qual operação o usuário deseja realizar: soma (<code>+</code>), subtração (<code>-</code>), multiplicação (<code>*</code>) ou divisão (<code>/</code>). Exiba o resultado da operação solicitada.</p>
+</div>
+<div class="lab">
+<h3>Exercício 4.9</h3>
+<p>Escreva um programa para aprovar o empréstimo bancário para a compra de uma casa. O programa deve perguntar o valor da casa a comprar, o salário e a quantidade de anos a pagar. O valor da prestação mensal não pode ser superior a 30% do salário. Calcule o valor da prestação como sendo o valor da casa dividido pelo número de meses a pagar.</p>
+</div>
+<div class="lab">
+<h3>Exercício 4.10</h3>
+<p>Escreva um programa que calcule o preço a pagar pelo fornecimento de energia elétrica. Pergunte a quantidade de kWh consumida e o tipo de instalação: <code>R</code> para residências, <code>I</code> para indústrias e <code>C</code> para comércios. Calcule o preço de acordo com a tabela:</p>
+<table class="op-table">
+<thead><tr><th>Tipo</th><th>Faixa (kWh)</th><th>Preço</th></tr></thead>
+<tbody>
+<tr><td>Residencial</td><td>Até 500</td><td>R$ 0,40</td></tr>
+<tr><td>Residencial</td><td>Acima de 500</td><td>R$ 0,65</td></tr>
+<tr><td>Comercial</td><td>Até 1000</td><td>R$ 0,55</td></tr>
+<tr><td>Comercial</td><td>Acima de 1000</td><td>R$ 0,60</td></tr>
+<tr><td>Industrial</td><td>Acima de 5000</td><td>R$ 0,60</td></tr>
+</tbody>
+</table>
+</div>
+
+  <h3 id="c4-tools">🛠️ Ferramentas do capítulo</h3>
+  <div class="tool" id="tf" style="--cc:var(--c4)">
+    <h4 style="margin-top:0">📞 Qual caminho o programa segue?</h4>
+    <p>Mude os minutos e veja qual bloco do <code>if / elif / else</code> é executado.</p>
+    <div class="tool-ctl"><label>Minutos: <input type="range" id="tfM" min="0" max="600" step="10" value="150"> <b id="tfV">150</b></label></div>
+    <pre class="py nr"><code id="tfC"></code></pre>
+    <p id="tfT" aria-live="polite"></p>
+  </div>
+  <div class="tool" id="ir" style="--cc:var(--c4)">
+    <h4 style="margin-top:0">💰 Imposto por faixas</h4>
+    <p>Isentos até R$ 1.000; 20% sobre o que passa de 1.000 até 3.000; 35% sobre o que passa de 3.000.</p>
+    <div class="tool-ctl"><label>Salário: <input type="range" id="irS" min="0" max="6000" step="100" value="2500"> <b id="irV">2500</b></label></div>
+    <p id="irT" aria-live="polite"></p>
+  </div>
+
+  <div class="resumo"><h3>📝 Resumo do capítulo</h3><ul><li>O <code>if</code> executa um bloco apenas se a condição for <code>True</code>; a linha termina com <b>dois pontos</b>.</li><li>O bloco é marcado pelo <b>recuo</b> (indentação): use 4 espaços e mantenha o mesmo recuo em todas as linhas do bloco.</li><li>O <code>else</code> cuida do caminho contrário, sem precisar escrever a condição oposta.</li><li>Estruturas <b>aninhadas</b> colocam um <code>if</code> dentro de outro bloco; a condição interna só é testada se a externa permitir.</li><li>O <code>elif</code> encadeia várias condições de forma mais limpa: o Python testa em ordem e executa só o primeiro bloco verdadeiro.</li><li>Condições usam os operadores relacionais e lógicos do capítulo 3.</li></ul></div>
+  <h3 id="c4-quiz">🧠 Quiz do capítulo 4</h3>
+  <p>Clique na resposta que você acha certa.</p>
+  <div class="quiz">
+    <div class="q"><p>1. O que o <code>if</code> faz?</p>
+      <button class="opt">a) Repete um bloco várias vezes</button><button class="opt" data-ok="1">b) Executa um bloco só quando a condição for verdadeira</button><button class="opt">c) Lê um valor do teclado</button><button class="opt">d) Declara uma variável</button>
+      <div class="fb">O <code>if</code> é o “se”: se a condição for <code>True</code>, o bloco roda; senão, é ignorado.</div></div>
+    <div class="q"><p>2. O que falta em <code>if idade &gt; 18</code> para estar correto?</p>
+      <button class="opt">a) Um ponto final</button><button class="opt" data-ok="1">b) Os dois pontos (:) no fim da linha</button><button class="opt">c) Aspas</button><button class="opt">d) Parênteses obrigatórios</button>
+      <div class="fb">A linha do <code>if</code> termina com <b>dois pontos</b>. Sem eles, dá <code>SyntaxError</code>.</div></div>
+    <div class="q"><p>3. Como o Python sabe quais linhas pertencem ao bloco do <code>if</code>?</p>
+      <button class="opt">a) Pelas chaves { }</button><button class="opt" data-ok="1">b) Pelo recuo (indentação)</button><button class="opt">c) Por END IF</button><button class="opt">d) Pelo número da linha</button>
+      <div class="fb">Diferente de outras linguagens, o Python usa o <b>recuo</b> para marcar blocos.</div></div>
+    <div class="q"><p>4. Quando o bloco do <code>else</code> é executado?</p>
+      <button class="opt">a) Sempre</button><button class="opt">b) Nunca</button><button class="opt" data-ok="1">c) Quando a condição do <code>if</code> for falsa</button><button class="opt">d) Quando houver erro</button>
+      <div class="fb">O <code>else</code> é o caminho “senão”: roda se o <code>if</code> não rodou.</div></div>
+    <div class="q"><p>5. Com <code>idade = 3</code>, o que mostra: <code>if idade &lt;= 3: print("novo")</code> <code>else: print("velho")</code>?</p>
+      <button class="opt" data-ok="1">a) novo</button><button class="opt">b) velho</button><button class="opt">c) novo e velho</button><button class="opt">d) Nada</button>
+      <div class="fb">3 &lt;= 3 é <code>True</code>, então roda o bloco do <code>if</code>: “novo”.</div></div>
+    <div class="q"><p>6. Quando usar <code>elif</code>?</p>
+      <button class="opt">a) Para repetir um bloco</button><button class="opt" data-ok="1">b) Para testar outra condição só se as anteriores foram falsas</button><button class="opt">c) Para sair do programa</button><button class="opt">d) Para criar uma variável</button>
+      <div class="fb"><code>elif</code> (“senão se”) encadeia condições: só é testado se as anteriores falharam.</div></div>
+    <div class="q"><p>7. Em <code>if nota &gt;= 7: ... elif nota &gt;= 5: ... else: ...</code>, qual bloco roda para nota = 6?</p>
+      <button class="opt">a) O do if</button><button class="opt" data-ok="1">b) O do elif</button><button class="opt">c) O do else</button><button class="opt">d) Todos</button>
+      <div class="fb">6 não é &gt;= 7, mas é &gt;= 5: roda o bloco do <code>elif</code> e os demais são pulados.</div></div>
+    <div class="q"><p>8. Por que o <code>elif</code> costuma ser melhor que vários <code>if</code> aninhados dentro de <code>else</code>?</p>
+      <button class="opt">a) Roda mais rápido sempre</button><button class="opt" data-ok="1">b) Deixa o código mais curto e fácil de ler, sem recuos crescentes</button><button class="opt">c) Aceita números maiores</button><button class="opt">d) Não precisa de condição</button>
+      <div class="fb">Com <code>elif</code>, todas as faixas ficam alinhadas na mesma coluna, em vez de “escada”.</div></div>
+  </div>
+  <div class="score"></div>
+  <h3>✍️ Questões abertas</h3>
+  <div class="open"><p><b>1.</b> Qual a diferença entre dois <code>if</code> seguidos e um <code>if ... else</code>?</p>
+    <button>Ver resposta</button><div class="answer">Dois <code>if</code> são testados sempre, os dois, de forma independente. No <code>if ... else</code> só um dos dois blocos roda. Analogia: duas perguntas separadas versus uma pergunta com resposta “sim ou não”.</div></div>
+  <div class="open"><p><b>2.</b> Escreva um programa que peça a velocidade e avise se passou de 80 km/h.</p>
+    <button>Ver resposta</button><div class="answer"><code>v = float(input("Velocidade: "))<br>if v &gt; 80:<br>&nbsp;&nbsp;&nbsp;&nbsp;print("Multado!")<br>else:<br>&nbsp;&nbsp;&nbsp;&nbsp;print("Dentro do limite.")</code></div></div>
+  <div class="open"><p><b>3.</b> O que acontece se o recuo de uma linha dentro do <code>if</code> estiver errado?</p>
+    <button>Ver resposta</button><div class="answer">O programa pode dar <code>IndentationError</code> ou fazer algo diferente do esperado, pois a linha pode sair do bloco.</div></div>
+  <div class="open"><p><b>4.</b> Reescreva com <code>elif</code>: categoria 1 custa 10; 2 custa 18; qualquer outra, 23.</p>
+    <button>Ver resposta</button><div class="answer"><code>if c == 1:<br>&nbsp;&nbsp;&nbsp;&nbsp;preco = 10<br>elif c == 2:<br>&nbsp;&nbsp;&nbsp;&nbsp;preco = 18<br>else:<br>&nbsp;&nbsp;&nbsp;&nbsp;preco = 23</code></div></div>
+
+  <div class="box dica" style="margin-top:28px"><div class="ic">📚</div><div><h5>Para saber mais</h5><p>Documentação oficial: <i>O tutorial de Python</i>, seção “Mais ferramentas de controle de fluxo” (instrução <code>if</code>), em docs.python.org/pt-br/3/tutorial/. Resolva os exercícios de cada seção antes de seguir.</p></div></div>
+</section>
 <section class="chapter soon-ch" id="cap5" style="--cc:var(--c5)"><div class="chap-head"><div class="chap-num" style="background:var(--c5)">5</div><div><small>Capítulo 5</small><h2>Repetições</h2></div></div><div class="soon-card">⏳ Este capítulo será publicado em breve.</div></section>
 <section class="chapter soon-ch" id="cap6" style="--cc:var(--c6)"><div class="chap-head"><div class="chap-num" style="background:var(--c6)">6</div><div><small>Capítulo 6</small><h2>Listas</h2></div></div><div class="soon-card">⏳ Este capítulo será publicado em breve.</div></section>
 <section class="chapter soon-ch" id="cap7" style="--cc:var(--c7)"><div class="chap-head"><div class="chap-num" style="background:var(--c7)">7</div><div><small>Capítulo 7</small><h2>Strings</h2></div></div><div class="soon-card">⏳ Este capítulo será publicado em breve.</div></section>

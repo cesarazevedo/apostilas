@@ -25,5 +25,11 @@ window.GLOSSARIO={
 "rastreamento":"Acompanhar, linha a linha, o valor de cada variável de um programa, geralmente no papel.",
 "input":"Função que mostra uma mensagem e espera o usuário digitar algo; devolve sempre texto.",
 "operador relacional":"Símbolo que compara valores e dá True ou False, como ==, !=, &gt;, &lt;, &gt;= e &lt;=.",
-"comentário":"Trecho depois do # que o Python ignora; serve para explicar o código."
+"comentário":"Trecho depois do # que o Python ignora; serve para explicar o código.",
+"condição":"Expressão que dá True ou False e decide se um bloco será executado.",
+"if":"Estrutura de decisão: executa um bloco somente se a condição for verdadeira.",
+"else":"Parte do if que cuida do caso contrário, quando a condição é falsa.",
+"elif":"Abreviação de “else if”: testa outra condição só se as anteriores foram falsas.",
+"bloco":"Conjunto de linhas com o mesmo recuo que pertencem a um if, else, elif ou laço.",
+"aninhamento":"Colocar uma estrutura dentro de outra, como um if dentro de um else."
 };
