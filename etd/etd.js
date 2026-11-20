@@ -357,4 +357,49 @@
     $('xsFn').children[0].classList.add('on');
     calc();
   })();
+
+  // --- Cap. 5: construtor de slide ---
+  (function(){
+    var sl=$('ppSlide');if(!sl)return;
+    var TH=[['Claro','#ffffff','#1a1a1a','#ef6c00'],['Escuro','#1b2a49','#ffffff','#ffd54f'],['Verde','#e8f5e9','#1b5e20','#2e7d32'],['Amarelo (ruim)','#fff59d','#fff176','#ffee58']],th=0;
+    var LI=['Meu nome é Maria','Moro em João Câmara','Trabalho com costura','Gosto de aprender','Meu sonho é abrir uma loja','Quero aprender computação','Tenho dois filhos','Cuido da minha casa','Faço bolos nos fins de semana','Gosto de música'];
+    var size=$('ppSize'),ln=$('ppLn');
+    function lum(h){var n=parseInt(h.slice(1),16),r=n>>16&255,g=n>>8&255,b=n&255;return .299*r+.587*g+.114*b}
+    function render(){
+      var t=TH[th],n=+ln.value,sz=+size.value;
+      sl.style.background=t[1];sl.style.color=t[2];
+      var html='<h4 style="color:'+t[3]+';font-size:'+(sz*1.3)+'px">Sobre mim</h4><ul style="font-size:'+sz+'px">';
+      for(var i=0;i<n;i++)html+='<li>'+LI[i]+'</li>';
+      sl.innerHTML=html+'</ul>';$('ppSv').textContent=sz;$('ppLv').textContent=n;
+      var p=[];
+      if(sz<20)p.push('letra <b>pequena</b>: quem está no fundo da sala não lê');
+      if(n>6)p.push('<b>muitas linhas</b>: slide cheio cansa');
+      if(Math.abs(lum(t[1])-lum(t[2]))<90)p.push('<b>pouco contraste</b>: a letra some no fundo');
+      $('ppTxt').innerHTML=p.length?'<span class="ok-n">✘ Cuidado:</span> '+p.join('; ')+'.':'<span class="ok-y">✔ Bom slide!</span> Letra grande, pouco texto e bom contraste.';
+    }
+    mkBtns($('ppTh'),TH.map(function(x){return x[0]}),function(i,b,bs){th=i;bs.forEach(function(x,j){x.classList.toggle('on',j===i);x.setAttribute('aria-pressed',j===i)});render()});
+    $('ppTh').children[0].classList.add('on');
+    size.oninput=render;ln.oninput=render;render();
+  })();
+
+  // --- Cap. 5: qual slide é melhor? ---
+  (function(){
+    var pr=$('pgPair');if(!pr)return;
+    var R=[
+      {bom:'<h4 style="color:#ef6c00;font-size:20px">Meu negócio</h4><ul style="font-size:15px"><li>Bolos caseiros</li><li>Entrega no bairro</li></ul>',ruim:'<h4 style="font-size:11px">Meu negócio</h4><div style="font-size:8px">Eu faço bolos caseiros há muitos anos e vendo para vizinhos e amigos, com entrega no bairro, em vários sabores, e também aceito encomendas para festas de aniversário e casamentos.</div>',ex:'O primeiro tem <b>pouco texto e letra grande</b>.'},
+      {bom:'<h4 style="color:#fff;font-size:20px">Cuidados com a senha</h4><ul style="font-size:15px;color:#fff"><li>Não conte a ninguém</li></ul>',ruim:'<h4 style="color:#fff176;font-size:20px">Cuidados com a senha</h4><ul style="font-size:15px;color:#ffee58"><li>Não conte a ninguém</li></ul>',ex:'O <b>contraste</b> (letra branca no fundo escuro) deixa o slide legível.',bgb:'#1b2a49',bgr:'#fff9c4'}
+    ];
+    var ok=0,tot=0;
+    function next(){
+      var r=R[Math.floor(Math.random()*R.length)],bomLeft=Math.random()<.5;
+      pr.innerHTML='';
+      [['bom',bomLeft],['ruim',!bomLeft]].sort(function(a,b){return b[1]-a[1]}).forEach(function(x){
+        var d=document.createElement('div');d.className='slide';d.tabIndex=0;d.setAttribute('role','button');d.setAttribute('aria-label','Escolher este slide');
+        d.style.background=x[0]==='bom'?(r.bgb||'#fff'):(r.bgr||'#fff');d.style.color='#1a1a1a';d.innerHTML=r[x[0]];
+        function act(){tot++;var good=x[0]==='bom';if(good)ok++;$('pgTxt').innerHTML=(good?'<span class="ok-y">✔ Certo!</span> ':'<span class="ok-n">✘ Quase!</span> ')+r.ex+' Acertos: '+ok+' de '+tot+'. Veja o próximo par.';next()}
+        d.onclick=act;d.onkeydown=function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();act()}};pr.appendChild(d);
+      });
+    }
+    next();$('pgTxt').textContent='Clique no slide que você acha melhor.';
+  })();
 })();

@@ -87,6 +87,13 @@ table.xl th{background:rgba(46,125,50,.15);text-align:center}
 table.xl td:nth-child(2){text-align:left}
 table.xl input{width:70px;font-size:18px;padding:4px 6px;border:2px solid var(--cc);border-radius:6px;background:transparent;color:var(--texto);text-align:right;font-family:inherit}
 table.xl tr.res td{font-weight:700;background:rgba(46,125,50,.12)}
+.slide{aspect-ratio:16/9;max-width:560px;border:3px solid var(--borda);border-radius:6px;padding:4% 6%;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.2);margin:10px 0;display:flex;flex-direction:column;justify-content:flex-start}
+.slide h4{margin:0 0 .4em;font-size:1.4em}
+.slide ul{margin:0;padding-left:1.2em}
+.pg-pair{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.pg-pair .slide{cursor:pointer;margin:0;font-size:13px;min-width:0}
+.pg-pair .slide:hover{outline:3px solid var(--cc)}
+@media (max-width:560px){.pg-pair{grid-template-columns:1fr}}
 .ok-y{color:#2e7d32;font-weight:700}.ok-n{color:#c62828;font-weight:700}
 @page{@bottom-center{content:"Educação em Tecnologias Digitais – IFRN · página " counter(page);font-size:9pt;color:#777}}
 </style>
@@ -139,7 +146,15 @@ table.xl tr.res td{font-weight:700;background:rgba(46,125,50,.12)}
       <a href="#c4-lab">Atividade e práticas</a>
       <a href="#c4-quiz">Quiz e exercícios</a>
     </div>
-    <a href="#cap5" class="soon"><span class="n" style="background:var(--c5)">5</span>PowerPoint: apresentações</a>
+    <a href="#cap5"><span class="n" style="background:var(--c5)">5</span>PowerPoint: apresentações</a>
+    <div class="sub">
+      <a href="#c5-o-que">O que é o PowerPoint</a>
+      <a href="#c5-slide">Criando slides</a>
+      <a href="#c5-img">Imagens e cores</a>
+      <a href="#c5-apr">Apresentando</a>
+      <a href="#c5-lab">Atividade e práticas</a>
+      <a href="#c5-quiz">Quiz e exercícios</a>
+    </div>
     <a href="#cap6" class="soon"><span class="n" style="background:var(--c6)">6</span>Internet e comunicação</a>
     <a href="#cap7" class="soon"><span class="n" style="background:var(--c7)">7</span>Segurança e cidadania digital</a>
     <a href="#refs"><span class="n" style="background:#455a64">📚</span>Referências</a>
@@ -171,7 +186,7 @@ table.xl tr.res td{font-weight:700;background:rgba(46,125,50,.12)}
     <div class="card" style="--cc:var(--c2)"><b>2 · Teclado e digitação</b><span>Onde ficam as letras e como digitar com treino na tela.</span><div class="st">✅ Disponível</div></div>
     <div class="card" style="--cc:var(--c3)"><b>3 · Word</b><span>Escrever e formatar textos, currículo e cartas.</span><div class="st">✅ Disponível</div></div>
     <div class="card" style="--cc:var(--c4)"><b>4 · Excel</b><span>Planilhas, contas e orçamento da casa.</span><div class="st">✅ Disponível</div></div>
-    <div class="card" style="--cc:var(--c5)"><b>5 · PowerPoint</b><span>Montar uma apresentação do zero.</span><div class="st">⏳ Em breve</div></div>
+    <div class="card" style="--cc:var(--c5)"><b>5 · PowerPoint</b><span>Montar uma apresentação do zero.</span><div class="st">✅ Disponível</div></div>
     <div class="card" style="--cc:var(--c6)"><b>6 · Internet e comunicação</b><span>Pesquisar, e-mail, gov.br e arquivos na nuvem.</span><div class="st">⏳ Em breve</div></div>
     <div class="card" style="--cc:var(--c7)"><b>7 · Segurança e cidadania digital</b><span>Senhas, golpes, privacidade e notícias falsas.</span><div class="st">⏳ Em breve</div></div>
   </div>
@@ -1067,12 +1082,165 @@ Profissão: Costureira</code></pre>
 
   <div class="box dica" style="margin-top:28px"><div class="ic">📚</div><div><h5>Para saber mais</h5><p>Na Central de Ajuda da Microsoft (support.microsoft.com/pt-br) há tutoriais com imagens sobre fórmulas e gráficos. Na caixa <b>“Pesquisar”</b> do próprio Excel, escreva o que você quer fazer.</p></div></div>
 </section>
-<section class="chapter soon-ch" id="cap5" style="--cc:var(--c5)"><div class="chap-head"><div class="chap-num" style="background:var(--c5)">5</div><div><small>Capítulo 5</small><h2>PowerPoint: apresentações</h2></div></div><div class="soon-card">⏳ Este capítulo será publicado em breve.</div></section>
+<section class="chapter" id="cap5" style="--cc:var(--c5)">
+  <div class="chap-head"><div class="chap-num" style="background:var(--c5)">5</div><div><small>Capítulo 5</small><h2>PowerPoint: apresentações</h2></div></div>
+
+  <div class="obj"><h4>🎯 Ao final deste capítulo, você será capaz de:</h4>
+    <ul>
+      <li>Explicar o que é uma <b>apresentação</b> e um <b>slide</b>.</li>
+      <li>Criar slides, escrever <b>pouco texto</b> e escolher um <b>tema</b>.</li>
+      <li>Inserir <b>imagens</b> e organizar os slides.</li>
+      <li>Apresentar em <b>tela cheia</b> e salvar em <b>PDF</b>.</li>
+      <li>Montar uma apresentação sobre a <b>sua vida</b> ou o <b>seu trabalho</b>.</li>
+    </ul>
+  </div>
+
+  <h3 id="c5-o-que">5.1 O que é o PowerPoint</h3>
+  <p>O <b>PowerPoint</b> serve para criar <b>apresentações</b>: uma sequência de “páginas” chamadas <b>slides</b>, que aparecem na tela grande ou no projetor. É usado em aulas, reuniões, trabalhos, na igreja, em vendas e em convites de festa.</p>
+  <div class="box analogia"><div class="ic">💡</div><div><h5>Pense assim: o cartaz que passa de um em um</h5><p>Cada <b>slide</b> é um <b>cartaz</b>. A apresentação é uma pilha de cartazes que você mostra <b>um por vez</b>, na ordem, enquanto <b>fala</b>. O cartaz <b>ajuda</b>; quem conta a história é você.</p></div></div>
+  <p>Para abrir: botão Iniciar → digite <b>PowerPoint</b> → <b>Apresentação em branco</b>. A tela tem uma <b>lista de slides</b> à esquerda (miniaturas), o <b>slide grande</b> no meio e as <b>guias</b> em cima, como no Word.</p>
+
+  <h3 id="c5-slide">5.2 Criando slides</h3>
+  <ul>
+    <li>O primeiro slide é o de <b>título</b>: clique nas caixas e escreva o nome da apresentação e o seu nome.</li>
+    <li>Para um <b>novo slide</b>: guia <b>Página Inicial</b> → <b>Novo Slide</b>. Escolha o <b>layout</b> (o “molde”: só título, título e lista, imagem e texto...).</li>
+    <li>Cada texto fica dentro de uma <b>caixa</b>. Clique nela e digite, como no Word.</li>
+    <li>Para trocar a <b>ordem</b>, arraste a miniatura na lista da esquerda. Para <b>apagar</b>, clique na miniatura e aperte Delete.</li>
+    <li>Para mudar o visual de todos de uma vez: guia <b>Design</b> → escolha um <b>tema</b>.</li>
+  </ul>
+  <div class="box dica"><div class="ic">✅</div><div><h5>As 3 regras do slide bom</h5><p><b>1.</b> Poucas palavras (no máximo 5 ou 6 linhas). <b>2.</b> Letra <b>grande</b> (de 24 para cima). <b>3.</b> Uma <b>ideia</b> por slide. Se o slide parece uma página de livro, ele está cheio demais!</p></div></div>
+  <p>Monte um slide e veja se ele ficaria bom na parede da sala:</p>
+  <div class="tool" id="pp" style="--cc:var(--c5)">
+    <div class="ctl" id="ppTh" role="group" aria-label="Tema"></div>
+    <div class="ctl"><label>Letra: <input type="range" id="ppSize" min="10" max="34" value="22" aria-label="Tamanho da letra"> <b id="ppSv">22</b></label>
+      <label>Linhas: <input type="range" id="ppLn" min="1" max="10" value="4" aria-label="Quantidade de linhas"> <b id="ppLv">4</b></label></div>
+    <div class="slide" id="ppSlide"></div>
+    <p class="enc-txt" id="ppTxt" aria-live="polite"></p>
+  </div>
+  <p>Agora treine o olho: qual slide é melhor?</p>
+  <div class="tool" id="pg" style="--cc:var(--c5)">
+    <div class="pg-pair" id="pgPair"></div>
+    <p class="enc-txt" id="pgTxt" aria-live="polite"></p>
+  </div>
+
+  <h3 id="c5-img">5.3 Imagens e cores</h3>
+  <table>
+    <tr><th>Quero...</th><th>Como faço</th></tr>
+    <tr><td>Colocar uma <b>foto</b></td><td>Guia <b>Inserir</b> → <b>Imagens</b> → <b>Este dispositivo</b>. Arraste pelos <b>cantos</b> para mudar o tamanho.</td></tr>
+    <tr><td>Mudar a <b>cor ou o tema</b></td><td>Guia <b>Design</b> → escolha um tema.</td></tr>
+    <tr><td>Alinhar o texto</td><td>Igual ao Word: guia <b>Página Inicial</b>, grupo Parágrafo.</td></tr>
+    <tr><td>Fazer o slide <b>aparecer com movimento</b></td><td>Guia <b>Transições</b> (mudança entre slides) e <b>Animações</b> (movimento dos objetos). <b>Use pouco</b>: muita animação atrapalha.</td></tr>
+  </table>
+  <div class="box atencao"><div class="ic">⚠️</div><div><h5>Contraste: letra clara em fundo claro ninguém lê</h5><p>Use <b>letra escura em fundo claro</b> ou <b>letra clara em fundo escuro</b>. Evite amarelo sobre branco e vermelho sobre azul. E use <b>fotos suas ou livres</b>: foto tirada da internet pode ter dono.</p></div></div>
+
+  <h3 id="c5-apr">5.4 Apresentando</h3>
+  <ol class="steps">
+    <li>Guia <b>Apresentação de Slides</b> → <b>Do Começo</b> (ou aperte <b>F5</b>). A tela fica cheia.</li>
+    <li>Para <b>passar</b> o slide: clique, ou aperte a <b>seta →</b> ou <b>Enter</b>. Para <b>voltar</b>: seta ←.</li>
+    <li>Para <b>sair</b>: aperte <b>Esc</b>.</li>
+  </ol>
+  <div class="box exemplo"><div class="ic">📌</div><div><h5>Dicas para falar bem</h5><p><b>Olhe para as pessoas</b>, não para a tela. <b>Não leia o slide</b> palavra por palavra: conte com as suas palavras. <b>Ensaie</b> uma vez antes. Respire e fale devagar.</p></div></div>
+  <p>Para <b>salvar</b>, use o disquete (arquivo <code>.pptx</code>). Para <b>enviar</b> para alguém sem erro de fonte ou de imagem, salve também em <b>PDF</b>: Arquivo → Salvar como → tipo <b>PDF</b>.</p>
+
+  <div class="lab" id="c5-lab">
+    <h3>🧑‍🤝‍🧑 Atividade sem computador – O roteiro no papel</h3>
+    <p><b>Objetivo:</b> planejar antes de abrir o programa. <b>Preparação:</b> 4 folhas pequenas (ou cartões) por dupla.</p>
+    <ol class="steps">
+      <li>Cada dupla escolhe um tema (<i>minha cidade</i>, <i>minha profissão</i>, <i>minha receita preferida</i>).</li>
+      <li>Em cada folha, desenha <b>um slide</b>: um título e <b>no máximo 3 linhas</b>. Uma folha de capa e três de conteúdo.</li>
+      <li>Colocam as folhas na mesa na ordem e <b>contam a história</b> para a outra dupla em 1 minuto.</li>
+    </ol>
+    <h3>🧪 Prática 1 – Minha apresentação</h3>
+    <ol class="steps">
+      <li>Abra o PowerPoint → <b>Apresentação em branco</b>.</li>
+      <li>No slide de título, escreva <code>Sobre mim</code> e o seu nome.</li>
+      <li>Crie <b>3 novos slides</b>: <i>Onde moro</i>, <i>O que faço</i> e <i>Meu sonho</i>, cada um com <b>3 linhas</b>.</li>
+      <li>Escolha um <b>tema</b> na guia Design.</li>
+      <li>Salve como <code>Sobre mim</code>.</li>
+    </ol>
+    <h3>🧪 Prática 2 – Com imagens</h3>
+    <ol class="steps">
+      <li>Abra o arquivo da prática 1.</li>
+      <li>No slide <i>Onde moro</i>, insira uma <b>imagem</b> (o professor vai indicar uma pasta com fotos) e ajuste o tamanho pelos cantos.</li>
+      <li>No slide <i>O que faço</i>, coloque a imagem ao lado do texto e confira se nada ficou sobreposto.</li>
+      <li>Salve com outro nome: <code>Sobre mim com fotos</code>.</li>
+    </ol>
+    <h3>🧪 Prática 3 – Apresentar</h3>
+    <ol class="steps">
+      <li>Aperte <b>F5</b> e passe todos os slides com a seta →. Saia com <b>Esc</b>.</li>
+      <li>Em duplas, cada um <b>apresenta em 1 minuto</b> para o colega (olhando para ele, sem ler o slide).</li>
+      <li>O colega diz <b>uma coisa boa</b> e <b>uma sugestão</b>.</li>
+      <li>Salve em <b>PDF</b>: Arquivo → Salvar como → tipo PDF.</li>
+    </ol>
+    <h3>🧪 Prática 4 – Um produto ou serviço</h3>
+    <ol class="steps">
+      <li>Crie uma apresentação de <b>4 slides</b> para <b>vender</b> algo (bolo, corte de cabelo, artesanato, conserto de celular).</li>
+      <li>Slides: capa, <b>o que é</b>, <b>quanto custa</b>, <b>como falar comigo</b> (com telefone fictício).</li>
+      <li>Use <b>cores com bom contraste</b> e uma imagem na capa.</li>
+      <li>Salve como <code>Meu negócio</code>.</li>
+    </ol>
+  </div>
+
+  <div class="resumo">
+    <h3>📝 Resumo do capítulo</h3>
+    <ul>
+      <li>O <b>PowerPoint</b> cria apresentações feitas de <b>slides</b>, como cartazes que passam um por vez.</li>
+      <li><b>Novo Slide</b> (Página Inicial), <b>tema</b> (Design), <b>imagem</b> (Inserir).</li>
+      <li>Slide bom: <b>pouco texto</b>, <b>letra grande</b>, <b>uma ideia</b> por slide, bom contraste.</li>
+      <li><b>F5</b> apresenta, <b>seta</b> passa, <b>Esc</b> sai.</li>
+      <li>Fale com suas palavras e olhe para as pessoas.</li>
+      <li>Salve em <code>.pptx</code> e, para enviar, também em <b>PDF</b>.</li>
+    </ul>
+  </div>
+
+  <h3 id="c5-quiz">🧠 Quiz do capítulo 5</h3>
+  <p>Clique na resposta que você acha certa.</p>
+  <div class="quiz">
+    <div class="q"><p>1. O que é um <b>slide</b>?</p>
+      <button class="opt">a) Uma conta de somar</button><button class="opt" data-ok="1">b) Uma “página” da apresentação</button><button class="opt">c) Um tipo de impressora</button><button class="opt">d) Um vírus</button>
+      <div class="fb">Cada slide é como um <b>cartaz</b> da apresentação.</div></div>
+    <div class="q"><p>2. Quanto texto é bom ter em um slide?</p>
+      <button class="opt">a) O máximo possível</button><button class="opt" data-ok="1">b) Poucas palavras, em letra grande</button><button class="opt">c) Um parágrafo inteiro</button><button class="opt">d) Nenhuma letra</button>
+      <div class="fb">O slide <b>ajuda</b>; quem conta a história é você.</div></div>
+    <div class="q"><p>3. Como criar um novo slide?</p>
+      <button class="opt" data-ok="1">a) Guia Página Inicial → Novo Slide</button><button class="opt">b) Apertar Esc</button><button class="opt">c) Fechar o programa</button><button class="opt">d) Desligar o computador</button>
+      <div class="fb">Em <b>Novo Slide</b> você ainda escolhe o layout.</div></div>
+    <div class="q"><p>4. Qual tecla começa a apresentação em tela cheia?</p>
+      <button class="opt" data-ok="1">a) F5</button><button class="opt">b) Delete</button><button class="opt">c) Caps Lock</button><button class="opt">d) Tab</button>
+      <div class="fb"><b>F5</b> começa; <b>Esc</b> sai.</div></div>
+    <div class="q"><p>5. Qual combinação tem <b>bom contraste</b>?</p>
+      <button class="opt">a) Amarelo claro sobre branco</button><button class="opt" data-ok="1">b) Letra escura sobre fundo claro</button><button class="opt">c) Cinza claro sobre branco</button><button class="opt">d) Vermelho sobre azul</button>
+      <div class="fb">Contraste é a diferença entre letra e fundo: quanto maior, mais fácil de ler.</div></div>
+    <div class="q"><p>6. Como enviar a apresentação sem risco de mudar o visual?</p>
+      <button class="opt" data-ok="1">a) Salvar em PDF</button><button class="opt">b) Mandar só o nome</button><button class="opt">c) Imprimir sem salvar</button><button class="opt">d) Deixar aberta</button>
+      <div class="fb">O <b>PDF</b> mantém a aparência em qualquer aparelho.</div></div>
+    <div class="q"><p>7. Durante a apresentação, o melhor é:</p>
+      <button class="opt">a) Ler o slide em voz alta, palavra por palavra</button><button class="opt">b) Olhar só para a tela</button><button class="opt" data-ok="1">c) Falar com suas palavras e olhar o público</button><button class="opt">d) Ficar calado</button>
+      <div class="fb">O slide é apoio, não é um texto para ser lido.</div></div>
+    <div class="q"><p>8. Qual guia traz os <b>temas</b> (cores e estilos)?</p>
+      <button class="opt" data-ok="1">a) Design</button><button class="opt">b) Arquivo</button><button class="opt">c) Revisão</button><button class="opt">d) Exibição</button>
+      <div class="fb">Em <b>Design</b> você muda o visual de todos os slides de uma vez.</div></div>
+  </div>
+  <div class="score"></div>
+
+  <h3>✍️ Questões abertas</h3>
+  <div class="open"><p><b>1.</b> Cite as 3 regras do slide bom.</p>
+    <button>Ver resposta</button><div class="answer">Poucas palavras, letra grande e uma ideia por slide.</div></div>
+  <div class="open"><p><b>2.</b> Por que não se deve ler o slide em voz alta, palavra por palavra?</p>
+    <button>Ver resposta</button><div class="answer">Porque o público já está lendo; o slide é um apoio e a pessoa deve contar a história com as próprias palavras.</div></div>
+  <div class="open"><p><b>3.</b> Como apresentar em tela cheia e como sair?</p>
+    <button>Ver resposta</button><div class="answer">Apresentação de Slides → Do Começo (ou F5); sai com Esc.</div></div>
+  <div class="open"><p><b>4.</b> Por que salvar também em PDF?</p>
+    <button>Ver resposta</button><div class="answer">Para enviar a apresentação sem mudar fonte, imagens ou layout em outro aparelho.</div></div>
+
+  <div class="box dica" style="margin-top:28px"><div class="ic">📚</div><div><h5>Para saber mais</h5><p>Na Central de Ajuda da Microsoft (support.microsoft.com/pt-br) há tutoriais do PowerPoint com imagens. Use a caixa <b>“Pesquisar”</b> do próprio programa.</p></div></div>
+</section>
 <section class="chapter soon-ch" id="cap6" style="--cc:var(--c6)"><div class="chap-head"><div class="chap-num" style="background:var(--c6)">6</div><div><small>Capítulo 6</small><h2>Internet e comunicação</h2></div></div><div class="soon-card">⏳ Este capítulo será publicado em breve.</div></section>
 <section class="chapter soon-ch" id="cap7" style="--cc:var(--c7)"><div class="chap-head"><div class="chap-num" style="background:var(--c7)">7</div><div><small>Capítulo 7</small><h2>Segurança e cidadania digital</h2></div></div><div class="soon-card">⏳ Este capítulo será publicado em breve.</div></section>
 
 <section id="refs">
   <h2>📚 Referências</h2>
+  <p class="ref">MICROSOFT. <b>Suporte do PowerPoint</b>. [<i>S. l.</i>], [s.d.]. Disponível em: https://support.microsoft.com/pt-br/powerpoint. Acesso em: 20 nov. 2026.</p>
   <p class="ref">MICROSOFT. <b>Visão geral de fórmulas no Excel</b>. [<i>S. l.</i>], [s.d.]. Disponível em: https://support.microsoft.com/pt-br/excel. Acesso em: 20 nov. 2026.</p>
   <p class="ref">MICROSOFT. <b>Atalhos de teclado do Word</b>. [<i>S. l.</i>], [s.d.]. Disponível em: https://support.microsoft.com/pt-BR/Accessibility/word/keyboard-shortcuts-in-word. Acesso em: 20 nov. 2026.</p>
   <p class="ref">MICROSOFT. <b>Suporte da Microsoft: Windows</b>. [<i>S. l.</i>], [s.d.]. Disponível em: https://support.microsoft.com/pt-br/windows. Acesso em: 20 nov. 2026.</p>
