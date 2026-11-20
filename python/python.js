@@ -276,4 +276,59 @@
     $('bbN').onclick=step;$('bbR').onclick=reset;reset();
   })();
 
+  // --- Cap. 7: laboratório de strings ---
+  (function(){
+    var sel=$('smM');if(!sel)return;
+    function esc(x){return String(x).replace(/&/g,'&amp;').replace(/</g,'&lt;')}
+    function rp(x){if(typeof x==='boolean')return x?'True':'False';if(Array.isArray(x))return '['+x.map(rp).join(', ')+']';if(typeof x==='string')return "'"+x+"'";return String(x)}
+    var M={'upper()':[0,function(s){return s.toUpperCase()}],'lower()':[0,function(s){return s.toLowerCase()}],'strip()':[0,function(s){return s.trim()}],'len(s)':[0,function(s){return s.length}],
+      'split()':[0,function(s){return s.split(/\s+/).filter(Boolean)}],'split(a)':[1,function(s,a){return a?s.split(a):null}],
+      'count(a)':[1,function(s,a){if(!a)return s.length+1;return s.split(a).length-1}],'find(a)':[1,function(s,a){return s.indexOf(a)}],
+      'startswith(a)':[1,function(s,a){return s.indexOf(a)===0}],'endswith(a)':[1,function(s,a){return a===''||s.slice(-a.length)===a}],
+      'a in s':[1,function(s,a){return s.indexOf(a)>=0}],'replace(a, b)':[2,function(s,a,b){return a?s.split(a).join(b):null}],
+      'isdigit()':[0,function(s){return /^[0-9]+$/.test(s)}],'isalpha()':[0,function(s){return /^[A-Za-zÀ-ÿ]+$/.test(s)}]};
+    Object.keys(M).forEach(function(k){var o=document.createElement('option');o.value=k;o.textContent=k;sel.appendChild(o)});
+    function r(){
+      var k=sel.value,m=M[k],s=$('smS').value,a=$('smA').value,b=$('smB').value;
+      $('smA').style.display=m[0]>=1?'':'none';$('smB').style.display=m[0]>=2?'':'none';
+      var res=m[1](s,a,b),call;
+      if(k==='len(s)')call='len(s)';else if(k==='a in s')call=rp(a)+' in s';else call='s.'+k.replace('(a, b)','('+rp(a)+', '+rp(b)+')').replace('(a)','('+rp(a)+')');
+      $('smO').innerHTML='<span class="c">s = '+esc(rp(s))+'</span><br><span class="c">&gt;&gt;&gt;</span> '+esc(call)+'<br>'+(res===null?'<span class="e">ValueError: empty separator</span>':esc(rp(res)));
+    }
+    sel.onchange=r;$('smS').oninput=r;$('smA').oninput=r;$('smB').oninput=r;r();
+  })();
+
+  // --- Cap. 7: format ---
+  (function(){
+    var t=$('fmT');if(!t)return;
+    function esc(x){return String(x).replace(/&/g,'&amp;').replace(/</g,'&lt;')}
+    function r(){
+      var s=t.value,f=$('fmF').value||' ',a=$('fmA').value,w=+$('fmW').value,n=Math.max(0,w-s.length),L,R;
+      if(a==='<'){L=0;R=n}else if(a==='>'){L=n;R=0}else{L=Math.floor(n/2);R=n-L}
+      $('fmWv').textContent=w;
+      var spec=(f===' '?'':f)+a+w,res=f.repeat(L)+s+f.repeat(R);
+      $('fmO').innerHTML='<span class="c">&gt;&gt;&gt;</span> "{0:'+esc(spec)+'}".format("'+esc(s)+'")<br>'+esc("'"+res+"'");
+    }
+    ['fmT','fmF','fmA','fmW'].forEach(function(i){$(i).oninput=r;$(i).onchange=r});r();
+  })();
+
+  // --- Cap. 7: mini forca ---
+  (function(){
+    var P=$('fcP');if(!P)return;var W=['python','variavel','funcao','algoritmo','lista','indice','string','laco'],w,ac,er,fim,K=$('fcK');
+    var boneco=['','O','O|','O|\\','O|\\/','O|\\/ ,','O|\\/ ,,'];
+    function draw(){
+      P.textContent=w.split('').map(function(c){return ac.indexOf(c)>=0||fim==='lose'?c:'.'}).join(' ');
+      var t='Erros: <b>'+er+'</b> de 6';
+      if(fim==='win')t='<span class="ok-y">Você acertou!</span>';
+      if(fim==='lose')t='<span class="ok-n">Enforcado!</span> A palavra era <b>'+w+'</b>.';
+      $('fcT').innerHTML=t;
+      K.querySelectorAll('button').forEach(function(b){b.disabled=!!fim||b.dataset.u==='1'});
+    }
+    function reset(){w=W[Math.floor(Math.random()*W.length)];ac=[];er=0;fim='';
+      K.innerHTML='';'abcdefghijklmnopqrstuvwxyz'.split('').forEach(function(c){var b=document.createElement('button');b.type='button';b.className='alt';b.textContent=c;b.onclick=function(){
+        b.dataset.u='1';if(w.indexOf(c)>=0){ac.push(c);if(w.split('').every(function(x){return ac.indexOf(x)>=0}))fim='win'}else{er++;if(er>=6)fim='lose'}draw()};K.appendChild(b)});
+      draw()}
+    $('fcR').onclick=reset;reset();
+  })();
+
 })();

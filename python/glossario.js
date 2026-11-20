@@ -50,5 +50,13 @@ window.GLOSSARIO={
 "dicionário":"Estrutura que liga chaves a valores, como {'Alface': 0.45}.",
 "chave":"Nome usado para localizar um valor dentro de um dicionário.",
 "tupla":"Sequência parecida com uma lista, mas que não pode ser alterada depois de criada.",
-"referência":"Endereço que aponta para um dado na memória; copiar a variável de uma lista copia só a referência."
+"referência":"Endereço que aponta para um dado na memória; copiar a variável de uma lista copia só a referência.",
+"imutável":"Que não pode ser alterado depois de criado; strings em Python são imutáveis.",
+"substring":"Pedaço de uma string, como 'rato' dentro de 'O rato roeu'.",
+"método":"Função que pertence a um tipo de dado e é chamada com ponto, como s.upper().",
+"split":"Método que quebra uma string em uma lista de pedaços, usando um separador.",
+"join":"Método que junta os elementos de uma lista em uma só string, com um separador entre eles.",
+"strip":"Método que remove os espaços do começo e do fim de uma string.",
+"formatação":"Montar um texto inserindo valores nele, com largura, alinhamento e casas decimais.",
+"continue":"Comando que pula o resto da volta atual do laço e vai para a próxima."
 };

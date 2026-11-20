@@ -88,7 +88,14 @@ html[data-theme=dark]{--verde-claro:#10263a}
       <a href="#c6-tools">Ferramentas</a>
       <a href="#c6-quiz">Quiz e exercícios</a>
     </div>
-    <a href="#cap7" class="soon"><span class="n" style="background:var(--c7)">7</span>Strings</a>
+    <a href="#cap7"><span class="n" style="background:var(--c7)">7</span>Strings</a>
+    <div class="sub">
+      <a href="#c7-1">7.1 Strings: Introdução e Pesquisa</a>
+      <a href="#c7-2">7.2 Métodos de Manipulação de Strings</a>
+      <a href="#c7-3">7.3 Formatação de Strings e Jogo da Forca</a>
+      <a href="#c7-tools">Ferramentas</a>
+      <a href="#c7-quiz">Quiz e exercícios</a>
+    </div>
     <a href="#cap8" class="soon"><span class="n" style="background:var(--c8)">8</span>Funções</a>
     <a href="#cap9" class="soon"><span class="n" style="background:var(--c9)">9</span>Arquivos</a>
     <a href="#cap10" class="soon"><span class="n" style="background:var(--c10)">10</span>Classes e objetos</a>
@@ -125,7 +132,7 @@ html[data-theme=dark]{--verde-claro:#10263a}
     <div class="card" style="--cc:var(--c4)" data-ok="1"><b>4 · Condições</b><span>if, else, condições aninhadas e elif.</span><div class="st">✅ Disponível</div></div>
     <div class="card" style="--cc:var(--c5)" data-ok="1"><b>5 · Repetições</b><span>while, contadores, acumuladores e laços aninhados.</span><div class="st">✅ Disponível</div></div>
     <div class="card" style="--cc:var(--c6)" data-ok="1"><b>6 · Listas</b><span>Listas, índices, for, pilhas, filas, ordenação e dicionários.</span><div class="st">✅ Disponível</div></div>
-    <div class="card" style="--cc:var(--c7)"><b>7 · Strings</b><span>Pesquisa, métodos e formatação, com um jogo da forca.</span><div class="st">⏳ Em breve</div></div>
+    <div class="card" style="--cc:var(--c7)" data-ok="1"><b>7 · Strings</b><span>Pesquisa, métodos e formatação, com um jogo da forca.</span><div class="st">✅ Disponível</div></div>
     <div class="card" style="--cc:var(--c8)"><b>8 · Funções</b><span>def, return, escopo, recursão, módulos e random.</span><div class="st">⏳ Em breve</div></div>
     <div class="card" style="--cc:var(--c9)"><b>9 · Arquivos</b><span>Em breve: ler e gravar arquivos, incluindo CSV.</span><div class="st">⏳ Em breve</div></div>
     <div class="card" style="--cc:var(--c10)"><b>10 · Classes e objetos</b><span>Em breve: programação orientada a objetos.</span><div class="st">⏳ Em breve</div></div>
@@ -2664,7 +2671,551 @@ c</span></code></pre>
 
   <div class="box dica" style="margin-top:28px"><div class="ic">📚</div><div><h5>Para saber mais</h5><p>Documentação oficial: <i>O tutorial de Python</i>, seções “Mais sobre listas”, “Dicionários” e “Tuplas e sequências”, em docs.python.org/pt-br/3/tutorial/. Rastreie no papel a ordenação da bolha: é um ótimo treino.</p></div></div>
 </section>
-<section class="chapter soon-ch" id="cap7" style="--cc:var(--c7)"><div class="chap-head"><div class="chap-num" style="background:var(--c7)">7</div><div><small>Capítulo 7</small><h2>Strings</h2></div></div><div class="soon-card">⏳ Este capítulo será publicado em breve.</div></section>
+<section class="chapter" id="cap7" style="--cc:var(--c7)">
+  <div class="chap-head"><div class="chap-num" style="background:var(--c7)">7</div><div><small>Capítulo 7</small><h2>Strings</h2></div></div>
+  <div class="obj"><h4>🎯 Ao final deste capítulo, você será capaz de:</h4><ul><li>explicar por que strings são imutáveis e como contornar isso</li><li>verificar, contar e pesquisar partes de uma string com <code>in</code>, <code>startswith</code>, <code>count</code> e <code>find</code></li><li>manipular strings com <code>split</code>, <code>join</code>, <code>replace</code>, <code>strip</code> e alinhamento</li><li>validar conteúdo com <code>isdigit</code>, <code>isalpha</code> e similares</li><li>formatar textos e números com <code>format</code> e entender o jogo da forca</li></ul></div>
+<h3 id="c7-1">7.1 Strings: Introdução e Pesquisa</h3>
+<p class="sec-sub">Seção 7.0–7.3 — Imutabilidade, verificação, contagem e pesquisa</p>
+<h4 class="pyh">🔒 Strings são Imutáveis</h4>
+<p>Diferentemente das listas, as strings em Python são <strong>imutáveis</strong>: não é possível alterar um caractere individual de uma string diretamente. Qualquer tentativa de atribuir um valor a um índice gera um erro do tipo <code>TypeError</code>:</p>
+<pre class="py nr"><span class="pylab">Listagem 7.1 — Alteração de uma string</span><button class="cp">Copiar</button><code><span class="prompt">&gt;&gt;&gt;</span> s = <span class="string">"Alô Mundo"</span>
+<span class="prompt">&gt;&gt;&gt;</span> s[0] = <span class="string">"a"</span>
+<span class="output">Traceback (most recent call last):
+  File "&lt;stdin&gt;", line 1, in &lt;module&gt;
+TypeError: 'str' object does not support item assignment</span></code></pre>
+<p>Para modificar caracteres individuais, uma estratégia é converter a string em uma lista usando <code>list()</code>, fazer as alterações e depois converter de volta com <code>"".join()</code>:</p>
+<pre class="py"><span class="pylab">Listagem 7.2 — Conversão de string para lista e de volta</span><button class="cp">Copiar</button><code><span class="prompt">&gt;&gt;&gt;</span> s = <span class="string">"Alô Mundo"</span>
+<span class="prompt">&gt;&gt;&gt;</span> L = <span class="function">list</span>(s)
+<span class="prompt">&gt;&gt;&gt;</span> L
+<span class="output">['A', 'l', 'ô', ' ', 'M', 'u', 'n', 'd', 'o']</span>
+<span class="prompt">&gt;&gt;&gt;</span> L[0] = <span class="string">"a"</span>
+<span class="prompt">&gt;&gt;&gt;</span> s = <span class="string">""</span>.<span class="function">join</span>(L)
+<span class="prompt">&gt;&gt;&gt;</span> s
+<span class="output">'alô Mundo'</span></code></pre>
+<p>O método <code>join()</code> concatena todos os elementos de uma lista usando a string à esquerda como separador. Com <code>""</code> (string vazia), os caracteres são simplesmente reunidos sem nenhum separador.</p>
+<h4 class="pyh">🔍 Verificação Parcial de Strings</h4>
+<p>Python oferece métodos práticos para verificar se uma string começa ou termina com determinado texto, sem precisar acessar cada caractere manualmente.</p>
+<h3 style="color:#7c3aed; margin: 20px 0 10px;">startswith e endswith</h3>
+<p>Os métodos <code>startswith()</code> e <code>endswith()</code> retornam <code>True</code> ou <code>False</code> e são <strong>sensíveis a maiúsculas e minúsculas</strong>:</p>
+<pre class="py"><span class="pylab">Listagem 7.3 — startswith e endswith</span><button class="cp">Copiar</button><code><span class="prompt">&gt;&gt;&gt;</span> nome = <span class="string">"João da Silva"</span>
+<span class="prompt">&gt;&gt;&gt;</span> nome.<span class="function">startswith</span>(<span class="string">"João"</span>)
+<span class="output">True</span>
+<span class="prompt">&gt;&gt;&gt;</span> nome.<span class="function">startswith</span>(<span class="string">"joão"</span>)
+<span class="output">False</span>
+<span class="prompt">&gt;&gt;&gt;</span> nome.<span class="function">endswith</span>(<span class="string">"Silva"</span>)
+<span class="output">True</span></code></pre>
+<p>Para fazer verificações sem distinguir maiúsculas de minúsculas, use <code>lower()</code> ou <code>upper()</code> primeiro. Esses métodos retornam uma nova string convertida, sem alterar a original:</p>
+<pre class="py"><span class="pylab">Listagem 7.4 — lower, upper e startswith</span><button class="cp">Copiar</button><code><span class="prompt">&gt;&gt;&gt;</span> s = <span class="string">"O Rato roeu a roupa do Rei de Roma"</span>
+<span class="prompt">&gt;&gt;&gt;</span> s.<span class="function">lower</span>()
+<span class="output">'o rato roeu a roupa do rei de roma'</span>
+<span class="prompt">&gt;&gt;&gt;</span> s.<span class="function">upper</span>()
+<span class="output">'O RATO ROEU A ROUPA DO REI DE ROMA'</span>
+<span class="prompt">&gt;&gt;&gt;</span> s.<span class="function">lower</span>().<span class="function">startswith</span>(<span class="string">"o rato"</span>)
+<span class="output">True</span>
+<span class="prompt">&gt;&gt;&gt;</span> s.<span class="function">upper</span>().<span class="function">startswith</span>(<span class="string">"O RATO"</span>)
+<span class="output">True</span></code></pre>
+<h3 style="color:#7c3aed; margin: 20px 0 10px;">Operador in e not in</h3>
+<p>O operador <code>in</code> verifica se uma substring está contida dentro de outra string. Também é sensível a maiúsculas e minúsculas:</p>
+<pre class="py"><span class="pylab">Listagem 7.5 — Operador in com strings</span><button class="cp">Copiar</button><code><span class="prompt">&gt;&gt;&gt;</span> s = <span class="string">"Maria Amélia Souza"</span>
+<span class="prompt">&gt;&gt;&gt;</span> <span class="string">"Amélia"</span> <span class="keyword">in</span> s
+<span class="output">True</span>
+<span class="prompt">&gt;&gt;&gt;</span> <span class="string">"Maria"</span> <span class="keyword">in</span> s
+<span class="output">True</span>
+<span class="prompt">&gt;&gt;&gt;</span> <span class="string">"Souza"</span> <span class="keyword">in</span> s
+<span class="output">True</span>
+<span class="prompt">&gt;&gt;&gt;</span> <span class="string">"a A"</span> <span class="keyword">in</span> s
+<span class="output">True</span>
+<span class="prompt">&gt;&gt;&gt;</span> <span class="string">"amélia"</span> <span class="keyword">in</span> s
+<span class="output">False</span></code></pre>
+<pre class="py"><span class="pylab">Listagem 7.6 — Operador not in</span><button class="cp">Copiar</button><code><span class="prompt">&gt;&gt;&gt;</span> s = <span class="string">"Todos os caminhos levam a Roma"</span>
+<span class="prompt">&gt;&gt;&gt;</span> <span class="string">"levam"</span> <span class="keyword">not in</span> s
+<span class="output">False</span>
+<span class="prompt">&gt;&gt;&gt;</span> <span class="string">"Caminhos"</span> <span class="keyword">not in</span> s
+<span class="output">True</span>
+<span class="prompt">&gt;&gt;&gt;</span> <span class="string">"AS"</span> <span class="keyword">not in</span> s
+<span class="output">True</span></code></pre>
+<p>Para ignorar maiúsculas ao usar <code>in</code>, aplique <code>lower()</code> ou <code>upper()</code> antes da verificação:</p>
+<pre class="py"><span class="pylab">Listagem 7.7 — Verificação sem distinção de maiúsculas</span><button class="cp">Copiar</button><code><span class="prompt">&gt;&gt;&gt;</span> s = <span class="string">"João comprou um carro"</span>
+<span class="prompt">&gt;&gt;&gt;</span> <span class="string">"joão"</span> <span class="keyword">in</span> s.<span class="function">lower</span>()
+<span class="output">True</span>
+<span class="prompt">&gt;&gt;&gt;</span> <span class="string">"CARRO"</span> <span class="keyword">in</span> s.<span class="function">upper</span>()
+<span class="output">True</span>
+<span class="prompt">&gt;&gt;&gt;</span> <span class="string">"comprou"</span> <span class="keyword">not in</span> s.<span class="function">lower</span>()
+<span class="output">False</span>
+<span class="prompt">&gt;&gt;&gt;</span> <span class="string">"barco"</span> <span class="keyword">not in</span> s.<span class="function">lower</span>()
+<span class="output">True</span></code></pre>
+<h4 class="pyh">🔢 Contagem</h4>
+<p>O método <code>count()</code> conta quantas vezes uma substring aparece dentro de uma string. A busca é sensível a maiúsculas e não conta sobreposições:</p>
+<pre class="py"><span class="pylab">Listagem 7.8 — Contagem com count</span><button class="cp">Copiar</button><code><span class="prompt">&gt;&gt;&gt;</span> t = <span class="string">"um tigre, dois tigres, três tigres"</span>
+<span class="prompt">&gt;&gt;&gt;</span> t.<span class="function">count</span>(<span class="string">"tigre"</span>)
+<span class="output">3</span>
+<span class="prompt">&gt;&gt;&gt;</span> t.<span class="function">count</span>(<span class="string">"tigres"</span>)
+<span class="output">2</span>
+<span class="prompt">&gt;&gt;&gt;</span> t.<span class="function">count</span>(<span class="string">"t"</span>)
+<span class="output">4</span>
+<span class="prompt">&gt;&gt;&gt;</span> t.<span class="function">count</span>(<span class="string">"z"</span>)
+<span class="output">0</span></code></pre>
+<p>Note que <code>count("tigre")</code> retorna 3 porque <code>"tigres"</code> contém <code>"tigre"</code>. Já <code>count("tigres")</code> retorna 2, pois conta somente as ocorrências exatas de <code>"tigres"</code>.</p>
+<h4 class="pyh">🔎 Pesquisa de Strings</h4>
+<p>Para localizar a posição de uma substring dentro de uma string, usamos o método <code>find()</code>. Ele retorna o índice da primeira ocorrência ou <code>-1</code> se não encontrar:</p>
+<pre class="py"><span class="pylab">Listagem 7.9 — Método find</span><button class="cp">Copiar</button><code><span class="prompt">&gt;&gt;&gt;</span> s = <span class="string">"Alô mundo"</span>
+<span class="prompt">&gt;&gt;&gt;</span> s.<span class="function">find</span>(<span class="string">"mun"</span>)
+<span class="output">4</span>
+<span class="prompt">&gt;&gt;&gt;</span> s.<span class="function">find</span>(<span class="string">"ok"</span>)
+<span class="output">-1</span></code></pre>
+<p>O método <code>rfind()</code> funciona como <code>find()</code>, mas busca a partir do final da string (retornando a última ocorrência):</p>
+<pre class="py"><span class="pylab">Listagem 7.10 — find e rfind comparados</span><button class="cp">Copiar</button><code><span class="prompt">&gt;&gt;&gt;</span> s = <span class="string">"Um dia de sol"</span>
+<span class="prompt">&gt;&gt;&gt;</span> s.<span class="function">find</span>(<span class="string">"d"</span>)
+<span class="output">3</span>
+<span class="prompt">&gt;&gt;&gt;</span> s.<span class="function">rfind</span>(<span class="string">"d"</span>)
+<span class="output">7</span></code></pre>
+<p>Ambos aceitam parâmetros opcionais de início e fim para limitar o intervalo de busca:</p>
+<pre class="py"><span class="pylab">Listagem 7.11 — find com parâmetros de intervalo</span><button class="cp">Copiar</button><code><span class="prompt">&gt;&gt;&gt;</span> s = <span class="string">"um tigre, dois tigres, três tigres"</span>
+<span class="prompt">&gt;&gt;&gt;</span> s.<span class="function">find</span>(<span class="string">"tigres"</span>)
+<span class="output">15</span>
+<span class="prompt">&gt;&gt;&gt;</span> s.<span class="function">rfind</span>(<span class="string">"tigres"</span>)
+<span class="output">28</span>
+<span class="prompt">&gt;&gt;&gt;</span> s.<span class="function">find</span>(<span class="string">"tigres"</span>, 7)
+<span class="output">15</span>
+<span class="prompt">&gt;&gt;&gt;</span> s.<span class="function">find</span>(<span class="string">"tigres"</span>, 30)
+<span class="output">-1</span>
+<span class="prompt">&gt;&gt;&gt;</span> s.<span class="function">find</span>(<span class="string">"tigres"</span>, 0, 10)
+<span class="output">-1</span></code></pre>
+<h3 style="color:#7c3aed; margin: 20px 0 10px;">Pesquisa de Todas as Ocorrências</h3>
+<p>Para encontrar todas as ocorrências de uma substring, podemos usar um laço <code>while</code> que chama <code>find()</code> repetidamente, avançando a partir da última posição encontrada:</p>
+<pre class="py"><span class="pylab">Listagem 7.12 — Pesquisa de todas as ocorrências</span><button class="cp">Copiar</button><code>s = <span class="string">"um tigre, dois tigres, três tigres"</span>
+p = 0
+<span class="keyword">while</span> p &gt; -1:
+    p = s.<span class="function">find</span>(<span class="string">"tigre"</span>, p)
+    <span class="keyword">if</span> p &gt;= 0:
+        <span class="function">print</span>(<span class="string">"Posição: %d"</span> % p)
+        p += 1</code></pre>
+<pre class="py nr"><span class="pylab">Listagem 7.13 — Resultado da pesquisa</span><button class="cp">Copiar</button><code><span class="output">Posição: 3
+Posição: 15
+Posição: 28</span></code></pre>
+<p>A variável <code>p</code> serve como marcador: começa em 0 e a cada iteração avança um passo além da última ocorrência encontrada (<code>p += 1</code>). Quando <code>find()</code> retorna <code>-1</code>, a condição <code>while p &gt; -1</code> termina o laço.</p>
+<div class="lab">
+<h3>Exercício 7.1</h3>
+<p>Leia duas strings. Verifique se a segunda ocorre dentro da primeira e imprima a posição de início.</p>
+<p>Exemplo: 1ª string: <code>AABBEFAATT</code>, 2ª string: <code>BE</code></p>
+<p>Saída: <em>BE encontrado na posição 3 de AABBEFAATT</em></p>
+</div>
+<div class="lab">
+<h3>Exercício 7.2</h3>
+<p>Leia duas strings e gere uma terceira com os caracteres <strong>comuns</strong> às duas strings lidas (cada caractere comum aparece uma vez no resultado).</p>
+<p>Exemplo: 1ª: <code>AAACTBF</code>, 2ª: <code>CBT</code> → Resultado: <code>CBT</code></p>
+</div>
+<div class="lab">
+<h3>Exercício 7.3</h3>
+<p>Leia duas strings e gere uma terceira apenas com os caracteres que aparecem em <strong>somente uma</strong> delas (diferença simétrica).</p>
+<p>Exemplo: 1ª: <code>CTA</code>, 2ª: <code>ABC</code> → 3ª: <code>BT</code></p>
+</div>
+<div class="lab">
+<h3>Exercício 7.4</h3>
+<p>Leia uma string e imprima quantas vezes cada caractere aparece.</p>
+<p>Exemplo: String: <code>TTAAC</code> → <code>T: 2x, A: 2x, C: 1x</code></p>
+</div>
+<div class="lab">
+<h3>Exercício 7.5</h3>
+<p>Leia duas strings e gere uma terceira na qual os caracteres da segunda foram retirados da primeira.</p>
+<p>Exemplo: 1ª: <code>AATTGGAA</code>, 2ª: <code>TG</code> → 3ª: <code>AAAA</code></p>
+</div>
+<div class="lab">
+<h3>Exercício 7.6</h3>
+<p>Leia três strings. Imprima o resultado da substituição, na primeira, dos caracteres da segunda pelos da terceira (substituição caractere a caractere).</p>
+<p>Exemplo: 1ª: <code>AATTCGAA</code>, 2ª: <code>TG</code>, 3ª: <code>AC</code> → Resultado: <code>AAAACCAA</code></p>
+</div>
+<h3 id="c7-2">7.2 Métodos de Manipulação de Strings</h3>
+<p class="sec-sub">Seção 7.4–7.8 — Posicionamento, divisão, substituição, remoção e validação</p>
+<h4 class="pyh">⇄ Posicionamento de Strings</h4>
+<p>Para alinhar texto em colunas ou formatar saídas, o Python oferece os métodos <code>center()</code>, <code>ljust()</code> e <code>rjust()</code>. Todos recebem a largura total desejada e um caractere de preenchimento opcional.</p>
+<pre class="py"><span class="pylab">Listagem 7.14 — Centralização com center</span><button class="cp">Copiar</button><code><span class="prompt">&gt;&gt;&gt;</span> s = <span class="string">"tigre"</span>
+<span class="prompt">&gt;&gt;&gt;</span> <span class="function">print</span>(<span class="string">"X"</span> + s.<span class="function">center</span>(10) + <span class="string">"X"</span>)
+<span class="output">X  tigre   X</span>
+<span class="prompt">&gt;&gt;&gt;</span> <span class="function">print</span>(<span class="string">"X"</span> + s.<span class="function">center</span>(10, <span class="string">"."</span>) + <span class="string">"X"</span>)
+<span class="output">X..tigre...X</span></code></pre>
+<pre class="py"><span class="pylab">Listagem 7.15 — Alinhamento com ljust e rjust</span><button class="cp">Copiar</button><code><span class="prompt">&gt;&gt;&gt;</span> s = <span class="string">"tigre"</span>
+<span class="prompt">&gt;&gt;&gt;</span> s.<span class="function">ljust</span>(28)
+<span class="output">'tigre                       '</span>
+<span class="prompt">&gt;&gt;&gt;</span> s.<span class="function">rjust</span>(28)
+<span class="output">'                       tigre'</span>
+<span class="prompt">&gt;&gt;&gt;</span> s.<span class="function">ljust</span>(28, <span class="string">"."</span>)
+<span class="output">'tigre.......................'</span>
+<span class="prompt">&gt;&gt;&gt;</span> s.<span class="function">rjust</span>(28, <span class="string">"-"</span>)
+<span class="output">'-----------------------tigre'</span></code></pre>
+<p><code>ljust()</code> alinha o texto à esquerda (preenchendo à direita) e <code>rjust()</code> alinha à direita (preenchendo à esquerda). Se a string for maior que a largura especificada, ela não é truncada.</p>
+<h4 class="pyh">✂️ Quebra ou Separação de Strings</h4>
+<p>O método <code>split()</code> divide uma string em uma lista de substrings com base em um separador. Sem parâmetros, usa qualquer espaço em branco como separador e ignora espaços múltiplos:</p>
+<pre class="py"><span class="pylab">Listagem 7.16 — Separação com split</span><button class="cp">Copiar</button><code><span class="prompt">&gt;&gt;&gt;</span> s = <span class="string">"um tigre, dois tigres, três tigres"</span>
+<span class="prompt">&gt;&gt;&gt;</span> s.<span class="function">split</span>(<span class="string">","</span>)
+<span class="output">['um tigre', ' dois tigres', ' três tigres']</span>
+<span class="prompt">&gt;&gt;&gt;</span> s.<span class="function">split</span>(<span class="string">" "</span>)
+<span class="output">['um', 'tigre,', 'dois', 'tigres,', 'três', 'tigres']</span>
+<span class="prompt">&gt;&gt;&gt;</span> s.<span class="function">split</span>()
+<span class="output">['um', 'tigre,', 'dois', 'tigres,', 'três', 'tigres']</span></code></pre>
+<p>Para dividir uma string que contém múltiplas linhas, use <code>splitlines()</code>. Ele divide nos caracteres de quebra de linha (<code>\n</code>, <code>\r\n</code>, etc.) e ignora a última linha vazia:</p>
+<pre class="py"><span class="pylab">Listagem 7.17 — Divisão por linhas com splitlines</span><button class="cp">Copiar</button><code><span class="prompt">&gt;&gt;&gt;</span> m = <span class="string">"Uma linha\noutra linha\ne mais uma\n"</span>
+<span class="prompt">&gt;&gt;&gt;</span> m.<span class="function">splitlines</span>()
+<span class="output">['Uma linha', 'outra linha', 'e mais uma']</span></code></pre>
+<h4 class="pyh">🔄 Substituição de Strings</h4>
+<p>O método <code>replace(antigo, novo)</code> retorna uma nova string com todas as ocorrências de <code>antigo</code> substituídas por <code>novo</code>. Um terceiro parâmetro opcional limita o número de substituições:</p>
+<pre class="py"><span class="pylab">Listagem 7.18 — Substituição com replace</span><button class="cp">Copiar</button><code><span class="prompt">&gt;&gt;&gt;</span> s = <span class="string">"um tigre, dois tigres, três tigres"</span>
+<span class="prompt">&gt;&gt;&gt;</span> s.<span class="function">replace</span>(<span class="string">"tigre"</span>, <span class="string">"gato"</span>)
+<span class="output">'um gato, dois gatos, três gatos'</span>
+<span class="prompt">&gt;&gt;&gt;</span> s.<span class="function">replace</span>(<span class="string">"tigre"</span>, <span class="string">"gato"</span>, 1)
+<span class="output">'um gato, dois tigres, três tigres'</span>
+<span class="prompt">&gt;&gt;&gt;</span> s.<span class="function">replace</span>(<span class="string">"tigre"</span>, <span class="string">"gato"</span>, 2)
+<span class="output">'um gato, dois gatos, três tigres'</span>
+<span class="prompt">&gt;&gt;&gt;</span> s.<span class="function">replace</span>(<span class="string">"tigre"</span>, <span class="string">""</span>)
+<span class="output">'um , dois s, três s'</span></code></pre>
+<p>Substituir por string vazia equivale a remover todas as ocorrências. Se o primeiro argumento for uma string vazia, o separador é inserido entre cada caractere:</p>
+<pre class="py"><span class="pylab">Listagem 7.18 (continuação)</span><button class="cp">Copiar</button><code><span class="prompt">&gt;&gt;&gt;</span> s.<span class="function">replace</span>(<span class="string">""</span>, <span class="string">"-"</span>)
+<span class="output">'-u-m- -t-i-g-r-e-,-...'</span></code></pre>
+<h4 class="pyh">✂️ Remoção de Espaços em Branco</h4>
+<p>Os métodos <code>strip()</code>, <code>lstrip()</code> e <code>rstrip()</code> removem espaços em branco (ou outros caracteres especificados) das extremidades de uma string:</p>
+<pre class="py"><span class="pylab">Listagem 7.19 — strip, lstrip e rstrip</span><button class="cp">Copiar</button><code><span class="prompt">&gt;&gt;&gt;</span> t = <span class="string">"  Olá  "</span>
+<span class="prompt">&gt;&gt;&gt;</span> t.<span class="function">strip</span>()
+<span class="output">'Olá'</span>
+<span class="prompt">&gt;&gt;&gt;</span> t.<span class="function">lstrip</span>()
+<span class="output">'Olá  '</span>
+<span class="prompt">&gt;&gt;&gt;</span> t.<span class="function">rstrip</span>()
+<span class="output">'  Olá'</span></code></pre>
+<p>Com um parâmetro, os métodos removem qualquer combinação dos caracteres especificados (não uma substring exata) das extremidades:</p>
+<pre class="py"><span class="pylab">Listagem 7.20 — strip com parâmetros</span><button class="cp">Copiar</button><code><span class="prompt">&gt;&gt;&gt;</span> s = <span class="string">"...///Olá///..."</span>
+<span class="prompt">&gt;&gt;&gt;</span> s.<span class="function">lstrip</span>(<span class="string">"."</span>)
+<span class="output">'///Olá///...'</span>
+<span class="prompt">&gt;&gt;&gt;</span> s.<span class="function">rstrip</span>(<span class="string">"."</span>)
+<span class="output">'...///Olá///'</span>
+<span class="prompt">&gt;&gt;&gt;</span> s.<span class="function">strip</span>(<span class="string">"./"</span>)
+<span class="output">'Olá'</span></code></pre>
+<p>O <code>strip("./")</code> remove qualquer combinação de <code>"."</code> e <code>"/"</code> das duas extremidades até encontrar um caractere que não esteja no conjunto fornecido.</p>
+<div class="box analogia"><div class="ic">💬</div><div>
+<p>Dica prática: ao ler dados do usuário com <code>input()</code>, é comum aplicar <code>.strip()</code> para eliminar espaços digitados acidentalmente no início ou fim da entrada.</p>
+</div></div>
+<h4 class="pyh">✅ Validação por Tipo de Conteúdo</h4>
+<p>Python oferece uma família de métodos <code>is*()</code> que retornam <code>True</code> ou <code>False</code> conforme o tipo de conteúdo da string:</p>
+<table class="method-table">
+<tr><th>Método</th><th>Retorna True se...</th></tr>
+<tr><td><code>isalnum()</code></td><td>todos os caracteres são letras ou dígitos</td></tr>
+<tr><td><code>isalpha()</code></td><td>todos os caracteres são letras</td></tr>
+<tr><td><code>isdigit()</code></td><td>todos os caracteres são dígitos (0–9)</td></tr>
+<tr><td><code>isupper()</code></td><td>todas as letras são maiúsculas</td></tr>
+<tr><td><code>islower()</code></td><td>todas as letras são minúsculas</td></tr>
+<tr><td><code>isspace()</code></td><td>todos os caracteres são espaços em branco</td></tr>
+<tr><td><code>isprintable()</code></td><td>todos os caracteres são imprimíveis</td></tr>
+</table>
+<pre class="py"><span class="pylab">Listagem 7.21 — isalnum e isalpha</span><button class="cp">Copiar</button><code><span class="prompt">&gt;&gt;&gt;</span> s = <span class="string">"125"</span>
+<span class="prompt">&gt;&gt;&gt;</span> p = <span class="string">"alô mundo"</span>
+<span class="prompt">&gt;&gt;&gt;</span> s.<span class="function">isalnum</span>()
+<span class="output">True</span>
+<span class="prompt">&gt;&gt;&gt;</span> p.<span class="function">isalnum</span>()
+<span class="output">False</span> <span class="comment"># espaço não é alfanumérico</span>
+<span class="prompt">&gt;&gt;&gt;</span> s.<span class="function">isalpha</span>()
+<span class="output">False</span> <span class="comment"># dígitos não são letras</span>
+<span class="prompt">&gt;&gt;&gt;</span> p.<span class="function">isalpha</span>()
+<span class="output">False</span> <span class="comment"># espaço não é letra</span></code></pre>
+<pre class="py"><span class="pylab">Listagem 7.22 — isdigit</span><button class="cp">Copiar</button><code><span class="prompt">&gt;&gt;&gt;</span> <span class="string">"777"</span>.<span class="function">isdigit</span>()
+<span class="output">True</span>
+<span class="prompt">&gt;&gt;&gt;</span> <span class="string">"1R-4"</span>.<span class="function">isdigit</span>()
+<span class="output">False</span>
+<span class="prompt">&gt;&gt;&gt;</span> <span class="string">"&gt;10"</span>.<span class="function">isdigit</span>()
+<span class="output">False</span>
+<span class="prompt">&gt;&gt;&gt;</span> <span class="string">"-5"</span>.<span class="function">isdigit</span>()
+<span class="output">False</span> <span class="comment"># sinal negativo não é dígito</span></code></pre>
+<pre class="py"><span class="pylab">Listagem 7.23 — isdigit vs isnumeric com Unicode</span><button class="cp">Copiar</button><code><span class="prompt">&gt;&gt;&gt;</span> umterço = <span class="string">"\u2153"</span> <span class="comment"># caractere ⅓</span>
+<span class="prompt">&gt;&gt;&gt;</span> novetibetano = <span class="string">"\u0F29"</span> <span class="comment"># dígito tibetano 9</span>
+<span class="prompt">&gt;&gt;&gt;</span> umterço.<span class="function">isdigit</span>()
+<span class="output">False</span>
+<span class="prompt">&gt;&gt;&gt;</span> umterço.<span class="function">isnumeric</span>()
+<span class="output">True</span>
+<span class="prompt">&gt;&gt;&gt;</span> novetibetano.<span class="function">isdigit</span>()
+<span class="output">True</span>
+<span class="prompt">&gt;&gt;&gt;</span> novetibetano.<span class="function">isnumeric</span>()
+<span class="output">True</span></code></pre>
+<p><code>isnumeric()</code> aceita uma variedade maior de caracteres numéricos Unicode (frações, dígitos de outros sistemas de escrita), enquanto <code>isdigit()</code> é mais restrito.</p>
+<pre class="py"><span class="pylab">Listagem 7.24 — isupper e islower</span><button class="cp">Copiar</button><code><span class="prompt">&gt;&gt;&gt;</span> s = <span class="string">"ABC"</span>
+<span class="prompt">&gt;&gt;&gt;</span> p = <span class="string">"abc"</span>
+<span class="prompt">&gt;&gt;&gt;</span> e = <span class="string">"aBc"</span>
+<span class="prompt">&gt;&gt;&gt;</span> s.<span class="function">isupper</span>()
+<span class="output">True</span>
+<span class="prompt">&gt;&gt;&gt;</span> s.<span class="function">islower</span>()
+<span class="output">False</span>
+<span class="prompt">&gt;&gt;&gt;</span> p.<span class="function">isupper</span>()
+<span class="output">False</span>
+<span class="prompt">&gt;&gt;&gt;</span> p.<span class="function">islower</span>()
+<span class="output">True</span>
+<span class="prompt">&gt;&gt;&gt;</span> e.<span class="function">isupper</span>()
+<span class="output">False</span>
+<span class="prompt">&gt;&gt;&gt;</span> e.<span class="function">islower</span>()
+<span class="output">False</span></code></pre>
+<pre class="py"><span class="pylab">Listagem 7.25 — isspace</span><button class="cp">Copiar</button><code><span class="prompt">&gt;&gt;&gt;</span> <span class="string">"\t\n\r   "</span>.<span class="function">isspace</span>()
+<span class="output">True</span>
+<span class="prompt">&gt;&gt;&gt;</span> <span class="string">"\tAlô"</span>.<span class="function">isspace</span>()
+<span class="output">False</span></code></pre>
+<pre class="py"><span class="pylab">Listagem 7.26 — isprintable</span><button class="cp">Copiar</button><code><span class="prompt">&gt;&gt;&gt;</span> <span class="string">"\n\t"</span>.<span class="function">isprintable</span>()
+<span class="output">False</span>
+<span class="prompt">&gt;&gt;&gt;</span> <span class="string">"\nAlô"</span>.<span class="function">isprintable</span>()
+<span class="output">False</span>
+<span class="prompt">&gt;&gt;&gt;</span> <span class="string">"Alô mundo"</span>.<span class="function">isprintable</span>()
+<span class="output">True</span></code></pre>
+<p>Caracteres de controle como <code>\n</code> (nova linha) e <code>\t</code> (tabulação) não são imprimíveis, pois representam ações e não glifos visíveis.</p>
+<h3 id="c7-3">7.3 Formatação de Strings e Jogo da Forca</h3>
+<p class="sec-sub">Seção 7.9–7.10 — Método format e projeto prático</p>
+<h4 class="pyh">🧮 Formatação de Strings</h4>
+<p>O método <code>format()</code> permite criar strings com valores inseridos dinamicamente. Os campos entre chaves <code>{}</code> são substituídos pelos argumentos fornecidos, identificados por índice:</p>
+<pre class="py"><span class="pylab">Listagem 7.27 — Uso básico do format</span><button class="cp">Copiar</button><code><span class="prompt">&gt;&gt;&gt;</span> <span class="string">"{0} {1}"</span>.<span class="function">format</span>(<span class="string">"Alô"</span>, <span class="string">"Mundo"</span>)
+<span class="output">'Alô Mundo'</span>
+<span class="prompt">&gt;&gt;&gt;</span> <span class="string">"{0} x {1} R${2}"</span>.<span class="function">format</span>(5, <span class="string">"maçã"</span>, <span class="string">"1.20"</span>)
+<span class="output">'5 x maçã R$1.20'</span></code></pre>
+<p>O mesmo índice pode ser reutilizado várias vezes na mesma string:</p>
+<pre class="py"><span class="pylab">Listagem 7.28 — Reutilização de índices</span><button class="cp">Copiar</button><code><span class="prompt">&gt;&gt;&gt;</span> <span class="string">"{0} {1} {0}"</span>.<span class="function">format</span>(<span class="string">"-"</span>, <span class="string">"x"</span>)
+<span class="output">'- x -'</span></code></pre>
+<p>Os índices também podem ser usados fora de ordem:</p>
+<pre class="py"><span class="pylab">Listagem 7.29 — Índices fora de ordem</span><button class="cp">Copiar</button><code><span class="prompt">&gt;&gt;&gt;</span> <span class="string">"{1} {0}"</span>.<span class="function">format</span>(<span class="string">"primeiro"</span>, <span class="string">"segundo"</span>)
+<span class="output">'segundo primeiro'</span></code></pre>
+<h3 style="color:#7c3aed; margin: 20px 0 10px;">Largura e Alinhamento</h3>
+<p>Após o índice, um dois pontos (<code>:</code>) indica especificações de formato. Um número define a largura mínima do campo:</p>
+<pre class="py"><span class="pylab">Listagem 7.30 — Largura mínima</span><button class="cp">Copiar</button><code><span class="prompt">&gt;&gt;&gt;</span> <span class="string">"{0:10} {1}"</span>.<span class="function">format</span>(<span class="string">"123"</span>, <span class="string">"456"</span>)
+<span class="output">'123        456'</span>
+<span class="prompt">&gt;&gt;&gt;</span> <span class="string">"{0:10}X"</span>.<span class="function">format</span>(<span class="string">"123"</span>)
+<span class="output">'123       X'</span>
+<span class="prompt">&gt;&gt;&gt;</span> <span class="string">"{0:10}X"</span>.<span class="function">format</span>(<span class="string">"12345678901345"</span>)
+<span class="output">'12345678901345X'</span> <span class="comment"># não é truncado</span></code></pre>
+<p>O alinhamento é controlado por <code>&lt;</code> (esquerda), <code>&gt;</code> (direita) ou <code>^</code> (centro):</p>
+<pre class="py"><span class="pylab">Listagem 7.31 — Alinhamento esquerda e direita</span><button class="cp">Copiar</button><code><span class="prompt">&gt;&gt;&gt;</span> <span class="string">"{0:&lt;10}X"</span>.<span class="function">format</span>(<span class="string">"123"</span>)
+<span class="output">'123       X'</span>
+<span class="prompt">&gt;&gt;&gt;</span> <span class="string">"{0:&gt;10}X"</span>.<span class="function">format</span>(<span class="string">"123"</span>)
+<span class="output">'       123X'</span></code></pre>
+<pre class="py"><span class="pylab">Listagem 7.32 — Centralização</span><button class="cp">Copiar</button><code><span class="prompt">&gt;&gt;&gt;</span> <span class="string">"{0:^10}X"</span>.<span class="function">format</span>(<span class="string">"123"</span>)
+<span class="output">'   123    X'</span></code></pre>
+<p>Antes do alinhamento, um caractere de preenchimento (fill) substitui os espaços em branco:</p>
+<pre class="py"><span class="pylab">Listagem 7.33 — Caractere de preenchimento</span><button class="cp">Copiar</button><code><span class="prompt">&gt;&gt;&gt;</span> <span class="string">"{0:.&lt;10}X"</span>.<span class="function">format</span>(<span class="string">"123"</span>)
+<span class="output">'123.......X'</span>
+<span class="prompt">&gt;&gt;&gt;</span> <span class="string">"{0:!&gt;10}X"</span>.<span class="function">format</span>(<span class="string">"123"</span>)
+<span class="output">'!!!!!!!123X'</span>
+<span class="prompt">&gt;&gt;&gt;</span> <span class="string">"{0:*^10}X"</span>.<span class="function">format</span>(<span class="string">"123"</span>)
+<span class="output">'***123****X'</span></code></pre>
+<h3 style="color:#7c3aed; margin: 20px 0 10px;">Acesso a Listas e Dicionários</h3>
+<pre class="py"><span class="pylab">Listagem 7.34 — Acesso a elementos de lista</span><button class="cp">Copiar</button><code><span class="prompt">&gt;&gt;&gt;</span> <span class="string">"{0[1]} {0[2]}"</span>.<span class="function">format</span>([<span class="string">"zero"</span>, <span class="string">"456"</span>, <span class="string">"789"</span>])
+<span class="output">'456 789'</span></code></pre>
+<pre class="py"><span class="pylab">Listagem 7.35 — Acesso a campos de dicionário</span><button class="cp">Copiar</button><code><span class="prompt">&gt;&gt;&gt;</span> <span class="string">"{0[nome]} {0[telefone]}"</span>.<span class="function">format</span>({<span class="string">"telefone"</span>: 572, <span class="string">"nome"</span>: <span class="string">"Maria"</span>})
+<span class="output">'Maria 572'</span></code></pre>
+<h3 style="color:#7c3aed; margin: 20px 0 10px;">7.9.1 Formatação de Números</h3>
+<p>Para números, podemos usar zeros à esquerda, separador de milhar, casas decimais e sinal:</p>
+<pre class="py"><span class="pylab">Listagem 7.36 — Zeros à esquerda</span><button class="cp">Copiar</button><code><span class="prompt">&gt;&gt;&gt;</span> <span class="string">"{0:05}"</span>.<span class="function">format</span>(5)
+<span class="output">'00005'</span></code></pre>
+<pre class="py"><span class="pylab">Listagem 7.37 — Preenchimento com asterisco (direita)</span><button class="cp">Copiar</button><code><span class="prompt">&gt;&gt;&gt;</span> <span class="string">"{0:*&gt;7}"</span>.<span class="function">format</span>(32)
+<span class="output">'*****32'</span></code></pre>
+<pre class="py"><span class="pylab">Listagem 7.38 — Alinhamento com preenchimento para inteiros</span><button class="cp">Copiar</button><code><span class="prompt">&gt;&gt;&gt;</span> <span class="string">"{0:*^10}"</span>.<span class="function">format</span>(123)
+<span class="output">'***123****'</span>
+<span class="prompt">&gt;&gt;&gt;</span> <span class="string">"{0:*&lt;10}"</span>.<span class="function">format</span>(123)
+<span class="output">'123*******'</span>
+<span class="prompt">&gt;&gt;&gt;</span> <span class="string">"{0:*&gt;10}"</span>.<span class="function">format</span>(123)
+<span class="output">'*******123'</span></code></pre>
+<pre class="py"><span class="pylab">Listagem 7.39 — Separador de milhar e casas decimais</span><button class="cp">Copiar</button><code><span class="prompt">&gt;&gt;&gt;</span> <span class="string">"{0:10,}"</span>.<span class="function">format</span>(7532)
+<span class="output">'     7,532'</span>
+<span class="prompt">&gt;&gt;&gt;</span> <span class="string">"{0:10.5f}"</span>.<span class="function">format</span>(1500.31)
+<span class="output">'1500.31000'</span>
+<span class="prompt">&gt;&gt;&gt;</span> <span class="string">"{0:10,.5f}"</span>.<span class="function">format</span>(1500.31)
+<span class="output">'1,500.31000'</span></code></pre>
+<pre class="py"><span class="pylab">Listagem 7.40 — Sinal de positivo e negativo</span><button class="cp">Copiar</button><code><span class="prompt">&gt;&gt;&gt;</span> <span class="string">"{0:+10} {1:+10}"</span>.<span class="function">format</span>(5, -6)
+<span class="output">'        +5        -6'</span>
+<span class="prompt">&gt;&gt;&gt;</span> <span class="string">"{0:-10} {1:-10}"</span>.<span class="function">format</span>(5, -6)
+<span class="output">'         5        -6'</span>
+<span class="prompt">&gt;&gt;&gt;</span> <span class="string">"{0: 10} {1: 10}"</span>.<span class="function">format</span>(5, -6)
+<span class="output">'         5        -6'</span></code></pre>
+<h3 style="color:#7c3aed; margin: 20px 0 10px;">Formatos de Números Inteiros</h3>
+<table class="format-table">
+<tr><th>Formato</th><th>Descrição</th><th>Exemplo</th></tr>
+<tr><td>b</td><td>Binário</td><td>{:b} de 5678 → 1011000101110</td></tr>
+<tr><td>c</td><td>Caractere Unicode</td><td>{:c} de 65 → A</td></tr>
+<tr><td>d</td><td>Decimal (padrão)</td><td>{:d} de 5678 → 5678</td></tr>
+<tr><td>n</td><td>Decimal com locale</td><td>{:n} de 5678 → 5.678 (pt_BR)</td></tr>
+<tr><td>o</td><td>Octal</td><td>{:o} de 5678 → 13056</td></tr>
+<tr><td>x</td><td>Hexadecimal minúsculo</td><td>{:x} de 5678 → 162e</td></tr>
+<tr><td>X</td><td>Hexadecimal maiúsculo</td><td>{:X} de 5678 → 162E</td></tr>
+</table>
+<pre class="py"><span class="pylab">Listagem 7.41 — Formatos de inteiros</span><button class="cp">Copiar</button><code><span class="prompt">&gt;&gt;&gt;</span> <span class="string">"{:b}"</span>.<span class="function">format</span>(5678)
+<span class="output">'1011000101110'</span>
+<span class="prompt">&gt;&gt;&gt;</span> <span class="string">"{:c}"</span>.<span class="function">format</span>(65)
+<span class="output">'A'</span>
+<span class="prompt">&gt;&gt;&gt;</span> <span class="string">"{:o}"</span>.<span class="function">format</span>(5678)
+<span class="output">'13056'</span>
+<span class="prompt">&gt;&gt;&gt;</span> <span class="string">"{:x}"</span>.<span class="function">format</span>(5678)
+<span class="output">'162e'</span>
+<span class="prompt">&gt;&gt;&gt;</span> <span class="string">"{:X}"</span>.<span class="function">format</span>(5678)
+<span class="output">'162E'</span></code></pre>
+<pre class="py"><span class="pylab">Listagem 7.42 — Formato n com locale pt_BR</span><button class="cp">Copiar</button><code><span class="keyword">import</span> locale
+locale.<span class="function">setlocale</span>(locale.LC_ALL, <span class="string">"pt_BR"</span>)
+<span class="prompt">&gt;&gt;&gt;</span> <span class="string">"{:n}"</span>.<span class="function">format</span>(5678)
+<span class="output">'5.678'</span></code></pre>
+<h3 style="color:#7c3aed; margin: 20px 0 10px;">Formatos de Números Decimais</h3>
+<table class="format-table">
+<tr><th>Formato</th><th>Descrição</th></tr>
+<tr><td>e</td><td>Notação científica (minúsculo)</td></tr>
+<tr><td>E</td><td>Notação científica (maiúsculo)</td></tr>
+<tr><td>f</td><td>Ponto flutuante fixo</td></tr>
+<tr><td>g</td><td>Geral: usa f ou e conforme magnitude</td></tr>
+<tr><td>G</td><td>Geral: usa f ou E conforme magnitude</td></tr>
+<tr><td>n</td><td>Ponto flutuante com locale</td></tr>
+<tr><td>%</td><td>Percentagem (multiplica por 100)</td></tr>
+</table>
+<pre class="py"><span class="pylab">Listagem 7.43 — Formato f e n para decimais</span><button class="cp">Copiar</button><code><span class="prompt">&gt;&gt;&gt;</span> <span class="string">"{:f}"</span>.<span class="function">format</span>(1579.543)
+<span class="output">'1579.543000'</span>
+<span class="prompt">&gt;&gt;&gt;</span> <span class="string">"{:n}"</span>.<span class="function">format</span>(1579.543)   <span class="comment"># sem locale</span>
+<span class="output">'1579.54'</span>
+<span class="comment"># com locale pt_BR:</span>
+<span class="prompt">&gt;&gt;&gt;</span> <span class="string">"{:n}"</span>.<span class="function">format</span>(1579.543)
+<span class="output">'1.579,54'</span></code></pre>
+<pre class="py"><span class="pylab">Listagem 7.44 — Notação científica e percentagem</span><button class="cp">Copiar</button><code><span class="prompt">&gt;&gt;&gt;</span> <span class="string">"{:8e}"</span>.<span class="function">format</span>(1579.543)
+<span class="output">'1.579543e+03'</span>
+<span class="prompt">&gt;&gt;&gt;</span> <span class="string">"{:8E}"</span>.<span class="function">format</span>(1579.543)
+<span class="output">'1.579543E+03'</span>
+<span class="prompt">&gt;&gt;&gt;</span> <span class="string">"{:8g}"</span>.<span class="function">format</span>(1579.543)
+<span class="output">'1579.54'</span>
+<span class="prompt">&gt;&gt;&gt;</span> <span class="string">"{:5.2%}"</span>.<span class="function">format</span>(0.75)
+<span class="output">'75.00%'</span></code></pre>
+<h4 class="pyh">🫣 Projeto: Jogo da Forca</h4>
+<p>Vamos aplicar os conceitos de strings em um jogo da forca completo. O jogo pede uma palavra secreta, mostra o progresso do jogador (pontos no lugar das letras ainda não descobertas) e desenha o boneco conforme os erros aumentam.</p>
+<p>Conceitos-chave utilizados:</p>
+<ul>
+<li><code>lower()</code> e <code>strip()</code> para normalizar a entrada</li>
+<li>Laço <code>for</code> sobre os caracteres da palavra</li>
+<li>Listas <code>acertos</code> e <code>digitadas</code> como conjuntos de letras</li>
+<li><code>continue</code> para pular para a próxima iteração do laço</li>
+<li>Formatação de strings para exibir o boneco</li>
+</ul>
+<pre class="py"><span class="pylab">Listagem 7.45 — Jogo da Forca</span><button class="cp">Copiar</button><code>palavra = <span class="function">input</span>(<span class="string">"Digite a palavra secreta:"</span>).<span class="function">lower</span>().<span class="function">strip</span>()  <span class="comment">①</span>
+<span class="keyword">for</span> x <span class="keyword">in</span> <span class="function">range</span>(100):
+    <span class="function">print</span>()  <span class="comment">②</span>
+digitadas = []
+acertos = []
+erros = 0
+<span class="keyword">while True</span>:
+    senha = <span class="string">""</span>
+<span class="keyword">for</span> letra <span class="keyword">in</span> palavra:
+        senha += letra <span class="keyword">if</span> letra <span class="keyword">in</span> acertos <span class="keyword">else</span> <span class="string">"."</span> <span class="comment">③</span>
+<span class="function">print</span>(senha)
+    <span class="keyword">if</span> senha == palavra:
+        <span class="function">print</span>(<span class="string">"Você acertou!"</span>)
+        <span class="keyword">break</span>
+    tentativa = <span class="function">input</span>(<span class="string">"\nDigite uma letra:"</span>).<span class="function">lower</span>().<span class="function">strip</span>()
+    <span class="keyword">if</span> tentativa <span class="keyword">in</span> digitadas:
+        <span class="function">print</span>(<span class="string">"Você já tentou esta letra!"</span>)
+        <span class="keyword">continue</span> <span class="comment">④</span>
+<span class="keyword">else</span>:
+        digitadas += tentativa
+        <span class="keyword">if</span> tentativa <span class="keyword">in</span> palavra:
+            acertos += tentativa
+        <span class="keyword">else</span>:
+            erros += 1
+            <span class="function">print</span>(<span class="string">"Você errou!"</span>)
+    <span class="function">print</span>(<span class="string">"X==:=="</span>)
+    <span class="function">print</span>(<span class="string">"X  :"</span>)
+    <span class="function">print</span>(<span class="string">"X O "</span> <span class="keyword">if</span> erros &gt;= 1 <span class="keyword">else</span> <span class="string">"X"</span>)
+    linha2 = <span class="string">""</span>
+<span class="keyword">if</span> erros == 2:
+        linha2 = <span class="string">" | "</span>
+<span class="keyword">elif</span> erros == 3:
+        linha2 = <span class="string">" \| "</span>
+<span class="keyword">elif</span> erros &gt;= 4:
+        linha2 = <span class="string">" \|/ "</span>
+<span class="function">print</span>(<span class="string">"X%s"</span> % linha2)
+    <span class="function">print</span>(<span class="string">"X\============"</span>)
+    <span class="keyword">if</span> erros == 6:
+        <span class="function">print</span>(<span class="string">"Enforcado!"</span>)
+        <span class="keyword">break</span></code></pre>
+<div class="box analogia"><div class="ic">💬</div><div>
+<p><strong>Notas sobre o código:</strong> ① Converte a palavra para minúsculas e remove espaços nas bordas. ② Imprime 100 linhas em branco para “limpar” a tela (a palavra não deve ser vista pelo jogador). ③ Expressão condicional: mostra a letra se ela está nos acertos, caso contrário mostra ponto. ④ <code>continue</code> pula diretamente para o começo do próximo laço, sem executar o restante do bloco.</p>
+</div></div>
+<h3 style="color:#7c3aed; margin: 20px 0 10px;">A instrução continue</h3>
+<p>A instrução <code>continue</code> interrompe a iteração atual de um laço e vai imediatamente para a próxima. No jogo da forca, quando o jogador tenta uma letra que já foi digitada, <code>continue</code> evita que o programa registre novamente essa tentativa e redesenhe o boneco desnecessariamente.</p>
+<div class="lab">
+<h3>Exercício 7.7</h3>
+<p>Modifique o programa da Listagem 7.45 de forma a escrever a palavra secreta caso o jogador perca (quando <code>erros == 6</code>).</p>
+</div>
+<div class="lab">
+<h3>Exercício 7.8</h3>
+<p>Modifique o jogo da forca para utilizar uma <strong>lista de palavras</strong>. No início, pergunte um número ao usuário e calcule o índice da palavra pela fórmula:</p>
+<p><code>índice = (número * 776) % len(lista_de_palavras)</code></p>
+</div>
+<div class="lab">
+<h3>Exercício 7.9</h3>
+<p>Modifique o programa para utilizar <strong>listas de strings</strong> para desenhar o boneco da forca, em vez de imprimir cada linha individualmente com <code>if</code>/<code>elif</code>. Dica: crie uma lista onde cada elemento é a linha correspondente ao número de erros.</p>
+</div>
+<div class="lab">
+<h3>Exercício 7.10</h3>
+<p>Escreva um <strong>jogo da velha</strong> para dois jogadores. O tabuleiro deve ser representado como uma lista (ou lista de listas) e exibido após cada jogada. O programa deve detectar quando um jogador vence ou quando há empate.</p>
+</div>
+
+  <h3 id="c7-tools">🛠️ Ferramentas do capítulo</h3>
+  <div class="tool" id="sm" style="--cc:var(--c7)">
+    <h4 style="margin-top:0">🧪 Laboratório de métodos de string</h4>
+    <p>Escolha um texto, um método e (se precisar) um argumento. Veja o que o Python devolveria.</p>
+    <div class="tool-ctl"><input type="text" id="smS" value="  O rato roeu a roupa  " aria-label="Texto" style="padding:8px 10px;border-radius:8px;border:1px solid var(--borda,#ccc);font:inherit;width:240px">
+    <select id="smM" aria-label="Método" style="padding:8px;border-radius:8px;font:inherit"></select>
+    <input type="text" id="smA" value="r" aria-label="Argumento" style="padding:8px 10px;border-radius:8px;border:1px solid var(--borda,#ccc);font:inherit;width:90px">
+    <input type="text" id="smB" value="x" aria-label="Segundo argumento" style="padding:8px 10px;border-radius:8px;border:1px solid var(--borda,#ccc);font:inherit;width:90px"></div>
+    <div class="repl"><div class="out" id="smO" aria-live="polite"></div></div>
+  </div>
+  <div class="tool" id="fm" style="--cc:var(--c7)">
+    <h4 style="margin-top:0">🎛️ Formatação com format()</h4>
+    <div class="tool-ctl"><input type="text" id="fmT" value="123" aria-label="Texto" style="padding:8px 10px;border-radius:8px;border:1px solid var(--borda,#ccc);font:inherit;width:120px">
+    <label>preenchimento: <input type="text" id="fmF" value="*" maxlength="1" style="width:44px;padding:6px;border-radius:8px;border:1px solid var(--borda,#ccc);font:inherit"></label>
+    <select id="fmA" aria-label="Alinhamento" style="padding:8px;border-radius:8px;font:inherit"><option value="&lt;">&lt; esquerda</option><option value="&gt;">&gt; direita</option><option value="^" selected>^ centro</option></select>
+    <label>largura: <input type="range" id="fmW" min="1" max="20" value="10"> <b id="fmWv">10</b></label></div>
+    <div class="repl"><div class="out" id="fmO" aria-live="polite"></div></div>
+  </div>
+  <div class="tool" id="fc" style="--cc:var(--c7)">
+    <h4 style="margin-top:0">🫣 Mini jogo da forca</h4>
+    <p id="fcP" style="font-family:Consolas,monospace;font-size:22px;letter-spacing:4px;margin:6px 0"></p>
+    <p id="fcT" aria-live="polite"></p>
+    <div class="sugs" id="fcK"></div>
+    <div class="tool-ctl"><button type="button" id="fcR" class="alt">Nova palavra</button></div>
+  </div>
+
+  <div class="resumo"><h3>📝 Resumo do capítulo</h3><ul><li>Strings são <b>imutáveis</b>: <code>s[0] = "a"</code> dá <code>TypeError</code>. Para alterar, converta com <code>list()</code> e volte com <code>"".join()</code>.</li><li>Métodos como <code>lower()</code> e <code>upper()</code> devolvem uma <b>nova</b> string e não alteram a original.</li><li><code>in</code>, <code>startswith</code> e <code>endswith</code> verificam; <code>count</code> conta; <code>find</code> devolve a posição (ou -1).</li><li><code>split</code> quebra uma string em uma lista; <code>join</code> faz o caminho contrário; <code>replace</code> troca trechos; <code>strip</code> tira espaços das bordas.</li><li><code>isdigit</code>, <code>isalpha</code>, <code>isalnum</code> e outros validam o tipo de conteúdo.</li><li><code>"{0:*^10}".format("123")</code> usa largura, alinhamento (<code>&lt;</code>, <code>&gt;</code>, <code>^</code>) e caractere de preenchimento.</li><li>O <code>continue</code> pula para a próxima volta do laço; o jogo da forca junta strings, listas e laços.</li></ul></div>
+  <h3 id="c7-quiz">🧠 Quiz do capítulo 7</h3>
+  <p>Clique na resposta que você acha certa.</p>
+  <div class="quiz">
+    <div class="q"><p>1. O que acontece ao executar <code>s = "Alô"</code> e depois <code>s[0] = "a"</code>?</p>
+      <button class="opt">a) s vira "alô"</button><button class="opt" data-ok="1">b) Ocorre um <code>TypeError</code>, pois strings são imutáveis</button><button class="opt">c) O Python ignora a linha</button><button class="opt">d) s vira "a"</button>
+      <div class="fb">Strings não aceitam atribuição a um índice. É preciso criar uma nova string.</div></div>
+    <div class="q"><p>2. Qual é o resultado de <code>"Python".lower()</code>?</p>
+      <button class="opt">a) "PYTHON"</button><button class="opt" data-ok="1">b) "python"</button><button class="opt">c) "Python"</button><button class="opt">d) Erro</button>
+      <div class="fb"><code>lower()</code> devolve uma nova string toda em minúsculas.</div></div>
+    <div class="q"><p>3. O que faz <code>"banana".count("an")</code>?</p>
+      <button class="opt" data-ok="1">a) Devolve 2</button><button class="opt">b) Devolve 3</button><button class="opt">c) Devolve 6</button><button class="opt">d) Devolve True</button>
+      <div class="fb">Em b<b>an</b><b>an</b>a, “an” aparece duas vezes, sem sobreposição.</div></div>
+    <div class="q"><p>4. O que <code>"casa".find("z")</code> devolve?</p>
+      <button class="opt">a) 0</button><button class="opt">b) Erro</button><button class="opt" data-ok="1">c) -1</button><button class="opt">d) None</button>
+      <div class="fb">Quando não encontra, <code>find</code> devolve <b>-1</b>.</div></div>
+    <div class="q"><p>5. Qual é o resultado de <code>"a,b,c".split(",")</code>?</p>
+      <button class="opt">a) "abc"</button><button class="opt" data-ok="1">b) ["a", "b", "c"]</button><button class="opt">c) ("a", "b", "c")</button><button class="opt">d) "a b c"</button>
+      <div class="fb"><code>split</code> quebra a string em uma lista, usando o separador indicado.</div></div>
+    <div class="q"><p>6. Qual é o resultado de <code>"-".join(["a", "b", "c"])</code>?</p>
+      <button class="opt">a) "abc"</button><button class="opt" data-ok="1">b) "a-b-c"</button><button class="opt">c) ["a-b-c"]</button><button class="opt">d) Erro</button>
+      <div class="fb"><code>join</code> junta os elementos da lista usando a string à esquerda como separador.</div></div>
+    <div class="q"><p>7. O que <code>"  oi  ".strip()</code> devolve?</p>
+      <button class="opt">a) "  oi"</button><button class="opt">b) "oi  "</button><button class="opt" data-ok="1">c) "oi"</button><button class="opt">d) "  oi  "</button>
+      <div class="fb"><code>strip</code> remove os espaços no começo e no fim.</div></div>
+    <div class="q"><p>8. Qual é o resultado de <code>"{0:*^7}".format("ab")</code>?</p>
+      <button class="opt">a) "ab*****"</button><button class="opt">b) "*****ab"</button><button class="opt" data-ok="1">c) "**ab***"</button><button class="opt">d) "***ab**"</button>
+      <div class="fb"><code>^</code> centraliza em 7 posições. Sobram 5 asteriscos: 2 à esquerda e 3 à direita, o que dá <code>**ab***</code>.</div></div>
+  </div>
+  <div class="score"></div>
+  <h3>✍️ Questões abertas</h3>
+  <div class="open"><p><b>1.</b> Por que <code>s.upper()</code> não altera a variável <code>s</code>?</p>
+    <button>Ver resposta</button><div class="answer">Strings são imutáveis. O método cria e devolve uma nova string. Para guardar o resultado, faça <code>s = s.upper()</code>.</div></div>
+  <div class="open"><p><b>2.</b> Como trocar o primeiro caractere de uma string, já que ela é imutável?</p>
+    <button>Ver resposta</button><div class="answer">Converta em lista, mude e junte de novo: <code>L = list(s)</code>, <code>L[0] = "a"</code>, <code>s = "".join(L)</code>. Ou monte uma nova string: <code>"a" + s[1:]</code>.</div></div>
+  <div class="open"><p><b>3.</b> Escreva um programa que peça uma frase e diga quantas vezes a letra “a” aparece, sem diferenciar maiúsculas.</p>
+    <button>Ver resposta</button><div class="answer"><code>f = input("Frase: ")<br>print(f.lower().count("a"))</code></div></div>
+  <div class="open"><p><b>4.</b> Para que serve o <code>continue</code> no jogo da forca?</p>
+    <button>Ver resposta</button><div class="answer">Quando o jogador repete uma letra, o <code>continue</code> volta ao começo do laço sem registrar a tentativa de novo nem desenhar o boneco outra vez.</div></div>
+
+  <div class="box dica" style="margin-top:28px"><div class="ic">📚</div><div><h5>Para saber mais</h5><p>Documentação oficial: <i>Métodos de string</i>, em docs.python.org/pt-br/3/library/stdtypes.html#string-methods, e a seção sobre formatação de strings do <i>O tutorial de Python</i>. Experimente cada método no IDLE.</p></div></div>
+</section>
 <section class="chapter soon-ch" id="cap8" style="--cc:var(--c8)"><div class="chap-head"><div class="chap-num" style="background:var(--c8)">8</div><div><small>Capítulo 8</small><h2>Funções</h2></div></div><div class="soon-card">⏳ Este capítulo será publicado em breve.</div></section>
 <section class="chapter soon-ch" id="cap9" style="--cc:var(--c9)"><div class="chap-head"><div class="chap-num" style="background:var(--c9)">9</div><div><small>Capítulo 9</small><h2>Arquivos</h2></div></div><div class="soon-card">⏳ Este capítulo será publicado em breve.</div></section>
 <section class="chapter soon-ch" id="cap10" style="--cc:var(--c10)"><div class="chap-head"><div class="chap-num" style="background:var(--c10)">10</div><div><small>Capítulo 10</small><h2>Classes e objetos</h2></div></div><div class="soon-card">⏳ Este capítulo será publicado em breve.</div></section>
