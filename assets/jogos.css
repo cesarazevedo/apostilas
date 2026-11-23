@@ -22,6 +22,14 @@
 .jg-msg{margin:12px 0 6px;padding:10px 14px;border-radius:12px;font-weight:600;font-size:15px;background:#fff3b8;border-left:6px solid #ffb300;color:#1f2937;min-height:44px}
 .jg-msg.bad{background:#ffe0e0;border-color:#e03b3b}
 .jg-msg.win{background:#c8e6c9;border-color:#2e7d32}
+/* fonte de código (Python) */
+.jg-zone.jg-mono .jg-lab,.jg-chip.jg-mono{font-family:Consolas,Menlo,monospace}
+.jg-chip.jg-mono{font-size:14px}
+/* ETD: letra maior para o público iniciante e de celular */
+body[data-curso="etd"] .jg-help,body[data-curso="etd"] .jg-msg{font-size:18px}
+body[data-curso="etd"] .jg-chip{font-size:18px;min-height:52px;padding:10px 14px}
+body[data-curso="etd"] .jg-chip.done{font-size:16px;min-height:0;padding:4px 10px}
+body[data-curso="etd"] .jg-zone .jg-lab{font-size:19px}
 html[data-theme=dark] .jg{background:#16201f}
 html[data-theme=dark] .jg-zone{background:#1b2e1f}
 html[data-theme=dark] .jg-tray{background:#111a19}

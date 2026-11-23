@@ -1,7 +1,8 @@
 /* Motor de jogos de arrastar e soltar, compartilhado pelas apostilas.
    Uso: <div class="jogo" data-jogo="id"></div> e window.JOGOS={id:{...}} no JS da disciplina.
    Dados: {titulo, ajuda, zonas:[{id,rotulo,sub}], itens:[{t,z,why}], unico:true|false}
-   unico:true = cada caixa recebe uma peça só (ligar termos). */
+   unico:true = cada caixa recebe uma peça só (ligar termos).
+   mono:true = peças e caixas em fonte de código (Python). */
 (function(){
   'use strict';
   var CURSO=document.body.dataset.curso||'apostila',KEY='ap:'+CURSO+':jogos',best={};
@@ -24,14 +25,14 @@
     var rec=el('span','jg-rec',best[id]?'  Melhor: '+'⭐'.repeat(best[id]):'');
 
     g.zonas.forEach(function(z){
-      var d=el('div','jg-zone');d.dataset.id=z.id;d.tabIndex=0;d.setAttribute('role','button');
+      var d=el('div','jg-zone');if(g.mono)d.classList.add('jg-mono');d.dataset.id=z.id;d.tabIndex=0;d.setAttribute('role','button');
       d.setAttribute('aria-label','Caixa: '+z.rotulo);
       d.appendChild(el('div','jg-lab',z.rotulo));if(z.sub)d.appendChild(el('div','jg-sub',z.sub));
       d.appendChild(el('div','slot'));zs.appendChild(d);
       d.onkeydown=function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();drop(d)}};
     });
     g.itens.slice().sort(function(){return Math.random()-.5}).forEach(function(it){
-      var c=el('div','jg-chip',it.t);c.tabIndex=0;c.setAttribute('role','button');c._it=it;tray.appendChild(c);
+      var c=el('div','jg-chip',it.t);c.tabIndex=0;c.setAttribute('role','button');c._it=it;if(g.mono)c.classList.add('jg-mono');tray.appendChild(c);
       c.onkeydown=function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();pick(c)}};
     });
 
