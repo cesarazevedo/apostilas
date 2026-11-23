@@ -13,6 +13,7 @@ Apostilas digitais das disciplinas do Prof. César Azevedo (IFRN – Campus Joã
 index.html            página inicial (cards das disciplinas)
 assets/apostila.css   estilo compartilhado por todas as apostilas
 assets/apostila.js    recursos compartilhados: tema escuro, quiz, progresso, glossário, acessibilidade
+assets/jogos.js/.css  motor dos jogos de arrastar e soltar (cada disciplina tem o seu jogos.js com os dados)
 sw.js, manifest...    modo offline e instalação como aplicativo
 redes/                index.html (conteúdo), redes.js (simuladores), glossario.js
 so/                   Sistemas Operacionais de Redes (index.html, so.js, glossario.js)
@@ -29,3 +30,6 @@ python/               Introdução à Programação com Python (index.html, pyth
 ## Referências
 
 As referências de cada apostila seguem a **ABNT NBR 6023** (ordem alfabética, título em negrito, "Disponível em" e "Acesso em" para páginas da web). Ao incluir um site, confira o link e atualize a data de acesso.
+
+## Jogos de arrastar e soltar
+Cada capítulo tem jogos antes do quiz. No `index.html` coloque `<div class="jogo" data-jogo="id"></div>`; os dados ficam em `<disciplina>/jogos.js` (`unico:true` = uma peça por caixa; `mono:true` = fonte de código). Carregue `jogos.js` da disciplina e depois `../assets/jogos.js`.

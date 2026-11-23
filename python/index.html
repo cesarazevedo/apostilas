@@ -6,6 +6,7 @@
 <title>Apostila de Introdução à Programação com Python – IFRN</title>
 <script>try{var t=localStorage.getItem("tema");if(!t)t=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";document.documentElement.dataset.theme=t}catch(e){}</script>
 <link rel="stylesheet" href="../assets/apostila.css">
+<link rel="stylesheet" href="../assets/jogos.css">
 <link rel="stylesheet" href="python.css">
 <link rel="manifest" href="../manifest.webmanifest">
 <meta name="theme-color" content="#306998">
@@ -35,6 +36,7 @@ html[data-theme=dark]{--verde-claro:#10263a}
       <a href="#c1-4">1.4 Programar para quê?</a>
       <a href="#c1-5">1.5 Por que Python?</a>
       <a href="#c1-tools">Ferramentas do capítulo</a>
+      <a href="#c1-jogos">Jogos</a>
       <a href="#c1-quiz">Quiz e exercícios</a>
     </div>
     <a href="#cap2"><span class="n" style="background:var(--c2)">2</span>Ambiente</a>
@@ -46,6 +48,7 @@ html[data-theme=dark]{--verde-claro:#10263a}
       <a href="#c2-5">2.5 Variáveis e Atribuição</a>
       <a href="#c2-lab">Exercícios</a>
       <a href="#c2-tools">Ferramentas</a>
+      <a href="#c2-jogos">Jogos</a>
       <a href="#c2-quiz">Quiz e exercícios</a>
     </div>
     <a href="#cap3"><span class="n" style="background:var(--c3)">3</span>Variáveis e entrada</a>
@@ -58,6 +61,7 @@ html[data-theme=dark]{--verde-claro:#10263a}
       <a href="#c3-6">3.6 Entrada de Dados: input()</a>
       <a href="#c3-lab">Exercícios</a>
       <a href="#c3-tools">Ferramentas</a>
+      <a href="#c3-jogos">Jogos</a>
       <a href="#c3-quiz">Quiz e exercícios</a>
     </div>
     <a href="#cap4"><span class="n" style="background:var(--c4)">4</span>Condições</a>
@@ -67,6 +71,7 @@ html[data-theme=dark]{--verde-claro:#10263a}
       <a href="#c4-3">4.3 Estruturas Aninhadas</a>
       <a href="#c4-4">4.4 A Cláusula elif</a>
       <a href="#c4-tools">Ferramentas</a>
+      <a href="#c4-jogos">Jogos</a>
       <a href="#c4-quiz">Quiz e exercícios</a>
     </div>
     <a href="#cap5"><span class="n" style="background:var(--c5)">5</span>Repetições</a>
@@ -76,6 +81,7 @@ html[data-theme=dark]{--verde-claro:#10263a}
       <a href="#c5-3">5.3 Acumuladores e break</a>
       <a href="#c5-4">5.4 Repetições Aninhadas</a>
       <a href="#c5-tools">Ferramentas</a>
+      <a href="#c5-jogos">Jogos</a>
       <a href="#c5-quiz">Quiz e exercícios</a>
     </div>
     <a href="#cap6"><span class="n" style="background:var(--c6)">6</span>Listas</a>
@@ -86,6 +92,7 @@ html[data-theme=dark]{--verde-claro:#10263a}
       <a href="#c6-4">6.4 Aplicações com Listas</a>
       <a href="#c6-5">6.5 Ordenação, Dicionários e Tuplas</a>
       <a href="#c6-tools">Ferramentas</a>
+      <a href="#c6-jogos">Jogos</a>
       <a href="#c6-quiz">Quiz e exercícios</a>
     </div>
     <a href="#cap7"><span class="n" style="background:var(--c7)">7</span>Strings</a>
@@ -94,6 +101,7 @@ html[data-theme=dark]{--verde-claro:#10263a}
       <a href="#c7-2">7.2 Métodos de Manipulação de Strings</a>
       <a href="#c7-3">7.3 Formatação de Strings e Jogo da Forca</a>
       <a href="#c7-tools">Ferramentas</a>
+      <a href="#c7-jogos">Jogos</a>
       <a href="#c7-quiz">Quiz e exercícios</a>
     </div>
     <a href="#cap8"><span class="n" style="background:var(--c8)">8</span>Funções</a>
@@ -103,6 +111,7 @@ html[data-theme=dark]{--verde-claro:#10263a}
       <a href="#c8-3">8.3 Funções Avançadas</a>
       <a href="#c8-4">8.4 Módulos, Aleatórios e type()</a>
       <a href="#c8-tools">Ferramentas</a>
+      <a href="#c8-jogos">Jogos</a>
       <a href="#c8-quiz">Quiz e exercícios</a>
     </div>
     <a href="#cap9"><span class="n" style="background:var(--c9)">9</span>Arquivos</a>
@@ -113,6 +122,7 @@ html[data-theme=dark]{--verde-claro:#10263a}
       <a href="#c9-4">9.4 Quando o arquivo não existe</a>
       <a href="#c9-lab">Exercícios</a>
       <a href="#c9-tools">Ferramentas</a>
+      <a href="#c9-jogos">Jogos</a>
       <a href="#c9-quiz">Quiz e exercícios</a>
     </div>
     <a href="#cap10"><span class="n" style="background:var(--c10)">10</span>Classes e objetos</a>
@@ -123,6 +133,7 @@ html[data-theme=dark]{--verde-claro:#10263a}
       <a href="#c10-4">10.4 Herança</a>
       <a href="#c10-lab">Exercícios</a>
       <a href="#c10-tools">Ferramentas</a>
+      <a href="#c10-jogos">Jogos</a>
       <a href="#c10-quiz">Quiz e exercícios</a>
     </div>
     <a href="#cap11"><span class="n" style="background:var(--c11)">11</span>Banco de dados</a>
@@ -133,6 +144,7 @@ html[data-theme=dark]{--verde-claro:#10263a}
       <a href="#c11-4">11.4 Atualizando, apagando e cuidados</a>
       <a href="#c11-lab">Exercícios</a>
       <a href="#c11-tools">Ferramentas</a>
+      <a href="#c11-jogos">Jogos</a>
       <a href="#c11-quiz">Quiz e exercícios</a>
     </div>
     <a href="#cap12"><span class="n" style="background:var(--c12)">12</span>Projeto final</a>
@@ -144,6 +156,7 @@ html[data-theme=dark]{--verde-claro:#10263a}
       <a href="#c12-5">12.5 Testando e melhorando</a>
       <a href="#c12-lab">Desafios</a>
       <a href="#c12-tools">Ferramentas</a>
+      <a href="#c12-jogos">Jogos</a>
       <a href="#c12-quiz">Quiz e exercícios</a>
     </div>
     <a href="#refs"><span class="n" style="background:#455a64">📚</span>Referências</a>
@@ -406,6 +419,11 @@ nome = <span class="function">input</span>(<span class="string">"Qual é o seu n
 <li><strong>Programação está em tudo</strong> — da web à saúde, dos jogos à cozinha</li>
 <li><strong>Python</strong> é a escolha ideal para iniciantes: simples, poderosa e versátil</li>
 </ul></div>
+  <h3 id="c1-jogos">🎮 Jogos do capítulo 1</h3>
+  <p>Antes do quiz, brinque um pouco: arraste as peças para a caixa certa (ou toque na peça e depois na caixa). Se errar, a caixa balança e você tenta de novo.</p>
+  <div class="jogo" data-jogo="p1-mitos"></div>
+  <div class="jogo" data-jogo="p1-termos"></div>
+
   <h3 id="c1-quiz">🧠 Quiz do capítulo 1</h3>
   <p>Clique na resposta que você acha certa.</p>
   <div class="quiz">
@@ -709,6 +727,12 @@ aumento = <span class="number">5</span>
   </div>
 
   <div class="resumo"><h3>📝 Resumo do capítulo</h3><ul><li>O <b>interpretador</b> lê o seu programa e o executa, linha por linha.</li><li>O <b>IDLE</b> traz o prompt <code>&gt;&gt;&gt;</code> para testes rápidos e um editor para salvar programas em arquivos <code>.py</code>.</li><li>No IDLE, <b>File → New File</b> cria o arquivo e <b>F5</b> (Run Module) executa o programa.</li><li>Python diferencia <b>maiúsculas de minúsculas</b>, exige aspas e parênteses fechados e cobra <b>indentação</b> correta.</li><li><code>print(...)</code> mostra valores na tela; os operadores são <code>+ - * / ** %</code>.</li><li>A <b>precedência</b> manda: primeiro <code>**</code>, depois <code>* / %</code>, depois <code>+ -</code>; parênteses mudam a ordem.</li><li>Uma <b>variável</b> é um nome que guarda um valor; o <code>=</code> <b>atribui</b>, não compara.</li></ul></div>
+  <h3 id="c2-jogos">🎮 Jogos do capítulo 2</h3>
+  <p>Antes do quiz, brinque um pouco: arraste as peças para a caixa certa (ou toque na peça e depois na caixa). Se errar, a caixa balança e você tenta de novo.</p>
+  <div class="jogo" data-jogo="p2-ide"></div>
+  <div class="jogo" data-jogo="p2-operadores"></div>
+  <div class="jogo" data-jogo="p2-precedencia"></div>
+
   <h3 id="c2-quiz">🧠 Quiz do capítulo 2</h3>
   <p>Clique na resposta que você acha certa.</p>
   <div class="quiz">
@@ -1260,6 +1284,13 @@ saldo = <span class="function">float</span>(<span class="function">input</span>(
   </div>
 
   <div class="resumo"><h3>📝 Resumo do capítulo</h3><ul><li>Nomes de variáveis começam com <b>letra</b> (ou sublinha), não têm espaços e não podem começar com número.</li><li><code>int</code> guarda números inteiros e <code>float</code> guarda números com ponto decimal (usa-se <b>ponto</b>, não vírgula).</li><li><code>True</code> e <code>False</code> são valores lógicos; <code>==</code> compara e <code>=</code> atribui.</li><li><code>not</code> inverte, <code>and</code> exige as duas condições verdadeiras e <code>or</code> exige pelo menos uma; a ordem é <code>not</code>, <code>and</code>, <code>or</code>.</li><li>Strings são sequências de caracteres: índices começam em <b>0</b>, <code>len()</code> dá o tamanho, <code>+</code> junta, <code>*</code> repete e <code>[a:b]</code> fatia.</li><li><code>%d</code>, <code>%s</code> e <code>%f</code> montam mensagens com variáveis; <code>%5.2f</code> reserva 5 posições com 2 casas decimais.</li><li><b>Rastrear</b> é acompanhar o valor de cada variável a cada linha; ajuda a achar bugs.</li><li><code>input()</code> sempre devolve <b>texto</b>; use <code>int()</code> ou <code>float()</code> para obter números.</li></ul></div>
+  <h3 id="c3-jogos">🎮 Jogos do capítulo 3</h3>
+  <p>Antes do quiz, brinque um pouco: arraste as peças para a caixa certa (ou toque na peça e depois na caixa). Se errar, a caixa balança e você tenta de novo.</p>
+  <div class="jogo" data-jogo="p3-tipos"></div>
+  <div class="jogo" data-jogo="p3-nomes"></div>
+  <div class="jogo" data-jogo="p3-logicos"></div>
+  <div class="jogo" data-jogo="p3-input"></div>
+
   <h3 id="c3-quiz">🧠 Quiz do capítulo 3</h3>
   <p>Clique na resposta que você acha certa.</p>
   <div class="quiz">
@@ -1527,6 +1558,12 @@ imposto = 0
   </div>
 
   <div class="resumo"><h3>📝 Resumo do capítulo</h3><ul><li>O <code>if</code> executa um bloco apenas se a condição for <code>True</code>; a linha termina com <b>dois pontos</b>.</li><li>O bloco é marcado pelo <b>recuo</b> (indentação): use 4 espaços e mantenha o mesmo recuo em todas as linhas do bloco.</li><li>O <code>else</code> cuida do caminho contrário, sem precisar escrever a condição oposta.</li><li>Estruturas <b>aninhadas</b> colocam um <code>if</code> dentro de outro bloco; a condição interna só é testada se a externa permitir.</li><li>O <code>elif</code> encadeia várias condições de forma mais limpa: o Python testa em ordem e executa só o primeiro bloco verdadeiro.</li><li>Condições usam os operadores relacionais e lógicos do capítulo 3.</li></ul></div>
+  <h3 id="c4-jogos">🎮 Jogos do capítulo 4</h3>
+  <p>Antes do quiz, brinque um pouco: arraste as peças para a caixa certa (ou toque na peça e depois na caixa). Se errar, a caixa balança e você tenta de novo.</p>
+  <div class="jogo" data-jogo="p4-estruturas"></div>
+  <div class="jogo" data-jogo="p4-saida"></div>
+  <div class="jogo" data-jogo="p4-sintaxe"></div>
+
   <h3 id="c4-quiz">🧠 Quiz do capítulo 4</h3>
   <p>Clique na resposta que você acha certa.</p>
   <div class="quiz">
@@ -1903,6 +1940,12 @@ número = 1
   </div>
 
   <div class="resumo"><h3>📝 Resumo do capítulo</h3><ul><li>O <code>while</code> repete um bloco <b>enquanto</b> a condição for verdadeira.</li><li>Sem alterar a variável da condição (como <code>x = x + 1</code>), o laço nunca termina: é o <b>loop infinito</b>.</li><li>Um <b>contador</b> conta ocorrências; um <b>acumulador</b> soma valores ao longo das repetições.</li><li><code>break</code> interrompe o laço na hora, mesmo que a condição ainda seja verdadeira.</li><li>Laços <b>aninhados</b>: o interno roda por completo a cada volta do externo; reinicie suas variáveis antes dele.</li><li>Há mais de uma solução para o mesmo problema: o importante é que o resultado esteja correto e o código, legível.</li></ul></div>
+  <h3 id="c5-jogos">🎮 Jogos do capítulo 5</h3>
+  <p>Antes do quiz, brinque um pouco: arraste as peças para a caixa certa (ou toque na peça e depois na caixa). Se errar, a caixa balança e você tenta de novo.</p>
+  <div class="jogo" data-jogo="p5-loop"></div>
+  <div class="jogo" data-jogo="p5-conceitos"></div>
+  <div class="jogo" data-jogo="p5-cont-acum"></div>
+
   <h3 id="c5-quiz">🧠 Quiz do capítulo 5</h3>
   <p>Clique na resposta que você acha certa.</p>
   <div class="quiz">
@@ -2675,6 +2718,12 @@ c</span></code></pre>
   </div>
 
   <div class="resumo"><h3>📝 Resumo do capítulo</h3><ul><li>Uma <b>lista</b> guarda vários valores acessados por <b>índice</b>, começando em 0; <code>len(L)</code> dá o tamanho.</li><li><code>V = L</code> <b>não copia</b> a lista: as duas variáveis apontam para a mesma lista. Para copiar, use <code>L[:]</code>.</li><li><code>append</code> e <code>extend</code> adicionam; <code>pop</code> e <code>del</code> removem. <b>Fila</b>: sai quem entrou primeiro; <b>pilha</b>: sai quem entrou por último.</li><li><code>for x in L</code> percorre os elementos; <code>range</code> gera sequências de números; <code>enumerate</code> entrega índice e valor.</li><li><code>in</code> pesquisa se um valor está na lista.</li><li><b>Ordenar</b> é colocar os elementos em ordem; o método da bolha compara vizinhos e troca os que estão fora de ordem.</li><li><b>Dicionários</b> ligam chaves a valores (<code>{"Alface": 0.45}</code>); <b>tuplas</b> são parecidas com listas, mas não podem ser alteradas.</li></ul></div>
+  <h3 id="c6-jogos">🎮 Jogos do capítulo 6</h3>
+  <p>Antes do quiz, brinque um pouco: arraste as peças para a caixa certa (ou toque na peça e depois na caixa). Se errar, a caixa balança e você tenta de novo.</p>
+  <div class="jogo" data-jogo="p6-metodos"></div>
+  <div class="jogo" data-jogo="p6-estruturas"></div>
+  <div class="jogo" data-jogo="p6-indices"></div>
+
   <h3 id="c6-quiz">🧠 Quiz do capítulo 6</h3>
   <p>Clique na resposta que você acha certa.</p>
   <div class="quiz">
@@ -3220,6 +3269,12 @@ erros = 0
   </div>
 
   <div class="resumo"><h3>📝 Resumo do capítulo</h3><ul><li>Strings são <b>imutáveis</b>: <code>s[0] = "a"</code> dá <code>TypeError</code>. Para alterar, converta com <code>list()</code> e volte com <code>"".join()</code>.</li><li>Métodos como <code>lower()</code> e <code>upper()</code> devolvem uma <b>nova</b> string e não alteram a original.</li><li><code>in</code>, <code>startswith</code> e <code>endswith</code> verificam; <code>count</code> conta; <code>find</code> devolve a posição (ou -1).</li><li><code>split</code> quebra uma string em uma lista; <code>join</code> faz o caminho contrário; <code>replace</code> troca trechos; <code>strip</code> tira espaços das bordas.</li><li><code>isdigit</code>, <code>isalpha</code>, <code>isalnum</code> e outros validam o tipo de conteúdo.</li><li><code>"{0:*^10}".format("123")</code> usa largura, alinhamento (<code>&lt;</code>, <code>&gt;</code>, <code>^</code>) e caractere de preenchimento.</li><li>O <code>continue</code> pula para a próxima volta do laço; o jogo da forca junta strings, listas e laços.</li></ul></div>
+  <h3 id="c7-jogos">🎮 Jogos do capítulo 7</h3>
+  <p>Antes do quiz, brinque um pouco: arraste as peças para a caixa certa (ou toque na peça e depois na caixa). Se errar, a caixa balança e você tenta de novo.</p>
+  <div class="jogo" data-jogo="p7-metodos"></div>
+  <div class="jogo" data-jogo="p7-valida"></div>
+  <div class="jogo" data-jogo="p7-imutavel"></div>
+
   <h3 id="c7-quiz">🧠 Quiz do capítulo 7</h3>
   <p>Clique na resposta que você acha certa.</p>
   <div class="quiz">
@@ -3875,6 +3930,12 @@ mista = [<span class="number">1</span>, <span class="string">"a"</span>, <span c
   </div>
 
   <div class="resumo"><h3>📝 Resumo do capítulo</h3><ul><li>Uma <b>função</b> é um trecho de código com nome que pode ser chamado várias vezes; é criada com <code>def</code>.</li><li><b>Parâmetros</b> recebem os <b>argumentos</b> da chamada; <code>return</code> devolve um valor e encerra a função.</li><li><code>print</code> mostra na tela; <code>return</code> entrega o valor para quem chamou a função.</li><li>Variáveis criadas dentro da função são <b>locais</b>; evite <code>global</code> e prefira parâmetros e <code>return</code>.</li><li>Uma função <b>recursiva</b> chama a si mesma e precisa de um <b>caso base</b> para parar.</li><li>Parâmetros podem ter valor padrão, ser nomeados na chamada, empacotados com <code>*args</code> e funções podem ser passadas como argumento.</li><li><code>import random</code> traz funções como <code>randint(a, b)</code>; <code>type(x)</code> informa o tipo de um valor.</li></ul></div>
+  <h3 id="c8-jogos">🎮 Jogos do capítulo 8</h3>
+  <p>Antes do quiz, brinque um pouco: arraste as peças para a caixa certa (ou toque na peça e depois na caixa). Se errar, a caixa balança e você tenta de novo.</p>
+  <div class="jogo" data-jogo="p8-print-return"></div>
+  <div class="jogo" data-jogo="p8-partes"></div>
+  <div class="jogo" data-jogo="p8-saida"></div>
+
   <h3 id="c8-quiz">🧠 Quiz do capítulo 8</h3>
   <p>Clique na resposta que você acha certa.</p>
   <div class="quiz">
@@ -4089,6 +4150,12 @@ Carla;9.0;10.0</textarea>
   </div>
 
   <div class="resumo"><h3>📝 Resumo do capítulo</h3><ul><li>Arquivos guardam dados no <b>disco</b>, e eles continuam lá depois que o programa termina.</li><li><code>open(nome, modo)</code> abre o arquivo: <code>"r"</code> lê, <code>"w"</code> grava (apagando) e <code>"a"</code> acrescenta.</li><li>O bloco <code>with</code> fecha o arquivo automaticamente ao final.</li><li>Cada linha lida traz o <code>\n</code> no fim: use <code>strip()</code>. Converta números com <code>int()</code> ou <code>float()</code>.</li><li><code>write()</code> não coloca quebra de linha sozinho; o <code>print(..., file=arquivo)</code> coloca.</li><li><b>CSV</b> é uma tabela em texto; o módulo <code>csv</code> oferece <code>reader</code>, <code>writer</code> e <code>DictReader</code>, e o delimitador comum no Brasil é <code>;</code>.</li><li><code>try / except FileNotFoundError</code> evita que o programa quebre quando o arquivo não existe.</li></ul></div>
+  <h3 id="c9-jogos">🎮 Jogos do capítulo 9</h3>
+  <p>Antes do quiz, brinque um pouco: arraste as peças para a caixa certa (ou toque na peça e depois na caixa). Se errar, a caixa balança e você tenta de novo.</p>
+  <div class="jogo" data-jogo="p9-modos"></div>
+  <div class="jogo" data-jogo="p9-apaga"></div>
+  <div class="jogo" data-jogo="p9-ferramentas"></div>
+
   <h3 id="c9-quiz">🧠 Quiz do capítulo 9</h3>
   <p>Clique na resposta que você acha certa.</p>
   <div class="quiz">
@@ -4307,6 +4374,12 @@ Rex diz: Au au!</span></code></pre>
   </div>
 
   <div class="resumo"><h3>📝 Resumo do capítulo</h3><ul><li>Uma <b>classe</b> é o molde; um <b>objeto</b> (instância) é o que se cria a partir dele.</li><li><b>Atributos</b> são os dados do objeto; <b>métodos</b> são as ações, escritas como funções dentro da classe.</li><li><code>__init__</code> é o construtor: roda ao criar o objeto e guarda os dados iniciais em <code>self</code>.</li><li>O <code>self</code> é o próprio objeto e é o primeiro parâmetro de todo método, mas não aparece na chamada.</li><li>Cada objeto tem os seus próprios atributos; mudar um não muda os outros.</li><li><code>__str__</code> define como o objeto aparece no <code>print</code>.</li><li>Objetos podem ficar em listas; na <b>herança</b>, a classe filha reaproveita a classe-mãe e redefine só o que for diferente.</li></ul></div>
+  <h3 id="c10-jogos">🎮 Jogos do capítulo 10</h3>
+  <p>Antes do quiz, brinque um pouco: arraste as peças para a caixa certa (ou toque na peça e depois na caixa). Se errar, a caixa balança e você tenta de novo.</p>
+  <div class="jogo" data-jogo="p10-vocab"></div>
+  <div class="jogo" data-jogo="p10-heranca"></div>
+  <div class="jogo" data-jogo="p10-codigo"></div>
+
   <h3 id="c10-quiz">🧠 Quiz do capítulo 10</h3>
   <p>Clique na resposta que você acha certa.</p>
   <div class="quiz">
@@ -4526,6 +4599,13 @@ conexao.<span class="function">close</span>()
   </div>
 
   <div class="resumo"><h3>📝 Resumo do capítulo</h3><ul><li>Um <b>banco de dados</b> guarda dados em <b>tabelas</b> (linhas e colunas) e responde a consultas com rapidez.</li><li><b>SQL</b> é a linguagem do banco; o <b>CRUD</b> usa <code>INSERT</code>, <code>SELECT</code>, <code>UPDATE</code> e <code>DELETE</code>.</li><li>No Python, o módulo <code>sqlite3</code> permite <code>connect</code>, criar o <code>cursor</code>, usar <code>execute</code> e gravar com <code>commit</code>.</li><li><code>fetchall()</code> devolve uma lista de tuplas; <code>fetchone()</code> devolve uma tupla.</li><li><code>WHERE</code> filtra, <code>ORDER BY</code> ordena e <code>COUNT</code>, <code>AVG</code>, <code>MAX</code>, <code>MIN</code> e <code>SUM</code> resumem.</li><li><code>UPDATE</code> e <code>DELETE</code> sem <code>WHERE</code> atingem a tabela inteira: cuidado.</li><li>Use sempre <code>?</code> com uma tupla de valores; juntar textos no SQL abre a porta para <b>injeção de SQL</b>.</li></ul></div>
+  <h3 id="c11-jogos">🎮 Jogos do capítulo 11</h3>
+  <p>Antes do quiz, brinque um pouco: arraste as peças para a caixa certa (ou toque na peça e depois na caixa). Se errar, a caixa balança e você tenta de novo.</p>
+  <div class="jogo" data-jogo="p11-crud"></div>
+  <div class="jogo" data-jogo="p11-sqlite"></div>
+  <div class="jogo" data-jogo="p11-sql"></div>
+  <div class="jogo" data-jogo="p11-seguro"></div>
+
   <h3 id="c11-quiz">🧠 Quiz do capítulo 11</h3>
   <p>Clique na resposta que você acha certa.</p>
   <div class="quiz">
@@ -5007,6 +5087,12 @@ Até logo!</span></code></pre>
   </div>
 
   <div class="resumo"><h3>📝 Resumo do capítulo</h3><ul><li>Todo projeto começa pela <b>planta</b>: os requisitos escritos em frases simples.</li><li>Divida o problema em peças pequenas: cada <b>classe</b> ou <b>função</b> com uma responsabilidade só.</li><li>Construa em <b>etapas</b> e teste cada pedaço assim que ele estiver pronto.</li><li>Valide a entrada com <code>while</code> e <code>try / except</code> para o programa não quebrar.</li><li>Arquivos CSV (ou um banco de dados) fazem os dados <b>sobreviver</b> ao fim do programa.</li><li>Para corrigir erros: leia a mensagem, reproduza o problema, rastreie, corrija uma coisa de cada vez.</li><li>Liste casos de teste <b>normais</b> e <b>de borda</b>, de preferência antes de programar.</li></ul></div>
+  <h3 id="c12-jogos">🎮 Jogos do capítulo 12</h3>
+  <p>Antes do quiz, brinque um pouco: arraste as peças para a caixa certa (ou toque na peça e depois na caixa). Se errar, a caixa balança e você tenta de novo.</p>
+  <div class="jogo" data-jogo="p12-etapas"></div>
+  <div class="jogo" data-jogo="p12-bugs"></div>
+  <div class="jogo" data-jogo="p12-casos"></div>
+
   <h3 id="c12-quiz">🧠 Quiz do capítulo 12</h3>
   <p>Clique na resposta que você acha certa.</p>
   <div class="quiz">
@@ -5060,6 +5146,8 @@ Até logo!</span></code></pre>
 
 <script src="glossario.js"></script>
 <script src="python.js"></script>
+<script src="jogos.js"></script>
+<script src="../assets/jogos.js"></script>
 <script src="../assets/apostila.js"></script>
 </body>
 </html>

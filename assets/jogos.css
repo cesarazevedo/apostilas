@@ -1,0 +1,37 @@
+/* Jogos de arrastar e soltar (compartilhado). Usa a cor do capítulo (--cc). */
+.jg{background:#fff;border:2px solid var(--cc,var(--verde));border-radius:18px;padding:14px;margin:16px 0}
+.jg-title{margin:0 0 2px;font-size:19px}
+.jg-help{margin:0 0 10px;font-size:15px;color:var(--suave)}
+.jg-bar{height:10px;background:var(--borda);border-radius:10px;overflow:hidden;margin:6px 0 10px}
+.jg-bar i{display:block;height:100%;width:0;background:var(--cc,var(--verde));transition:width .3s}
+.jg-tray{display:flex;flex-wrap:wrap;gap:8px;border:2px dashed var(--borda);border-radius:14px;padding:10px;min-height:60px;margin-bottom:12px}
+.jg-chip{background:#fff3c4;color:#1f2937;border:2px solid #3b3b3b;border-radius:12px;padding:8px 12px;font-weight:600;font-size:15px;line-height:1.3;cursor:grab;touch-action:none;user-select:none;-webkit-user-select:none;box-shadow:0 2px 0 #3b3b3b;min-height:44px;display:flex;align-items:center}
+.jg-chip.sel{outline:3px solid var(--cc,var(--verde));outline-offset:2px;background:#ffe27a}
+.jg-chip.lifted{opacity:.25}
+.jg-chip.done{cursor:default;box-shadow:none;background:#c8e6c9;border-color:#2e7d32;color:#14532d;min-height:0;padding:4px 10px;font-size:14px;touch-action:auto}
+.jg-chip:focus-visible,.jg-zone:focus-visible{outline:3px solid #1565c0;outline-offset:2px}
+.jg-ghost{position:fixed;z-index:999;pointer-events:none;transform:rotate(-3deg) scale(1.05);box-shadow:0 10px 20px rgba(0,0,0,.3);margin:0}
+.jg-zones{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px}
+.jg-zone{border:2px solid var(--cc,var(--verde));border-radius:14px;padding:10px;background:var(--verde-claro);min-height:90px;cursor:pointer;transition:transform .15s}
+.jg-zone .jg-lab{font-weight:700;font-size:16px}
+.jg-zone .jg-sub{font-size:13px;color:var(--suave);margin-bottom:6px}
+.jg-zone .slot{display:flex;flex-wrap:wrap;gap:6px;min-height:30px}
+.jg-zone.over{transform:scale(1.03);box-shadow:0 0 0 4px #ffb300}
+.jg-zone.shake{animation:jgsh .4s}
+@keyframes jgsh{20%{transform:translateX(-8px)}40%{transform:translateX(8px)}60%{transform:translateX(-6px)}80%{transform:translateX(6px)}}
+.jg-msg{margin:12px 0 6px;padding:10px 14px;border-radius:12px;font-weight:600;font-size:15px;background:#fff3b8;border-left:6px solid #ffb300;color:#1f2937;min-height:44px}
+.jg-msg.bad{background:#ffe0e0;border-color:#e03b3b}
+.jg-msg.win{background:#c8e6c9;border-color:#2e7d32}
+/* fonte de código (Python) */
+.jg-zone.jg-mono .jg-lab,.jg-chip.jg-mono{font-family:Consolas,Menlo,monospace}
+.jg-chip.jg-mono{font-size:14px}
+/* ETD: letra maior para o público iniciante e de celular */
+body[data-curso="etd"] .jg-help,body[data-curso="etd"] .jg-msg{font-size:18px}
+body[data-curso="etd"] .jg-chip{font-size:18px;min-height:52px;padding:10px 14px}
+body[data-curso="etd"] .jg-chip.done{font-size:16px;min-height:0;padding:4px 10px}
+body[data-curso="etd"] .jg-zone .jg-lab{font-size:19px}
+html[data-theme=dark] .jg{background:#16201f}
+html[data-theme=dark] .jg-zone{background:#1b2e1f}
+html[data-theme=dark] .jg-tray{background:#111a19}
+@media print{.jg{display:none!important}}
+@media (prefers-reduced-motion:reduce){.jg-zone.shake{animation:none}.jg-zone,.jg-bar i{transition:none}}
