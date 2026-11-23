@@ -240,4 +240,37 @@ J['e7-noticia']=G('Antes de compartilhar uma notícia',
   ['📅 Ver a data: pode ser uma notícia velha','quando','Notícia antiga volta como se fosse nova.'],
   ['📰 Procurar se outros sites sérios dizem a mesma coisa','outros','Se só um lugar diz, é suspeito.'],
   ['😡 Desconfiar se a notícia só quer te deixar com raiva ou medo','emo','Notícia falsa mexe com a emoção para você compartilhar sem pensar.']],{unico:true});
+
+/* ===== Jogos de ordenar passos ===== */
+function O(t,a,p,o){return Object.assign({titulo:t,ajuda:a,passos:p.map(function(x){return{t:x[0],why:x[1]}})},o||{})}
+J['e1-ordem-desligar']=O('Desligar o computador do jeito certo',
+ 'Desligar na tomada ou no botão pode estragar o trabalho. Qual é a ordem certa?',
+ [['Salvar o seu trabalho','Antes de tudo, para não perder nada.'],
+  ['Fechar os programas abertos','Um por um, no X no canto da janela.'],
+  ['Clicar no menu Iniciar','O botão do Windows, no canto da tela.'],
+  ['Escolher Desligar','O Windows fecha tudo com cuidado e desliga.']]);
+J['e3-ordem-salvar']=O('Salvar um texto no Word pela primeira vez',
+ 'Escrever sem salvar é como escrever na areia. Coloque os passos na ordem.',
+ [['Escrever o texto','Primeiro você tem algo para guardar.'],
+  ['Clicar em Salvar (o disquete)','No Word em português, o atalho é Ctrl + B.'],
+  ['Escolher a pasta onde guardar','Saiba sempre onde você salvou.'],
+  ['Dar um nome claro ao arquivo','Um nome que você reconheça depois.'],
+  ['Confirmar em Salvar','Pronto: o arquivo está guardado.']]);
+J['e6-ordem-email']=O('Enviar um e-mail',
+ 'Escrever um e-mail é como mandar uma carta. Qual é a ordem?',
+ [['Clicar em Escrever (novo e-mail)','Abre a folha em branco.'],
+  ['Preencher o campo Para','Quem vai receber.'],
+  ['Escrever o Assunto','O título, para a pessoa saber do que se trata.'],
+  ['Escrever a mensagem','O texto da carta.'],
+  ['Anexar o arquivo, se precisar','Foto, PDF, currículo...'],
+  ['Clicar em Enviar','Antes de enviar, confira o endereço!']]);
+J['e7-ordem-golpe']=O('Caí no golpe: o que fazer, na ordem',
+ 'Acontece com muita gente, e a culpa é do golpista. Agir rápido ajuda. Qual é a ordem?',
+ [['Avisar o banco','Quanto mais cedo, melhor: o banco pode bloquear.'],
+  ['Trocar as senhas','Comece pelas contas mais importantes.'],
+  ['Fazer o boletim de ocorrência (B.O.)','Registra o crime.'],
+  ['Contar para a família e os amigos','Eles podem ajudar e se proteger.']]);
+var V={'e1-pecas':'c1-pc','e1-hard-soft':'c1-so','e1-mouse':'c1-mouse','e1-ordem-desligar':'c1-so','e2-teclas':'c2-teclado','e2-postura':'c2-postura','e2-linha':'c2-postura','e3-tela':'c3-tela','e3-guias':'c3-format','e3-regras':'c3-texto','e3-ordem-salvar':'c3-texto','e4-planilha':'c4-tela','e4-formula':'c4-contas','e4-funcoes':'c4-contas','e5-slide':'c5-slide','e5-teclas':'c5-apr','e5-guias':'c5-slide','e6-site':'c6-net','e6-email':'c6-email','e6-pesquisa':'c6-pesq','e6-ordem-email':'c6-email','e7-senha':'c7-senha','e7-golpe':'c7-golpe','e7-caiu':'c7-golpe','e7-ordem-golpe':'c7-golpe','e7-noticia':'c7-fake'};
+Object.keys(V).forEach(function(k){if(J[k])J[k].ver=V[k]});
+
 })();

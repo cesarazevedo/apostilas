@@ -1,6 +1,8 @@
 /* Jogos de arrastar e soltar (compartilhado). Usa a cor do capítulo (--cc). */
 .jg{background:#fff;border:2px solid var(--cc,var(--verde));border-radius:18px;padding:14px;margin:16px 0}
+.jg-head{display:flex;align-items:center;justify-content:space-between;gap:8px}
 .jg-title{margin:0 0 2px;font-size:19px}
+.jg-som{border:1px solid var(--borda);background:transparent;border-radius:10px;font-size:16px;padding:4px 8px;cursor:pointer;color:inherit;flex:none}
 .jg-help{margin:0 0 10px;font-size:15px;color:var(--suave)}
 .jg-bar{height:10px;background:var(--borda);border-radius:10px;overflow:hidden;margin:6px 0 10px}
 .jg-bar i{display:block;height:100%;width:0;background:var(--cc,var(--verde));transition:width .3s}
@@ -30,6 +32,14 @@ body[data-curso="etd"] .jg-help,body[data-curso="etd"] .jg-msg{font-size:18px}
 body[data-curso="etd"] .jg-chip{font-size:18px;min-height:52px;padding:10px 14px}
 body[data-curso="etd"] .jg-chip.done{font-size:16px;min-height:0;padding:4px 10px}
 body[data-curso="etd"] .jg-zone .jg-lab{font-size:19px}
+/* jogo de ordenar passos */
+.jg-ordem .jg-zones{grid-template-columns:1fr}
+.jg-ordem .jg-zone{display:flex;align-items:center;gap:12px;min-height:0;padding:8px 12px}
+.jg-ordem .jg-zone .jg-lab{flex:0 0 auto;min-width:72px;font-size:15px}
+.jg-ordem .jg-zone .jg-slot,.jg-ordem .jg-zone .slot{flex:1;min-height:34px}
+/* revisão dos erros */
+.jg-rev{margin:6px 0;padding:10px 14px;border-radius:12px;background:#fff3b8;border-left:6px solid #ffb300;color:#1f2937;font-size:15px}
+.jg-rev a{font-weight:700;color:#1565c0}
 html[data-theme=dark] .jg{background:#16201f}
 html[data-theme=dark] .jg-zone{background:#1b2e1f}
 html[data-theme=dark] .jg-tray{background:#111a19}

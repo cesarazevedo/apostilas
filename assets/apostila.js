@@ -48,7 +48,7 @@
           if(done===total){
             score.textContent='Você acertou '+hits+' de '+total+(hits===total?' 🎉 Excelente!':hits>=total*0.6?' 👏 Muito bem!':' 📖 Releia o capítulo e tente de novo.');
             retry.hidden=false;
-            if(chId){var best=state.quiz[chId];if(!best||hits/total>=best.h/best.t){state.quiz[chId]={h:hits,t:total};}save();renderProgress();}
+            if(chId){var best=state.quiz[chId];if(!best||hits/total>=best.h/best.t){state.quiz[chId]={h:hits,t:total};}save();renderProgress();autoDone(ch);}
           }
         };
       });
@@ -126,6 +126,24 @@
     cb.onchange=function(){if(cb.checked)state.done[ch.id]=1;else delete state.done[ch.id];save();renderProgress();};
     ch.appendChild(lab);
   });
+  // jogos de arrastar e soltar: estrelas guardadas por jogo em 'ap:<curso>:jogos'
+  function gameStats(c){
+    var best={};try{best=JSON.parse(localStorage.getItem(KEY+':jogos'))||{}}catch(e){}
+    var gs=c.querySelectorAll('.jogo[data-jogo]'),f=0;
+    [].forEach.call(gs,function(g){if(best[g.dataset.jogo])f++});
+    return {total:gs.length,feitos:f};
+  }
+  // capítulo concluído sozinho quando todos os jogos e o quiz estiverem feitos
+  function autoDone(c){
+    if(!c||state.done[c.id])return;
+    var g=gameStats(c);
+    if(g.total&&g.feitos===g.total&&state.quiz[c.id]){
+      state.done[c.id]=1;save();
+      var cb=c.querySelector('.done-box input');if(cb)cb.checked=true;
+      renderProgress();
+    }
+  }
+  window.addEventListener('jogos:update',function(){renderProgress();chapters.forEach(autoDone)});
   function renderProgress(){
     var n=chapters.length,d=chapters.filter(function(c){return state.done[c.id]}).length;
     chapters.forEach(function(c){
@@ -133,9 +151,9 @@
       var m=a.querySelector('.ok-mark');if(state.done[c.id]){if(!m){m=document.createElement('span');m.className='ok-mark';m.textContent='✓';m.setAttribute('aria-label','concluído');a.appendChild(m);}}else if(m)m.remove();
     });
     if(!panel||!sb)return;
-    var rows=chapters.map(function(c){var q=state.quiz[c.id];return '<li>'+(state.done[c.id]?'✅':'⬜')+' Cap. '+chNum(c.id)+(q?' · quiz '+q.h+'/'+q.t:'')+'</li>'}).join('');
+    var rows=chapters.map(function(c){var q=state.quiz[c.id];var gj=gameStats(c);return '<li>'+(state.done[c.id]?'✅':'⬜')+' Cap. '+chNum(c.id)+(gj.total?' · 🎮 '+gj.feitos+'/'+gj.total:'')+(q?' · quiz '+q.h+'/'+q.t:'')+'</li>'}).join('');
     panel.innerHTML='<details><summary>📈 Meu progresso: '+d+' de '+n+'</summary><div class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="'+n+'" aria-valuenow="'+d+'" aria-label="Capítulos concluídos"><i style="width:'+(n?d/n*100:0)+'%"></i></div><ul>'+rows+'</ul><button type="button" class="reset-prog">Zerar progresso</button><small>Salvo apenas neste navegador.</small></details>';
-    panel.querySelector('.reset-prog').onclick=function(){if(confirm('Apagar o progresso salvo neste navegador?')){state={done:{},quiz:{}};save();
+    panel.querySelector('.reset-prog').onclick=function(){if(confirm('Apagar o progresso salvo neste navegador?')){state={done:{},quiz:{}};save();try{localStorage.removeItem(KEY+':jogos')}catch(e){}window.dispatchEvent(new Event('jogos:reset'));
       [].forEach.call(document.querySelectorAll('.done-box input'),function(i){i.checked=false});renderProgress();}};
   }
   if(sb){var tools=sb.querySelector('.tools');panel=document.createElement('div');panel.className='prog-panel';if(tools)sb.insertBefore(panel,tools);else sb.appendChild(panel);}

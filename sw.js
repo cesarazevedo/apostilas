@@ -1,6 +1,6 @@
 /* Service worker: deixa as apostilas funcionarem sem internet.
    Estratégia: responde do cache e atualiza em segundo plano (a nova versão aparece na visita seguinte). */
-var CACHE='apostilas-v8';
+var CACHE='apostilas-v10';
 var BASE=new URL('./',self.location).pathname;
 var CORE=[BASE,BASE+'index.html',BASE+'redes/',BASE+'redes/redes.js',BASE+'redes/glossario.js',BASE+'so/',BASE+'so/so.js',BASE+'so/glossario.js',BASE+'etd/',BASE+'etd/etd.js',BASE+'etd/glossario.js',BASE+'python/',BASE+'python/python.js',BASE+'python/python.css',BASE+'python/glossario.js',BASE+'assets/apostila.css',BASE+'assets/apostila.js',BASE+'assets/jogos.js',BASE+'assets/jogos.css',BASE+'redes/jogos.js',BASE+'so/jogos.js',BASE+'etd/jogos.js',BASE+'python/jogos.js',BASE+'manifest.webmanifest',BASE+'icon-192.png',BASE+'assets/logo-ifrn-jc.png'];
 self.addEventListener('install',function(e){

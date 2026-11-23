@@ -296,3 +296,40 @@ Object.assign(window.JOGOS,{
    {t:'Backup 3-2-1',z:'boa',why:'3 cópias, 2 mídias diferentes, 1 fora do local.'},
    {t:'Manter o sistema atualizado',z:'boa',why:'Atualizar fecha as brechas conhecidas.'}]}
 });
+
+/* ===== Jogos de ordenar passos ===== */
+(function(){
+function O(t,a,p,o){return Object.assign({titulo:t,ajuda:a,passos:p.map(function(x){return{t:x[0],why:x[1]}})},o||{})}
+var J=window.JOGOS;
+J['r2-ordem-encap']=O('Descendo as camadas: o encapsulamento',
+ 'Quando você envia uma mensagem, ela desce pelas camadas do TCP/IP e cada uma coloca seu “envelope”. Qual a ordem?',
+ [['Aplicação cria a mensagem','Tudo começa no programa, como o navegador ou o e-mail.'],
+  ['Transporte cria o segmento (com as portas)','A camada de transporte adiciona as portas de origem e destino.'],
+  ['Internet cria o pacote (com os IPs)','A camada de rede adiciona os endereços IP.'],
+  ['Acesso à rede cria o quadro (com os MACs)','O cabeçalho com os MACs e o FCS é colocado.'],
+  ['Os bits seguem pelo cabo, fibra ou ar','Só no fim viram sinais elétricos, luz ou ondas.']]);
+J['r5-ordem-tcp']=O('A vida de uma conexão TCP',
+ 'O TCP abre a conexão, troca dados e depois encerra. Coloque as etapas na ordem.',
+ [['SYN: o cliente pede para abrir a conexão','O primeiro passo do handshake de 3 vias.'],
+  ['SYN+ACK: o servidor aceita e também pede confirmação','O segundo passo.'],
+  ['ACK: o cliente confirma, e a conexão está aberta','O terceiro passo.'],
+  ['Os dados são trocados, com confirmações e reenvios','A conversa de verdade acontece.'],
+  ['FIN: a conexão é encerrada','Quando termina, os dois lados se despedem.']]);
+J['r6-ordem-dora']=O('As 4 mensagens do DHCP',
+ 'Para ganhar um IP automaticamente, o computador troca 4 mensagens com o servidor. Qual a ordem?',
+ [['Discover: o cliente procura um servidor DHCP','O cliente chega sem endereço e grita para todos.'],
+  ['Offer: o servidor oferece um IP','O servidor faz uma oferta.'],
+  ['Request: o cliente pede o IP oferecido','O cliente aceita formalmente.'],
+  ['Ack: o servidor confirma a configuração','Agora o cliente já pode usar a rede.']]);
+J['r6-ordem-web']=O('O que acontece quando você abre um site',
+ 'Você digita um endereço e a página aparece. Nos bastidores, muita coisa acontece em ordem.',
+ [['Você digita o endereço no navegador','Tudo começa com o pedido.'],
+  ['O DNS traduz o nome em um endereço IP','A lista telefônica da Internet.'],
+  ['O navegador abre uma conexão TCP com o servidor','O handshake de 3 vias.'],
+  ['O navegador envia o pedido HTTP (GET)','“Me mande a página, por favor.”'],
+  ['O servidor responde (200 OK) com a página','O código 200 significa sucesso.'],
+  ['O navegador mostra a página na tela','Fim da viagem.']]);
+})();
+
+/* Onde reler, quando o aluno errar */
+(function(){var V={"r1-dispositivos": "c1-comp", "r1-areas": "c1-class", "r1-componentes": "c1-comp", "r2-camadas": "c2-tcp", "r2-unidades": "c2-enc", "r2-modelos": "c2-tcp", "r2-ordem-encap": "c2-enc", "r3-cabo-wifi": "c3-eth", "r3-quadro": "c3-eth", "r3-faixas": "c3-wifi", "r4-enderecos": "c4-end", "r4-protocolos": "c4-ip", "r4-ipv": "c4-ip", "r4-roteamento": "c4-rot", "r5-tcp-udp": "c5-comp", "r5-portas": "c5-portas", "r5-handshake": "c5-hs", "r5-ordem-tcp": "c5-hs", "r6-protocolos": "c6-web", "r6-status": "c6-web", "r6-dhcp": "c6-dns", "r6-seguro": "c6-ssh", "r6-ordem-dora": "c6-dns", "r6-ordem-web": "c6-web", "r7-cid": "c7-intro", "r7-malware": "c7-amea", "r7-defesas": "c7-sol", "r7-golpe": "c7-amea"};Object.keys(V).forEach(function(k){if(window.JOGOS[k])window.JOGOS[k].ver=V[k]})})();
