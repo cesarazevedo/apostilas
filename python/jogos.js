@@ -376,4 +376,38 @@ J['p12-casos']=G('Caso normal ou caso de borda?',
   ['Lista vazia','borda','Nenhum item: muitos programas quebram aqui.'],
   ['Texto vazio ""','borda','O usuário só apertou Enter.'],
   ['Idade negativa','borda','Um valor que não faz sentido.']]);
+
+/* ===== Jogos de ordenar passos ===== */
+function O(t,a,p,o){return Object.assign({titulo:t,ajuda:a,passos:p.map(function(x){return{t:x[0],why:x[1]}})},o||{})}
+J['p2-ordem-prog']=O('Criar e rodar um programa no IDLE',
+ 'Do arquivo em branco até o programa rodando. Qual é a ordem?',
+ [['File → New File','Abre um arquivo novo no editor.'],
+  ['Escrever o código','Digite o programa.'],
+  ['Salvar com a extensão .py','O IDLE só roda o que está salvo.'],
+  ['Apertar F5 (Run Module)','Executa o programa.'],
+  ['Ler o resultado na janela do Shell','Aqui aparecem os prints e os erros.']]);
+J['p9-ordem-arquivo']=O('Ler um arquivo de texto',
+ 'Os passos para ler um arquivo linha por linha, como se faz no capítulo.',
+ [['Abrir com with open(nome, "r")','O modo "r" é para ler. O with fecha sozinho no fim.'],
+  ['Percorrer as linhas com for','Uma linha por volta do laço.'],
+  ['Tirar o \\n do fim com strip()','Cada linha vem com a quebra de linha.'],
+  ['Converter com int() ou float(), se for número','Tudo que vem do arquivo é texto.'],
+  ['Usar o valor no programa','Agora é só usar.']]);
+J['p11-ordem-sqlite']=O('Gravar um dado no banco com sqlite3',
+ 'O caminho até gravar uma linha no banco. Qual é a ordem?',
+ [['Conectar ao banco com connect','Abre ou cria o arquivo do banco.'],
+  ['Criar o cursor','O “garçom” que leva os comandos.'],
+  ['Enviar o INSERT com execute (usando ?)','O ? com tupla protege contra injeção de SQL.'],
+  ['Gravar com commit','Sem o commit, o que você fez some.'],
+  ['Fechar a conexão','Boa prática ao terminar.']]);
+J['p12-ordem-projeto']=O('As etapas do projeto final',
+ 'Todo projeto bem feito segue um caminho. Qual é a ordem?',
+ [['Escrever os requisitos em frases simples','A planta da obra.'],
+  ['Criar a classe e testar','Comece pelo molde, a peça principal.'],
+  ['Guardar os dados em arquivo (CSV)','Para os dados sobreviverem ao fim do programa.'],
+  ['Montar o programa completo','Juntar as peças que já foram testadas.'],
+  ['Testar com casos normais e de borda','E melhorar o que aparecer.']]);
+var V={'p1-mitos':'c1-2','p1-termos':'c1-1','p2-ide':'c2-3','p2-operadores':'c2-4','p2-precedencia':'c2-4','p2-ordem-prog':'c2-3','p3-tipos':'c3-1','p3-nomes':'c3-1','p3-logicos':'c3-3','p3-input':'c3-6','p4-estruturas':'c4-1','p4-saida':'c4-2','p4-sintaxe':'c4-1','p5-loop':'c5-1','p5-conceitos':'c5-3','p5-cont-acum':'c5-2','p6-metodos':'c6-2','p6-estruturas':'c6-2','p6-indices':'c6-1','p7-metodos':'c7-2','p7-valida':'c7-2','p7-imutavel':'c7-1','p8-print-return':'c8-1','p8-partes':'c8-1','p8-saida':'c8-3','p9-modos':'c9-1','p9-apaga':'c9-2','p9-ferramentas':'c9-3','p9-ordem-arquivo':'c9-1','p10-vocab':'c10-1','p10-heranca':'c10-4','p10-codigo':'c10-2','p11-crud':'c11-1','p11-sqlite':'c11-2','p11-sql':'c11-3','p11-seguro':'c11-4','p11-ordem-sqlite':'c11-2','p12-etapas':'c12-1','p12-bugs':'c12-5','p12-casos':'c12-5','p12-ordem-projeto':'c12-1'};
+Object.keys(V).forEach(function(k){if(J[k])J[k].ver=V[k]});
+
 })();

@@ -161,4 +161,17 @@ J['so4-nist']=G('As 5 características da nuvem (NIST)',
   ['🏘️ Vários clientes dividem os mesmos servidores','pool','Como os moradores que dividem o prédio.'],
   ['🪗 Aumentar e diminuir os recursos conforme a demanda','elas','Como uma sanfona.'],
   ['⚡ Pagar pelo que usou, como a conta de luz','med','Consumo medido, cobrança por uso.']],{unico:true});
+
+/* ===== Jogos de ordenar passos ===== */
+function O(t,a,p,o){return Object.assign({titulo:t,ajuda:a,passos:p.map(function(x){return{t:x[0],why:x[1]}})},o||{})}
+J['so3-ordem-servico']=O('A receita para configurar um serviço no Linux',
+ 'Sempre que for colocar um serviço no ar, siga esta ordem. Ela evita muita dor de cabeça.',
+ [['Instalar o pacote','Com o apt install.'],
+  ['Configurar os arquivos (em /etc)','Ajustar o serviço ao que você precisa.'],
+  ['Testar a configuração antes de reiniciar','Um erro de digitação pode derrubar o serviço, então teste antes.'],
+  ['Reiniciar o serviço','Para valer a nova configuração.'],
+  ['Testar a partir de um cliente','O teste final: funciona para quem vai usar?']]);
+var V={'so1-hipervisor':'c1-intro','so1-redes':'c1-redes','so1-vm-container':'c1-cont','so2-ad':'c2-ad','so2-backup':'c2-backup','so2-dhcp':'c2-dns','so2-core':'c2-inst','so3-comandos':'c3-adm','so3-pastas':'c3-inst','so3-permissoes':'c3-adm','so3-servicos':'c3-serv','so3-gerencia':'c3-adm','so3-ordem-servico':'c3-serv','so4-servico':'c4-serv','so4-implantacao':'c4-impl','so4-responsabilidade':'c4-prov','so4-nist':'c4-conc'};
+Object.keys(V).forEach(function(k){if(J[k])J[k].ver=V[k]});
+
 })();
