@@ -303,3 +303,13 @@ html[data-theme=dark] .retry{color:#81c784;border-color:#81c784}
 html[data-theme=dark] #glTip{background:#e5e7eb;color:#111827}
 }
 @media screen and (max-width:700px){table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch;max-width:100%}}
+
+/* códigos longos (IPv6, caminhos) quebram linha em vez de estourar a tela */
+:not(pre)>code{overflow-wrap:anywhere}
+.box>div{min-width:0;overflow-wrap:anywhere}
+.tool input,.tool select{max-width:100%}
+.ctl{flex-wrap:wrap}
+ol.steps>li{min-width:0;overflow-wrap:anywhere}
+pre{max-width:100%}
+.ctl label{max-width:100%}
+.ctl input[type=range]{max-width:42vw}
